@@ -12,10 +12,12 @@ class AdminUserTable extends Seeder
 	        'role' 	=> 'konsumen',
 	        'tempat_lahir' => 'Galung',
 	        'tanggal_lahir'=> '1999-08-04',
-	        'alamat'=> 'Galung, Desa Talungeng Kec. Barebbo Kab. Bone',
-	        'alamat_id'=> 87, // id kabupaten bone dari tabel Kotas
-	        'kecamatan'=> 'Barebbo',
+	        'alamat'	=> 'Galung, Desa Talungeng Kec. Barebbo Kab. Bone',
+	        'alamat_id'	=> 87, // id kabupaten bone dari tabel Kotas
+	        'kecamatan'	=> 'Barebbo',
 	        'nohp'		=> '082344949505',
+	        'rt'		=> '001',
+	        'rw'		=> '002',
 	        'password'  => bcrypt('12345678')
 		]);
 
@@ -25,10 +27,12 @@ class AdminUserTable extends Seeder
 	        'role' 	=> 'petani',
 	        'tempat_lahir' => 'Galung',
 	        'tanggal_lahir'=> '1999-08-04',
-	        'alamat'=> 'Galung, Desa Talungeng Kec. Barebbo Kab. Bone',
-	        'alamat_id'=> 87, // id kabupaten bone dari tabel Kotas
-	        'kecamatan'=> 'Barebbo',
+	        'alamat'	=> 'Galung, Desa Talungeng Kec. Barebbo Kab. Bone',
+	        'alamat_id'	=> 87, // id kabupaten bone dari tabel Kotas
+	        'kecamatan'	=> 'Barebbo',
 	        'nohp'		=> '082344949505',
+	        'rt'		=> '001',
+	        'rw'		=> '002',
 	        'password'  => bcrypt('12345678')
 		]);
 

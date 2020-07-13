@@ -38,7 +38,9 @@ class UserController extends Controller
                 'kecamatan' => 'required|string',
                 'nohp' => 'required|string',
                 'role' => 'required|string',
-                'kota_id' => 'required|number',
+                'kota_id' => 'required|numeric',
+                'rt' => 'required|string',
+                'rw' => 'required|string',
             ]);
 
             if($validator->fails()){
@@ -56,6 +58,8 @@ class UserController extends Controller
                 'role' => $request->get('role'), //konsumen atau petani
                 'alamat_id' => $request->get('kota_id'),
                 'tanggal_lahir' => $request->get('tanggal_lahir'),
+                'rt' => $request->get('rt'),
+                'rw' => $request->get('rw'),
             ]);
 
             $token = JWTAuth::fromUser($user);

@@ -26,6 +26,8 @@ class CreateUsersTable extends Migration
             $table->string('alamat'); //alamat lengkap
             $table->string('kecamatan');
             $table->string('nohp');
+            $table->string('rt');
+            $table->string('rw');
             $table->enum('role', ['konsumen', 'petani']);
             $table->timestamps();
         });
