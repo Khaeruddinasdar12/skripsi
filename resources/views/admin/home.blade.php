@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.galungtemplate')
 
 @section('content')
 <div class="container">
