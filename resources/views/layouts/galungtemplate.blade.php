@@ -3,6 +3,7 @@
 <html lang="en">
 
 <!--begin::Head-->
+
 <head>
   <base href="">
   <meta charset="utf-8" />
@@ -17,18 +18,22 @@
   <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
   <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
   <!-- metronic -->
+
+  <!-- bootstrap -->
+  <link href="{{ asset('css/bootstrap.min.js') }}" rel="stylesheet" type="text/css" />
 </head>
 
 <!--end::Head-->
 
 <!--begin::Body-->
+
 <body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled page-loading">
 
   <nav>
     @include('layouts.navbar')
   </nav>
 
-  <div id="main">
+  <div id="main" style="height: 100%;">
     @yield('content')
   </div>
 
@@ -37,26 +42,26 @@
   </footer>
 
   <!--begin::Global Config(global config for global JS scripts)-->
- <script>
-      var KTAppOptions = {
-        "colors": {
-          "state": {
-            "brand": "#591df1",
-            "light": "#ffffff",
-            "dark": "#282a3c",
-            "primary": "#5867dd",
-            "success": "#34bfa3",
-            "info": "#36a3f7",
-            "warning": "#ffb822",
-            "danger": "#fd3995"
-          },
-          "base": {
-            "label": ["#c5cbe3", "#a1a8c3", "#3d4465", "#3e4466"],
-            "shape": ["#f0f3ff", "#d9dffa", "#afb4d4", "#646c9a"]
-          }
+  <script>
+    var KTAppOptions = {
+      "colors": {
+        "state": {
+          "brand": "#591df1",
+          "light": "#ffffff",
+          "dark": "#282a3c",
+          "primary": "#5867dd",
+          "success": "#34bfa3",
+          "info": "#36a3f7",
+          "warning": "#ffb822",
+          "danger": "#fd3995"
+        },
+        "base": {
+          "label": ["#c5cbe3", "#a1a8c3", "#3d4465", "#3e4466"],
+          "shape": ["#f0f3ff", "#d9dffa", "#afb4d4", "#646c9a"]
         }
-      };
-    </script>
+      }
+    };
+  </script>
 
   <!-- end::Global Config -->
   <!--begin::Global Theme Bundle(used by all pages) -->
@@ -75,4 +80,5 @@
 </body>
 
 <!--end::Body-->
+
 </html>
