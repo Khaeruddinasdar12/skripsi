@@ -11,14 +11,16 @@
   <meta name="description" content="Updates and statistics" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
+  <link href="{{ asset('css/galung.css') }}" rel="stylesheet" type="text/css" />
+
   <!--begin::Fonts-->
   <!-- metronic -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
-  <link href="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.css?v=7.0.6') }}" rel="stylesheet" type="text/css" />
+  <link href="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.css') }}" rel="stylesheet" type="text/css" />
   <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
   <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
   <!-- metronic -->
-  <link href="{{ asset('css/galung.css') }}" rel="stylesheet" type="text/css" />
+
   <!-- bootstrap -->
   <link href="{{ asset('css/bootstrap.min.js') }}" rel="stylesheet" type="text/css" />
 </head>
@@ -27,19 +29,24 @@
 
 <!--begin::Body-->
 
-<body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled page-loading">
+<body class="kt-page--loading-enabled kt-page--loading kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header--minimize-menu kt-header-mobile--fixed kt-subheader--enabled kt-subheader--transparent kt-aside--enabled kt-aside--left kt-aside--fixed kt-page--loading">
 
-  <nav>
-    @include('layouts.navbar')
-  </nav>
+  <div class="kt-grid kt-grid--hor kt-grid--root">
+    <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-page">
+      <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper" id="kt_wrapper">
 
-  <div id="main" style="height: 100%;">
-    @yield('content')
+        @include('layouts.navbar')
+
+        <div id="main" style="height: 100%; margin-top:150px;">
+          @yield('content')
+        </div>
+
+        <footer>
+          @include('layouts.footer')
+        </footer>
+      </div>
+    </div>
   </div>
-
-  <footer>
-    @include('layouts.footer')
-  </footer>
 
   <!--begin::Global Config(global config for global JS scripts)-->
   <script>
