@@ -1,4 +1,18 @@
-<div id="kt_header" class="kt-header  kt-header--fixed " data-ktheader-minimize="on">
+<!-- begin:: Header Mobile -->
+<div id="kt_header_mobile" class="kt-header-mobile galung-header-mobile  kt-header-mobile--fixed ">
+  <div class="kt-header-mobile__logo">
+    <a href="#">
+      <img alt="Logo" src=" {{ asset('img/logocrop.png') }} " class="img-fluid logo-mobile" />
+    </a>
+  </div>
+  <div class="kt-header-mobile__toolbar">
+    <button class="kt-header-mobile__toolbar-toggler" id="kt_header_mobile_toggler"><span></span></button>
+    <button class="kt-header-mobile__toolbar-topbar-toggler" id="kt_header_mobile_topbar_toggler"><i class="flaticon-more-1"></i></button>
+  </div>
+</div>
+<!-- end:: Header Mobile -->
+
+<div id="kt_header" class="kt-header  kt-header--fixed galung-header" data-ktheader-minimize="on">
   <div class="kt-container  kt-container--fluid ">
 
     <!-- begin: Header Menu -->
@@ -9,7 +23,7 @@
       <div id="kt_header_menu" class="kt-header-menu kt-header-menu-mobile ">
         <ul class="kt-menu__nav ">
 
-          <li class="kt-menu__item  kt-menu__item--open kt-menu__item--here kt-menu__item--submenu kt-menu__item--rel kt-menu__item--open kt-menu__item--here" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
+          <li class="kt-menu__item  kt-menu__item--open kt-menu__item--here kt-menu__item--submenu kt-menu__item--rel kt-menu__item--open " data-ktmenu-submenu-toggle="click" aria-haspopup="true">
             <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
               <span class="kt-menu__link-text">Dashboard</span>
             </a>
@@ -17,7 +31,7 @@
 
           <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
             <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
-              <span class="kt-menu__link-text">Components</span>
+              <span class="kt-menu__link-text top-text-nav">Components</span>
               <i class="kt-menu__ver-arrow la la-angle-right"></i>
             </a>
             <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
@@ -48,21 +62,21 @@
 
           <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
             <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
-              <span class="kt-menu__link-text">Crud</span>
+              <span class="kt-menu__link-text top-text-nav">Crud</span>
               <i class="kt-menu__ver-arrow la la-angle-right"></i>
             </a>
           </li>
 
           <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
             <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
-              <span class="kt-menu__link-text">Apps</span>
+              <span class="kt-menu__link-text top-text-nav">Apps</span>
               <i class="kt-menu__ver-arrow la la-angle-right"></i>
             </a>
           </li>
 
           <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
             <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
-              <span class="kt-menu__link-text">Pages</span>
+              <span class="kt-menu__link-text top-text-nav">Pages</span>
               <i class="kt-menu__ver-arrow la la-angle-right"></i>
             </a>
           </li>
@@ -76,7 +90,7 @@
     <!-- begin:: Brand -->
     <div class="kt-header__brand   kt-grid__item" id="kt_header_brand">
       <a class="kt-header__brand-logo" href="?page=index">
-        <img alt="Logo" src="assets/media/logos/logo-9.png">
+        <img alt="Logo" src=" {{ asset('img/logocrop.png') }} " class="logogalung">
       </a>
     </div>
 
@@ -87,7 +101,7 @@
 
       <!--begin: Search -->
       <div class="kt-header__topbar-item kt-header__topbar-item--search dropdown" id="kt_quick_search_toggle">
-        <div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="10px,0px">
+        <div class="kt-header__topbar-wrapper search-topbar" data-toggle="dropdown" data-offset="10px,0px">
           <span class="kt-header__topbar-icon"><i class="flaticon2-search-1"></i></span>
         </div>
         <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-lg">
@@ -114,7 +128,7 @@
       <!--end: Search -->
 
       <!--begin: User bar -->
-      <div class="kt-header__topbar-item kt-header__topbar-item--user">
+      <div class="kt-header__topbar-item kt-header__topbar-item--user user-topbar">
         <div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="10px,0px">
           <span class="kt-header__topbar-welcome kt-visible-desktop">Hi,</span>
           <span class="kt-header__topbar-username kt-visible-desktop">Admin</span>
@@ -138,7 +152,10 @@
             </div>
             <div class="kt-user-card__badge">
               <span>
-                <a href="custom/user/login-v2.html" target="_blank" class="btn btn-label btn-label-brand btn-sm btn-bold">Sign Out</a>
+                <a href="{{ route('admin.logout') }}" target="_blank" class="btn btn-label btn-label-brand btn-sm btn-bold btn-logout-user" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log Out</a>
+                <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                  @csrf
+                </form>
               </span>
             </div>
           </div>
@@ -146,6 +163,7 @@
         </div>
       </div>
       <!--end: User bar -->
+
     </div>
 
     <!-- end:: Header Topbar -->
