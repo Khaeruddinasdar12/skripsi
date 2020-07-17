@@ -37,7 +37,7 @@
 
         @include('layouts.navbar')
 
-        <div id="main" style="height: 100%; margin-top:150px;">
+        <div id="main" style="height: 100%; margin-top:100px;">
           @yield('content')
         </div>
 

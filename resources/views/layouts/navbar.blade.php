@@ -19,6 +19,15 @@
     <button class="kt-header-menu-wrapper-close" id="kt_header_menu_mobile_close_btn">
       <i class="la la-close"></i>
     </button>
+
+    <!-- begin:: Brand -->
+    <div class="kt-header__brand" id="kt_header_brand">
+      <a class="kt-header__brand-logo" href="?page=index">
+        <img alt="Logo" src=" {{ asset('img/logocrop.png') }} " class="logogalung">
+      </a>
+    </div>
+    <!-- end:: Brand -->
+
     <div class="kt-header-menu-wrapper kt-grid__item kt-grid__item--fluid" id="kt_header_menu_wrapper">
       <div id="kt_header_menu" class="kt-header-menu kt-header-menu-mobile ">
         <ul class="kt-menu__nav ">
@@ -86,15 +95,6 @@
     </div>
 
     <!-- end: Header Menu -->
-
-    <!-- begin:: Brand -->
-    <div class="kt-header__brand   kt-grid__item" id="kt_header_brand">
-      <a class="kt-header__brand-logo" href="?page=index">
-        <img alt="Logo" src=" {{ asset('img/logocrop.png') }} " class="logogalung">
-      </a>
-    </div>
-
-    <!-- end:: Brand -->
 
     <!-- begin:: Header Topbar -->
     <div class="kt-header__topbar kt-grid__item">

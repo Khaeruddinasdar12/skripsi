@@ -32,6 +32,14 @@
 .galung-header {
     background-color: $galungcolor !important;
 
+    .kt-header__brand {
+        justify-content: flex-start !important;
+
+        .logogalung {
+            width: 170px;
+        }
+    }
+
     .kt-header-menu {
         .kt-menu__item {
             a {
@@ -40,10 +48,6 @@
                 }
             }
         }
-    }
-
-    .logogalung {
-        width: 170px;
     }
 
     .kt-header__topbar {
