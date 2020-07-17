@@ -15,6 +15,13 @@ class CreateGadaiSawahsTable extends Migration
     {
         Schema::create('gadai_sawahs', function (Blueprint $table) {
             $table->id();
+            $table->string('periode');
+            $table->integer('harga');
+            $table->enum('admin_verified', [0, 1]);
+            $table->integer('admin_by')->nullable();
+            $table->integer('sawah_id');
+            $table->integer('user_by');
+            $table->string('keterangan')->nullable();
             $table->timestamps();
         });
     }

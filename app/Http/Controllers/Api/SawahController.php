@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use JWTAuth;
 use App\Sawah;
+use App\GadaiSawah;
 Use DB;
 use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -28,16 +29,14 @@ class SawahController extends Controller
         if($user->petani_verified == '0') {
         	return response()->json([
                 'status' => false, 
-                'message' => 'Akun petani belum diverifikasi', 
-                'code' => 403
+                'message' => 'Akun petani belum diverifikasi'
             ]);
         }
         $data = \App\User::find($user->id)->sawahs()->get();
 
         return response()->json([
                 'status' => true, 
-                'message' => 'Daftar sawah yang dimiliki User yang sedang login', 
-                'code' => 200, 
+                'message' => 'Daftar sawah yang dimiliki User yang sedang login',
                 'data' => $data
             ]);
     }
@@ -59,8 +58,7 @@ class SawahController extends Controller
         if($user->petani_verified == '0') {
             return response()->json([
                 'status' => false, 
-                'message' => 'Akun petani belum diverifikasi', 
-                'code' => 403
+                'message' => 'Akun petani belum diverifikasi'
             ]);
         }
 
@@ -78,7 +76,6 @@ class SawahController extends Controller
         if($validator->fails()) {
                 return response()->json([
                     'status' => false,
-                    'code' => 401,
                     'message' => 'Ada kesalahan saat daftar sawah',
                     'data' => $validator->errors()
                 ]);
@@ -99,7 +96,6 @@ class SawahController extends Controller
 
         return response()->json([
                     'status' => true,
-                    'code' => 200,
                     'message' => 'Berhasil mendaftarkan sawah'
                 ]);
 
@@ -122,8 +118,7 @@ class SawahController extends Controller
         if($user->petani_verified == '0') {
             return response()->json([
                 'status' => false, 
-                'message' => 'Akun petani belum diverifikasi', 
-                'code' => 403
+                'message' => 'Akun petani belum diverifikasi'
             ]);
         }
 
@@ -157,7 +152,6 @@ class SawahController extends Controller
         if($validator->fails()) {
                 return response()->json([
                     'status' => false,
-                    'code' => 401,
                     'message' => 'Ada kesalahan saat daftar sawah',
                     'data' => $validator->errors()
                 ]);
@@ -177,10 +171,53 @@ class SawahController extends Controller
 
         return response()->json([
                     'status' => true,
-                    'code' => 200,
                     'message' => 'Berhasil mengubah data sawah'
                 ]);
 
+
+    }
+
+    public function delete($id)
+    {
+        try {
+         if (! $user = JWTAuth::parseToken()->authenticate()) {
+                return response()->json(['user_not_found'], 404);
+            }
+        } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+                return response()->json(['token_expired'], $e->getStatusCode());
+        } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+                return response()->json(['token_invalid'], $e->getStatusCode());
+        } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
+                return response()->json(['token_absent'], $e->getStatusCode());
+        }
+
+        $cek_gadai = GadaiSawah::where('sawah_id', $user->id)->first();
+        if($cek_gadai != null) {
+            if($cek_gadai->status == 1) {
+            return response()->json([
+                    'status' => false,
+                    'message' => 'Sawah ini sedang digadai'
+                ]);
+            }
+
+            $cek_gadai->delete(); //delete data di tabel gadai_sawahs
+        }
+
+        
+
+        $sawah = Sawah::find($id);
+        if ($sawah == null) {
+            return response()->json([
+                'status' => false, 
+                'message' => 'Id sawah tidak ditemukan'
+            ]);
+        }
+
+        $sawah->delete(); //delete data di table sawahs
+        return response()->json([
+                'status' => true, 
+                'message' => 'Berhasil menghapus sawah'
+            ]);
 
     }
 
