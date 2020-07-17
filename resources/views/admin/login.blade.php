@@ -95,7 +95,7 @@
                         <a href="javascript:;" id="kt_login_forgot">Forget Password ?</a>
                       </div>
                       <div class="kt-login__actions">
-                        <button type=submit class="btn btn-brand btn-pill btn-elevate btn-galung">Sign In</button>
+                        <button type=submit class="btn btn-brand btn-pill btn-elevate btn-galung-login">Sign In</button>
                       </div>
                     </form>
 

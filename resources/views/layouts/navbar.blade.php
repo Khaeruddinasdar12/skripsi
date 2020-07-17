@@ -19,6 +19,15 @@
     <button class="kt-header-menu-wrapper-close" id="kt_header_menu_mobile_close_btn">
       <i class="la la-close"></i>
     </button>
+
+    <!-- begin:: Brand -->
+    <div class="kt-header__brand" id="kt_header_brand">
+      <a class="kt-header__brand-logo" href="?page=index">
+        <img alt="Logo" src=" {{ asset('img/logocrop.png') }} " class="logogalung">
+      </a>
+    </div>
+    <!-- end:: Brand -->
+
     <div class="kt-header-menu-wrapper kt-grid__item kt-grid__item--fluid" id="kt_header_menu_wrapper">
       <div id="kt_header_menu" class="kt-header-menu kt-header-menu-mobile ">
         <ul class="kt-menu__nav ">
@@ -31,7 +40,7 @@
 
           <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
             <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
-              <span class="kt-menu__link-text top-text-nav">Components</span>
+              <span class="kt-menu__link-text top-text-nav">Gabah</span>
               <i class="kt-menu__ver-arrow la la-angle-right"></i>
             </a>
             <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
@@ -39,22 +48,18 @@
                 <li class="kt-menu__item  kt-menu__item--submenu" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
                   <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
                     <i class="kt-menu__link-icon flaticon2-start-up"></i>
-                    <span class="kt-menu__link-text">Base</span>
+                    <span class="kt-menu__link-text">Data Gabah</span>
                     <i class="kt-menu__hor-arrow la la-angle-right"></i>
                     <i class="kt-menu__ver-arrow la la-angle-right"></i>
                   </a>
-                  <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--right">
-                    <ul class="kt-menu__subnav">
-                      <li class="kt-menu__item " aria-haspopup="true">
-                        <a href="components/base/colors.html" class="kt-menu__link ">
-                          <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
-                            <span></span>
-                          </i>
-                          <span class="kt-menu__link-text">State Colors</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
+                </li>
+                <li class="kt-menu__item  kt-menu__item--submenu" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
+                  <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+                    <i class="kt-menu__link-icon flaticon2-start-up"></i>
+                    <span class="kt-menu__link-text">Transaksi</span>
+                    <i class="kt-menu__hor-arrow la la-angle-right"></i>
+                    <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                  </a>
                 </li>
               </ul>
             </div>
@@ -62,21 +67,109 @@
 
           <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
             <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
-              <span class="kt-menu__link-text top-text-nav">Crud</span>
+              <span class="kt-menu__link-text top-text-nav">Beras</span>
               <i class="kt-menu__ver-arrow la la-angle-right"></i>
             </a>
+            <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
+              <ul class="kt-menu__subnav">
+                <li class="kt-menu__item  kt-menu__item--submenu" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
+                  <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+                    <i class="kt-menu__link-icon flaticon2-start-up"></i>
+                    <span class="kt-menu__link-text">Data Beras</span>
+                    <i class="kt-menu__hor-arrow la la-angle-right"></i>
+                    <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                  </a>
+                </li>
+                <li class="kt-menu__item  kt-menu__item--submenu" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
+                  <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+                    <i class="kt-menu__link-icon flaticon2-start-up"></i>
+                    <span class="kt-menu__link-text">Transaksi</span>
+                    <i class="kt-menu__hor-arrow la la-angle-right"></i>
+                    <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </li>
 
           <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
             <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
-              <span class="kt-menu__link-text top-text-nav">Apps</span>
+              <span class="kt-menu__link-text top-text-nav">Modal Tanam</span>
               <i class="kt-menu__ver-arrow la la-angle-right"></i>
             </a>
           </li>
 
           <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
             <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
-              <span class="kt-menu__link-text top-text-nav">Pages</span>
+              <span class="kt-menu__link-text top-text-nav">Gadai Sawah</span>
+              <i class="kt-menu__ver-arrow la la-angle-right"></i>
+            </a>
+          </li>
+
+          <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
+            <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+              <span class="kt-menu__link-text top-text-nav">Alat</span>
+              <i class="kt-menu__ver-arrow la la-angle-right"></i>
+            </a>
+            <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
+              <ul class="kt-menu__subnav">
+                <li class="kt-menu__item  kt-menu__item--submenu" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
+                  <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+                    <i class="kt-menu__link-icon flaticon2-start-up"></i>
+                    <span class="kt-menu__link-text">Data Alat</span>
+                    <i class="kt-menu__hor-arrow la la-angle-right"></i>
+                    <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                  </a>
+                </li>
+                <li class="kt-menu__item  kt-menu__item--submenu" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
+                  <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+                    <i class="kt-menu__link-icon flaticon2-start-up"></i>
+                    <span class="kt-menu__link-text">Transaksi Alat</span>
+                    <i class="kt-menu__hor-arrow la la-angle-right"></i>
+                    <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
+            <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+              <span class="kt-menu__link-text top-text-nav">Bibit & Pupuk</span>
+              <i class="kt-menu__ver-arrow la la-angle-right"></i>
+            </a>
+            <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
+              <ul class="kt-menu__subnav">
+                <li class="kt-menu__item  kt-menu__item--submenu" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
+                  <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+                    <i class="kt-menu__link-icon flaticon2-start-up"></i>
+                    <span class="kt-menu__link-text">Data Bibit & Pupuk</span>
+                    <i class="kt-menu__hor-arrow la la-angle-right"></i>
+                    <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                  </a>
+                </li>
+                <li class="kt-menu__item  kt-menu__item--submenu" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
+                  <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+                    <i class="kt-menu__link-icon flaticon2-start-up"></i>
+                    <span class="kt-menu__link-text">Transaksi Bibit & Pupuk</span>
+                    <i class="kt-menu__hor-arrow la la-angle-right"></i>
+                    <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
+            <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+              <span class="kt-menu__link-text top-text-nav">Manage Admin</span>
+              <i class="kt-menu__ver-arrow la la-angle-right"></i>
+            </a>
+          </li>
+
+          <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
+            <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+              <span class="kt-menu__link-text top-text-nav">Manage User</span>
               <i class="kt-menu__ver-arrow la la-angle-right"></i>
             </a>
           </li>
@@ -86,15 +179,6 @@
     </div>
 
     <!-- end: Header Menu -->
-
-    <!-- begin:: Brand -->
-    <div class="kt-header__brand   kt-grid__item" id="kt_header_brand">
-      <a class="kt-header__brand-logo" href="?page=index">
-        <img alt="Logo" src=" {{ asset('img/logocrop.png') }} " class="logogalung">
-      </a>
-    </div>
-
-    <!-- end:: Brand -->
 
     <!-- begin:: Header Topbar -->
     <div class="kt-header__topbar kt-grid__item">

@@ -31,15 +31,11 @@
         }
     }
 
-    .btn-galung {
-        background-color: $galungcolor;
-        border: none;
-        color: #fff;
+    .btn-galung-login {
+        @extend %galung-button-fill;
         width: 100%;
         margin-top: 10px;
-        border-radius: 10px;
         font-size: 18px;
-        font-weight: 600;
 
         &:hover {
             background-color: $galungcolorhover;
