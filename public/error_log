@@ -1,0 +1,1 @@
+[13-Jul-2020 14:43:39 UTC] PHP Fatal error:  Cannot use Validator as Validator because the name is already in use in /home/asdarmyi/public_html/galung/app/Http/Controllers/Api/UserController.php on line 10
