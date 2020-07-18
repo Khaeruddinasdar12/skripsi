@@ -74,6 +74,7 @@ class UserController extends Controller
                 'tanggal_lahir' => $request->get('tanggal_lahir'),
                 'rt' => $request->get('rt'),
                 'rw' => $request->get('rw'),
+                'kelurahan' => $request->get('kelurahan'),
             ]);
 
             $token = JWTAuth::fromUser($user);
