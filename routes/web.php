@@ -19,9 +19,7 @@ Route::post('/logout', 'LoginController@logout')->name('admin.logout');
 Route::prefix('admin')->namespace('Admin')->group(function () {
 	Route::get('/', 'HomeController@index')->name('admin.home');
 
-	Route::namespace('Auth')->group(function () {
-
-		// RUTE MENU GABAHKU & TRANSAKSI GABAHKU
+	// RUTE MENU GABAHKU & TRANSAKSI GABAHKU
 		Route::get('gabah', 'GabahController@index')->name('index.gabah'); //menampilkan hal. data gabah
 		Route::get('transaksi-gabah', 'GabahController@transaksi')->name('transaksi.gabah'); //menampilkan hal. data transaksi gabah
 		// END RUTE MENU GABAHKU & TRANSAKSI GABAHKU
@@ -64,14 +62,8 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 		// RUTE MENU MANAGE USER
 		Route::get('manage-user', 'UserController@index')->name('index.manage-user'); //menampilkan hal. data user
 		// END RUTE MANAGE USER
-
-
-
-
-
-
-
-
+		
+	Route::namespace('Auth')->group(function () {
 
 
 		//Login Routes
