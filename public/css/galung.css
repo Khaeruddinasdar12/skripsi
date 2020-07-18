@@ -1,3 +1,20 @@
+.modal-admin .modal-body .button-add .btn-admin-add, .admin-portlet .kt-portlet__head-actions .btn-tambah-data:hover, .kt-login .btn-galung-login {
+  background-color: #00A859 !important;
+  border: none !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 5px !important;
+  font-weight: 600 !important;
+}
+
+.admin-portlet table .btn-more-admin {
+  background-color: #fff !important;
+  color: #00A859 !important;
+  border: 1px solid #00A859 !important;
+  border-radius: 5px !important;
+  font-weight: 600 !important;
+}
+
 .kt-login .login-bg {
   background-image: url("../img/galung1.jpg");
   position: relative !important;
@@ -22,17 +39,12 @@
   text-align: left !important;
   font-weight: 600 !important;
 }
-.kt-login .btn-galung {
-  background-color: #00A859;
-  border: none;
-  color: #fff;
+.kt-login .btn-galung-login {
   width: 100%;
   margin-top: 10px;
-  border-radius: 10px;
   font-size: 18px;
-  font-weight: 600;
 }
-.kt-login .btn-galung:hover {
+.kt-login .btn-galung-login:hover {
   background-color: #018346;
 }
 
@@ -64,11 +76,30 @@
 .galung-header {
   background-color: #00A859 !important;
 }
+.galung-header .kt-header__brand {
+  justify-content: flex-start;
+  width: fit-content;
+  max-width: fit-content;
+}
+.galung-header .kt-header__brand .logogalung {
+  width: 170px;
+  padding-right: 30px;
+}
+.galung-header .kt-header__brand .border-right {
+  width: 1px;
+  height: 50px;
+  background: #fff;
+  margin-right: 30px;
+}
 .galung-header .kt-header-menu .kt-menu__item a .top-text-nav {
   color: #fff !important;
 }
-.galung-header .logogalung {
-  width: 170px;
+.galung-header .kt-header-menu #modaltanam,
+.galung-header .kt-header-menu #gadaisawah,
+.galung-header .kt-header-menu #bibitpupuk,
+.galung-header .kt-header-menu #manageadmin,
+.galung-header .kt-header-menu #manageuser {
+  width: 130px;
 }
 .galung-header .kt-header__topbar .search-topbar .flaticon2-search-1 {
   color: #fff !important;
@@ -91,6 +122,61 @@
 }
 .galung-header .kt-header__topbar .user-topbar .btn-logout-user:hover {
   background-color: #018346;
+}
+
+.admin-portlet .kt-portlet__head-icon i {
+  font-size: 25px;
+  color: #00A859;
+}
+.admin-portlet .kt-portlet__head-actions .btn-tambah-data i {
+  font-size: 25px !important;
+  color: #00A859;
+}
+.admin-portlet .kt-portlet__head-actions .btn-tambah-data:hover i {
+  color: #fff;
+}
+.admin-portlet table {
+  font-size: 15px !important;
+}
+.admin-portlet table .btn-more-admin i {
+  font-size: 20px !important;
+  color: #00A859;
+}
+.admin-portlet table .btn-more-admin:hover {
+  background-color: #00A859 !important;
+}
+.admin-portlet table .dropdown-table-admin ul .edit-admin:hover .kt-nav__link-icon, .admin-portlet table .dropdown-table-admin ul .edit-admin:hover .kt-nav__link-text {
+  color: #5683ff !important;
+}
+.admin-portlet table .dropdown-table-admin ul .hapus-admin:hover .kt-nav__link-icon, .admin-portlet table .dropdown-table-admin ul .hapus-admin:hover .kt-nav__link-text {
+  color: #ff3863 !important;
+}
+
+.modal-admin .modal-body .button-add {
+  border-top: 1px solid #cfcfcf;
+}
+.modal-admin .modal-body .button-add .btn-admin-add {
+  width: 100%;
+  margin: 20px 0 20px 0;
+}
+.modal-admin .modal-body .button-add .btn-admin-add:hover {
+  background-color: #018346 !important;
+}
+
+.form-group .input-group input {
+  transition: 0.5s !important;
+}
+.form-group .input-group input:focus {
+  border-color: #00A859 !important;
+  border: 2px solid;
+  transition: 0.5s !important;
+}
+.form-group .input-group input:hover {
+  border-color: #00A859 !important;
+  transition: 0.5s !important;
+}
+.form-group .input-group i {
+  color: #00A859 !important;
 }
 
 /*# sourceMappingURL=galung.css.map */

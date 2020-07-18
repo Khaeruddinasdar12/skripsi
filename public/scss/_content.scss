@@ -1,0 +1,22 @@
+.form-group {
+    .input-group {
+        input {
+            transition: 0.5s !important;
+
+            &:focus {
+                border-color: $galungcolor !important;
+                border: 2px solid;
+                transition: 0.5s !important;
+            }
+
+            &:hover {
+                border-color: $galungcolor !important;
+                transition: 0.5s !important;
+            }
+        }
+
+        i {
+            color: $galungcolor !important
+        }
+    }
+}

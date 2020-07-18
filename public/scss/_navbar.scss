@@ -32,6 +32,24 @@
 .galung-header {
     background-color: $galungcolor !important;
 
+    .kt-header__brand {
+        justify-content: flex-start;
+        width: fit-content;
+        max-width: fit-content;
+
+        .logogalung {
+            width: 170px;
+            padding-right: 30px;
+        }
+
+        .border-right {
+            width: 1px;
+            height: 50px;
+            background: #fff;
+            margin-right: 30px;
+        }
+    }
+
     .kt-header-menu {
         .kt-menu__item {
             a {
@@ -40,10 +58,14 @@
                 }
             }
         }
-    }
 
-    .logogalung {
-        width: 170px;
+        #modaltanam,
+        #gadaisawah,
+        #bibitpupuk,
+        #manageadmin,
+        #manageuser {
+            width: 130px;
+        }
     }
 
     .kt-header__topbar {
