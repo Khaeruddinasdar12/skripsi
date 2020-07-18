@@ -1,62 +1,22 @@
-.admin-portlet {
-    .kt-portlet__head-icon {
+.form-group {
+    .input-group {
+        input {
+            transition: 0.5s !important;
+
+            &:focus {
+                border-color: $galungcolor !important;
+                border: 2px solid;
+                transition: 0.5s !important;
+            }
+
+            &:hover {
+                border-color: $galungcolor !important;
+                transition: 0.5s !important;
+            }
+        }
+
         i {
-            font-size: 25px;
-            color: $galungcolor;
-        }
-    }
-
-    .kt-portlet__head-actions {
-        .btn-tambah-data {
-            i {
-                font-size: 25px !important;
-                color: $galungcolor;
-            }
-
-            &:hover {
-                @extend %galung-button-fill;
-            }
-
-            &:hover i {
-                color: #fff;
-            }
-        }
-    }
-
-    table {
-        font-size: 15px !important;
-
-        .btn-more-admin {
-            @extend %galung-button-outline;
-
-            i {
-                font-size: 20px !important;
-                color: $galungcolor;
-            }
-
-            &:hover {
-                background-color: $galungcolor !important;
-            }
-        }
-
-        .dropdown-table-admin {
-            ul {
-                .edit-admin {
-
-                    &:hover .kt-nav__link-icon,
-                    &:hover .kt-nav__link-text {
-                        color: $biru !important;
-                    }
-                }
-
-                .hapus-admin {
-
-                    &:hover .kt-nav__link-icon,
-                    &:hover .kt-nav__link-text {
-                        color: $merah !important;
-                    }
-                }
-            }
+            color: $galungcolor !important
         }
     }
 }
