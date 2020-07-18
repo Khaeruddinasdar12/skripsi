@@ -51,9 +51,8 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
 
 
   	// RUTE MENU BIBIT PUPUK
-  		Route::get('alat', 'AlatController@index')->name('index.alat'); //menampilkan hal. data alat
-  		Route::get('alat/transaksi-sewa', 'AlatController@sewa')->name('sewa.alat');//menampilkan hal. data transaksi sewa alat
-  		Route::get('alat/transaksi-beli', 'AlatController@beli')->name('beli.beras');//menampilkan hal. data transaksi beli alat
+  		Route::get('bibit-pupuk', 'BibitPupukController@index')->name('index.bibit-pupuk'); //menampilkan hal. data bibit-pupuk
+  		Route::get('transaksi-bibit-pupuk', 'AlatController@sewa')->name('transaksi.bibit-pupuk');//menampilkan hal. data transaksi bibit-pupuk
     // END RUTE BIBIT PUPUK
 
 
