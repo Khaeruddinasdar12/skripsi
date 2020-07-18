@@ -1,0 +1,84 @@
+@media (max-width: 1024px) {
+    .kt-header-menu-mobile .kt-menu__nav>.kt-menu__item>.kt-menu__link .kt-menu__link-text {
+        color: $galungcolor !important;
+    }
+
+    .kt-header__topbar .kt-header__topbar-item .kt-header__topbar-wrapper .kt-header__topbar-icon i {
+        color: $galungcolor !important;
+    }
+}
+
+.galung-header-mobile {
+    background-color: $galungcolor !important;
+
+    .logo-mobile {
+        width: 130px;
+    }
+
+    .kt-header-mobile__toolbar-toggler span {
+        background-color: #fff !important;
+
+        &::before,
+        &::after {
+            background-color: #fff !important;
+        }
+    }
+
+    .kt-header-mobile__toolbar-topbar-toggler i {
+        color: #fff !important;
+    }
+}
+
+.galung-header {
+    background-color: $galungcolor !important;
+
+    .kt-header-menu {
+        .kt-menu__item {
+            a {
+                .top-text-nav {
+                    color: #fff !important;
+                }
+            }
+        }
+    }
+
+    .logogalung {
+        width: 170px;
+    }
+
+    .kt-header__topbar {
+        .search-topbar {
+            .flaticon2-search-1 {
+                color: #fff !important;
+            }
+
+            &:hover .flaticon2-search-1 {
+                color: $galungcolor !important;
+            }
+
+            &:focus {
+                background-color: transparent !important;
+            }
+        }
+
+        .user-topbar {
+            .kt-visible-desktop {
+                color: #fff !important;
+            }
+
+            img {
+                border: 2px solid #fff;
+            }
+
+            .btn-logout-user {
+                background-color: $galungcolor;
+                color: #fff;
+
+                &:hover {
+                    background-color: $galungcolorhover;
+                }
+            }
+        }
+    }
+
+}

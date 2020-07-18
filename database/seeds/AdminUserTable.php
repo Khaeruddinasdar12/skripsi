@@ -18,7 +18,9 @@ class AdminUserTable extends Seeder
 	        'nohp'		=> '082344949505',
 	        'rt'		=> '001',
 	        'rw'		=> '002',
-	        'password'  => bcrypt('12345678')
+	        'kelurahan'	=> 'Galung',
+	        'password'  => bcrypt('12345678'),
+	        'petani_verified' => '0'
 		]);
 
 		DB::table('users')->insert([
@@ -33,7 +35,9 @@ class AdminUserTable extends Seeder
 	        'nohp'		=> '082344949505',
 	        'rt'		=> '001',
 	        'rw'		=> '002',
-	        'password'  => bcrypt('12345678')
+	        'password'  => bcrypt('12345678'),
+	        'petani_verified' => '1',
+	        'kelurahan'	=> 'Galung',
 		]);
 
 		DB::table('admins')->insert([
