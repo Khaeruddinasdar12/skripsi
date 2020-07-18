@@ -78,7 +78,7 @@
       </div>
 
       <div class="modal fade" id="modal-tambah-admin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">Tambah Data Admin</h5>
@@ -91,7 +91,8 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <div class="input-group">
-                        <div class="input-group-prepend"><span class="input-group-text" id="nama"><i class="la la-exclamation-triangle kt-font-brand"></i></span></div>
+                        <div class="input-group-prepend"><span class="input-group-text" id="nama">
+                            <i class="flaticon-avatar kt-font-brand"></i></span></div>
                         <input type="text" class="form-control" placeholder="Nama Admin" aria-describedby="nama">
                       </div>
                     </div>
@@ -99,7 +100,8 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <div class="input-group">
-                        <div class="input-group-prepend"><span class="input-group-text" id="username"><i class="la la-exclamation-triangle kt-font-brand"></i></span></div>
+                        <div class="input-group-prepend"><span class="input-group-text" id="username">
+                            <i class="flaticon-avatar kt-font-brand"></i></span></div>
                         <input type="text" class="form-control" placeholder="Username" aria-describedby="username">
                       </div>
                     </div>
@@ -107,7 +109,7 @@
                 </div>
                 <div class="form-group">
                   <div class="input-group">
-                    <div class="input-group-prepend"><span class="input-group-text" id="email"><i class="la la-exclamation-triangle kt-font-brand"></i></span></div>
+                    <div class="input-group-prepend"><span class="input-group-text" id="email"><i class="flaticon2-email kt-font-brand"></i></span></div>
                     <input type="email" class="form-control" placeholder="Email" aria-describedby="email">
                   </div>
                 </div>
@@ -115,7 +117,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <div class="input-group">
-                        <div class="input-group-prepend"><span class="input-group-text" id="password1"><i class="la la-exclamation-triangle kt-font-brand"></i></span></div>
+                        <div class="input-group-prepend"><span class="input-group-text" id="password1"><i class="flaticon2-lock kt-font-brand"></i></span></div>
                         <input type="password" class="form-control" placeholder="password" aria-describedby="password1">
                       </div>
                     </div>
@@ -123,17 +125,31 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <div class="input-group">
-                        <div class="input-group-prepend"><span class="input-group-text" id="password2"><i class="la la-exclamation-triangle kt-font-brand"></i></span></div>
+                        <div class="input-group-prepend"><span class="input-group-text" id="password2"><i class="flaticon2-lock kt-font-brand"></i></span></div>
                         <input type="password" class="form-control" placeholder="ulangi password" aria-describedby="password2">
                       </div>
                     </div>
                   </div>
                 </div>
+                <div class="form-group row">
+                  <label class="col-md-2 col-form-label">Role :</label>
+                  <div class="col-md-6">
+                    <div class="kt-checkbox-inline">
+                      <label class="kt-radio kt-radio--bold kt-radio--success mr-4">
+                        <input type="radio" name="role" value="admin"> Admin
+                        <span></span>
+                      </label>
+                      <label class="kt-radio kt-radio--bold kt-radio--success">
+                        <input type="radio" name="role" value> Super Admin
+                        <span></span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="button-add">
+                  <button type="button" class="btn btn-primary">Send message</button>
+                </div>
               </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Send message</button>
             </div>
           </div>
         </div>
