@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
         // SAWAHCONTROLLER 
         Route::get('sawah', 'Api\SawahController@index'); // data sawah berdasarkan id yang login
         Route::post('sawah', 'Api\SawahController@store'); // mendaftarkan sawah berdasarkan id yang login
-        Route::put('sawah/{id}', 'Api\SawahController@update'); //edit sawah berdasarkan id sawah
+        Route::put('sawah/{id}', 'Api\SawahController@update'); //edit sawah berdasarkan id sawah (tidak bisa edit jika data terdapat di table lain)
         Route::delete('sawah/{id}', 'Api\SawahController@delete'); //hapus sawah berdasarkan id sawah
         // END SAWAHCONTROLLER
 

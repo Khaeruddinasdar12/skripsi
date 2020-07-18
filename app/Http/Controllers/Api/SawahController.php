@@ -152,7 +152,7 @@ class SawahController extends Controller
         if($validator->fails()) {
                 return response()->json([
                     'status' => false,
-                    'message' => 'Ada kesalahan saat daftar sawah',
+                    'message' => 'Ada kesalahan mengubah data sawah',
                     'data' => $validator->errors()
                 ]);
         }
@@ -162,7 +162,6 @@ class SawahController extends Controller
         $sawah->kelurahan       = $request->get('kelurahan');
         $sawah->alamat          = $request->get('alamat_lengkap');
         $sawah->kecamatan       = $request->get('kecamatan');
-        $sawah->created_by      = $user->id; //id user yang sedang login
         $sawah->luas_sawah      = $request->get('luas_sawah');
         $sawah->jenis_bibit     = $request->get('jenis_bibit');
         $sawah->jenis_pupuk     = $request->get('jenis_pupuk');
