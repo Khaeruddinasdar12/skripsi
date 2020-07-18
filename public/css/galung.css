@@ -124,6 +124,13 @@
   background-color: #018346;
 }
 
+.subheader-admin {
+  margin-bottom: 30px !important;
+}
+.subheader-admin .kt-subheader__wrapper .kt-subheader__btn-daterange {
+  background-color: #00A859;
+}
+
 .admin-portlet .kt-portlet__head-icon i {
   font-size: 25px;
   color: #00A859;
