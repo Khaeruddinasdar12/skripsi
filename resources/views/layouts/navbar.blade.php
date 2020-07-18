@@ -25,6 +25,7 @@
       <a class="kt-header__brand-logo" href="?page=index">
         <img alt="Logo" src=" {{ asset('img/logocrop.png') }} " class="logogalung">
       </a>
+      <span class="border-right"></span>
     </div>
     <!-- end:: Brand -->
 
@@ -93,14 +94,14 @@
           </li>
 
           <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
-            <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+            <a href="javascript:;" class="kt-menu__link kt-menu__toggle" id="modaltanam">
               <span class="kt-menu__link-text top-text-nav">Modal Tanam</span>
               <i class="kt-menu__ver-arrow la la-angle-right"></i>
             </a>
           </li>
 
           <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
-            <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+            <a href="javascript:;" class="kt-menu__link kt-menu__toggle" id="gadaisawah">
               <span class="kt-menu__link-text top-text-nav">Gadai Sawah</span>
               <i class="kt-menu__ver-arrow la la-angle-right"></i>
             </a>
@@ -134,7 +135,7 @@
           </li>
 
           <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
-            <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+            <a href="javascript:;" class="kt-menu__link kt-menu__toggle" id="bibitpupuk">
               <span class="kt-menu__link-text top-text-nav">Bibit & Pupuk</span>
               <i class="kt-menu__ver-arrow la la-angle-right"></i>
             </a>
@@ -161,14 +162,14 @@
           </li>
 
           <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
-            <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+            <a href="javascript:;" class="kt-menu__link kt-menu__toggle" id="manageadmin">
               <span class="kt-menu__link-text top-text-nav">Manage Admin</span>
               <i class="kt-menu__ver-arrow la la-angle-right"></i>
             </a>
           </li>
 
           <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
-            <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+            <a href="javascript:;" class="kt-menu__link kt-menu__toggle" id="manageuser">
               <span class="kt-menu__link-text top-text-nav">Manage User</span>
               <i class="kt-menu__ver-arrow la la-angle-right"></i>
             </a>
