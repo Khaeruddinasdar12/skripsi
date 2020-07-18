@@ -162,7 +162,7 @@
           </li>
 
           <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel">
-            <a href="{{ route('index.manage-admin') }}" class="kt-menu__link kt-menu__toggle">
+            <a href="{{ route('index.manage-admin') }}" class="kt-menu__link kt-menu__toggle" id="manageadmin">
               <span class="kt-menu__link-text top-text-nav">Manage Admin</span>
             </a>
           </li>
