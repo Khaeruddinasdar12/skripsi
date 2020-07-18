@@ -161,17 +161,15 @@
             </div>
           </li>
 
-          <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
-            <a href="javascript:;" class="kt-menu__link kt-menu__toggle" id="manageadmin">
+          <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel">
+            <a href="{{ route('index.manage-admin) }}" class="kt-menu__link kt-menu__toggle">
               <span class="kt-menu__link-text top-text-nav">Manage Admin</span>
-              <i class="kt-menu__ver-arrow la la-angle-right"></i>
             </a>
           </li>
 
           <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
             <a href="javascript:;" class="kt-menu__link kt-menu__toggle" id="manageuser">
               <span class="kt-menu__link-text top-text-nav">Manage User</span>
-              <i class="kt-menu__ver-arrow la la-angle-right"></i>
             </a>
           </li>
 
@@ -218,9 +216,6 @@
           <span class="kt-header__topbar-welcome kt-visible-desktop">Hi,</span>
           <span class="kt-header__topbar-username kt-visible-desktop">Admin</span>
           <img alt="Pic" src="assets/media/users/300_21.jpg">
-
-          <!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
-          <span class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold kt-hidden">S</span>
         </div>
         <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-xl">
 
@@ -228,9 +223,6 @@
           <div class="kt-user-card kt-user-card--skin-light kt-notification-item-padding-x">
             <div class="kt-user-card__avatar">
               <img class="kt-hidden-" alt="Pic" src="assets/media/users/300_25.jpg">
-
-              <!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
-              <span class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold kt-hidden">S</span>
             </div>
             <div class="kt-user-card__name">
               Sean Stone

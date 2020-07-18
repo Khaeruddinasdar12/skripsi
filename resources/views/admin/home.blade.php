@@ -77,7 +77,7 @@
         </div>
       </div>
 
-      <div class="modal fade" id="modal-tambah-admin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal modal-admin fade" id="modal-tambah-admin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -147,7 +147,7 @@
                   </div>
                 </div>
                 <div class="button-add">
-                  <button type="button" class="btn btn-primary">Send message</button>
+                  <button type="button" class="btn btn-admin-add">Tambah data</button>
                 </div>
               </form>
             </div>

@@ -1,4 +1,4 @@
-.admin-portlet .kt-portlet__head-actions .btn-tambah-data:hover, .kt-login .btn-galung-login {
+.modal-admin .modal-body .button-add .btn-admin-add, .admin-portlet .kt-portlet__head-actions .btn-tambah-data:hover, .kt-login .btn-galung-login {
   background-color: #00A859 !important;
   border: none !important;
   color: #fff !important;
@@ -150,6 +150,33 @@
 }
 .admin-portlet table .dropdown-table-admin ul .hapus-admin:hover .kt-nav__link-icon, .admin-portlet table .dropdown-table-admin ul .hapus-admin:hover .kt-nav__link-text {
   color: #ff3863 !important;
+}
+
+.modal-admin .modal-body .button-add {
+  border-top: 1px solid #cfcfcf;
+}
+.modal-admin .modal-body .button-add .btn-admin-add {
+  width: 100%;
+  margin: 20px 0 20px 0;
+}
+.modal-admin .modal-body .button-add .btn-admin-add:hover {
+  background-color: #018346 !important;
+}
+
+.form-group .input-group input {
+  transition: 0.5s !important;
+}
+.form-group .input-group input:focus {
+  border-color: #00A859 !important;
+  border: 2px solid;
+  transition: 0.5s !important;
+}
+.form-group .input-group input:hover {
+  border-color: #00A859 !important;
+  transition: 0.5s !important;
+}
+.form-group .input-group i {
+  color: #00A859 !important;
 }
 
 /*# sourceMappingURL=galung.css.map */
