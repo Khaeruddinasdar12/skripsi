@@ -24,7 +24,14 @@ class UserController extends Controller
                 return response()->json(['error' => 'could_not_create_token'], 500);
             }
 
-            return response()->json(compact('token'));
+            $user = User::where('email', $request->get('email'))->first();
+            return response()->json([
+                    'status' => true,
+                    'message' => 'Berhasil login',
+                    'data' => $user,
+                    'token' => $token
+                ]);
+            // return response()->json(compact('token', 'user'));
         }
 
         public function register(Request $request)
@@ -38,11 +45,20 @@ class UserController extends Controller
                 'kecamatan' => 'required|string',
                 'nohp' => 'required|string',
                 'role' => 'required|string',
-                'kota_id' => 'required|number',
+                'kota_id' => 'required|numeric',
+                'rt' => 'required|string',
+                'rw' => 'required|string',
+                'kelurahan' => 'required|string'
             ]);
 
             if($validator->fails()){
-                    return response()->json($validator->errors()->toJson(), 400);
+                return response()->json([
+                    'status' => false,
+                    'code' => 401,
+                    'message' => 'Ada Kesalahan Registrasi',
+                    'data' => $validator->errors()
+                ]);
+                    // return response()->json($validator->errors()->toJson(), 400);
             }
 
             $user = User::create([
@@ -56,6 +72,8 @@ class UserController extends Controller
                 'role' => $request->get('role'), //konsumen atau petani
                 'alamat_id' => $request->get('kota_id'),
                 'tanggal_lahir' => $request->get('tanggal_lahir'),
+                'rt' => $request->get('rt'),
+                'rw' => $request->get('rw'),
             ]);
 
             $token = JWTAuth::fromUser($user);
@@ -64,27 +82,21 @@ class UserController extends Controller
         }
 
         public function getAuthenticatedUser()
-            {
-                    try {
-
-						if (! $user = JWTAuth::parseToken()->authenticate()) {
-	                        return response()->json(['user_not_found'], 404);
-	                    }
-
-                    } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
-
-                            return response()->json(['token_expired'], $e->getStatusCode());
-
-                    } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
-
-                            return response()->json(['token_invalid'], $e->getStatusCode());
-
-                    } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
-
-                            return response()->json(['token_absent'], $e->getStatusCode());
-
-                    }
-
-                    return response()->json(compact('user'));
+        {
+            
+            try {
+            	if (! $user = JWTAuth::parseToken()->authenticate()) {
+	                return response()->json(['user_not_found'], 404);
+	            }
+            } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+                    return response()->json(['token_expired'], $e->getStatusCode());
+            } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+                    return response()->json(['token_invalid'], $e->getStatusCode());
+            } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
+                    return response()->json(['token_absent'], $e->getStatusCode());
             }
+
+
+            return response()->json(compact('user'));
+        }
 }

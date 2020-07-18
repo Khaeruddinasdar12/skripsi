@@ -12,11 +12,15 @@ class AdminUserTable extends Seeder
 	        'role' 	=> 'konsumen',
 	        'tempat_lahir' => 'Galung',
 	        'tanggal_lahir'=> '1999-08-04',
-	        'alamat'=> 'Galung, Desa Talungeng Kec. Barebbo Kab. Bone',
-	        'alamat_id'=> 87, // id kabupaten bone dari tabel Kotas
-	        'kecamatan'=> 'Barebbo',
+	        'alamat'	=> 'Galung, Desa Talungeng Kec. Barebbo Kab. Bone',
+	        'alamat_id'	=> 87, // id kabupaten bone dari tabel Kotas
+	        'kecamatan'	=> 'Barebbo',
 	        'nohp'		=> '082344949505',
-	        'password'  => bcrypt('12345678')
+	        'rt'		=> '001',
+	        'rw'		=> '002',
+	        'kelurahan'	=> 'Galung',
+	        'password'  => bcrypt('12345678'),
+	        'petani_verified' => '0'
 		]);
 
 		DB::table('users')->insert([
@@ -25,11 +29,15 @@ class AdminUserTable extends Seeder
 	        'role' 	=> 'petani',
 	        'tempat_lahir' => 'Galung',
 	        'tanggal_lahir'=> '1999-08-04',
-	        'alamat'=> 'Galung, Desa Talungeng Kec. Barebbo Kab. Bone',
-	        'alamat_id'=> 87, // id kabupaten bone dari tabel Kotas
-	        'kecamatan'=> 'Barebbo',
+	        'alamat'	=> 'Galung, Desa Talungeng Kec. Barebbo Kab. Bone',
+	        'alamat_id'	=> 87, // id kabupaten bone dari tabel Kotas
+	        'kecamatan'	=> 'Barebbo',
 	        'nohp'		=> '082344949505',
-	        'password'  => bcrypt('12345678')
+	        'rt'		=> '001',
+	        'rw'		=> '002',
+	        'password'  => bcrypt('12345678'),
+	        'petani_verified' => '1',
+	        'kelurahan'	=> 'Galung',
 		]);
 
 		DB::table('admins')->insert([

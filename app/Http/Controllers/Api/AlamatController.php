@@ -11,7 +11,6 @@ class AlamatController extends Controller
     public function provinsi()
     {
     	$data = Provinsi::all();
-    	return $data;
     	return response()->json([
                 'status' => true, 
                 'message' => 'Semua Provinsi', 

@@ -25,7 +25,11 @@ class CreateUsersTable extends Migration
             $table->integer('alamat_id'); 
             $table->string('alamat'); //alamat lengkap
             $table->string('kecamatan');
+            $table->string('kelurahan');
             $table->string('nohp');
+            $table->enum('petani_verified', [0, 1]);
+            $table->string('rt');
+            $table->string('rw');
             $table->enum('role', ['konsumen', 'petani']);
             $table->timestamps();
         });
