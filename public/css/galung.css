@@ -187,4 +187,11 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
   color: #00A859 !important;
 }
 
+.modal .detail-modal {
+  padding-top: 30px;
+}
+.modal .detail-modal .widget-detail {
+  padding-top: 30px;
+}
+
 /*# sourceMappingURL=galung.css.map */
