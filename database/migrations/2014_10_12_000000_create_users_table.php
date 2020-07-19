@@ -28,9 +28,11 @@ class CreateUsersTable extends Migration
             $table->string('kelurahan');
             $table->string('nohp');
             $table->enum('petani_verified', [0, 1]);
+            $table->enum('jkel', ['L', 'P']);
             $table->string('rt');
             $table->string('rw');
             $table->enum('role', ['konsumen', 'petani']);
+            $table->integer('verified_by')->nullable();
             $table->timestamps();
         });
     }
