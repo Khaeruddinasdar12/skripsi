@@ -21,6 +21,7 @@ class CreateGadaiSawahsTable extends Migration
             $table->integer('admin_by')->nullable();
             $table->integer('sawah_id');
             $table->integer('user_by');
+            $table->enum('status', ['gadai', 'selesai'])->nullable();
             $table->string('keterangan')->nullable();
             $table->timestamps();
         });

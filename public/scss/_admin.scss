@@ -22,43 +22,6 @@
             }
         }
     }
-
-    table {
-        font-size: 15px !important;
-
-        .btn-more-admin {
-            @extend %galung-button-outline;
-
-            i {
-                font-size: 20px !important;
-                color: $galungcolor;
-            }
-
-            &:hover {
-                background-color: $galungcolor !important;
-            }
-        }
-
-        .dropdown-table-admin {
-            ul {
-                .edit-admin {
-
-                    &:hover .kt-nav__link-icon,
-                    &:hover .kt-nav__link-text {
-                        color: $biru !important;
-                    }
-                }
-
-                .hapus-admin {
-
-                    &:hover .kt-nav__link-icon,
-                    &:hover .kt-nav__link-text {
-                        color: $merah !important;
-                    }
-                }
-            }
-        }
-    }
 }
 
 .modal-admin {

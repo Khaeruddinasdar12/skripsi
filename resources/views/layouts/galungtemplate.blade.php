@@ -7,7 +7,7 @@
 <head>
   <base href="">
   <meta charset="utf-8" />
-  <title>Metronic | Dashboard</title>
+  <title>GalungApp | Admin</title>
   <meta name="description" content="Updates and statistics" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
@@ -37,7 +37,7 @@
 
         @include('layouts.navbar')
 
-        <div id="main" style="height: 100%; margin-top:100px;">
+        <div id="main" style="height: 100%; margin-top:30px;">
           @yield('content')
         </div>
 
