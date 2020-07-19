@@ -61,6 +61,7 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 
 	// RUTE MENU MANAGE USER
 	Route::get('manage-user', 'UserController@index')->name('index.manage-user'); //menampilkan hal. data user
+	Route::get('manage-user/{id}', 'UserController@verified');
 	// END RUTE MANAGE USER
 
 	Route::namespace('Auth')->group(function () {
