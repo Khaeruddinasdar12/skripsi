@@ -40,21 +40,23 @@ class UserController extends Controller
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:users',
                 'password' => 'required|string|min:8|confirmed',
-                'tempat_lahir' => 'required|string',
+                'tempat_lahir' => 'required|string', 
+                'tanggal_lahir' => 'required|date', // yyyy-mm-dd
+                'kota_id' => 'required|numeric',
                 'alamat_lengkap' =>'required|string',
                 'kecamatan' => 'required|string',
-                'nohp' => 'required|string',
-                'role' => 'required|string',
-                'kota_id' => 'required|numeric',
+                'kelurahan' => 'required|string'
                 'rt' => 'required|string',
                 'rw' => 'required|string',
-                'kelurahan' => 'required|string'
+                'nohp' => 'required|string',
+                'role' => 'required|string',
+                'jkel' => 'required|sring',
+                
             ]);
 
             if($validator->fails()){
                 return response()->json([
                     'status' => false,
-                    'code' => 401,
                     'message' => 'Ada Kesalahan Registrasi',
                     'data' => $validator->errors()
                 ]);
@@ -81,6 +83,67 @@ class UserController extends Controller
             $token = JWTAuth::fromUser($user);
 
             return response()->json(compact('user','token'),200);
+        }
+
+        public function update(Request $request) // edit profile
+        {
+            try {
+                if (! $user = JWTAuth::parseToken()->authenticate()) {
+                        return response()->json(['user_not_found'], 404);
+                    }
+                } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+                        return response()->json(['token_expired'], $e->getStatusCode());
+                } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+                        return response()->json(['token_invalid'], $e->getStatusCode());
+                } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
+                        return response()->json(['token_absent'], $e->getStatusCode());
+                }
+
+            $validator = Validator::make($request->all(), [
+                'name'          => 'required|string',
+                'tempat_lahir'  => 'required|string',
+                'tanggal_lahir' => 'required|date', // yyyy-mm-dd
+                'alamat_lengkap'=> 'required|string',
+                'kecamatan'     => 'required|string',
+                'kelurahan'     => 'required|string',
+                'nohp'          => 'required|string',
+                'kota_id'       => 'required|numeric',
+                'rt'            => 'required|string',
+                'rw'            => 'required|string',
+                'jkel'          => 'required|string',
+            ]);
+
+                if($validator->fails()) {
+                        return response()->json([
+                            'status' => false,
+                            'message' => 'Ada kesalahan saat edit user',
+                            'data' => $validator->errors()
+                        ]);
+                }
+                
+                $data = User::find($user->id);
+                if ($data == null) {
+                    return response()->json([
+                        'status' => false, 
+                        'message' => 'Id user tidak ditemukan'
+                    ]);
+                }
+                $data->name         = $request->get('name');
+                $data->tempat_lahir = $request->get('tempat_lahir');
+                $data->alamat       = $request->get('alamat_lengkap');
+                $data->kecamatan    = $request->get('kecamatan');
+                $data->nohp         = $request->get('nohp');
+                $data->alamat_id    = $request->get('kota_id');
+                $data->tanggal_lahir= $request->get('tanggal_lahir');
+                $data->rt           = $request->get('rt');
+                $data->rw           = $request->get('rw');
+                $data->jkel         = $request->get('jkel'); // L atau P
+                $data->kelurahan    = $request->get('kelurahan');
+            $data->save();
+            return response()->json([
+                    'status' => true,
+                    'message' => 'Berhasil mengubah data'
+            ]);
         }
 
         public function getAuthenticatedUser()

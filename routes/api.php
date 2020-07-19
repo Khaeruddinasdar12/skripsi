@@ -15,6 +15,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
     Route::group(['middleware' => ['jwt.verify']], function() {
         Route::get('user', 'Api\UserController@getAuthenticatedUser');
+        Route::put('user', 'Api\UserController@update');
 
         // SAWAHCONTROLLER 
         Route::get('sawah', 'Api\SawahController@index'); // data sawah berdasarkan id yang login
