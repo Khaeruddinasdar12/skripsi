@@ -24,5 +24,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
         Route::delete('sawah/{id}', 'Api\SawahController@delete'); //hapus sawah berdasarkan id sawah
         // END SAWAHCONTROLLER
 
+
+        // GADAI SAWAH
+        Route::get('gadai-sawah', 'Api\GadaiSawahController@index');
+        Route::post('gadai-sawah', 'Api\GadaiSawahController@store');
+        // END GADAI SAWAH
+
         Route::get('closed', 'DataController@closed');
     });

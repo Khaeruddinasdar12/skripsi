@@ -45,7 +45,7 @@ class UserController extends Controller
                 'kota_id' => 'required|numeric',
                 'alamat_lengkap' =>'required|string',
                 'kecamatan' => 'required|string',
-                'kelurahan' => 'required|string'
+                'kelurahan' => 'required|string',
                 'rt' => 'required|string',
                 'rw' => 'required|string',
                 'nohp' => 'required|string',
@@ -81,8 +81,12 @@ class UserController extends Controller
             ]);
 
             $token = JWTAuth::fromUser($user);
-
-            return response()->json(compact('user','token'),200);
+            return response()->json([
+                    'status' => true,
+                    'message' => 'Berhasil daftar',
+                    'data' => $user,
+                    'token' => $token
+                ]);
         }
 
         public function update(Request $request) // edit profile
@@ -161,7 +165,10 @@ class UserController extends Controller
                     return response()->json(['token_absent'], $e->getStatusCode());
             }
 
-
-            return response()->json(compact('user'));
+            return response()->json([
+                    'status' => true,
+                    'message' => 'Data user yang sedang login',
+                    'data' => $user
+            ]);
         }
 }
