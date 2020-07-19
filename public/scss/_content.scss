@@ -1,3 +1,50 @@
+.subheader-custom {
+    margin-bottom: 30px !important;
+
+    .kt-subheader__wrapper {
+        .kt-subheader__btn-daterange {
+            background-color: $galungcolor;
+        }
+    }
+}
+
+table {
+    font-size: 15px !important;
+
+    .btn-more-custom {
+        @extend %galung-button-outline;
+
+        i {
+            font-size: 20px !important;
+            color: $galungcolor;
+        }
+
+        &:hover {
+            background-color: $galungcolor !important;
+        }
+    }
+
+    .dropdown-table-custom {
+        ul {
+            .edit-data {
+
+                &:hover .kt-nav__link-icon,
+                &:hover .kt-nav__link-text {
+                    color: $biru !important;
+                }
+            }
+
+            .hapus-data {
+
+                &:hover .kt-nav__link-icon,
+                &:hover .kt-nav__link-text {
+                    color: $merah !important;
+                }
+            }
+        }
+    }
+}
+
 .form-group {
     .input-group {
         input {
