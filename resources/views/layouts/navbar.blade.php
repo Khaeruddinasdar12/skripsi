@@ -212,7 +212,7 @@
       <div class="kt-header__topbar-item kt-header__topbar-item--user user-topbar">
         <div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="10px,0px">
           <span class="kt-header__topbar-welcome kt-visible-desktop">Hi,</span>
-          <span class="kt-header__topbar-username kt-visible-desktop">Admin</span>
+          <span class="kt-header__topbar-username kt-visible-desktop">{{ Auth::guard('admin')->user()->name }}</span>
           <img alt="Pic" src="{{ asset('assets/media/users/300_21.jpg') }}">
         </div>
         <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-xl">
@@ -223,7 +223,7 @@
               <img class="kt-hidden-" alt="Pic" src="{{ asset('assets/media/users/300_21.jpg') }}">
             </div>
             <div class="kt-user-card__name">
-              Admin Galung
+              {{ Auth::guard('admin')->user()->name }}
             </div>
             <div class="kt-user-card__badge">
               <span>
