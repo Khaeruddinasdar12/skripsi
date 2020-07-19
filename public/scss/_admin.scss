@@ -1,13 +1,3 @@
-.subheader-admin {
-    margin-bottom: 30px !important;
-
-    .kt-subheader__wrapper {
-        .kt-subheader__btn-daterange {
-            background-color: $galungcolor;
-        }
-    }
-}
-
 .admin-portlet {
     .kt-portlet__head-icon {
         i {
@@ -29,43 +19,6 @@
 
             &:hover i {
                 color: #fff;
-            }
-        }
-    }
-
-    table {
-        font-size: 15px !important;
-
-        .btn-more-admin {
-            @extend %galung-button-outline;
-
-            i {
-                font-size: 20px !important;
-                color: $galungcolor;
-            }
-
-            &:hover {
-                background-color: $galungcolor !important;
-            }
-        }
-
-        .dropdown-table-admin {
-            ul {
-                .edit-admin {
-
-                    &:hover .kt-nav__link-icon,
-                    &:hover .kt-nav__link-text {
-                        color: $biru !important;
-                    }
-                }
-
-                .hapus-admin {
-
-                    &:hover .kt-nav__link-icon,
-                    &:hover .kt-nav__link-text {
-                        color: $merah !important;
-                    }
-                }
             }
         }
     }

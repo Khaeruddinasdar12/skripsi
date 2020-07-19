@@ -7,7 +7,7 @@
   font-weight: 600 !important;
 }
 
-.admin-portlet table .btn-more-admin {
+table .btn-more-custom {
   background-color: #fff !important;
   color: #00A859 !important;
   border: 1px solid #00A859 !important;
@@ -124,13 +124,6 @@
   background-color: #018346;
 }
 
-.subheader-admin {
-  margin-bottom: 30px !important;
-}
-.subheader-admin .kt-subheader__wrapper .kt-subheader__btn-daterange {
-  background-color: #00A859;
-}
-
 .admin-portlet .kt-portlet__head-icon i {
   font-size: 25px;
   color: #00A859;
@@ -142,22 +135,6 @@
 .admin-portlet .kt-portlet__head-actions .btn-tambah-data:hover i {
   color: #fff;
 }
-.admin-portlet table {
-  font-size: 15px !important;
-}
-.admin-portlet table .btn-more-admin i {
-  font-size: 20px !important;
-  color: #00A859;
-}
-.admin-portlet table .btn-more-admin:hover {
-  background-color: #00A859 !important;
-}
-.admin-portlet table .dropdown-table-admin ul .edit-admin:hover .kt-nav__link-icon, .admin-portlet table .dropdown-table-admin ul .edit-admin:hover .kt-nav__link-text {
-  color: #5683ff !important;
-}
-.admin-portlet table .dropdown-table-admin ul .hapus-admin:hover .kt-nav__link-icon, .admin-portlet table .dropdown-table-admin ul .hapus-admin:hover .kt-nav__link-text {
-  color: #ff3863 !important;
-}
 
 .modal-admin .modal-body .button-add {
   border-top: 1px solid #cfcfcf;
@@ -168,6 +145,30 @@
 }
 .modal-admin .modal-body .button-add .btn-admin-add:hover {
   background-color: #018346 !important;
+}
+
+.subheader-custom {
+  margin-bottom: 30px !important;
+}
+.subheader-custom .kt-subheader__wrapper .kt-subheader__btn-daterange {
+  background-color: #00A859;
+}
+
+table {
+  font-size: 15px !important;
+}
+table .btn-more-custom i {
+  font-size: 20px !important;
+  color: #00A859;
+}
+table .btn-more-custom:hover {
+  background-color: #00A859 !important;
+}
+table .dropdown-table-custom ul .edit-data:hover .kt-nav__link-icon, table .dropdown-table-custom ul .edit-data:hover .kt-nav__link-text {
+  color: #5683ff !important;
+}
+table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-text {
+  color: #ff3863 !important;
 }
 
 .form-group .input-group input {
