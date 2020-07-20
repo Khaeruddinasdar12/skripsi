@@ -62,55 +62,22 @@
                     </tr>
                   </thead>
                   <tbody>
+                    @php $no = 1; @endphp
+                    @foreach ($data as $user)
                     <tr>
-                      <th scope="row">1</th>
-                      <td>Adhe </td>
-                      <td>adhe@gmail.com</td>
-                      <td>Desa Padang</td>
-                      <td>Laki - Laki</td>
-                      <td>konsumen</td>
+                      <th scope="row">{{$no++}}</th>
+                      <td>{{$user->name}} </td>
+                      <td>{{$user->email}}</td>
+                      <td>{{$user->kelurahan}}</td>
                       <td>
-                        <span class="btn btn-bold btn-sm btn-font-sm  btn-label-success" style="font-size : 14px;">Terverifikasi</span>
+                        @if($user->jkel == 'P') Perempuan
+                        @else Laki-laki @endif
                       </td>
+                      <td>{{$user->role}}</td>
                       <td>
-                        <div class="dropdown dropdown-inline">
-                          <a href="#" class="btn btn-default btn-icon btn-icon-md btn-sm btn-more-custom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="flaticon-more-1"></i>
-                          </a>
-                          <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
-                            <ul class="kt-nav">
-                              <li class="kt-nav__item">
-                                <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user">
-                                  <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
-                                  <span class="kt-nav__link-text">Detail</span>
-                                </a>
-                              </li>
-                              <li class="kt-nav__item">
-                                <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-admin">
-                                  <i class="kt-nav__link-icon flaticon2-settings"></i>
-                                  <span class="kt-nav__link-text">Edit</span>
-                                </a>
-                              </li>
-                              <li class="kt-nav__item">
-                                <a href="#" class="kt-nav__link hapus-data">
-                                  <i class="kt-nav__link-icon flaticon2-check-mark"></i>
-                                  <span class="kt-nav__link-text">Verifikasi</span>
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Asdar </td>
-                      <td>asdar@gmail.com</td>
-                      <td>Desa Padang</td>
-                      <td>Laki - laki</td>
-                      <td>konsumen</td>
-                      <td>
+                        @if($user->petani_verified == '0')
                         <span class="btn btn-bold btn-sm btn-font-sm  btn-label-danger" style="font-size: 14px;">Belum Terverifikasi</span>
+                        @else <span class="btn btn-bold btn-sm btn-font-sm  btn-label-success" style="font-size : 14px;">Terverifikasi</span> @endif
                       </td>
                       <td>
                         <div class="dropdown dropdown-inline">
@@ -120,10 +87,10 @@
                           <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
                             <ul class="kt-nav">
                               <li class="kt-nav__item">
-                                <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user">
+                                <button class="btn kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-email="{{$user->email}}" data-tempat_lahir="{{$user->tempat_lahir}}" data-tanggal="{{$user->tanggal_lahir}}" data-alamat="{{$user->alamat}}" data-kecamatan="{{$user->kecamatan}}" data-kelurahan="{{$user->kelurahan}}" data-nohp="{{$user->nohp}}" data-petani_verfied="{{$user->petani_verfied}}" data-jkel="{{$user->jkel}}" data-rt="{{$user->rt}}" data-rw="{{$user->rw}}" data-role="{{$user->role}}">
                                   <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
                                   <span class="kt-nav__link-text">Detail</span>
-                                </a>
+                                </button>
                               </li>
                               <li class="kt-nav__item">
                                 <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-admin">
@@ -142,6 +109,7 @@
                         </div>
                       </td>
                     </tr>
+                    @endforeach
                   </tbody>
                 </table>
               </div>
@@ -155,7 +123,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Detail user</h5>
+              <h5 class="modal-title"></h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               </button>
             </div>
@@ -173,9 +141,8 @@
                         </div>
                       </div>
                       <div class="kt-widget__info">
-                        <a href="#" class="kt-widget__username">
-                          Asdar
-                        </a>
+                        <span class="kt-widget__username" id="name">
+                        </span>
                         <span class="kt-widget__desc">
                           asdar@gmail.com
                         </span>
@@ -250,7 +217,7 @@
                 <div class="form-group">
                   <div class="input-group">
                     <div class="input-group-prepend"><span class="input-group-text" id="nama">
-                        <i class="flaticon-avatar kt-font-brand"></i></span></div>
+                        <i class="flaticon2-user-outline-symbol kt-font-brand"></i></span></div>
                     <input type="text" class="form-control" placeholder="Nama User" aria-describedby="nama" required>
                   </div>
                 </div>
@@ -275,10 +242,24 @@
                     </div>
                   </div>
                 </div>
-                <div class="form-group">
-                  <div class="input-group">
-                    <div class="input-group-prepend"><span class="input-group-text" id="password1"><i class="flaticon2-hospital kt-font-brand"></i></span></div>
-                    <input type="text" class="form-control" placeholder="Tempat dan tanggal lahir" aria-describedby="tempat" required>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Tempat lahir :</label>
+                      <div class="input-group">
+                        <div class="input-group-prepend"><span class="input-group-text" id="tempat"><i class="flaticon2-architecture-and-city kt-font-brand"></i></span></div>
+                        <input type="text" class="form-control" placeholder="Tempat" aria-describedby="email" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Tanggal lahir :</label>
+                      <div class="input-group">
+                        <div class="input-group-prepend"><span class="input-group-text" id="tempat"><i class="flaticon2-calendar-7 kt-font-brand"></i></span></div>
+                        <input class="form-control" type="date" value="1998-09-09" id="example-date-input" required>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="form-group">
@@ -307,7 +288,7 @@
                 </div>
                 <div class="form-group">
                   <div class="input-group">
-                    <div class="input-group-prepend"><span class="input-group-text" id="email"><i class="flaticon-support kt-font-brand"></i></span></div>
+                    <div class="input-group-prepend"><span class="input-group-text" id="email"><i class="flaticon2-telegram-logo kt-font-brand"></i></span></div>
                     <input type="tel" class="form-control" placeholder="No. Telephone" aria-describedby="email" required>
                   </div>
                 </div>
@@ -338,5 +319,40 @@
     </div>
   </div>
 </div>
+
+<script>
+  $('#modal-detail-user').on('show.bs.modal', function(event) {
+    var button = $(event.relatedTarget)
+    var name = button.data('name')
+    var email = button.data('email')
+    var tempat_lahir = button.data('tempat_lahir')
+    var tanggal_lahir = button.data('tanggal_lahir')
+    var alamat = button.data('alamat')
+    var kecamatan = button.data('kecamatan')
+    var kelurahan = button.data('kelurahan')
+    var nohp = button.data('nohp')
+    var petani_verified = button.data('petani_verified')
+    var jkel = button.data('jkel')
+    var rt = button.data('rt')
+    var rw = button.data('rw')
+    var role = button.data('role')
+
+    var modal = $(this)
+    modal.find('.modal-title').text('Detail User ' + name)
+    modal.find('.modal-body #name').text(name)
+    modal.find('.modal-body #email').text(email)
+    modal.find('.modal-body #tempat_lahir').text(tempat_lahir)
+    modal.find('.modal-body #tanggal_lahir').text(tanggal_lahir)
+    modal.find('.modal-body #alamat').text(alamat)
+    modal.find('.modal-body #kecamatan').text(kecamatan)
+    modal.find('.modal-body #kelurahan').text(kelurahan)
+    modal.find('.modal-body #nohp').text(nohp)
+    modal.find('.modal-body #petani_verified').text(petani_verified)
+    modal.find('.modal-body #jkel').text(jkel)
+    modal.find('.modal-body #rt').text(rt)
+    modal.find('.modal-body #rw').text(rw)
+    modal.find('.modal-body #role').text(role)
+  })
+</script>
 
 @endsection
