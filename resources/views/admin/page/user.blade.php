@@ -87,10 +87,10 @@
                           <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
                             <ul class="kt-nav">
                               <li class="kt-nav__item">
-                                <button class="btn kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-email="{{$user->email}}" data-tempat_lahir="{{$user->tempat_lahir}}" data-tanggal="{{$user->tanggal_lahir}}" data-alamat="{{$user->alamat}}" data-kecamatan="{{$user->kecamatan}}" data-kelurahan="{{$user->kelurahan}}" data-nohp="{{$user->nohp}}" data-petani_verfied="{{$user->petani_verfied}}" data-jkel="{{$user->jkel}}" data-rt="{{$user->rt}}" data-rw="{{$user->rw}}" data-role="{{$user->role}}">
+                                <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-email="{{$user->email}}" data-tempat_lahir="{{$user->tempat_lahir}}" data-tanggal_lahir="{{$user->tanggal_lahir}}" data-alamat="{{$user->alamat}}" data-kecamatan="{{$user->kecamatan}}" data-kelurahan="{{$user->kelurahan}}" data-nohp="{{$user->nohp}}" data-petani_verified="{{$user->petani_verified}}" data-jkel="{{$user->jkel}}" data-rt="{{$user->rt}}" data-rw="{{$user->rw}}" data-role="{{$user->role}}">
                                   <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
                                   <span class="kt-nav__link-text">Detail</span>
-                                </button>
+                                </a>
                               </li>
                               <li class="kt-nav__item">
                                 <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-admin">
@@ -119,7 +119,7 @@
       </div>
 
       <!-- modal detail user -->
-      <div class="modal modal-admin fade" id="modal-detail-user" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal modal-admin fade" id="modal-detail-user" tabindex="-1" role="dialog" aria-labelledby="modal-detail-user">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -143,8 +143,7 @@
                       <div class="kt-widget__info">
                         <span class="kt-widget__username" id="name">
                         </span>
-                        <span class="kt-widget__desc">
-                          asdar@gmail.com
+                        <span class="kt-widget__desc" id="email">
                         </span>
                       </div>
                     </div>
@@ -152,23 +151,23 @@
                       <div class="kt-widget__item">
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Tempat lahir :</span>
-                          <span class="kt-widget__data">Denmark</span>
+                          <span class="kt-widget__data" id="tempat_lahir"></span>
                         </div>
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Tanggal lahir :</span>
-                          <span class="kt-widget__data">09 - 09 - 1998</span>
+                          <span class="kt-widget__data" id="tanggal_lahir"></span>
                         </div>
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Jenis Kelamin :</span>
-                          <span class="kt-widget__data">Laki - laki</span>
+                          <span class="kt-widget__data" id="jkel"></span>
                         </div>
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">No. Telephone :</span>
-                          <span class="kt-widget__data">085299700715</span>
+                          <span class="kt-widget__data" id="nohp"></span>
                         </div>
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Alamat :</span>
-                          <span class="kt-widget__data">Palimassang, Desa Padang, Kab. Bulukumba</span>
+                          <span class="kt-widget__data" id="alamat"></span>
                         </div>
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Provinsi :</span>
@@ -176,19 +175,27 @@
                         </div>
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Kecamatan :</span>
-                          <span class="kt-widget__data">Gantarang</span>
+                          <span class="kt-widget__data" id="kecamatan"></span>
                         </div>
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Kelurahan / Desa :</span>
-                          <span class="kt-widget__data">Desa Padang</span>
+                          <span class="kt-widget__data" id="kelurahan"></span>
+                        </div>
+                        <div class="kt-widget__contact">
+                          <span class="kt-widget__label">RT :</span>
+                          <span class="kt-widget__data" id="rt"></span>
+                        </div>
+                        <div class="kt-widget__contact">
+                          <span class="kt-widget__label">RW :</span>
+                          <span class="kt-widget__data" id="rw"></span>
                         </div>
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Jenis User :</span>
-                          <span class="kt-widget__data">Konsumen</span>
+                          <span class="kt-widget__data" id="role"></span>
                         </div>
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Status :</span>
-                          <span class="kt-widget__data">Terverifikasi</span>
+                          <span class="kt-widget__data" id="petani_verified"></span>
                         </div>
                       </div>
                     </div>
@@ -322,23 +329,33 @@
 
 <script>
   $('#modal-detail-user').on('show.bs.modal', function(event) {
-    var button = $(event.relatedTarget)
-    var name = button.data('name')
-    var email = button.data('email')
-    var tempat_lahir = button.data('tempat_lahir')
-    var tanggal_lahir = button.data('tanggal_lahir')
-    var alamat = button.data('alamat')
-    var kecamatan = button.data('kecamatan')
-    var kelurahan = button.data('kelurahan')
-    var nohp = button.data('nohp')
-    var petani_verified = button.data('petani_verified')
-    var jkel = button.data('jkel')
-    var rt = button.data('rt')
-    var rw = button.data('rw')
-    var role = button.data('role')
+    var a = $(event.relatedTarget)
+    var name = a.data('name')
+    var email = a.data('email')
+    var tempat_lahir = a.data('tempat_lahir')
+    var tanggal_lahir = a.data('tanggal_lahir')
+    var alamat = a.data('alamat')
+    var kecamatan = a.data('kecamatan')
+    var kelurahan = a.data('kelurahan')
+    var nohp = a.data('nohp')
+    var petani_verified = a.data('petani_verified')
+    if (petani_verified == 0) {
+      var status = 'Belum terverifikasi';
+    } else {
+      var status = 'Terverifikasi';
+    }
+    var jkel = a.data('jkel')
+    if (jkel == 'L') {
+      var kelamin = 'Laki -laki';
+    } else {
+      var kelamin = 'Perempuan'
+    }
+    var rt = a.data('rt')
+    var rw = a.data('rw')
+    var role = a.data('role')
 
     var modal = $(this)
-    modal.find('.modal-title').text('Detail User ' + name)
+    modal.find('.modal-title').text('Detail ' + name)
     modal.find('.modal-body #name').text(name)
     modal.find('.modal-body #email').text(email)
     modal.find('.modal-body #tempat_lahir').text(tempat_lahir)
@@ -347,8 +364,8 @@
     modal.find('.modal-body #kecamatan').text(kecamatan)
     modal.find('.modal-body #kelurahan').text(kelurahan)
     modal.find('.modal-body #nohp').text(nohp)
-    modal.find('.modal-body #petani_verified').text(petani_verified)
-    modal.find('.modal-body #jkel').text(jkel)
+    modal.find('.modal-body #petani_verified').text(status)
+    modal.find('.modal-body #jkel').text(kelamin)
     modal.find('.modal-body #rt').text(rt)
     modal.find('.modal-body #rw').text(rw)
     modal.find('.modal-body #role').text(role)
