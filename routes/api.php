@@ -15,6 +15,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
     Route::group(['middleware' => ['jwt.verify']], function() {
         Route::get('user', 'Api\UserController@getAuthenticatedUser');
+        Route::put('user', 'Api\UserController@update');
 
         // SAWAHCONTROLLER 
         Route::get('sawah', 'Api\SawahController@index'); // data sawah berdasarkan id yang login
@@ -22,6 +23,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
         Route::put('sawah/{id}', 'Api\SawahController@update'); //edit sawah berdasarkan id sawah (tidak bisa edit jika data terdapat di table lain)
         Route::delete('sawah/{id}', 'Api\SawahController@delete'); //hapus sawah berdasarkan id sawah
         // END SAWAHCONTROLLER
+
+
+        // GADAI SAWAH
+        Route::get('gadai-sawah', 'Api\GadaiSawahController@index');
+        Route::post('gadai-sawah', 'Api\GadaiSawahController@store');
+        // END GADAI SAWAH
 
         Route::get('closed', 'DataController@closed');
     });
