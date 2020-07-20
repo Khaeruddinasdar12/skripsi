@@ -50,9 +50,8 @@ table {
         input {
             transition: 0.5s !important;
 
-            &:focus {
+            &:valid {
                 border-color: $galungcolor !important;
-                border: 2px solid;
                 transition: 0.5s !important;
             }
 
@@ -60,6 +59,7 @@ table {
                 border-color: $galungcolor !important;
                 transition: 0.5s !important;
             }
+
         }
 
         i {

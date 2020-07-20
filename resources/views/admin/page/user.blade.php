@@ -264,7 +264,7 @@
                       <label>Tanggal lahir :</label>
                       <div class="input-group">
                         <div class="input-group-prepend"><span class="input-group-text" id="tempat"><i class="flaticon2-calendar-7 kt-font-brand"></i></span></div>
-                        <input class="form-control" type="date" value="1998-09-09" id="example-date-input" required>
+                        <input class="form-control" type="date" id="example-date-input" required>
                       </div>
                     </div>
                   </div>

@@ -101,6 +101,13 @@ table .btn-more-custom {
 .galung-header .kt-header-menu #manageuser {
   width: 130px;
 }
+.galung-header .kt-header-menu #modaltanam .kt-menu__link-text,
+.galung-header .kt-header-menu #gadaisawah .kt-menu__link-text,
+.galung-header .kt-header-menu #bibitpupuk .kt-menu__link-text,
+.galung-header .kt-header-menu #manageadmin .kt-menu__link-text,
+.galung-header .kt-header-menu #manageuser .kt-menu__link-text {
+  justify-content: center;
+}
 .galung-header .kt-header__topbar .search-topbar .flaticon2-search-1 {
   color: #fff !important;
 }
@@ -174,9 +181,8 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
 .form-group .input-group input {
   transition: 0.5s !important;
 }
-.form-group .input-group input:focus {
+.form-group .input-group input:valid {
   border-color: #00A859 !important;
-  border: 2px solid;
   transition: 0.5s !important;
 }
 .form-group .input-group input:hover {

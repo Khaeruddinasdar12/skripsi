@@ -65,6 +65,10 @@
         #manageadmin,
         #manageuser {
             width: 130px;
+
+            .kt-menu__link-text {
+                justify-content: center;
+            }
         }
     }
 
