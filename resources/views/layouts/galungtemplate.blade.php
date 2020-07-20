@@ -71,8 +71,10 @@
   </script>
 
   <!-- end::Global Config -->
+  <script src="{{ asset('js/jquery-3.4.1.min.js') }}" type="text/javascript"></script>
+  <script src=" {{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
   <!--begin::Global Theme Bundle(used by all pages) -->
-  <script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}" type="text/javascript"></script>
+  <script src=" {{ asset('assets/plugins/global/plugins.bundle.js') }}" type="text/javascript"></script>
   <script src="{{ asset('assets/js/scripts.bundle.js') }}" type="text/javascript"></script>
   <!--begin::Page Vendors(used by this page) -->
   <script src="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.js') }}" type="text/javascript"></script>

@@ -143,9 +143,9 @@
             </div>
           </li>
 
-          <li class="kt-menu__item kt-menu__item--rel">
+          <li class="kt-menu__item kt-menu__item--rel {{ request()->is('admin/manage-admin') ? 'kt-menu__item--open kt-menu__item--here' : '' }}">
             <a href="{{ route('index.manage-admin') }}" class="kt-menu__link" id="manageadmin">
-              <span class="kt-menu__link-text top-text-nav">Manage Admin</span>
+              <span class="kt-menu__link-text kt-menu__link-text {{ request()->is('admin/manage-admin') ? '' : 'top-text-nav' }}">Manage Admin</span>
             </a>
           </li>
 
