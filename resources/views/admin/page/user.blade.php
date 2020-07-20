@@ -18,10 +18,11 @@
     </div>
     <div class="kt-subheader__toolbar">
       <div class="kt-subheader__wrapper">
-        <a href="#" class="btn kt-subheader__btn-daterange">
-          <span class="kt-subheader__btn-daterange-title" id="kt_dashboard_daterangepicker_title">Today:</span>&nbsp;
-          <span class="kt-subheader__btn-daterange-date" id="kt_dashboard_daterangepicker_date">Jul 19</span>
-          <span class="flaticon2-calendar-5"></span>
+        <a href="#" class="btn kt-subheader__btn-daterange" id="kt_dashboard_daterangepicker">
+          <span class="kt-subheader__btn-daterange-title" id="kt_dashboard_daterangepicker_title">Today</span>&nbsp;
+          <span class="kt-subheader__btn-daterange-date" id="kt_dashboard_daterangepicker_date">Aug
+            16
+          </span>
         </a>
       </div>
     </div>
