@@ -17,10 +17,16 @@ class UserController extends Controller
 
             try {
                 if (! $token = JWTAuth::attempt($credentials)) {
-                    return response()->json(['error' => 'invalid_credentials'], 400);
+                    return response()->json([
+                        'status' => false,
+                        'message'=> 'Email atau password salah'
+                    ]);
                 }
             } catch (JWTException $e) {
-                return response()->json(['error' => 'could_not_create_token'], 500);
+                return response()->json([
+                        'status' => false,
+                        'message'=> 'Tidak bisa membuat token'
+                ]);
             }
 
             $user = User::where('email', $request->get('email'))->first();
