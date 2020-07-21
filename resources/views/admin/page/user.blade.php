@@ -32,7 +32,21 @@
 <div class="kt-container">
   <div class="row justify-content-center">
     <div class="col-md-12">
-
+      @if(session('success'))
+      <div class="alert alert-custom alert-outline-success fade show mb-5" role="alert">
+          <div class="alert-icon"><i class="flaticon2-check-mark"></i></div>
+          <div class="alert-text">{{session('success')}}!</div>
+          <div class="alert-close">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+      </div>
+    @elseif(session('gagal'))
+    <div class="alert alert-danger">
+      {{session('gagal')}}
+    </div>
+    @endif
       <div class="kt-portlet admin-portlet">
         <div class="kt-portlet__head">
           <div class="kt-portlet__head-label">
@@ -99,7 +113,7 @@
                                 </a>
                               </li>
                               <li class="kt-nav__item">
-                                <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-verif-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-role="{{$user->role}}">
+                                <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-verif-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-role="{{$user->role}}" data-href="{{route('edit.manage-user', ['id' => $user->id])}}">
                                   <i class="kt-nav__link-icon flaticon2-check-mark"></i>
                                   <span class="kt-nav__link-text">Verifikasi</span>
                                 </a>
@@ -343,11 +357,11 @@
               </button>
             </div>
             <div class="modal-body">
-              <form action="{{route('edit.manage-user', ['id' => $user->id])}}" method="POST">
+              <form action="{{route('edit.manage-user', ['id' => $user->id])}}" method="POST" id="verif-user-form">
                 @csrf
                 <input type="hidden" value="PUT" name="_method">
 
-                <input type="submit" value="Konfirmasi Bukti" class="btn btn-success btn-flat" disabled="">
+                <input type="submit" value="Konfirmasi Bukti" class="btn btn-success btn-flat">
 
               </form>
             </div>
@@ -402,6 +416,17 @@
     modal.find('.modal-body #rw').text(rw)
     modal.find('.modal-body #role').text(role)
   })
+
+//Modal Verifikasi Akun User
+   $('#modal-verif-user').on('show.bs.modal', function(event) {
+    var a = $(event.relatedTarget)
+    var href = a.data('href')
+    var email = a.data('email')
+
+    var modal = $(this)
+    modal.find('.modal-body #verif-user-form').attr('action', href)
+  })
+//End Modal Verifikasi Akun User
 </script>
 
 @endsection
