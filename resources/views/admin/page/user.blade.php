@@ -93,7 +93,7 @@
                                 </a>
                               </li>
                               <li class="kt-nav__item">
-                                <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-admin">
+                                <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-user">
                                   <i class="kt-nav__link-icon flaticon2-settings"></i>
                                   <span class="kt-nav__link-text">Edit</span>
                                 </a>
@@ -211,7 +211,7 @@
       <!-- modal detail user -->
 
       <!-- modal edit admin -->
-      <div class="modal modal-admin fade" id="modal-edit-admin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal modal-admin fade" id="modal-edit-user" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -325,7 +325,7 @@
       <!-- end modal edit admin -->
 
       <!-- modal verifikasi -->
-      <div class="modal fade show" id="modal-verif-user" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: block; padding-right: 15px;" aria-modal="true">
+      <div class="modal modal-admin fade" id="modal-verif-user" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -334,7 +334,13 @@
               </button>
             </div>
             <div class="modal-body">
+              <form action="{{route('edit.manage-user', ['id' => $user->id])}}" method="POST">
+                @csrf
+                <input type="hidden" value="PUT" name="_method">
 
+                <input type="submit" value="Konfirmasi Bukti" class="btn btn-success btn-flat" disabled="">
+
+              </form>
             </div>
           </div>
         </div>
