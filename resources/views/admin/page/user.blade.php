@@ -99,7 +99,7 @@
                                 </a>
                               </li>
                               <li class="kt-nav__item">
-                                <a href="#" class="kt-nav__link hapus-data">
+                                <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-verif-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-role="{{$user->role}}">
                                   <i class="kt-nav__link-icon flaticon2-check-mark"></i>
                                   <span class="kt-nav__link-text">Verifikasi</span>
                                 </a>
@@ -323,6 +323,23 @@
         </div>
       </div>
       <!-- end modal edit admin -->
+
+      <!-- modal verifikasi -->
+      <div class="modal fade show" id="modal-verif-user" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: block; padding-right: 15px;" aria-modal="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end modal verifikasi -->
     </div>
   </div>
 </div>
