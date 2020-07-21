@@ -6,13 +6,13 @@
   <div class="kt-container ">
     <div class="kt-subheader__main">
       <h3 class="kt-subheader__title">
-        Manage User </h3>
+        Manage Admin </h3>
       <span class="kt-subheader__separator kt-hidden"></span>
       <div class="kt-subheader__breadcrumbs">
         <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
         <span class="kt-subheader__breadcrumbs-separator"></span>
         <a href="{{ route('index.manage-admin') }}" class="kt-subheader__breadcrumbs-link">
-          Manage User
+          Manage Admin
         </a>
       </div>
     </div>
@@ -106,9 +106,12 @@
       </div>
 
       <!-- modal tambah admin -->
-      <div class="modal modal-admin fade" id="modal-tambah-admin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
-        <div class="modal-dialog" role="document">
+      <div class="modal modal-admin modal-add fade" id="modal-tambah-admin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
+            <span class="modal-add-icon">
+              <i class="fa fa-user-plus"></i>
+            </span>
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">Tambah Data Admin</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -186,9 +189,12 @@
       <!-- end modal tambah admin -->
 
       <!-- modal edit admin -->
-      <div class="modal modal-admin fade" id="modal-edit-admin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
-        <div class="modal-dialog" role="document">
+      <div class="modal modal-admin modal-edit fade" id="modal-edit-admin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
+            <span class="modal-add-icon">
+              <i class="fa fa-user-cog"></i>
+            </span>
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">Edit Data Admin</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">

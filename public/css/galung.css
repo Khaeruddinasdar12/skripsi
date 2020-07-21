@@ -172,7 +172,7 @@ table .btn-more-custom:hover {
   background-color: #00A859 !important;
 }
 table .dropdown-table-custom ul .edit-data:hover .kt-nav__link-icon, table .dropdown-table-custom ul .edit-data:hover .kt-nav__link-text {
-  color: #5683ff !important;
+  color: #3498db !important;
 }
 table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-text {
   color: #ff3863 !important;
@@ -191,6 +191,40 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
 }
 .form-group .input-group i {
   color: #00A859 !important;
+}
+
+.modal-add .modal-content {
+  border-top: 7px solid #00A859 !important;
+}
+.modal-add .modal-content .modal-add-icon {
+  position: absolute;
+  text-align: center !important;
+  width: 100% !important;
+  transform: translateY(-30px);
+}
+.modal-add .modal-content .modal-add-icon i {
+  padding: 16px 15px 16px 15px;
+  border-radius: 100px;
+  font-size: 22px;
+  color: #fff;
+  background-color: #00A859;
+}
+
+.modal-edit .modal-content {
+  border-top: 7px solid #3498db !important;
+}
+.modal-edit .modal-content .modal-add-icon {
+  position: absolute;
+  text-align: center !important;
+  width: 100% !important;
+  transform: translateY(-30px);
+}
+.modal-edit .modal-content .modal-add-icon i {
+  padding: 16px 15px 16px 15px;
+  border-radius: 100px;
+  font-size: 22px;
+  color: #fff;
+  background-color: #3498db;
 }
 
 .modal .detail-modal {
