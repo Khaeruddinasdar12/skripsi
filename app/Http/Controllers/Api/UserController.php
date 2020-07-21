@@ -59,15 +59,10 @@ class UserController extends Controller
             ]);
 
             if($validator->fails()) {
-                $message = array() ;
-                $json = json_decode($validator->messages());
-                foreach($json as $key => $val) {
-                    $message[$key] = $val[0];
-                };
+                $message = $validator->messages()->first();
                 return response()->json([
                     'status' => false,
-                    'message' => 'Ada Kesalahan Registrasi',
-                    'data' => $message
+                    'messsage' => $message
                 ]);
             }
 
@@ -125,18 +120,25 @@ class UserController extends Controller
                 'jkel'          => 'required|string',
             ]);
 
-                if($validator->fails()) {
-                    $message = array() ;
-                    $json = json_decode($validator->messages());
-                    foreach($json as $key => $val) {
-                        $message[$key] = $val[0];
-                    };
-                    return response()->json([
-                        'status' => false,
-                        'message' => 'Ada Kesalahan edit profile',
-                        'data' => $message
-                    ]);
-                }
+            if($validator->fails()) {
+                $message = $validator->messages()->first();
+                return response()->json([
+                    'status' => false,
+                    'messsage' => $message
+                ]);
+            }
+                // if($validator->fails()) {
+                //     $message = array() ;
+                //     $json = json_decode($validator->messages());
+                //     foreach($json as $key => $val) {
+                //         $message[$key] = $val[0];
+                //     };
+                //     return response()->json([
+                //         'status' => false,
+                //         'message' => 'Ada Kesalahan edit profile',
+                //         'data' => $message
+                //     ]);
+                // }
                 
                 $data = User::find($user->id);
                 if ($data == null) {
