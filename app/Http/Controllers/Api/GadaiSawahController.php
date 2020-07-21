@@ -37,10 +37,10 @@ class GadaiSawahController extends Controller
             ]);
 
         if($validator->fails()) {
+                $message = $validator->messages()->first();
                 return response()->json([
                     'status' => false,
-                    'message' => 'Ada kesalahan saat gadai sawah',
-                    'data' => $validator->errors()
+                    'messsage' => $message
                 ]);
         }
 

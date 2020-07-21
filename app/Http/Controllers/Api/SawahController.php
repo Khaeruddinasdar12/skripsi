@@ -74,10 +74,10 @@ class SawahController extends Controller
             ]);
 
         if($validator->fails()) {
+                $message = $validator->messages()->first();
                 return response()->json([
                     'status' => false,
-                    'message' => 'Ada kesalahan saat daftar sawah',
-                    'data' => $validator->errors()
+                    'messsage' => $message
                 ]);
         }
 
@@ -150,10 +150,10 @@ class SawahController extends Controller
             ]);
 
         if($validator->fails()) {
+                $message = $validator->messages()->first();
                 return response()->json([
                     'status' => false,
-                    'message' => 'Ada kesalahan mengubah data sawah',
-                    'data' => $validator->errors()
+                    'messsage' => $message
                 ]);
         }
 

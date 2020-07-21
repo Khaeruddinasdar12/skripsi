@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Validator;
 use JWTAuth;
 use App\Http\Controllers\Controller;
 use Tymon\JWTAuth\Exceptions\JWTException;
-
 class UserController extends Controller
 {
      public function authenticate(Request $request)
@@ -18,10 +17,16 @@ class UserController extends Controller
 
             try {
                 if (! $token = JWTAuth::attempt($credentials)) {
-                    return response()->json(['error' => 'invalid_credentials'], 400);
+                    return response()->json([
+                        'status' => false,
+                        'message'=> 'Email atau password salah'
+                    ]);
                 }
             } catch (JWTException $e) {
-                return response()->json(['error' => 'could_not_create_token'], 500);
+                return response()->json([
+                        'status' => false,
+                        'message'=> 'Tidak bisa membuat token'
+                ]);
             }
 
             $user = User::where('email', $request->get('email'))->first();
@@ -31,36 +36,34 @@ class UserController extends Controller
                     'data' => $user,
                     'token' => $token
                 ]);
-            // return response()->json(compact('token', 'user'));
         }
 
         public function register(Request $request)
         {
             $validator = Validator::make($request->all(), [
-                'name' => 'required|string|max:255',
-                'email' => 'required|string|email|max:255|unique:users',
-                'password' => 'required|string|min:8|confirmed',
-                'tempat_lahir' => 'required|string', 
+                'name'      => 'required|string|max:255',
+                'email'     => 'required|string|email|max:255|unique:users',
+                'password'  => 'required|string|min:8|confirmed',
+                'tempat_lahir'  => 'required|string', 
                 'tanggal_lahir' => 'required|date', // yyyy-mm-dd
-                'kota_id' => 'required|numeric',
-                'alamat_lengkap' =>'required|string',
-                'kecamatan' => 'required|string',
+                'kota_id'       => 'required|numeric',
+                'alamat_lengkap'=>'required|string',
+                'kecamatan' => 'required|string|min:8',
                 'kelurahan' => 'required|string',
                 'rt' => 'required|string',
                 'rw' => 'required|string',
                 'nohp' => 'required|string',
                 'role' => 'required|string',
-                'jkel' => 'required|sring',
+                'jkel' => 'required|string',
                 
             ]);
 
-            if($validator->fails()){
+            if($validator->fails()) {
+                $message = $validator->messages()->first();
                 return response()->json([
                     'status' => false,
-                    'message' => 'Ada Kesalahan Registrasi',
-                    'data' => $validator->errors()
+                    'messsage' => $message
                 ]);
-                    // return response()->json($validator->errors()->toJson(), 400);
             }
 
             $user = User::create([
@@ -117,13 +120,25 @@ class UserController extends Controller
                 'jkel'          => 'required|string',
             ]);
 
-                if($validator->fails()) {
-                        return response()->json([
-                            'status' => false,
-                            'message' => 'Ada kesalahan saat edit user',
-                            'data' => $validator->errors()
-                        ]);
-                }
+            if($validator->fails()) {
+                $message = $validator->messages()->first();
+                return response()->json([
+                    'status' => false,
+                    'messsage' => $message
+                ]);
+            }
+                // if($validator->fails()) {
+                //     $message = array() ;
+                //     $json = json_decode($validator->messages());
+                //     foreach($json as $key => $val) {
+                //         $message[$key] = $val[0];
+                //     };
+                //     return response()->json([
+                //         'status' => false,
+                //         'message' => 'Ada Kesalahan edit profile',
+                //         'data' => $message
+                //     ]);
+                // }
                 
                 $data = User::find($user->id);
                 if ($data == null) {
