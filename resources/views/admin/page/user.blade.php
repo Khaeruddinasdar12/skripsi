@@ -34,19 +34,19 @@
     <div class="col-md-12">
       @if(session('success'))
       <div class="alert alert-custom alert-outline-success fade show mb-5" role="alert">
-          <div class="alert-icon"><i class="flaticon2-check-mark"></i></div>
-          <div class="alert-text">{{session('success')}}!</div>
-          <div class="alert-close">
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-              </button>
-          </div>
+        <div class="alert-icon"><i class="flaticon2-check-mark"></i></div>
+        <div class="alert-text">{{session('success')}}!</div>
+        <div class="alert-close">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
       </div>
-    @elseif(session('gagal'))
-    <div class="alert alert-danger">
-      {{session('gagal')}}
-    </div>
-    @endif
+      @elseif(session('gagal'))
+      <div class="alert alert-danger">
+        {{session('gagal')}}
+      </div>
+      @endif
       <div class="kt-portlet admin-portlet">
         <div class="kt-portlet__head">
           <div class="kt-portlet__head-label">
@@ -112,12 +112,21 @@
                                   <span class="kt-nav__link-text">Edit</span>
                                 </a>
                               </li>
+                              @if($user->petani_verified == '0')
                               <li class="kt-nav__item">
                                 <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-verif-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-role="{{$user->role}}" data-href="{{route('edit.manage-user', ['id' => $user->id])}}">
                                   <i class="kt-nav__link-icon flaticon2-check-mark"></i>
                                   <span class="kt-nav__link-text">Verifikasi</span>
                                 </a>
                               </li>
+                              @else
+                              <li class="kt-nav__item">
+                                <a href="#" class="kt-nav__link hapus-data disabled" data-toggle="modal" data-target="#modal-verif-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-role="{{$user->role}}" data-href="#" style="cursor: not-allowed !important;">
+                                  <i class="kt-nav__link-icon flaticon2-check-mark"></i>
+                                  <span class="kt-nav__link-text">Terverifikasi</span>
+                                </a>
+                              </li>
+                              @endif
                             </ul>
                           </div>
                         </div>
@@ -348,22 +357,32 @@
       <!-- end modal edit admin -->
 
       <!-- modal verifikasi -->
-      <div class="modal fade" id="modal-verif-user" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal modal-verif fade" id="modal-verif-user" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              </button>
-            </div>
+            <span class="modal-icon">
+              <i class="fa fa-info"></i>
+            </span>
             <div class="modal-body">
-              <form action="{{route('edit.manage-user', ['id' => $user->id])}}" method="POST" id="verif-user-form">
-                @csrf
-                <input type="hidden" value="PUT" name="_method">
+              <h3>Verifikasi Petani?</h3>
+              <p>Verifikasi petani hanya dapat di lakukan satu kali</p>
+              <p>dan tidak dapat di batalkan</p>
 
-                <input type="submit" value="Konfirmasi Bukti" class="btn btn-success btn-flat">
+              <div class="row verif-form">
+                <div class="col-md-6">
+                  <button type="button" class="btn close-modal" data-dismiss="modal" aria-label="Close">Cancel</button>
+                </div>
 
-              </form>
+                <div class="col-md-6">
+                  <form action="{{route('edit.manage-user', ['id' => $user->id])}}" method="POST" id="verif-user-form">
+                    @csrf
+                    <input type="hidden" value="PUT" name="_method">
+
+                    <input type="submit" value="Verifikasi" class="btn btn-verif btn-flat">
+
+                  </form>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -417,8 +436,8 @@
     modal.find('.modal-body #role').text(role)
   })
 
-//Modal Verifikasi Akun User
-   $('#modal-verif-user').on('show.bs.modal', function(event) {
+  //Modal Verifikasi Akun User
+  $('#modal-verif-user').on('show.bs.modal', function(event) {
     var a = $(event.relatedTarget)
     var href = a.data('href')
     var email = a.data('email')
@@ -426,7 +445,7 @@
     var modal = $(this)
     modal.find('.modal-body #verif-user-form').attr('action', href)
   })
-//End Modal Verifikasi Akun User
+  //End Modal Verifikasi Akun User
 </script>
 
 @endsection
