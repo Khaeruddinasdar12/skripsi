@@ -50,7 +50,7 @@ class UserController extends Controller
                 'rw' => 'required|string',
                 'nohp' => 'required|string',
                 'role' => 'required|string',
-                'jkel' => 'required|sring',
+                'jkel' => 'required|string',
                 
             ]);
 
