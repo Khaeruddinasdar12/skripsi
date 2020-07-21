@@ -101,6 +101,13 @@ table .btn-more-custom {
 .galung-header .kt-header-menu #manageuser {
   width: 130px;
 }
+.galung-header .kt-header-menu #modaltanam .kt-menu__link-text,
+.galung-header .kt-header-menu #gadaisawah .kt-menu__link-text,
+.galung-header .kt-header-menu #bibitpupuk .kt-menu__link-text,
+.galung-header .kt-header-menu #manageadmin .kt-menu__link-text,
+.galung-header .kt-header-menu #manageuser .kt-menu__link-text {
+  justify-content: center;
+}
 .galung-header .kt-header__topbar .search-topbar .flaticon2-search-1 {
   color: #fff !important;
 }
@@ -165,7 +172,7 @@ table .btn-more-custom:hover {
   background-color: #00A859 !important;
 }
 table .dropdown-table-custom ul .edit-data:hover .kt-nav__link-icon, table .dropdown-table-custom ul .edit-data:hover .kt-nav__link-text {
-  color: #5683ff !important;
+  color: #3498db !important;
 }
 table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-text {
   color: #ff3863 !important;
@@ -174,9 +181,8 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
 .form-group .input-group input {
   transition: 0.5s !important;
 }
-.form-group .input-group input:focus {
+.form-group .input-group input:valid {
   border-color: #00A859 !important;
-  border: 2px solid;
   transition: 0.5s !important;
 }
 .form-group .input-group input:hover {
@@ -187,8 +193,42 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
   color: #00A859 !important;
 }
 
+.modal-add .modal-content {
+  border-top: 7px solid #00A859 !important;
+}
+.modal-add .modal-content .modal-add-icon {
+  position: absolute;
+  text-align: center !important;
+  width: 100% !important;
+  transform: translateY(-30px);
+}
+.modal-add .modal-content .modal-add-icon i {
+  padding: 16px 15px 16px 15px;
+  border-radius: 100px;
+  font-size: 22px;
+  color: #fff;
+  background-color: #00A859;
+}
+
+.modal-edit .modal-content {
+  border-top: 7px solid #3498db !important;
+}
+.modal-edit .modal-content .modal-add-icon {
+  position: absolute;
+  text-align: center !important;
+  width: 100% !important;
+  transform: translateY(-30px);
+}
+.modal-edit .modal-content .modal-add-icon i {
+  padding: 16px 15px 16px 15px;
+  border-radius: 100px;
+  font-size: 22px;
+  color: #fff;
+  background-color: #3498db;
+}
+
 .modal .detail-modal {
-  padding-top: 30px;
+  padding-top: 50px;
 }
 .modal .detail-modal .widget-detail {
   padding-top: 30px;

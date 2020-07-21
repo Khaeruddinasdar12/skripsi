@@ -13,6 +13,8 @@
 
   <link href="{{ asset('css/galung.css') }}" rel="stylesheet" type="text/css" />
 
+  <script src="{{ asset('js/jquery-3.4.1.min.js') }}" type="text/javascript"></script>
+  <script src=" {{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
   <!--begin::Fonts-->
   <!-- metronic -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
@@ -20,9 +22,6 @@
   <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
   <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
   <!-- metronic -->
-
-  <!-- bootstrap -->
-  <link href="{{ asset('css/bootstrap.min.js') }}" rel="stylesheet" type="text/css" />
 </head>
 
 <!--end::Head-->
@@ -71,8 +70,6 @@
   </script>
 
   <!-- end::Global Config -->
-  <script src="{{ asset('js/jquery-3.4.1.min.js') }}" type="text/javascript"></script>
-  <script src=" {{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
   <!--begin::Global Theme Bundle(used by all pages) -->
   <script src=" {{ asset('assets/plugins/global/plugins.bundle.js') }}" type="text/javascript"></script>
   <script src="{{ asset('assets/js/scripts.bundle.js') }}" type="text/javascript"></script>

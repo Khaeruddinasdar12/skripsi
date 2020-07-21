@@ -50,9 +50,8 @@ table {
         input {
             transition: 0.5s !important;
 
-            &:focus {
+            &:valid {
                 border-color: $galungcolor !important;
-                border: 2px solid;
                 transition: 0.5s !important;
             }
 
@@ -60,6 +59,7 @@ table {
                 border-color: $galungcolor !important;
                 transition: 0.5s !important;
             }
+
         }
 
         i {
@@ -67,3 +67,48 @@ table {
         }
     }
 }
+
+// modal
+.modal-add {
+    .modal-content {
+        border-top: 7px solid $galungcolor !important;
+
+        .modal-add-icon {
+            position: absolute;
+            text-align: center !important;
+            width: 100% !important;
+            transform: translateY(-30px);
+
+            i {
+                padding: 16px 15px 16px 15px;
+                border-radius: 100px;
+                font-size: 22px;
+                color: #fff;
+                background-color: $galungcolor;
+            }
+        }
+    }
+}
+
+.modal-edit {
+    .modal-content {
+        border-top: 7px solid $biru !important;
+
+        .modal-add-icon {
+            position: absolute;
+            text-align: center !important;
+            width: 100% !important;
+            transform: translateY(-30px);
+
+            i {
+                padding: 16px 15px 16px 15px;
+                border-radius: 100px;
+                font-size: 22px;
+                color: #fff;
+                background-color: $biru;
+            }
+        }
+    }
+}
+
+// end modal
