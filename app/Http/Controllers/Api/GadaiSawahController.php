@@ -37,15 +37,10 @@ class GadaiSawahController extends Controller
             ]);
 
         if($validator->fails()) {
-                $message = array() ;
-                $json = json_decode($validator->messages());
-                foreach($json as $key => $val) {
-                    $message[$key] = $val[0];
-                };
+                $message = $validator->messages()->first();
                 return response()->json([
                     'status' => false,
-                    'message' => 'Ada Kesalahan Gadai sawah',
-                    'data' => $message
+                    'messsage' => $message
                 ]);
         }
 
