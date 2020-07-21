@@ -14,7 +14,6 @@ class AlamatController extends Controller
     	return response()->json([
                 'status' => true, 
                 'message' => 'Semua Provinsi', 
-                'code' => 200, 
                 'data' => $data
             ]);
     }
@@ -25,8 +24,7 @@ class AlamatController extends Controller
     	$data = Kota::where('provinsi_id', $id)->select('id', 'tipe', 'nama_kota')->get();
     	return response()->json([
                 'status' => true, 
-                'message' => 'Daftar kabupaten atau kota dari provinsi '. $provinsi->nama_provinsi . ' (id ' . $provinsi->id .')', 
-                'code' => 200, 
+                'message' => 'Daftar kabupaten atau kota dari provinsi '. $provinsi->nama_provinsi . ' (id ' . $provinsi->id .')',
                 'data' => $data
             ]);
     }

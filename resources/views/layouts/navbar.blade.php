@@ -33,9 +33,9 @@
       <div id="kt_header_menu" class="kt-header-menu kt-header-menu-mobile ">
         <ul class="kt-menu__nav ">
 
-          <li class="kt-menu__item  kt-menu__item--open kt-menu__item--here kt-menu__item--submenu kt-menu__item--rel kt-menu__item--open">
+          <li class="kt-menu__item kt-menu__item--rel {{ request()->is('admin') ? 'kt-menu__item--open kt-menu__item--here' : '' }}">
             <a href="{{ route('admin.home') }}" class="kt-menu__link">
-              <span class="kt-menu__link-text">Dashboard</span>
+              <span class="kt-menu__link-text {{ request()->is('admin') ? '' : 'top-text-nav' }}">Dashboard</span>
             </a>
           </li>
 
@@ -143,15 +143,15 @@
             </div>
           </li>
 
-          <li class="kt-menu__item kt-menu__item--rel">
+          <li class="kt-menu__item kt-menu__item--rel {{ request()->is('admin/manage-admin') ? 'kt-menu__item--open kt-menu__item--here' : '' }}">
             <a href="{{ route('index.manage-admin') }}" class="kt-menu__link" id="manageadmin">
-              <span class="kt-menu__link-text top-text-nav">Manage Admin</span>
+              <span class="kt-menu__link-text kt-menu__link-text {{ request()->is('admin/manage-admin') ? '' : 'top-text-nav' }}">Manage Admin</span>
             </a>
           </li>
 
-          <li class="kt-menu__item kt-menu__item--rel">
+          <li class="kt-menu__item kt-menu__item--rel {{ request()->is('admin/manage-user') ? 'kt-menu__item--open kt-menu__item--here' : '' }}">
             <a href="{{ route('index.manage-user') }}" class="kt-menu__link" id="manageuser">
-              <span class="kt-menu__link-text top-text-nav">Manage User</span>
+              <span class="kt-menu__link-text {{ request()->is('admin/manage-user') ? '' : 'top-text-nav' }}">Manage User</span>
             </a>
           </li>
 

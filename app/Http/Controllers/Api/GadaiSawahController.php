@@ -37,10 +37,15 @@ class GadaiSawahController extends Controller
             ]);
 
         if($validator->fails()) {
+                $message = array() ;
+                $json = json_decode($validator->messages());
+                foreach($json as $key => $val) {
+                    $message[$key] = $val[0];
+                };
                 return response()->json([
                     'status' => false,
-                    'message' => 'Ada kesalahan saat gadai sawah',
-                    'data' => $validator->errors()
+                    'message' => 'Ada Kesalahan Gadai sawah',
+                    'data' => $message
                 ]);
         }
 
