@@ -91,9 +91,9 @@
             </a>
           </li>
 
-          <li class="kt-menu__item kt-menu__item--rel">
-            <a href="{{ route('admin.home') }}" class="kt-menu__link" id="gadaisawah">
-              <span class="kt-menu__link-text top-text-nav">Gadai Sawah</span>
+          <li class="kt-menu__item kt-menu__item--rel {{ request()->is('admin/gadai-sawah') ? 'kt-menu__item--open kt-menu__item--here' : '' }}">
+            <a href="{{ route('index.gadaisawah') }}" class="kt-menu__link" id="gadaisawah">
+              <span class="kt-menu__link-text {{ request()->is('admin/gadai-sawah') ? '' : 'top-text-nav' }}">Gadai Sawah</span>
             </a>
           </li>
 
