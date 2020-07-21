@@ -338,7 +338,7 @@
                 @csrf
                 <input type="hidden" value="PUT" name="_method">
 
-                <input type="submit" value="Konfirmasi Bukti" class="btn btn-success btn-flat" disabled="">
+                <input type="submit" value="Konfirmasi Bukti" class="btn btn-success btn-flat">
 
               </form>
             </div>
