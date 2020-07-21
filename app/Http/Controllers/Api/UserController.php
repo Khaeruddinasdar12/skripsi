@@ -61,7 +61,7 @@ class UserController extends Controller
             if($validator->fails()) {
                 $message = $validator->messages()->first();
                 return response()->json([
-                    'status' => false,
+                    'error' => true,
                     'messsage' => $message
                 ]);
             }
@@ -85,7 +85,7 @@ class UserController extends Controller
 
             $token = JWTAuth::fromUser($user);
             return response()->json([
-                    'status' => true,
+                    'error' => false,
                     'message' => 'Berhasil daftar',
                     'data' => $user,
                     'token' => $token
