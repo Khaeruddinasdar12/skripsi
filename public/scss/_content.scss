@@ -69,11 +69,44 @@ table {
 }
 
 // modal
+.modal {
+    .modal-body {
+        .button-add {
+            border-top: 1px solid rgb(207, 207, 207);
+
+            .btn-add {
+                @extend %galung-button-fill;
+                width: 100%;
+                margin: 20px 0 20px 0;
+
+                &:hover {
+                    background-color: $galungcolorhover !important;
+                }
+            }
+        }
+
+        .button-edit {
+            border-top: 1px solid rgb(207, 207, 207);
+
+            .btn-edit {
+                @extend %galung-button-fill;
+                width: 100%;
+                margin: 20px 0 20px 0;
+                background-color: $biru !important;
+
+                &:hover {
+                    background-color: $biruhover !important;
+                }
+            }
+        }
+    }
+}
+
 .modal-add {
     .modal-content {
         border-top: 7px solid $galungcolor !important;
 
-        .modal-add-icon {
+        .modal-icon {
             position: absolute;
             text-align: center !important;
             width: 100% !important;
@@ -94,7 +127,7 @@ table {
     .modal-content {
         border-top: 7px solid $biru !important;
 
-        .modal-add-icon {
+        .modal-icon {
             position: absolute;
             text-align: center !important;
             width: 100% !important;

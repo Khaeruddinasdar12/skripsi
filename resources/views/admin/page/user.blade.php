@@ -119,7 +119,7 @@
       </div>
 
       <!-- modal detail user -->
-      <div class="modal modal-admin fade" id="modal-detail-user" tabindex="-1" role="dialog" aria-labelledby="modal-detail-user">
+      <div class="modal fade" id="modal-detail-user" tabindex="-1" role="dialog" aria-labelledby="modal-detail-user">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -211,9 +211,12 @@
       <!-- modal detail user -->
 
       <!-- modal edit admin -->
-      <div class="modal modal-admin fade" id="modal-edit-user" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
-        <div class="modal-dialog" role="document">
+      <div class="modal modal-edit fade" id="modal-edit-user" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
+            <span class="modal-icon">
+              <i class="fa fa-user-cog"></i>
+            </span>
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">Edit Data User</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -221,17 +224,23 @@
             </div>
             <div class="modal-body">
               <form>
-                <div class="form-group">
-                  <div class="input-group">
-                    <div class="input-group-prepend"><span class="input-group-text" id="nama">
-                        <i class="flaticon2-user-outline-symbol kt-font-brand"></i></span></div>
-                    <input type="text" class="form-control" placeholder="Nama User" aria-describedby="nama" required>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend"><span class="input-group-text" id="nama">
+                            <i class="flaticon2-user-outline-symbol kt-font-brand"></i></span></div>
+                        <input type="text" class="form-control" placeholder="Nama User" aria-describedby="nama" required>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div class="form-group">
-                  <div class="input-group">
-                    <div class="input-group-prepend"><span class="input-group-text" id="email"><i class="flaticon2-email kt-font-brand"></i></span></div>
-                    <input type="email" class="form-control" placeholder="Email" aria-describedby="email" required>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend"><span class="input-group-text" id="email"><i class="flaticon2-email kt-font-brand"></i></span></div>
+                        <input type="email" class="form-control" placeholder="Email" aria-describedby="email" required>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="form-group row">
@@ -314,8 +323,8 @@
                     </div>
                   </div>
                 </div>
-                <div class="button-add">
-                  <button type="button" class="btn btn-admin-add">Ubah data</button>
+                <div class="button-edit">
+                  <button type="button" class="btn btn-edit">Simpan perubahan</button>
                 </div>
               </form>
             </div>
@@ -325,7 +334,7 @@
       <!-- end modal edit admin -->
 
       <!-- modal verifikasi -->
-      <div class="modal modal-admin fade" id="modal-verif-user" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal fade" id="modal-verif-user" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
