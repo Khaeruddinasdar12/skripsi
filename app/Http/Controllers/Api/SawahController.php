@@ -74,10 +74,15 @@ class SawahController extends Controller
             ]);
 
         if($validator->fails()) {
+                $message = array() ;
+                $json = json_decode($validator->messages());
+                foreach($json as $key => $val) {
+                    $message[$key] = $val[0];
+                };
                 return response()->json([
                     'status' => false,
-                    'message' => 'Ada kesalahan saat daftar sawah',
-                    'data' => $validator->errors()
+                    'message' => 'Ada kesalahan daftar sawah',
+                    'data' => $message
                 ]);
         }
 
@@ -150,10 +155,15 @@ class SawahController extends Controller
             ]);
 
         if($validator->fails()) {
+                $message = array() ;
+                $json = json_decode($validator->messages());
+                foreach($json as $key => $val) {
+                    $message[$key] = $val[0];
+                };
                 return response()->json([
                     'status' => false,
                     'message' => 'Ada kesalahan mengubah data sawah',
-                    'data' => $validator->errors()
+                    'data' => $message
                 ]);
         }
 
