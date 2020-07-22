@@ -279,7 +279,7 @@
                       <div class="input-group">
                         <div class="input-group-prepend"><span class="input-group-text" id="nama">
                             <i class="flaticon2-user-outline-symbol kt-font-brand"></i></span></div>
-                        <input type="text" id="names" class="form-control" placeholder="Nama User" aria-describedby="nama" required>
+                        <input type="text" id="names" class="form-control" placeholder="Nama User" aria-describedby="nama" name="name" required>
                       </div>
                     </div>
                   </div>
@@ -287,7 +287,7 @@
                     <div class="form-group">
                       <div class="input-group">
                         <div class="input-group-prepend"><span class="input-group-text" id="email"><i class="flaticon2-email kt-font-brand"></i></span></div>
-                        <input type="email" id="emails" class="form-control" placeholder="Email" aria-describedby="email" required>
+                        <input type="email" id="emails" class="form-control" placeholder="Email" aria-describedby="email" disabled="" required>
                       </div>
                     </div>
                   </div>
@@ -313,7 +313,7 @@
                       <label>Tempat lahir :</label>
                       <div class="input-group">
                         <div class="input-group-prepend"><span class="input-group-text" id="tempat"><i class="flaticon2-architecture-and-city kt-font-brand"></i></span></div>
-                        <input type="text" id="tempat_lahirs" class="form-control" placeholder="Tempat" aria-describedby="email" required>
+                        <input type="text" id="tempat_lahirs" class="form-control" placeholder="Tempat" aria-describedby="email" name="tempat_lahir" required>
                       </div>
                     </div>
                   </div>
@@ -322,7 +322,7 @@
                       <label>Tanggal lahir :</label>
                       <div class="input-group">
                         <div class="input-group-prepend"><span class="input-group-text" id="tempat"><i class="flaticon2-calendar-7 kt-font-brand"></i></span></div>
-                        <input class="form-control" type="date" id="tanggal_lahirs" required>
+                        <input class="form-control" type="date" id="tanggal_lahirs" name="tanggal_lahir" required>
                       </div>
                     </div>
                   </div>
@@ -338,7 +338,7 @@
                     <div class="form-group">
                       <div class="input-group">
                         <div class="input-group-prepend"><span class="input-group-text" id="email"><i class="flaticon2-position kt-font-brand"></i></span></div>
-                        <input type="text" id="kecamatans" class="form-control" placeholder="Kecamatan" aria-describedby="email" required>
+                        <input type="text" id="kecamatans" name="kecamatan" class="form-control" placeholder="Kecamatan" aria-describedby="email" required>
                       </div>
                     </div>
                   </div>
@@ -391,7 +391,7 @@
                   </div>
                 </div>
                 <div class="button-edit">
-                  <button type="button" class="btn btn-edit">Simpan perubahan</button>
+                  <button type="submit" class="btn btn-edit">Simpan perubahan</button>
                 </div>
               </form>
             </div>
