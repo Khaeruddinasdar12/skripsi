@@ -61,7 +61,8 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 
 	// RUTE MENU MANAGE USER
 	Route::get('manage-user', 'UserController@index')->name('index.manage-user'); //menampilkan hal. data user
-	Route::put('manage-user/{id}', 'UserController@verified')->name('edit.manage-user')->middleware('CekAdmin');
+	Route::put('manage-user/{id}', 'UserController@verified')->name('verified.manage-user');
+	Route::put('manage-user/{id}', 'UserController@verified')->name('edit.manage-user')->middleware('CekAdmin'); //rute ini hanya untuk superadmin, jika admin otomatis gagal
 	// END RUTE MANAGE USER
 
 	Route::namespace('Auth')->group(function () {
