@@ -32,7 +32,7 @@
 <div class="kt-container">
   <div class="row justify-content-center">
     <div class="col-md-12">
-    @if(session('success'))
+      @if(session('success'))
       <div class="alert alert-custom alert-outline-success fade show mb-5" role="alert">
         <div class="alert-icon"><i class="flaticon2-check-mark"></i></div>
         <div class="alert-text">{{session('success')}}!</div>
@@ -42,32 +42,34 @@
           </button>
         </div>
       </div>
-    @elseif(session('error'))
-    <div class="alert alert-custom alert-outline-danger fade show mb-5" role="alert">
-          <div class="alert-icon"><i class="flaticon-warning"></i></div>
-          <div class="alert-text">{{session('error')}}!</div>
-          <div class="alert-close">
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-              </button>
-          </div>
+      @elseif(session('error'))
+      <div class="alert alert-custom alert-outline-danger fade show mb-5" role="alert">
+        <div class="alert-icon"><i class="flaticon-warning"></i></div>
+        <div class="alert-text">{{session('error')}}!</div>
+        <div class="alert-close">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
       </div>
-    @endif
-    @if ($errors->any())
-    <div class="alert alert-custom alert-outline-danger fade show mb-5" role="alert">
-          <div class="alert-icon"><i class="flaticon-warning"></i></div>
-          <div class="alert-text"><ul>
+      @endif
+      @if ($errors->any())
+      <div class="alert alert-custom alert-outline-danger fade show mb-5" role="alert">
+        <div class="alert-icon"><i class="flaticon-warning"></i></div>
+        <div class="alert-text">
+          <ul>
             @foreach ($errors->all() as $error)
-                <li>{{ $error }} !</li>
+            <li>{{ $error }} !</li>
             @endforeach
-        </ul></div>
-          <div class="alert-close">
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-              </button>
-          </div>
+          </ul>
+        </div>
+        <div class="alert-close">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
       </div>
-    @endif
+      @endif
       <div class="kt-portlet admin-portlet">
         <div class="kt-portlet__head">
           <div class="kt-portlet__head-label">
@@ -128,8 +130,8 @@
                                 </a>
                               </li>
                               <li class="kt-nav__item">
-                                <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-user">
-                                  <i class="kt-nav__link-icon flaticon2-settings"></i>
+                                <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-email="{{$user->email}}" data-tempat_lahir="{{$user->tempat_lahir}}" data-tanggal_lahir="{{$user->tanggal_lahir}}" data-alamat="{{$user->alamat}}" data-kecamatan="{{$user->kecamatan}}" data-kelurahan="{{$user->kelurahan}}" data-nohp="{{$user->nohp}}" data-petani_verified="{{$user->petani_verified}}" data-jkel="{{$user->jkel}}" data-rt="{{$user->rt}}" data-rw="{{$user->rw}}" data-role="{{$user->role}}" data-href="{{ route('edit.manage-user', ['id' => $user->id]) }}">
+                                  <i class=" kt-nav__link-icon flaticon2-settings"></i>
                                   <span class="kt-nav__link-text">Edit</span>
                                 </a>
                               </li>
@@ -262,19 +264,22 @@
               <i class="fa fa-user-cog"></i>
             </span>
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Edit Data User</h5>
+              <h5 class="modal-title" id="exampleModalLabel"></h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               </button>
             </div>
             <div class="modal-body">
-              <form>
+              <form id="edit-user-form" action="" method="POST">
+                @csrf
+                <input type="hidden" value="PUT" name="_method">
+
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
                       <div class="input-group">
                         <div class="input-group-prepend"><span class="input-group-text" id="nama">
                             <i class="flaticon2-user-outline-symbol kt-font-brand"></i></span></div>
-                        <input type="text" class="form-control" placeholder="Nama User" aria-describedby="nama" required>
+                        <input type="text" id="names" class="form-control" placeholder="Nama User" aria-describedby="nama" required>
                       </div>
                     </div>
                   </div>
@@ -282,7 +287,7 @@
                     <div class="form-group">
                       <div class="input-group">
                         <div class="input-group-prepend"><span class="input-group-text" id="email"><i class="flaticon2-email kt-font-brand"></i></span></div>
-                        <input type="email" class="form-control" placeholder="Email" aria-describedby="email" required>
+                        <input type="email" id="emails" class="form-control" placeholder="Email" aria-describedby="email" required>
                       </div>
                     </div>
                   </div>
@@ -292,11 +297,11 @@
                   <div class="col-md-6">
                     <div class="kt-checkbox-inline">
                       <label class="kt-radio kt-radio--bold kt-radio--success mr-4">
-                        <input type="radio" name="jkel" value="laki-laki" checked required> Laki - laki
+                        <input type="radio" id="L" name="jkel" value="laki-laki" required> Laki - laki
                         <span></span>
                       </label>
                       <label class="kt-radio kt-radio--bold kt-radio--success">
-                        <input type="radio" name="jkel" value="perempuan" required> Perempuan
+                        <input type="radio" id="P" name="jkel" value="perempuan" required> Perempuan
                         <span></span>
                       </label>
                     </div>
@@ -308,7 +313,7 @@
                       <label>Tempat lahir :</label>
                       <div class="input-group">
                         <div class="input-group-prepend"><span class="input-group-text" id="tempat"><i class="flaticon2-architecture-and-city kt-font-brand"></i></span></div>
-                        <input type="text" class="form-control" placeholder="Tempat" aria-describedby="email" required>
+                        <input type="text" id="tempat_lahirs" class="form-control" placeholder="Tempat" aria-describedby="email" required>
                       </div>
                     </div>
                   </div>
@@ -317,7 +322,7 @@
                       <label>Tanggal lahir :</label>
                       <div class="input-group">
                         <div class="input-group-prepend"><span class="input-group-text" id="tempat"><i class="flaticon2-calendar-7 kt-font-brand"></i></span></div>
-                        <input class="form-control" type="date" id="example-date-input" required>
+                        <input class="form-control" type="date" id="tanggal_lahirs" required>
                       </div>
                     </div>
                   </div>
@@ -325,7 +330,7 @@
                 <div class="form-group">
                   <div class="input-group">
                     <div class="input-group-prepend"><span class="input-group-text" id="email"><i class="flaticon2-position kt-font-brand"></i></span></div>
-                    <input type="text" class="form-control" placeholder="Provinsi" aria-describedby="email" required>
+                    <input type="text" id="provinsis" class="form-control" value="Sulawesi Selatan" aria-describedby="email" required readonly>
                   </div>
                 </div>
                 <div class="row">
@@ -333,7 +338,7 @@
                     <div class="form-group">
                       <div class="input-group">
                         <div class="input-group-prepend"><span class="input-group-text" id="email"><i class="flaticon2-position kt-font-brand"></i></span></div>
-                        <input type="text" class="form-control" placeholder="Kecamatan" aria-describedby="email" required>
+                        <input type="text" id="kecamatans" class="form-control" placeholder="Kecamatan" aria-describedby="email" required>
                       </div>
                     </div>
                   </div>
@@ -341,7 +346,25 @@
                     <div class="form-group">
                       <div class="input-group">
                         <div class="input-group-prepend"><span class="input-group-text" id="email"><i class="flaticon2-position kt-font-brand"></i></span></div>
-                        <input type="text" class="form-control" placeholder="Kelurahan / Desa" aria-describedby="email" required>
+                        <input type="text" id="kelurahans" class="form-control" placeholder="Kelurahan / Desa" aria-describedby="email" required>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend"><span class="input-group-text" id="email"><i class="flaticon2-position kt-font-brand"></i></span></div>
+                        <input type="text" id="rts" class="form-control" placeholder="Rt" aria-describedby="email" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend"><span class="input-group-text" id="email"><i class="flaticon2-position kt-font-brand"></i></span></div>
+                        <input type="text" id="rws" class="form-control" placeholder="Rw" aria-describedby="email" required>
                       </div>
                     </div>
                   </div>
@@ -349,7 +372,7 @@
                 <div class="form-group">
                   <div class="input-group">
                     <div class="input-group-prepend"><span class="input-group-text" id="email"><i class="flaticon2-telegram-logo kt-font-brand"></i></span></div>
-                    <input type="tel" class="form-control" placeholder="No. Telephone" aria-describedby="email" required>
+                    <input type="tel" id="nohps" class="form-control" placeholder="No. Telephone" aria-describedby="email" required>
                   </div>
                 </div>
                 <div class="form-group row">
@@ -357,11 +380,11 @@
                   <div class="col-md-6">
                     <div class="kt-checkbox-inline">
                       <label class="kt-radio kt-radio--bold kt-radio--success mr-4">
-                        <input type="radio" name="role" value="admin" checked required> Konsumen
+                        <input type="radio" id="konsumen" name="role" value="admin" required> Konsumen
                         <span></span>
                       </label>
                       <label class="kt-radio kt-radio--bold kt-radio--success">
-                        <input type="radio" name="role" value="super admin" required> Petani
+                        <input type="radio" id="petani" name="role" value="super admin" required> Petani
                         <span></span>
                       </label>
                     </div>
@@ -395,7 +418,7 @@
                 </div>
 
                 <div class="col-md-6">
-                  <form action="{{route('edit.manage-user', ['id' => $user->id])}}" method="POST" id="verif-user-form">
+                  <form action="" method="POST" id="verif-user-form">
                     @csrf
                     <input type="hidden" value="PUT" name="_method">
 
@@ -414,6 +437,7 @@
 </div>
 
 <script>
+  // modal detail
   $('#modal-detail-user').on('show.bs.modal', function(event) {
     var a = $(event.relatedTarget)
     var name = a.data('name')
@@ -456,6 +480,64 @@
     modal.find('.modal-body #rw').text(rw)
     modal.find('.modal-body #role').text(role)
   })
+  // modal detail
+
+  // modal edit
+  $('#modal-edit-user').on('show.bs.modal', function(event) {
+    var a = $(event.relatedTarget)
+    var href = a.data('href')
+    var name = a.data('name')
+    var email = a.data('email')
+    var tempat_lahir = a.data('tempat_lahir')
+    var tanggal_lahir = a.data('tanggal_lahir')
+    var alamat = a.data('alamat')
+    var kecamatan = a.data('kecamatan')
+    var kelurahan = a.data('kelurahan')
+    var nohp = a.data('nohp')
+    var petani_verified = a.data('petani_verified')
+    if (petani_verified == 0) {
+      var status = 'Belum terverifikasi';
+    } else {
+      var status = 'Terverifikasi';
+    }
+    var jkel = a.data('jkel')
+    if (jkel == 'L') {
+      var kelamin = 'Laki -laki';
+    } else {
+      var kelamin = 'Perempuan'
+    }
+    var rt = a.data('rt')
+    var rw = a.data('rw')
+    var role = a.data('role')
+
+    var modal = $(this)
+    if (jkel == 'L') {
+      modal.find('.modal-body #L').attr('checked', true);
+    } else {
+      modal.find('.modal-body #P').attr('checked', true);
+    }
+
+    if (role == 'petani') {
+      modal.find('.modal-body #petani').attr('checked', true);
+    } else {
+      modal.find('.modal-body #konsumen').attr('checked', true);
+    }
+    modal.find('.modal-title').text('Edit ' + name)
+    modal.find('.modal-body #names').val(name)
+    modal.find('.modal-body #emails').val(email)
+    modal.find('.modal-body #tempat_lahirs').val(tempat_lahir)
+    modal.find('.modal-body #tanggal_lahirs').val(tanggal_lahir)
+    modal.find('.modal-body #alamats').val(alamat)
+    modal.find('.modal-body #kecamatans').val(kecamatan)
+    modal.find('.modal-body #kelurahans').val(kelurahan)
+    modal.find('.modal-body #nohps').val(nohp)
+    modal.find('.modal-body #petani_verifieds').val(status)
+    modal.find('.modal-body #rts').val(rt)
+    modal.find('.modal-body #rws').val(rw)
+    modal.find('.modal-body #roles').val(role)
+    modal.find('.modal-body #edit-user-form').attr('action', href)
+  })
+  // modal edit
 
   //Modal Verifikasi Akun User
   $('#modal-verif-user').on('show.bs.modal', function(event) {
