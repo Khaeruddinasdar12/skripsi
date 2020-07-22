@@ -53,6 +53,28 @@
           </div>
       </div>
     @endif
+    @if ($errors->any())
+    <div class="alert alert-custom alert-outline-danger fade show mb-5" role="alert">
+          <div class="alert-icon"><i class="flaticon-warning"></i></div>
+          <div class="alert-text"><ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }} !</li>
+            @endforeach
+        </ul></div>
+          <div class="alert-close">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+      </div>
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
       <div class="kt-portlet admin-portlet">
         <div class="kt-portlet__head">
           <div class="kt-portlet__head-label">
@@ -119,7 +141,7 @@
                                 </a>
                               </li>
                               <li class="kt-nav__item">
-                                <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-verif-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-role="{{$user->role}}" data-href="{{route('verified.manage-user', ['id' => $user->id])}}">
+                                <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-verif-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-role="{{$user->role}}" data-href="{{ route('verified.manage-user', ['id' => $user->id]) }}">
                                   <i class="kt-nav__link-icon flaticon2-check-mark"></i>
                                   <span class="kt-nav__link-text">Verifikasi</span>
                                 </a>

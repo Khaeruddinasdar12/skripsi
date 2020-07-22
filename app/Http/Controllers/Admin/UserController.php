@@ -39,28 +39,28 @@ class UserController extends Controller
             'name'          => 'required|string',
             'tempat_lahir'  => 'required|string',
             'tanggal_lahir' => 'required',
-            'alamat_lengkap' => 'required|string',
+            'alamat_lengkap'=> 'required|string',
             'kecamatan'     => 'required|string',
-            'kelurahan'        => 'required|string',
+            'kelurahan'     => 'required|string',
             'nohp'          => 'required|string',
-            'kota_id'        => 'required|numeric',
-            'rt'             => 'required|string',
+            'kota_id'       => 'required|numeric',
+            'rt'            => 'required|string',
             'rw'            => 'required|string',
-            'jkel'             => 'required'
+            'jkel'          => 'required'
         ]);
 
         $data = User::findOrFail($id);
         $data->name         = $request->get('name');
         $data->tempat_lahir = $request->get('tempat_lahir');
-        $data->alamat         = $request->get('alamat_lengkap');
-        $data->kecamatan     = $request->get('kecamatan');
+        $data->alamat       = $request->get('alamat_lengkap');
+        $data->kecamatan    = $request->get('kecamatan');
         $data->nohp         = $request->get('nohp');
-        $data->alamat_id     = $request->get('kota_id');
-        $data->tanggal_lahir = $request->get('tanggal_lahir');
-        $data->rt             = $request->get('rt');
-        $data->rw            = $request->get('rw');
-        $data->jkel            = $request->get('jkel');
-        $data->kelurahan     = $request->get('kelurahan');
+        $data->alamat_id    = $request->get('kota_id');
+        $data->tanggal_lahir= $request->get('tanggal_lahir');
+        $data->rt           = $request->get('rt');
+        $data->rw           = $request->get('rw');
+        $data->jkel         = $request->get('jkel');
+        $data->kelurahan    = $request->get('kelurahan');
         $data->save();
 
         return redirect()->back()->with('success', 'Berhasil mengubah data');
