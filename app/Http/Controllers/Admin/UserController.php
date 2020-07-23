@@ -30,7 +30,7 @@ class UserController extends Controller
         $kota = Kota::select('id', 'tipe', 'nama_kota')->where('provinsi_id', 28)->get();
         // return $data; // uncomment ini untuk melihat data user 
 
-        return view('admin.page.user', ['data' => $data, 'kota' => $kota]);
+        return view('admin.page.petani-verif', ['data' => $data, 'kota' => $kota]);
     }
 
     public function unverified() //menampilkan hal. data user petani belum terverifikasi
@@ -39,7 +39,7 @@ class UserController extends Controller
         $kota = Kota::select('id', 'tipe', 'nama_kota')->where('provinsi_id', 28)->get();
         // return $data; // uncomment ini untuk melihat data user 
 
-        return view('admin.page.user', ['data' => $data, 'kota' => $kota]);
+        return view('admin.page.petani-unverif', ['data' => $data, 'kota' => $kota]);
     }
 
     public function buttonverified($id) // mengubah status user menjadi verified

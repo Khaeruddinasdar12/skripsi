@@ -11,7 +11,7 @@
       <div class="kt-subheader__breadcrumbs">
         <a href="" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
         <span class="kt-subheader__breadcrumbs-separator"></span>
-        <a href="{{ route('index.manage-user') }}" class="kt-subheader__breadcrumbs-link">
+        <a href="#" class="kt-subheader__breadcrumbs-link">
           Konsumen
         </a>
       </div>

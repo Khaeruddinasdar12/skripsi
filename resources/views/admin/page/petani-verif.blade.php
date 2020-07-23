@@ -11,8 +11,14 @@
       <div class="kt-subheader__breadcrumbs">
         <a href="" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
         <span class="kt-subheader__breadcrumbs-separator"></span>
-        <a href="{{ route('index.manage-user') }}" class="kt-subheader__breadcrumbs-link">
-          Petani terverifikasi
+        <a href="#" class="kt-subheader__breadcrumbs-link">
+          Petani
+        </a>
+      </div>
+      <div class="kt-subheader__breadcrumbs">
+        <span class="kt-subheader__breadcrumbs-separator"></span>
+        <a href="#" class="kt-subheader__breadcrumbs-link">
+          Terverifikasi
         </a>
       </div>
     </div>
@@ -120,21 +126,6 @@
                                   <span class="kt-nav__link-text">Edit</span>
                                 </a>
                               </li>
-                              @if($user->petani_verified == '0')
-                              <li class="kt-nav__item">
-                                <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-verif-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-role="{{$user->role}}" data-href="{{ route('verified.manage-user', ['id' => $user->id]) }}">
-                                  <i class="kt-nav__link-icon flaticon2-check-mark"></i>
-                                  <span class="kt-nav__link-text">Verifikasi</span>
-                                </a>
-                              </li>
-                              @else
-                              <li class="kt-nav__item">
-                                <a href="#" class="kt-nav__link hapus-data disabled" data-toggle="modal" data-target="#" data-id="{{$user->id}}" data-name="{{$user->name}}" data-role="{{$user->role}}" data-href="#" style="cursor: not-allowed !important;">
-                                  <i class="kt-nav__link-icon flaticon2-check-mark"></i>
-                                  <span class="kt-nav__link-text">Terverifikasi</span>
-                                </a>
-                              </li>
-                              @endif
                             </ul>
                           </div>
                         </div>
@@ -418,38 +409,6 @@
       </div>
       <!-- end modal edit admin -->
 
-      <!-- modal verifikasi -->
-      <div class="modal modal-verif fade" id="modal-verif-user" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <span class="modal-icon">
-              <i class="fa fa-info"></i>
-            </span>
-            <div class="modal-body">
-              <h3>Verifikasi Petani?</h3>
-              <p>Verifikasi petani hanya dapat di lakukan satu kali</p>
-              <p>dan tidak dapat di batalkan</p>
-
-              <div class="row verif-form">
-                <div class="col-md-6">
-                  <button type="button" class="btn close-modal" data-dismiss="modal" aria-label="Close">Cancel</button>
-                </div>
-
-                <div class="col-md-6">
-                  <form action="" method="POST" id="verif-user-form">
-                    @csrf
-                    <input type="hidden" value="PUT" name="_method">
-
-                    <input type="submit" value="Verifikasi" class="btn btn-verif btn-flat">
-
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- end modal verifikasi -->
     </div>
   </div>
 </div>

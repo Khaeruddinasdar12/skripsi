@@ -11,8 +11,14 @@
       <div class="kt-subheader__breadcrumbs">
         <a href="" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
         <span class="kt-subheader__breadcrumbs-separator"></span>
-        <a href="{{ route('index.manage-user') }}" class="kt-subheader__breadcrumbs-link">
-          Petani belum terverifikasi
+        <a href="#" class="kt-subheader__breadcrumbs-link">
+          Petani
+        </a>
+      </div>
+      <div class="kt-subheader__breadcrumbs">
+        <span class="kt-subheader__breadcrumbs-separator"></span>
+        <a href="#" class="kt-subheader__breadcrumbs-link">
+          Belum Terverifikasi
         </a>
       </div>
     </div>
@@ -122,7 +128,7 @@
                               </li>
                               @if($user->petani_verified == '0')
                               <li class="kt-nav__item">
-                                <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-verif-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-role="{{$user->role}}" data-href="{{ route('verified.manage-user', ['id' => $user->id]) }}">
+                                <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-verif-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-role="{{$user->role}}" data-href="{{ route('buttonverified.manage-user', ['id' => $user->id]) }}">
                                   <i class="kt-nav__link-icon flaticon2-check-mark"></i>
                                   <span class="kt-nav__link-text">Verifikasi</span>
                                 </a>
