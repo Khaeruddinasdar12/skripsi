@@ -16,13 +16,13 @@ class GadaiSawahController extends Controller
     public function index() //menampilkan hal. data gadai sawah yang belum terverifikasi
     {
         $id = 1;
-        $data = GadaiSawah::where('admin_verified', $id)
+        $data = GadaiSawah::where('admin_verified', '1')
             ->with('users:id,name')
             ->with('admins:id,name')
-            ->with('sawahs:id,kecamatan')
+            ->with('sawahs', 'sawahs.alamats:id,tipe,nama_kota')
             ->get();
 
-        return $data;
+        // return $data;
         return view('admin.page.gadai-sawah'); //struktur folder di folder views
 
     }
