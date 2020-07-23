@@ -60,8 +60,11 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 
 
 	// RUTE MENU MANAGE USER
-	Route::get('manage-user', 'UserController@index')->name('index.manage-user'); //menampilkan hal. data user
-	Route::put('manage-user/verified/{id}', 'UserController@verified')->name('verified.manage-user');// rute untuk verified user
+	Route::get('manage-user-konsumen', 'UserController@konsumen')->name('konsumen.manage-user'); //menampilkan hal. data user konsumen
+	Route::get('manage-user-petani-verified', 'UserController@verivied')->name('verified.manage-user'); //menampilkan hal. data user petani terverifikasi
+	Route::get('manage-user-petani-unverified', 'UserController@unverified')->name('unverified.manage-user'); //menampilkan hal. data user petani belum terverifikasi
+
+	Route::put('manage-user/verified/{id}', 'UserController@buttonverified')->name('verified.manage-user');// rute untuk verified user
 	Route::put('manage-user/edit/{id}', 'UserController@update')->name('edit.manage-user')->middleware('CekAdmin'); // rute untuk edit user, hanya untuk superadmin, jika admin otomatis gagal
 	// END RUTE MANAGE USER
 

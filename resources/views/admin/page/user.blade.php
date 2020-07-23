@@ -381,11 +381,11 @@
                         <label>Jenis Kelamin :</label>
                         <div class="kt-radio-inline">
                           <label class="kt-radio">
-                            <input type="radio" id="L" name="jkel" value="laki-laki" required> Laki - laki
+                            <input type="radio" id="L" name="jkel" value="L" required> Laki - laki
                             <span></span>
                           </label>
                           <label class="kt-radio">
-                            <input type="radio" id="P" name="jkel" value="perempuan" required> Perempuan
+                            <input type="radio" id="P" name="jkel" value="P" required> Perempuan
                             <span></span>
                           </label>
                         </div>
