@@ -115,7 +115,7 @@
                                 </a>
                               </li>
                               <li class="kt-nav__item">
-                                <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-email="{{$user->email}}" data-tempat_lahir="{{$user->tempat_lahir}}" data-tanggal_lahir="{{$user->tanggal_lahir}}" data-alamat="{{$user->alamat}}" data-alamat_id="{{$user->alamat_id}}" data-kecamatan="{{$user->kecamatan}}" data-kelurahan="{{$user->kelurahan}}" data-nohp="{{$user->nohp}}" data-petani_verified="{{$user->petani_verified}}" data-jkel="{{$user->jkel}}" data-rt="{{$user->rt}}" data-rw="{{$user->rw}}" data-role="{{$user->role}}" data-href="{{ route('edit.manage-user', ['id' => $user->id]) }}">
+                                <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-email="{{$user->email}}" data-tempat_lahir="{{$user->tempat_lahir}}" data-tanggal_lahir="{{$user->tanggal_lahir}}" data-alamat="{{$user->alamat}}" data-kecamatan="{{$user->kecamatan}}" data-kelurahan="{{$user->kelurahan}}" data-nohp="{{$user->nohp}}" data-petani_verified="{{$user->petani_verified}}" data-jkel="{{$user->jkel}}" data-rt="{{$user->rt}}" data-rw="{{$user->rw}}" data-role="{{$user->role}}" data-href="{{ route('edit.manage-user', ['id' => $user->id]) }}" data-alamat_id="{{$user->alamat_id}}">
                                   <i class=" kt-nav__link-icon flaticon2-settings"></i>
                                   <span class="kt-nav__link-text">Edit</span>
                                 </a>
@@ -455,6 +455,7 @@
 </div>
 
 <script>
+
   // modal detail
   $('#modal-detail-user').on('show.bs.modal', function(event) {
     var a = $(event.relatedTarget)
@@ -509,7 +510,7 @@
     var tempat_lahir = a.data('tempat_lahir')
     var tanggal_lahir = a.data('tanggal_lahir')
     var alamat = a.data('alamat')
-    var alamat_id = a.data('alamat_id)')
+    var alamat_id = a.data('alamat_id')
     var kecamatan = a.data('kecamatan')
     var kelurahan = a.data('kelurahan')
     var nohp = a.data('nohp')
@@ -541,13 +542,14 @@
     } else {
       modal.find('.modal-body #konsumen').attr('checked', true);
     }
+
     modal.find('.modal-title').text('Edit ' + name)
     modal.find('.modal-body #names').val(name)
     modal.find('.modal-body #emails').val(email)
     modal.find('.modal-body #tempat_lahirs').val(tempat_lahir)
     modal.find('.modal-body #tanggal_lahirs').val(tanggal_lahir)
     modal.find('.modal-body #alamats').val(alamat)
-    mdoal.find('.modal-body #kotas').val(alamat_id)
+    modal.find('.modal-body #kotas').val(alamat_id)
     modal.find('.modal-body #kecamatans').val(kecamatan)
     modal.find('.modal-body #kelurahans').val(kelurahan)
     modal.find('.modal-body #nohps').val(nohp)
@@ -556,6 +558,7 @@
     modal.find('.modal-body #rws').val(rw)
     modal.find('.modal-body #roles').val(role)
     modal.find('.modal-body #edit-user-form').attr('action', href)
+    
   })
   // modal edit
 
