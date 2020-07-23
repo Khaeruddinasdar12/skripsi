@@ -17,7 +17,7 @@ class UserController extends Controller
 
     public function konsumen() //menampilkan hal. data user konsumen
     {
-        $data = User::paginate(10);
+        $data = User::where('role', 'konsumen')->paginate(10);
         $kota = Kota::select('id', 'tipe', 'nama_kota')->where('provinsi_id', 28)->get();
         // return $data; // uncomment ini untuk melihat data user 
 
@@ -26,7 +26,7 @@ class UserController extends Controller
 
     public function verified() //menampilkan hal. data user petani terverifikasi
     {
-        $data = User::paginate(10);
+        $data = User::where('role', 'petani')->where('petani_verified', '1')->paginate(10);
         $kota = Kota::select('id', 'tipe', 'nama_kota')->where('provinsi_id', 28)->get();
         // return $data; // uncomment ini untuk melihat data user 
 
@@ -35,7 +35,7 @@ class UserController extends Controller
 
     public function unverified() //menampilkan hal. data user petani belum terverifikasi
     {
-        $data = User::paginate(10);
+        $data = User::where('role', 'petani')->where('petani_verified', '0')->paginate(10);
         $kota = Kota::select('id', 'tipe', 'nama_kota')->where('provinsi_id', 28)->get();
         // return $data; // uncomment ini untuk melihat data user 
 
