@@ -15,16 +15,34 @@ class UserController extends Controller
         $this->middleware('auth:admin');
     }
 
-    public function index() //menampilkan hal. data admin
+    public function konsumen() //menampilkan hal. data user konsumen
     {
-        $data = User::paginate(10);
+        $data = User::where('role', 'konsumen')->paginate(10);
         $kota = Kota::select('id', 'tipe', 'nama_kota')->where('provinsi_id', 28)->get();
         // return $data; // uncomment ini untuk melihat data user 
 
         return view('admin.page.user', ['data' => $data, 'kota' => $kota]);
     }
 
-    public function verified($id) // mengubah status user menjadi verified
+    public function verified() //menampilkan hal. data user petani terverifikasi
+    {
+        $data = User::where('role', 'petani')->where('petani_verified', '1')->paginate(10);
+        $kota = Kota::select('id', 'tipe', 'nama_kota')->where('provinsi_id', 28)->get();
+        // return $data; // uncomment ini untuk melihat data user 
+
+        return view('admin.page.user', ['data' => $data, 'kota' => $kota]);
+    }
+
+    public function unverified() //menampilkan hal. data user petani belum terverifikasi
+    {
+        $data = User::where('role', 'petani')->where('petani_verified', '0')->paginate(10);
+        $kota = Kota::select('id', 'tipe', 'nama_kota')->where('provinsi_id', 28)->get();
+        // return $data; // uncomment ini untuk melihat data user 
+
+        return view('admin.page.user', ['data' => $data, 'kota' => $kota]);
+    }
+
+    public function buttonverified($id) // mengubah status user menjadi verified
     {
         $data = User::findOrFail($id);
         $data->petani_verified     = '1';
