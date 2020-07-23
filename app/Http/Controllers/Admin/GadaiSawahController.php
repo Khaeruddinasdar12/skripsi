@@ -13,10 +13,15 @@ class GadaiSawahController extends Controller
         $this->middleware('auth:admin');
     }
 
-    public function index() //menampilkan hal. data gadai sawah
+    public function index() //menampilkan hal. data gadai sawah yang belum terverifikasi
     {
+        $id = 1;
+        $data = GadaiSawah::where('admin_verified', $id)
+            ->with('users:id,name')
+            ->with('admins:id,name')
+            ->with('sawahs:id,kecamatan')
+            ->get();
 
-        $data = GadaiSawah::find(1)->with('users', 'admins')->get();
         return $data;
         return view('admin.page.gadai-sawah'); //struktur folder di folder views
 
