@@ -149,12 +149,50 @@
             </a>
           </li>
 
-          <li class="kt-menu__item kt-menu__item--rel {{ request()->is('admin/manage-user') ? 'kt-menu__item--open kt-menu__item--here' : '' }}">
-            <a href="{{ route('index.manage-user') }}" class="kt-menu__link" id="manageuser">
-              <span class="kt-menu__link-text {{ request()->is('admin/manage-user') ? '' : 'top-text-nav' }}">Manage User</span>
+          <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel {{ request()->is('admin/manage-user-konsumen') || request()->is('admin/manage-user-petani-verified') || request()->is('admin/manage-user-petani-unverified') ? 'kt-menu__item--open kt-menu__item--here' : '' }}" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
+            <a href="javascript:;" class="kt-menu__link kt-menu__toggle" id="manageuser">
+              <span class="kt-menu__link-text {{ request()->is('admin/manage-user-konsumen') || request()->is('admin/manage-user-petani-verified') || request()->is('admin/manage-user-petani-unverified') ? '' : 'top-text-nav' }}">Manage User</span>
+              <i class="kt-menu__ver-arrow la la-angle-right"></i>
             </a>
+            <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
+              <ul class="kt-menu__subnav">
+                <li class="kt-menu__item  kt-menu__item--submenu">
+                  <a href="{{ route('konsumen.manage-user') }}" class="kt-menu__link">
+                    <i class="kt-menu__link-icon flaticon2-start-up"></i>
+                    <span class="kt-menu__link-text">Konsumen</span>
+                  </a>
+                </li>
+                <li class="kt-menu__item kt-menu__item--submenu" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
+                  <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+                    <i class="kt-menu__link-icon flaticon2-start-up"></i>
+                    <span class="kt-menu__link-text">Petani</span>
+                    <i class="kt-menu__hor-arrow la la-angle-right"></i>
+                    <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                  </a>
+                  <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--right">
+                    <ul class="kt-menu__subnav">
+                      <li class="kt-menu__item " aria-haspopup="true">
+                        <a href="{{ route('verified.manage-user') }}" class="kt-menu__link ">
+                          <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+                            <span></span>
+                          </i>
+                          <span class="kt-menu__link-text">Terverifikasi</span>
+                        </a>
+                      </li>
+                      <li class="kt-menu__item " aria-haspopup="true">
+                        <a href="{{ route('unverified.manage-user') }}" class="kt-menu__link ">
+                          <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+                            <span></span>
+                          </i>
+                          <span class="kt-menu__link-text">Belum Terverifikasi</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </li>
-
         </ul>
       </div>
     </div>
