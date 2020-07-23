@@ -33,41 +33,26 @@
   <div class="row justify-content-center">
     <div class="col-md-12">
       @if(session('success'))
-      <div class="alert alert-custom alert-outline-success fade show mb-5" role="alert">
-        <div class="alert-icon"><i class="flaticon2-check-mark"></i></div>
-        <div class="alert-text">{{session('success')}}!</div>
-        <div class="alert-close">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+      <div data-notify="container" class="alert alert-success m-alert animated bounce alert-win" role="alert" data-notify-position="top-center" style="display: inline-block; margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 10000; top: 100px; left: 0px; right: 0px; animation-iteration-count: 1;">
+        <button type="button" aria-hidden="true" class="close" data-notify="dismiss" style="position: absolute; right: 10px; top: 5px; z-index: 100002;" data-notify="dismiss" data-dismiss="alert" aria-label="Close"></button>
+        <span data-notify="message">{{session('success')}}!</span>
+        <a href="#" target="_blank" data-notify="url"></a>
       </div>
       @elseif(session('error'))
-      <div class="alert alert-custom alert-outline-danger fade show mb-5" role="alert">
-        <div class="alert-icon"><i class="flaticon-warning"></i></div>
-        <div class="alert-text">{{session('error')}}!</div>
-        <div class="alert-close">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+      <div data-notify="container" class="alert alert-success m-alert animated bounce alert-error" role="alert" data-notify-position="top-center" style="display: inline-block; margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 10000; top: 100px; left: 0px; right: 0px; animation-iteration-count: 1;">
+        <button type="button" aria-hidden="true" class="close" data-notify="dismiss" style="position: absolute; right: 10px; top: 5px; z-index: 100002;" data-notify="dismiss" data-dismiss="alert" aria-label="Close"></button>
+        <span data-notify="message">{{session('error')}}!</span>
+        <a href="#" target="_blank" data-notify="url"></a>
       </div>
       @endif
       @if ($errors->any())
-      <div class="alert alert-custom alert-outline-danger fade show mb-5" role="alert">
-        <div class="alert-icon"><i class="flaticon-warning"></i></div>
-        <div class="alert-text">
-          <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }} !</li>
-            @endforeach
-          </ul>
-        </div>
-        <div class="alert-close">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+      <div data-notify="container" class="alert alert-success m-alert animated bounce alert-error" role="alert" data-notify-position="top-center" style="display: inline-block; margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 10000; top: 100px; left: 0px; right: 0px; animation-iteration-count: 1;">
+        <button type="button" aria-hidden="true" class="close" data-notify="dismiss" style="position: absolute
+        ; right: 10px; top: 5px; z-index: 100002;" data-notify="dismiss" data-dismiss="alert" aria-label="Close"></button>
+        @foreach ($errors->all() as $error)
+        <span data-notify="message">{{ $error }} !</span>
+        @endforeach
+        <a href="#" target="_blank" data-notify="url"></a>
       </div>
       @endif
       <div class="kt-portlet admin-portlet">
@@ -130,7 +115,7 @@
                                 </a>
                               </li>
                               <li class="kt-nav__item">
-                                <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-email="{{$user->email}}" data-tempat_lahir="{{$user->tempat_lahir}}" data-tanggal_lahir="{{$user->tanggal_lahir}}" data-alamat="{{$user->alamat}}" data-kecamatan="{{$user->kecamatan}}" data-kelurahan="{{$user->kelurahan}}" data-nohp="{{$user->nohp}}" data-petani_verified="{{$user->petani_verified}}" data-jkel="{{$user->jkel}}" data-rt="{{$user->rt}}" data-rw="{{$user->rw}}" data-role="{{$user->role}}" data-href="{{ route('edit.manage-user', ['id' => $user->id]) }}">
+                                <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-email="{{$user->email}}" data-tempat_lahir="{{$user->tempat_lahir}}" data-tanggal_lahir="{{$user->tanggal_lahir}}" data-alamat="{{$user->alamat}}" data-alamat_id="{{$user->alamat_id}}" data-kecamatan="{{$user->kecamatan}}" data-kelurahan="{{$user->kelurahan}}" data-nohp="{{$user->nohp}}" data-petani_verified="{{$user->petani_verified}}" data-jkel="{{$user->jkel}}" data-rt="{{$user->rt}}" data-rw="{{$user->rw}}" data-role="{{$user->role}}" data-href="{{ route('edit.manage-user', ['id' => $user->id]) }}">
                                   <i class=" kt-nav__link-icon flaticon2-settings"></i>
                                   <span class="kt-nav__link-text">Edit</span>
                                 </a>
@@ -288,7 +273,7 @@
                       <div class="form-group">
                         <label>Email :</label>
                         <div class="kt-input-icon">
-                          <input type="email" id="emails" class="form-control" placeholder="Email" aria-describedby="email" disabled="" required>
+                          <input type="email" id="emails" class="form-control" placeholder="Email" aria-describedby="email" disabled="" name="email" required>
                           <span class="kt-input-icon__icon kt-input-icon__icon--right"><span><i class="fa fa-envelope"></i></span></span>
                         </div>
                       </div>
@@ -313,14 +298,31 @@
                       </div>
                     </div>
                   </div>
+                  <div class="form-group">
+                    <label>Alamat Lengkap :</label>
+                    <div class="kt-input-icon">
+                      <input type="text" id="alamats" class="form-control" name="alamat_lengkap" required>
+                      <span class="kt-input-icon__icon kt-input-icon__icon--right"><span><i class="fa fa-map-marked-alt"></i></span></span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Provinsi :</label>
+                    <div class="kt-input-icon">
+                      <input type="text" id="provinsis" class="form-control" value="Sulawesi Selatan" aria-describedby="email" required readonly>
+                      <span class="kt-input-icon__icon kt-input-icon__icon--right"><span><i class="fa fa-map-marked-alt"></i></span></span>
+                    </div>
+                  </div>
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label>Provinsi :</label>
-                        <div class="kt-input-icon">
-                          <input type="text" id="provinsis" class="form-control" value="Sulawesi Selatan" aria-describedby="email" required readonly>
-                          <span class="kt-input-icon__icon kt-input-icon__icon--right"><span><i class="fa fa-map-marked-alt"></i></span></span>
-                        </div>
+                        <label>Kota :</label>
+                        <select class="form-control" id="kotas" name="kota_id">
+                          @foreach ($kota as $kotas)
+                          <option value="{{$kotas->id}}">
+                            {{$kotas->tipe}} {{$kotas->nama_kota}}
+                          </option>
+                          @endforeach
+                        </select>
                       </div>
                     </div>
                     <div class="col-md-6">
@@ -338,7 +340,7 @@
                       <div class="form-group">
                         <label>Kelurahan / Desa :</label>
                         <div class="kt-input-icon">
-                          <input type="text" id="kelurahans" class="form-control" placeholder="Kelurahan / Desa" aria-describedby="email" required>
+                          <input type="text" id="kelurahans" class="form-control" placeholder="Kelurahan / Desa" aria-describedby="email" name="kelurahan" required>
                           <span class="kt-input-icon__icon kt-input-icon__icon--right"><span><i class="fa fa-map-marker-alt "></i></span></span>
                         </div>
                       </div>
@@ -347,7 +349,7 @@
                       <div class="form-group">
                         <label>No. telephone :</label>
                         <div class="kt-input-icon">
-                          <input type="tel" id="nohps" class="form-control" placeholder="No. Telephone" aria-describedby="email" required>
+                          <input type="tel" id="nohps" class="form-control" placeholder="No. Telephone" aria-describedby="email" name="nohp" required>
                           <span class="kt-input-icon__icon kt-input-icon__icon--right"><span><i class="fa fa-phone"></i></span></span>
                         </div>
                       </div>
@@ -358,7 +360,7 @@
                       <div class="form-group">
                         <label>Rukun Tetangga (RT) :</label>
                         <div class="kt-input-icon">
-                          <input type="text" id="rts" class="form-control" placeholder="Rt" aria-describedby="email" required>
+                          <input type="text" id="rts" class="form-control" aria-describedby="email" name="rt" required>
                           <span class="kt-input-icon__icon kt-input-icon__icon--right"><span><i class="fa fa-map-marker"></i></span></span>
                         </div>
                       </div>
@@ -367,7 +369,7 @@
                       <div class="form-group">
                         <label>Rukun Warga (RW) :</label>
                         <div class="kt-input-icon">
-                          <input type="text" id="rws" class="form-control" placeholder="Rw" aria-describedby="email" required>
+                          <input type="text" id="rws" class="form-control" aria-describedby="email" name="rw" required>
                           <span class="kt-input-icon__icon kt-input-icon__icon--right"><span><i class="fa fa-map-marker"></i></span></span>
                         </div>
                       </div>
@@ -507,6 +509,7 @@
     var tempat_lahir = a.data('tempat_lahir')
     var tanggal_lahir = a.data('tanggal_lahir')
     var alamat = a.data('alamat')
+    var alamat_id = a.data('alamat_id)')
     var kecamatan = a.data('kecamatan')
     var kelurahan = a.data('kelurahan')
     var nohp = a.data('nohp')
@@ -544,6 +547,7 @@
     modal.find('.modal-body #tempat_lahirs').val(tempat_lahir)
     modal.find('.modal-body #tanggal_lahirs').val(tanggal_lahir)
     modal.find('.modal-body #alamats').val(alamat)
+    mdoal.find('.modal-body #kotas').val(alamat_id)
     modal.find('.modal-body #kecamatans').val(kecamatan)
     modal.find('.modal-body #kelurahans').val(kelurahan)
     modal.find('.modal-body #nohps').val(nohp)
