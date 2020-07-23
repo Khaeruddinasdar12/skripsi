@@ -12,7 +12,13 @@
         <a href="" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
         <span class="kt-subheader__breadcrumbs-separator"></span>
         <a href="#" class="kt-subheader__breadcrumbs-link">
-          Konsumen
+          Petani
+        </a>
+      </div>
+      <div class="kt-subheader__breadcrumbs">
+        <span class="kt-subheader__breadcrumbs-separator"></span>
+        <a href="#" class="kt-subheader__breadcrumbs-link">
+          Terverifikasi
         </a>
       </div>
     </div>
@@ -79,6 +85,7 @@
                       <th>Kelurahan / Desa</th>
                       <th>Jenis Kelamin</th>
                       <th>Jenis User</th>
+                      <th>Status</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -96,6 +103,11 @@
                       </td>
                       <td>{{$user->role}}</td>
                       <td>
+                        @if($user->petani_verified == '0')
+                        <span class="btn btn-bold btn-sm btn-font-sm  btn-label-danger" style="font-size: 14px;">Belum Terverifikasi</span>
+                        @else <span class="btn btn-bold btn-sm btn-font-sm  btn-label-success" style="font-size : 14px;">Terverifikasi</span> @endif
+                      </td>
+                      <td>
                         <div class="dropdown dropdown-inline">
                           <a href="#" class="btn btn-default btn-icon btn-icon-md btn-sm btn-more-custom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="flaticon-more-1"></i>
@@ -103,13 +115,13 @@
                           <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
                             <ul class="kt-nav">
                               <li class="kt-nav__item">
-                                <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-email="{{$user->email}}" data-tempat_lahir="{{$user->tempat_lahir}}" data-tanggal_lahir="{{$user->tanggal_lahir}}" data-alamat="{{$user->alamat}}" data-kecamatan="{{$user->kecamatan}}" data-kelurahan="{{$user->kelurahan}}" data-nohp="{{$user->nohp}}" data-jkel="{{$user->jkel}}" data-rt="{{$user->rt}}" data-rw="{{$user->rw}}" data-role="{{$user->role}}">
+                                <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-email="{{$user->email}}" data-tempat_lahir="{{$user->tempat_lahir}}" data-tanggal_lahir="{{$user->tanggal_lahir}}" data-alamat="{{$user->alamat}}" data-kecamatan="{{$user->kecamatan}}" data-kelurahan="{{$user->kelurahan}}" data-nohp="{{$user->nohp}}" data-petani_verified="{{$user->petani_verified}}" data-jkel="{{$user->jkel}}" data-rt="{{$user->rt}}" data-rw="{{$user->rw}}" data-role="{{$user->role}}">
                                   <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
                                   <span class="kt-nav__link-text">Detail</span>
                                 </a>
                               </li>
                               <li class="kt-nav__item">
-                                <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-email="{{$user->email}}" data-tempat_lahir="{{$user->tempat_lahir}}" data-tanggal_lahir="{{$user->tanggal_lahir}}" data-alamat="{{$user->alamat}}" data-kecamatan="{{$user->kecamatan}}" data-kelurahan="{{$user->kelurahan}}" data-nohp="{{$user->nohp}}" data-jkel="{{$user->jkel}}" data-rt="{{$user->rt}}" data-rw="{{$user->rw}}" data-role="{{$user->role}}" data-href="{{ route('edit.manage-user', ['id' => $user->id]) }}" data-alamat_id="{{$user->alamat_id}}">
+                                <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-email="{{$user->email}}" data-tempat_lahir="{{$user->tempat_lahir}}" data-tanggal_lahir="{{$user->tanggal_lahir}}" data-alamat="{{$user->alamat}}" data-kecamatan="{{$user->kecamatan}}" data-kelurahan="{{$user->kelurahan}}" data-nohp="{{$user->nohp}}" data-petani_verified="{{$user->petani_verified}}" data-jkel="{{$user->jkel}}" data-rt="{{$user->rt}}" data-rw="{{$user->rw}}" data-role="{{$user->role}}" data-href="{{ route('edit.manage-user', ['id' => $user->id]) }}" data-alamat_id="{{$user->alamat_id}}">
                                   <i class=" kt-nav__link-icon flaticon2-settings"></i>
                                   <span class="kt-nav__link-text">Edit</span>
                                 </a>
@@ -202,6 +214,10 @@
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Jenis User :</span>
                           <span class="kt-widget__data" id="role"></span>
+                        </div>
+                        <div class="kt-widget__contact">
+                          <span class="kt-widget__label">Status :</span>
+                          <span class="kt-widget__data" id="petani_verified"></span>
                         </div>
                       </div>
                     </div>

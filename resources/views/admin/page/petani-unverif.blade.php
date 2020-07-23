@@ -12,7 +12,13 @@
         <a href="" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
         <span class="kt-subheader__breadcrumbs-separator"></span>
         <a href="#" class="kt-subheader__breadcrumbs-link">
-          Konsumen
+          Petani
+        </a>
+      </div>
+      <div class="kt-subheader__breadcrumbs">
+        <span class="kt-subheader__breadcrumbs-separator"></span>
+        <a href="#" class="kt-subheader__breadcrumbs-link">
+          Belum Terverifikasi
         </a>
       </div>
     </div>
@@ -79,6 +85,7 @@
                       <th>Kelurahan / Desa</th>
                       <th>Jenis Kelamin</th>
                       <th>Jenis User</th>
+                      <th>Status</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -96,6 +103,11 @@
                       </td>
                       <td>{{$user->role}}</td>
                       <td>
+                        @if($user->petani_verified == '0')
+                        <span class="btn btn-bold btn-sm btn-font-sm  btn-label-danger" style="font-size: 14px;">Belum Terverifikasi</span>
+                        @else <span class="btn btn-bold btn-sm btn-font-sm  btn-label-success" style="font-size : 14px;">Terverifikasi</span> @endif
+                      </td>
+                      <td>
                         <div class="dropdown dropdown-inline">
                           <a href="#" class="btn btn-default btn-icon btn-icon-md btn-sm btn-more-custom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="flaticon-more-1"></i>
@@ -103,17 +115,32 @@
                           <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
                             <ul class="kt-nav">
                               <li class="kt-nav__item">
-                                <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-email="{{$user->email}}" data-tempat_lahir="{{$user->tempat_lahir}}" data-tanggal_lahir="{{$user->tanggal_lahir}}" data-alamat="{{$user->alamat}}" data-kecamatan="{{$user->kecamatan}}" data-kelurahan="{{$user->kelurahan}}" data-nohp="{{$user->nohp}}" data-jkel="{{$user->jkel}}" data-rt="{{$user->rt}}" data-rw="{{$user->rw}}" data-role="{{$user->role}}">
+                                <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-email="{{$user->email}}" data-tempat_lahir="{{$user->tempat_lahir}}" data-tanggal_lahir="{{$user->tanggal_lahir}}" data-alamat="{{$user->alamat}}" data-kecamatan="{{$user->kecamatan}}" data-kelurahan="{{$user->kelurahan}}" data-nohp="{{$user->nohp}}" data-petani_verified="{{$user->petani_verified}}" data-jkel="{{$user->jkel}}" data-rt="{{$user->rt}}" data-rw="{{$user->rw}}" data-role="{{$user->role}}">
                                   <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
                                   <span class="kt-nav__link-text">Detail</span>
                                 </a>
                               </li>
                               <li class="kt-nav__item">
-                                <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-email="{{$user->email}}" data-tempat_lahir="{{$user->tempat_lahir}}" data-tanggal_lahir="{{$user->tanggal_lahir}}" data-alamat="{{$user->alamat}}" data-kecamatan="{{$user->kecamatan}}" data-kelurahan="{{$user->kelurahan}}" data-nohp="{{$user->nohp}}" data-jkel="{{$user->jkel}}" data-rt="{{$user->rt}}" data-rw="{{$user->rw}}" data-role="{{$user->role}}" data-href="{{ route('edit.manage-user', ['id' => $user->id]) }}" data-alamat_id="{{$user->alamat_id}}">
+                                <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-email="{{$user->email}}" data-tempat_lahir="{{$user->tempat_lahir}}" data-tanggal_lahir="{{$user->tanggal_lahir}}" data-alamat="{{$user->alamat}}" data-kecamatan="{{$user->kecamatan}}" data-kelurahan="{{$user->kelurahan}}" data-nohp="{{$user->nohp}}" data-petani_verified="{{$user->petani_verified}}" data-jkel="{{$user->jkel}}" data-rt="{{$user->rt}}" data-rw="{{$user->rw}}" data-role="{{$user->role}}" data-href="{{ route('edit.manage-user', ['id' => $user->id]) }}" data-alamat_id="{{$user->alamat_id}}">
                                   <i class=" kt-nav__link-icon flaticon2-settings"></i>
                                   <span class="kt-nav__link-text">Edit</span>
                                 </a>
                               </li>
+                              @if($user->petani_verified == '0')
+                              <li class="kt-nav__item">
+                                <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-verif-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-role="{{$user->role}}" data-href="{{ route('buttonverified.manage-user', ['id' => $user->id]) }}">
+                                  <i class="kt-nav__link-icon flaticon2-check-mark"></i>
+                                  <span class="kt-nav__link-text">Verifikasi</span>
+                                </a>
+                              </li>
+                              @else
+                              <li class="kt-nav__item">
+                                <a href="#" class="kt-nav__link hapus-data disabled" data-toggle="modal" data-target="#" data-id="{{$user->id}}" data-name="{{$user->name}}" data-role="{{$user->role}}" data-href="#" style="cursor: not-allowed !important;">
+                                  <i class="kt-nav__link-icon flaticon2-check-mark"></i>
+                                  <span class="kt-nav__link-text">Terverifikasi</span>
+                                </a>
+                              </li>
+                              @endif
                             </ul>
                           </div>
                         </div>
@@ -202,6 +229,10 @@
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Jenis User :</span>
                           <span class="kt-widget__data" id="role"></span>
+                        </div>
+                        <div class="kt-widget__contact">
+                          <span class="kt-widget__label">Status :</span>
+                          <span class="kt-widget__data" id="petani_verified"></span>
                         </div>
                       </div>
                     </div>
@@ -393,6 +424,38 @@
       </div>
       <!-- end modal edit admin -->
 
+      <!-- modal verifikasi -->
+      <div class="modal modal-verif fade" id="modal-verif-user" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <span class="modal-icon">
+              <i class="fa fa-info"></i>
+            </span>
+            <div class="modal-body">
+              <h3>Verifikasi Petani?</h3>
+              <p>Verifikasi petani hanya dapat di lakukan satu kali</p>
+              <p>dan tidak dapat di batalkan</p>
+
+              <div class="row verif-form">
+                <div class="col-md-6">
+                  <button type="button" class="btn close-modal" data-dismiss="modal" aria-label="Close">Cancel</button>
+                </div>
+
+                <div class="col-md-6">
+                  <form action="" method="POST" id="verif-user-form">
+                    @csrf
+                    <input type="hidden" value="PUT" name="_method">
+
+                    <input type="submit" value="Verifikasi" class="btn btn-verif btn-flat">
+
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end modal verifikasi -->
     </div>
   </div>
 </div>
