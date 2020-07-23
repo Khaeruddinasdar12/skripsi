@@ -8,12 +8,16 @@ use JWTAuth;
 use App\Sawah;
 use App\GadaiSawah;
 Use DB;
+use App\Transformers\UserTransformer;
+use Dingo\Api\Routing\Helpers;
 use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Exceptions\JWTException;
 class SawahController extends Controller
 {
+    // use Helpers;
     public function index() // daftar sawah petani berdasarkan id yang login
     { 
+        // return $this->response->collection(Sawah::all(), new UserTransformer);
         try {
          if (! $user = JWTAuth::parseToken()->authenticate()) {
 	            return response()->json(['user_not_found'], 404);
@@ -33,7 +37,6 @@ class SawahController extends Controller
             ]);
         }
         $data = \App\User::find($user->id)->sawahs()->get();
-
         return response()->json([
                 'status' => true, 
                 'message' => 'Daftar sawah yang dimiliki User yang sedang login',
@@ -101,7 +104,7 @@ class SawahController extends Controller
 
     }
 
-    public function update(Request $request,$id)
+    public function update(Request $request,$id) // mengedit sawah petani
     {
         try {
          if (! $user = JWTAuth::parseToken()->authenticate()) {
@@ -176,7 +179,7 @@ class SawahController extends Controller
 
     }
 
-    public function delete($id)
+    public function delete($id) //menghapus sawah petani
     {
         try {
          if (! $user = JWTAuth::parseToken()->authenticate()) {
@@ -190,19 +193,19 @@ class SawahController extends Controller
                 return response()->json(['token_absent'], $e->getStatusCode());
         }
 
-        $cek_gadai = GadaiSawah::where('sawah_id', $user->id)->first();
+        $cek_gadai = GadaiSawah::where('sawah_id', $user->id)->get();
         if($cek_gadai != null) {
-            if($cek_gadai->status == 1) {
-            return response()->json([
-                    'status' => false,
-                    'message' => 'Sawah ini sedang digadai'
-                ]);
+            foreach ($$cek_gadai as $hps) {
+                if($hps->status == 'gadai') {
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'Tidak dapat menghapus, Sawah ini sedang digadai'
+                    ]);
+                }
             }
 
             $cek_gadai->delete(); //delete data di tabel gadai_sawahs
         }
-
-        
 
         $sawah = Sawah::find($id);
         if ($sawah == null) {
@@ -213,7 +216,7 @@ class SawahController extends Controller
         }
 
         $sawah->delete(); //delete data di table sawahs
-        return response()->json([
+            return response()->json([
                 'status' => true, 
                 'message' => 'Berhasil menghapus sawah'
             ]);
