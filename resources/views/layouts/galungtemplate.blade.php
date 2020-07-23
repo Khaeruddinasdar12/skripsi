@@ -80,6 +80,7 @@
   <!--end::Page Vendors -->
   <!--begin::Page Scripts(used by this page) -->
   <script src="{{ asset('assets/js/pages/dashboard.js') }}" type="text/javascript"></script>
+  <script src="{{ asset('assets/js/pages/components/extended/bootstrap-notify.js') }}" type="text/javascript"></script>
   <!-- metronic -->
 
   <!--end::Page Scripts-->
