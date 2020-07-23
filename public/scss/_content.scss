@@ -50,11 +50,6 @@ table {
         input {
             transition: 0.5s !important;
 
-            &:valid {
-                border-color: $galungcolor !important;
-                transition: 0.5s !important;
-            }
-
             &:hover {
                 border-color: $galungcolor !important;
                 transition: 0.5s !important;
@@ -86,12 +81,13 @@ table {
         }
 
         .button-edit {
-            border-top: 1px solid rgb(207, 207, 207);
+            text-align: right;
+            margin-top: 20px;
 
             .btn-edit {
                 @extend %galung-button-fill;
-                width: 100%;
-                margin: 20px 0 20px 0;
+                width: 30%;
+                margin: 20px 0 0 0;
                 background-color: $biru !important;
 
                 &:hover {

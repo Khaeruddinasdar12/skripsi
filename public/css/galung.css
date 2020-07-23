@@ -170,10 +170,6 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
 .form-group .input-group input {
   transition: 0.5s !important;
 }
-.form-group .input-group input:valid {
-  border-color: #00A859 !important;
-  transition: 0.5s !important;
-}
 .form-group .input-group input:hover {
   border-color: #00A859 !important;
   transition: 0.5s !important;
@@ -193,11 +189,12 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
   background-color: #018346 !important;
 }
 .modal .modal-body .button-edit {
-  border-top: 1px solid #cfcfcf;
+  text-align: right;
+  margin-top: 20px;
 }
 .modal .modal-body .button-edit .btn-edit {
-  width: 100%;
-  margin: 20px 0 20px 0;
+  width: 30%;
+  margin: 20px 0 0 0;
   background-color: #3498db !important;
 }
 .modal .modal-body .button-edit .btn-edit:hover {
@@ -285,6 +282,9 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
 }
 .modal .detail-modal .widget-detail {
   padding-top: 30px;
+}
+.modal .modal-edit-user {
+  width: 500px;
 }
 
 /*# sourceMappingURL=galung.css.map */

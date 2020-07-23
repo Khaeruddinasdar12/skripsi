@@ -144,7 +144,7 @@
                               </li>
                               @else
                               <li class="kt-nav__item">
-                                <a href="#" class="kt-nav__link hapus-data disabled" data-toggle="modal" data-target="#modal-verif-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-role="{{$user->role}}" data-href="#" style="cursor: not-allowed !important;">
+                                <a href="#" class="kt-nav__link hapus-data disabled" data-toggle="modal" data-target="#" data-id="{{$user->id}}" data-name="{{$user->name}}" data-role="{{$user->role}}" data-href="#" style="cursor: not-allowed !important;">
                                   <i class="kt-nav__link-icon flaticon2-check-mark"></i>
                                   <span class="kt-nav__link-text">Terverifikasi</span>
                                 </a>
@@ -258,7 +258,7 @@
 
       <!-- modal edit admin -->
       <div class="modal modal-edit fade" id="modal-edit-user" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
           <div class="modal-content">
             <span class="modal-icon">
               <i class="fa fa-user-cog"></i>
@@ -269,131 +269,147 @@
               </button>
             </div>
             <div class="modal-body">
-              <form id="edit-user-form" action="" method="POST">
-                @csrf
-                <input type="hidden" value="PUT" name="_method">
+              <div class="container">
+                <form id="edit-user-form" action="" method="POST">
+                  @csrf
+                  <input type="hidden" value="PUT" name="_method">
 
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <div class="input-group">
-                        <div class="input-group-prepend"><span class="input-group-text" id="nama">
-                            <i class="flaticon2-user-outline-symbol kt-font-brand"></i></span></div>
-                        <input type="text" id="names" class="form-control" placeholder="Nama User" aria-describedby="nama" name="name" required>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Nama Lengkap :</label>
+                        <div class="kt-input-icon">
+                          <input type="text" id="names" class="form-control" aria-describedby="nama" name="name" required>
+                          <span class="kt-input-icon__icon kt-input-icon__icon--right"><span><i class="fa fa-user"></i></span></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Email :</label>
+                        <div class="kt-input-icon">
+                          <input type="email" id="emails" class="form-control" placeholder="Email" aria-describedby="email" disabled="" required>
+                          <span class="kt-input-icon__icon kt-input-icon__icon--right"><span><i class="fa fa-envelope"></i></span></span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <div class="input-group">
-                        <div class="input-group-prepend"><span class="input-group-text" id="email"><i class="flaticon2-email kt-font-brand"></i></span></div>
-                        <input type="email" id="emails" class="form-control" placeholder="Email" aria-describedby="email" disabled="" required>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Tempat lahir :</label>
+                        <div class="kt-input-icon">
+                          <input type="text" id="tempat_lahirs" class="form-control" placeholder="Tempat" aria-describedby="email" name="tempat_lahir" required>
+                          <span class="kt-input-icon__icon kt-input-icon__icon--right"><span><i class="fa fa-map-pin"></i></span></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Tanggal lahir :</label>
+                        <div class="kt-input-icon">
+                          <input class="form-control" type="date" id="tanggal_lahirs" name="tanggal_lahir" required>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label">Jenis Kelamin :</label>
-                  <div class="col-md-6">
-                    <div class="kt-checkbox-inline">
-                      <label class="kt-radio kt-radio--bold kt-radio--success mr-4">
-                        <input type="radio" id="L" name="jkel" value="laki-laki" required> Laki - laki
-                        <span></span>
-                      </label>
-                      <label class="kt-radio kt-radio--bold kt-radio--success">
-                        <input type="radio" id="P" name="jkel" value="perempuan" required> Perempuan
-                        <span></span>
-                      </label>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Provinsi :</label>
+                        <div class="kt-input-icon">
+                          <input type="text" id="provinsis" class="form-control" value="Sulawesi Selatan" aria-describedby="email" required readonly>
+                          <span class="kt-input-icon__icon kt-input-icon__icon--right"><span><i class="fa fa-map-marked-alt"></i></span></span>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label>Tempat lahir :</label>
-                      <div class="input-group">
-                        <div class="input-group-prepend"><span class="input-group-text" id="tempat"><i class="flaticon2-architecture-and-city kt-font-brand"></i></span></div>
-                        <input type="text" id="tempat_lahirs" class="form-control" placeholder="Tempat" aria-describedby="email" name="tempat_lahir" required>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Kecamatan :</label>
+                        <div class="kt-input-icon">
+                          <input type="text" id="kecamatans" name="kecamatan" class="form-control" placeholder="Kecamatan" aria-describedby="email" required>
+                          <span class="kt-input-icon__icon kt-input-icon__icon--right"><span><i class="fa fa-map"></i></span></span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label>Tanggal lahir :</label>
-                      <div class="input-group">
-                        <div class="input-group-prepend"><span class="input-group-text" id="tempat"><i class="flaticon2-calendar-7 kt-font-brand"></i></span></div>
-                        <input class="form-control" type="date" id="tanggal_lahirs" name="tanggal_lahir" required>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Kelurahan / Desa :</label>
+                        <div class="kt-input-icon">
+                          <input type="text" id="kelurahans" class="form-control" placeholder="Kelurahan / Desa" aria-describedby="email" required>
+                          <span class="kt-input-icon__icon kt-input-icon__icon--right"><span><i class="fa fa-map-marker-alt "></i></span></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>No. telephone :</label>
+                        <div class="kt-input-icon">
+                          <input type="tel" id="nohps" class="form-control" placeholder="No. Telephone" aria-describedby="email" required>
+                          <span class="kt-input-icon__icon kt-input-icon__icon--right"><span><i class="fa fa-phone"></i></span></span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="form-group">
-                  <div class="input-group">
-                    <div class="input-group-prepend"><span class="input-group-text" id="email"><i class="flaticon2-position kt-font-brand"></i></span></div>
-                    <input type="text" id="provinsis" class="form-control" value="Sulawesi Selatan" aria-describedby="email" required readonly>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <div class="input-group">
-                        <div class="input-group-prepend"><span class="input-group-text" id="email"><i class="flaticon2-position kt-font-brand"></i></span></div>
-                        <input type="text" id="kecamatans" name="kecamatan" class="form-control" placeholder="Kecamatan" aria-describedby="email" required>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Rukun Tetangga (RT) :</label>
+                        <div class="kt-input-icon">
+                          <input type="text" id="rts" class="form-control" placeholder="Rt" aria-describedby="email" required>
+                          <span class="kt-input-icon__icon kt-input-icon__icon--right"><span><i class="fa fa-map-marker"></i></span></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Rukun Warga (RW) :</label>
+                        <div class="kt-input-icon">
+                          <input type="text" id="rws" class="form-control" placeholder="Rw" aria-describedby="email" required>
+                          <span class="kt-input-icon__icon kt-input-icon__icon--right"><span><i class="fa fa-map-marker"></i></span></span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <div class="input-group">
-                        <div class="input-group-prepend"><span class="input-group-text" id="email"><i class="flaticon2-position kt-font-brand"></i></span></div>
-                        <input type="text" id="kelurahans" class="form-control" placeholder="Kelurahan / Desa" aria-describedby="email" required>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-gr">
+                        <label>Jenis Kelamin :</label>
+                        <div class="kt-radio-inline">
+                          <label class="kt-radio">
+                            <input type="radio" id="L" name="jkel" value="laki-laki" required> Laki - laki
+                            <span></span>
+                          </label>
+                          <label class="kt-radio">
+                            <input type="radio" id="P" name="jkel" value="perempuan" required> Perempuan
+                            <span></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-gr">
+                        <label>Jenis User :</label>
+                        <div class="kt-radio-inline">
+                          <label class="kt-radio">
+                            <input type="radio" id="konsumen" name="role" value="admin" required> Konsumen
+                            <span></span>
+                          </label>
+                          <label class="kt-radio">
+                            <input type="radio" id="petani" name="role" value="super admin" required> Petani
+                            <span></span>
+                          </label>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <div class="input-group">
-                        <div class="input-group-prepend"><span class="input-group-text" id="email"><i class="flaticon2-position kt-font-brand"></i></span></div>
-                        <input type="text" id="rts" class="form-control" placeholder="Rt" aria-describedby="email" required>
-                      </div>
-                    </div>
+                  <div class="button-edit">
+                    <button type="submit" class="btn btn-edit">Simpan perubahan</button>
                   </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <div class="input-group">
-                        <div class="input-group-prepend"><span class="input-group-text" id="email"><i class="flaticon2-position kt-font-brand"></i></span></div>
-                        <input type="text" id="rws" class="form-control" placeholder="Rw" aria-describedby="email" required>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="input-group">
-                    <div class="input-group-prepend"><span class="input-group-text" id="email"><i class="flaticon2-telegram-logo kt-font-brand"></i></span></div>
-                    <input type="tel" id="nohps" class="form-control" placeholder="No. Telephone" aria-describedby="email" required>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label">Jenis user :</label>
-                  <div class="col-md-6">
-                    <div class="kt-checkbox-inline">
-                      <label class="kt-radio kt-radio--bold kt-radio--success mr-4">
-                        <input type="radio" id="konsumen" name="role" value="admin" required> Konsumen
-                        <span></span>
-                      </label>
-                      <label class="kt-radio kt-radio--bold kt-radio--success">
-                        <input type="radio" id="petani" name="role" value="super admin" required> Petani
-                        <span></span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <div class="button-edit">
-                  <button type="submit" class="btn btn-edit">Simpan perubahan</button>
-                </div>
-              </form>
+                </form>
+              </div>
             </div>
           </div>
         </div>
