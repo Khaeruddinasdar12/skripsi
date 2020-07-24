@@ -21,7 +21,7 @@ class GadaiSawahController extends Controller
             ->get();
 
         // return $data; // uncomment ini untuk melihat data 
-        return view('admin.page.gadai-sawah', ['data' => $data]); //struktur folder di folder views
+        return view('admin.page.sedang-tergadai', ['data' => $data]); //struktur folder di folder views
 
     }
 
@@ -33,7 +33,7 @@ class GadaiSawahController extends Controller
             ->get();
 
         // return $data; // uncomment ini untuk melihat data 
-        return view('admin.page.gadai-sawah', ['data' => $data]); //struktur folder di folder views
+        return view('admin.page.gadai-unverif', ['data' => $data]); //struktur folder di folder views
 
     }
 
@@ -45,7 +45,7 @@ class GadaiSawahController extends Controller
             ->get();
 
         // return $data; // uncomment ini untuk melihat data 
-        return view('admin.page.gadai-sawah', ['data' => $data]); //struktur folder di folder views
+        return view('admin.page.riwayat-gadai', ['data' => $data]); //struktur folder di folder views
 
     }
 }

@@ -48,37 +48,12 @@
               <ul class="kt-menu__subnav">
                 <li class="kt-menu__item  kt-menu__item--submenu">
                   <a href="{{ route('admin.home') }}" class="kt-menu__link">
-                    <i class="kt-menu__link-icon flaticon2-start-up"></i>
                     <span class="kt-menu__link-text">Data Gabah</span>
                   </a>
                 </li>
                 <li class="kt-menu__item  kt-menu__item--submenu">
                   <a href="{{ route('admin.home') }}" class="kt-menu__link">
-                    <i class="kt-menu__link-icon flaticon2-start-up"></i>
-                    <span class="kt-menu__link-text">Transaksi</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </li>
-
-          <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
-            <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
-              <span class="kt-menu__link-text top-text-nav">Beras</span>
-              <i class="kt-menu__ver-arrow la la-angle-right"></i>
-            </a>
-            <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
-              <ul class="kt-menu__subnav">
-                <li class="kt-menu__item  kt-menu__item--submenu">
-                  <a href="{{ route('admin.home') }}" class="kt-menu__link">
-                    <i class="kt-menu__link-icon flaticon2-start-up"></i>
-                    <span class="kt-menu__link-text">Data Beras</span>
-                  </a>
-                </li>
-                <li class="kt-menu__item  kt-menu__item--submenu">
-                  <a href="{{ route('admin.home') }}" class="kt-menu__link">
-                    <i class="kt-menu__link-icon flaticon2-start-up"></i>
-                    <span class="kt-menu__link-text">Transaksi</span>
+                    <span class="kt-menu__link-text">Transaksi Gabah</span>
                   </a>
                 </li>
               </ul>
@@ -91,29 +66,26 @@
             </a>
           </li>
 
-          <li class="kt-menu__item kt-menu__item--rel {{ request()->is('admin/gadai-sawah') ? 'kt-menu__item--open kt-menu__item--here' : '' }}">
-            <a href="{{ route('index.gadaisawah') }}" class="kt-menu__link" id="gadaisawah">
-              <span class="kt-menu__link-text {{ request()->is('admin/gadai-sawah') ? '' : 'top-text-nav' }}">Gadai Sawah</span>
-            </a>
-          </li>
-
           <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
-            <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
-              <span class="kt-menu__link-text top-text-nav">Alat</span>
+            <a href="javascript:;" class="kt-menu__link kt-menu__toggle" id="gadaisawah">
+              <span class="kt-menu__link-text top-text-nav">Gadai Sawah</span>
               <i class="kt-menu__ver-arrow la la-angle-right"></i>
             </a>
             <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
               <ul class="kt-menu__subnav">
                 <li class="kt-menu__item  kt-menu__item--submenu">
-                  <a href="{{ route('admin.home') }}" class="kt-menu__link">
-                    <i class="kt-menu__link-icon flaticon2-start-up"></i>
-                    <span class="kt-menu__link-text">Data Alat</span>
+                  <a href="{{ route('daftar.gadaisawah') }}" class="kt-menu__link">
+                    <span class="kt-menu__link-text">Belum Diverifikasi</span>
                   </a>
                 </li>
                 <li class="kt-menu__item  kt-menu__item--submenu">
-                  <a href="{{ route('admin.home') }}" class="kt-menu__link">
-                    <i class="kt-menu__link-icon flaticon2-start-up"></i>
-                    <span class="kt-menu__link-text">Transaksi Alat</span>
+                  <a href="{{ route('sedang.gadaisawah') }}" class="kt-menu__link">
+                    <span class="kt-menu__link-text">Sedang Tergadai</span>
+                  </a>
+                </li>
+                <li class="kt-menu__item  kt-menu__item--submenu">
+                  <a href="{{ route('riwayat.gadaisawah') }}" class="kt-menu__link">
+                    <span class="kt-menu__link-text">Riwayat Gadai</span>
                   </a>
                 </li>
               </ul>
@@ -121,23 +93,92 @@
           </li>
 
           <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
-            <a href="javascript:;" class="kt-menu__link kt-menu__toggle" id="bibitpupuk">
-              <span class="kt-menu__link-text top-text-nav">Bibit & Pupuk</span>
+            <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+              <span class="kt-menu__link-text top-text-nav">Penjualan</span>
               <i class="kt-menu__ver-arrow la la-angle-right"></i>
             </a>
             <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
               <ul class="kt-menu__subnav">
-                <li class="kt-menu__item  kt-menu__item--submenu">
-                  <a href="{{ route('admin.home') }}" class="kt-menu__link">
-                    <i class="kt-menu__link-icon flaticon2-start-up"></i>
-                    <span class="kt-menu__link-text">Data Bibit & Pupuk</span>
+                <li class="kt-menu__item kt-menu__item--submenu" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
+                  <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+                    <span class="kt-menu__link-text">Alat</span>
+                    <i class="kt-menu__hor-arrow la la-angle-right"></i>
+                    <i class="kt-menu__ver-arrow la la-angle-right"></i>
                   </a>
+                  <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--right">
+                    <ul class="kt-menu__subnav">
+                      <li class="kt-menu__item " aria-haspopup="true">
+                        <a href="#" class="kt-menu__link ">
+                          <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+                            <span></span>
+                          </i>
+                          <span class="kt-menu__link-text">Data Alat</span>
+                        </a>
+                      </li>
+                      <li class="kt-menu__item " aria-haspopup="true">
+                        <a href="#" class="kt-menu__link ">
+                          <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+                            <span></span>
+                          </i>
+                          <span class="kt-menu__link-text">Transaksi Alat</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
                 </li>
-                <li class="kt-menu__item  kt-menu__item--submenu">
-                  <a href="javascript:;" class="kt-menu__link">
-                    <i class="kt-menu__link-icon flaticon2-start-up"></i>
-                    <span class="kt-menu__link-text">Transaksi Bibit & Pupuk</span>
+                <li class="kt-menu__item kt-menu__item--submenu" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
+                  <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+                    <span class="kt-menu__link-text">Bibit & Pupuk</span>
+                    <i class="kt-menu__hor-arrow la la-angle-right"></i>
+                    <i class="kt-menu__ver-arrow la la-angle-right"></i>
                   </a>
+                  <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--right">
+                    <ul class="kt-menu__subnav">
+                      <li class="kt-menu__item " aria-haspopup="true">
+                        <a href="#" class="kt-menu__link ">
+                          <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+                            <span></span>
+                          </i>
+                          <span class="kt-menu__link-text">Data Bibit & Pupuk</span>
+                        </a>
+                      </li>
+                      <li class="kt-menu__item " aria-haspopup="true">
+                        <a href="#" class="kt-menu__link ">
+                          <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+                            <span></span>
+                          </i>
+                          <span class="kt-menu__link-text">Transaksi Bibit & Pupuk</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="kt-menu__item kt-menu__item--submenu" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
+                  <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+                    <span class="kt-menu__link-text">Beras</span>
+                    <i class="kt-menu__hor-arrow la la-angle-right"></i>
+                    <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                  </a>
+                  <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--right">
+                    <ul class="kt-menu__subnav">
+                      <li class="kt-menu__item " aria-haspopup="true">
+                        <a href="#" class="kt-menu__link ">
+                          <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+                            <span></span>
+                          </i>
+                          <span class="kt-menu__link-text">Data Beras</span>
+                        </a>
+                      </li>
+                      <li class="kt-menu__item " aria-haspopup="true">
+                        <a href="#" class="kt-menu__link ">
+                          <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+                            <span></span>
+                          </i>
+                          <span class="kt-menu__link-text">Transaksi Beras</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
                 </li>
               </ul>
             </div>
@@ -158,13 +199,11 @@
               <ul class="kt-menu__subnav">
                 <li class="kt-menu__item  kt-menu__item--submenu">
                   <a href="{{ route('konsumen.manage-user') }}" class="kt-menu__link">
-                    <i class="kt-menu__link-icon flaticon2-start-up"></i>
                     <span class="kt-menu__link-text">Konsumen</span>
                   </a>
                 </li>
                 <li class="kt-menu__item kt-menu__item--submenu" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
                   <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
-                    <i class="kt-menu__link-icon flaticon2-start-up"></i>
                     <span class="kt-menu__link-text">Petani</span>
                     <i class="kt-menu__hor-arrow la la-angle-right"></i>
                     <i class="kt-menu__ver-arrow la la-angle-right"></i>

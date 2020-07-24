@@ -68,7 +68,7 @@
               <i class="flaticon-avatar"></i>
             </span>
             <h3 class="kt-portlet__head-title">
-              Data Konsumen ({{$jml}})
+              Data Petani Yang Belum Terverifikasi ({{$jml}})
             </h3>
           </div>
         </div>
