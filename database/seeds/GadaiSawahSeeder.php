@@ -13,7 +13,7 @@ class GadaiSawahSeeder extends Seeder
     {
         DB::table('gadai_sawahs')->insert([ // Sedang gadai 
         	'periode'	=> '1 tahun',
-        	'harga'		=> '30000000',
+        	'harga'		=> '20000000',
         	// 'admin_verified' => '1',
         	'admin_by'  => 1, //verified by role admin
         	'sawah_id'  => 1,
@@ -23,12 +23,22 @@ class GadaiSawahSeeder extends Seeder
 
 		DB::table('gadai_sawahs')->insert([ // mendaftarkan sawahnya untuk di gadai
         	'periode'	=> '1 tahun',
-        	'harga'		=> '30000000',
+        	'harga'		=> '50000000',
         	// 'admin_verified' => '0', //belum diverifikasi
-        	'admin_by'  => null, //verified by role admin
+        	'admin_by'  => null,
         	'sawah_id'  => 2,
         	'status' 	=> null,
         	'keterangan'=> ''
 		]);
+
+        DB::table('gadai_sawahs')->insert([ // riwayat gadai
+            'periode'   => '1 tahun',
+            'harga'     => '80000000',
+            // 'admin_verified' => '0', //belum diverifikasi
+            'admin_by'  => 1, //verified by role admin
+            'sawah_id'  => 3,
+            'status'    => 'selesai',
+            'keterangan'=> 'Tergadai tanpa masalah'
+        ]);
     }
 }

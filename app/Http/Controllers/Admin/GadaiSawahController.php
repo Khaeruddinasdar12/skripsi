@@ -20,9 +20,13 @@ class GadaiSawahController extends Controller
             ->with('admins:id,name')
             ->with('sawahs', 'sawahs.alamats:id,tipe,nama_kota', 'sawahs.users:id,name')
             ->paginate(10);
+        $jml = GadaiSawah::where('status', 'gadai')
+            ->with('admins:id,name')
+            ->with('sawahs', 'sawahs.alamats:id,tipe,nama_kota', 'sawahs.users:id,name')
+            ->count();
 
         // return $data; // uncomment ini untuk melihat data 
-        return view('admin.page.sedang-tergadai', ['data' => $data]); //struktur folder di folder views
+        return view('admin.page.sedang-tergadai', ['data' => $data, 'jml' => $jml]); //struktur folder di folder views
 
     }
 
@@ -32,9 +36,13 @@ class GadaiSawahController extends Controller
             ->with('admins:id,name')
             ->with('sawahs', 'sawahs.alamats:id,tipe,nama_kota', 'sawahs.users:id,name')
             ->paginate(10);
+        $jml = GadaiSawah::where('status', null)
+            ->with('admins:id,name')
+            ->with('sawahs', 'sawahs.alamats:id,tipe,nama_kota', 'sawahs.users:id,name')
+            ->count();
 
-        return $data; // uncomment ini untuk melihat data 
-        return view('admin.page.gadai-unverif', ['data' => $data]); //struktur folder di folder views
+        // return $data; // uncomment ini untuk melihat data 
+        return view('admin.page.gadai-unverif', ['data' => $data, 'jml' => $jml]); //struktur folder di folder views
 
     }
 
@@ -44,9 +52,13 @@ class GadaiSawahController extends Controller
             ->with('admins:id,name')
             ->with('sawahs', 'sawahs.alamats:id,tipe,nama_kota', 'sawahs.users:id,name')
             ->paginate(10);
+        $jml = GadaiSawah::where('status', 'selesai')
+            ->with('admins:id,name')
+            ->with('sawahs', 'sawahs.alamats:id,tipe,nama_kota', 'sawahs.users:id,name')
+            ->count();
 
         // return $data; // uncomment ini untuk melihat data 
-        return view('admin.page.riwayat-gadai', ['data' => $data]); //struktur folder di folder views
+        return view('admin.page.riwayat-gadai', ['data' => $data, 'jml' => $jml]); //struktur folder di folder views
 
     }
 

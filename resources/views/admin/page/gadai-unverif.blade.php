@@ -62,7 +62,7 @@
               <i class="flaticon-avatar"></i>
             </span>
             <h3 class="kt-portlet__head-title">
-              Data Gadai Sawah Yang Belum Diverifikasi
+              Data Gadai Sawah Yang Belum Diverifikasi ({{$jml}})
             </h3>
           </div>
         </div>
