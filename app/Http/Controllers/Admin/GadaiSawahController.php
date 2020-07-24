@@ -32,7 +32,7 @@ class GadaiSawahController extends Controller
             ->with('sawahs', 'sawahs.alamats:id,tipe,nama_kota', 'sawahs.users:id,name')
             ->paginate(10);
 
-        // return $data; // uncomment ini untuk melihat data 
+        return $data; // uncomment ini untuk melihat data 
         return view('admin.page.gadai-unverif', ['data' => $data]); //struktur folder di folder views
 
     }
