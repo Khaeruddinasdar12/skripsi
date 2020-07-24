@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\GadaiSawah;
 use Auth;
+
 class GadaiSawahController extends Controller
 {
     public function __construct()
