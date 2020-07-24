@@ -13,17 +13,39 @@ class GadaiSawahController extends Controller
         $this->middleware('auth:admin');
     }
 
-    public function index() //menampilkan hal. data gadai sawah yang belum terverifikasi
+    public function sedanggadai() //menampilkan hal. data yang sedang menggadai sawahnya
     {
-        $id = 1;
-        $data = GadaiSawah::where('admin_verified', '1')
-            ->with('users:id,name')
+        $data = GadaiSawah::where('status', 'gadai')
             ->with('admins:id,name')
-            ->with('sawahs', 'sawahs.alamats:id,tipe,nama_kota')
+            ->with('sawahs', 'sawahs.alamats:id,tipe,nama_kota', 'sawahs.users:id,name')
             ->get();
 
-        // return $data;
-        return view('admin.page.gadai-sawah'); //struktur folder di folder views
+        // return $data; // uncomment ini untuk melihat data 
+        return view('admin.page.gadai-sawah', ['data' => $data]); //struktur folder di folder views
+
+    }
+
+    public function daftargadai() //menampilkan hal. data mendaftarkan sawah untuk digadai 
+    {
+        $data = GadaiSawah::where('status', null)
+            ->with('admins:id,name')
+            ->with('sawahs', 'sawahs.alamats:id,tipe,nama_kota', 'sawahs.users:id,name')
+            ->get();
+
+        // return $data; // uncomment ini untuk melihat data 
+        return view('admin.page.gadai-sawah', ['data' => $data]); //struktur folder di folder views
+
+    }
+
+    public function riwayatgadai() //menampilkan hal. data riwayat gadai sawah
+    {
+        $data = GadaiSawah::where('status', 'selesai')
+            ->with('admins:id,name')
+            ->with('sawahs', 'sawahs.alamats:id,tipe,nama_kota', 'sawahs.users:id,name')
+            ->get();
+
+        // return $data; // uncomment ini untuk melihat data 
+        return view('admin.page.gadai-sawah', ['data' => $data]); //struktur folder di folder views
 
     }
 }

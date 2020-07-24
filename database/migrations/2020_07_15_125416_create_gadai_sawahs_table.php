@@ -17,10 +17,9 @@ class CreateGadaiSawahsTable extends Migration
             $table->id();
             $table->string('periode');
             $table->integer('harga');
-            $table->enum('admin_verified', [0, 1]);
+            // $table->enum('admin_verified', [0, 1]);
             $table->integer('admin_by')->nullable();
             $table->integer('sawah_id');
-            $table->integer('user_by');
             $table->enum('status', ['gadai', 'selesai'])->nullable();
             $table->string('keterangan')->nullable();
             $table->timestamps();

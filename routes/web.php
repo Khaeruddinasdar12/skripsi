@@ -37,7 +37,9 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 
 
 	// RUTE MENU GADAI SAWAH
-	Route::get('gadai-sawah', 'GadaiSawahController@index')->name('index.gadaisawah'); //menampilkan hal. data gadai sawah
+	Route::get('gadai-sawah-daftar-gadai', 'GadaiSawahController@daftargadai')->name('daftar.gadaisawah'); //menampilkan hal. data mendaftarkan sawah untuk digadai 
+	Route::get('gadai-sawah-sedang-gadai', 'GadaiSawahController@sedanggadai')->name('sedang.gadaisawah'); //menampilkan hal. data yang sedang menggadai sawahnya
+	Route::get('gadai-sawah-riwayat-gadai', 'GadaiSawahController@riwayatgadai')->name('riwayat.gadaisawah'); //menampilkan hal. data riwayat gadai sawah
 	// END RUTE MENU GADAI SAWAH
 
 

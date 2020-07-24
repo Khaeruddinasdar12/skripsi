@@ -48,7 +48,6 @@ class GadaiSawahController extends Controller
                 'periode' 	=> $request->get('periode'),
                 'harga' 	=> $request->get('harga'),
                 'sawah_id' 	=> $request->get('sawah_id'),
-                'user_by' 	=> $user->id,
             ]);
 
         return response()->json([

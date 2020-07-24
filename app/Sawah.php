@@ -16,4 +16,9 @@ class Sawah extends Model
     {
         return $this->belongsTo('App\Kota', 'alamat_id');
     }
+
+    public function users()
+    {
+        return $this->belongsTo('App\User', 'created_by');
+    }
 }

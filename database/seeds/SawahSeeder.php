@@ -13,11 +13,23 @@ class SawahSeeder extends Seeder
     {
         DB::table('sawahs')->insert([
 	        'alamat_id'  => 87, //id kabupaten bone dari tabel Kotas
-	        'kecamatan' => 'kec. pinrang',
-	        'kelurahan' 	=> 'kel. pinrang',
-	        'alamat' => 'Galung, kel. pinrang Kec. Pinrang Kab. Pinrang',
+	        'kecamatan' => 'Kec. Barebbo',
+	        'kelurahan' 	=> 'Desa Kampuno',
+	        'alamat' => 'Kampuno, Desa Kampuno Kec. Barebbo Kab. Bone',
 	        'created_by'=> 2, //dari tabel user role petani (dari seeder)
 	        'luas_sawah'	=> '20 Ha',
+	        'jenis_bibit'	=> 'ciliwung',
+	        'jenis_pupuk'	=> 'phonska',
+	        'periode_tanam'		=> '3 bulan'
+		]);
+
+		DB::table('sawahs')->insert([
+	        'alamat_id'  => 87, //id kabupaten bone dari tabel Kotas
+	        'kecamatan' => 'Kec. Barebbo',
+	        'kelurahan' 	=> 'Desa Talungeng',
+	        'alamat' => 'Galung, Desa Talungeng Kec. Barebbo Kab. Bone',
+	        'created_by'=> 2, //dari tabel user role petani (dari seeder)
+	        'luas_sawah'	=> '50 Ha',
 	        'jenis_bibit'	=> 'ciliwung',
 	        'jenis_pupuk'	=> 'phonska',
 	        'periode_tanam'		=> '3 bulan'
