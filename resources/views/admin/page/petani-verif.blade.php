@@ -68,8 +68,8 @@
               <i class="flaticon-avatar"></i>
             </span>
             <h3 class="kt-portlet__head-title">
-              Data Konsumen ({{$jml}})
-            </h3>
+              Data Petani Yang Terverifikasi ({{$jml}})
+            </h3>W
           </div>
         </div>
         <div class="kt-portlet__body">
