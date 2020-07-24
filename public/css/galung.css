@@ -94,6 +94,12 @@ table .btn-more-custom {
 .galung-header .kt-header-menu .kt-menu__item a .top-text-nav {
   color: #fff !important;
 }
+.galung-header .kt-header-menu .kt-menu__item a .kt-menu__ver-arrow {
+  color: #fff !important;
+}
+.galung-header .kt-header-menu .kt-menu__item .kt-menu__submenu {
+  width: 200px !important;
+}
 .galung-header .kt-header-menu #modaltanam,
 .galung-header .kt-header-menu #gadaisawah,
 .galung-header .kt-header-menu #bibitpupuk,
