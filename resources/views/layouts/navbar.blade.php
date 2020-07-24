@@ -42,7 +42,7 @@
           <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
             <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
               <span class="kt-menu__link-text top-text-nav">Gabah</span>
-              <i class="kt-menu__ver-arrow la la-angle-right"></i>
+              <i class="fa fa-angle-down"></i>
             </a>
             <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
               <ul class="kt-menu__subnav">
@@ -66,10 +66,10 @@
             </a>
           </li>
 
-          <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
+          <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel {{ request()->is('admin/gadai-sawah-daftar-gadai') || request()->is('admin/gadai-sawah-sedang-gadai') || request()->is('admin/gadai-sawah-riwayat-gadai') ? 'kt-menu__item--open kt-menu__item--here' : '' }}" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
             <a href="javascript:;" class="kt-menu__link kt-menu__toggle" id="gadaisawah">
-              <span class="kt-menu__link-text top-text-nav">Gadai Sawah</span>
-              <i class="kt-menu__ver-arrow la la-angle-right"></i>
+              <span class="kt-menu__link-text {{ request()->is('admin/gadai-sawah-daftar-gadai') || request()->is('admin/gadai-sawah-sedang-gadai') || request()->is('admin/gadai-sawah-riwayat-gadai') ? '' : 'top-text-nav' }}">Gadai Sawah</span>
+              <i class="fa fa-angle-down {{ request()->is('admin/gadai-sawah-daftar-gadai') || request()->is('admin/gadai-sawah-sedang-gadai') || request()->is('admin/gadai-sawah-riwayat-gadai') ? 'icon-here' : '' }} "></i>
             </a>
             <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
               <ul class="kt-menu__subnav">
@@ -92,10 +92,10 @@
             </div>
           </li>
 
-          <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
+          <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel " data-ktmenu-submenu-toggle="click" aria-haspopup="true">
             <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
               <span class="kt-menu__link-text top-text-nav">Penjualan</span>
-              <i class="kt-menu__ver-arrow la la-angle-right"></i>
+              <i class="fa fa-angle-down"></i>
             </a>
             <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
               <ul class="kt-menu__subnav">
@@ -193,7 +193,7 @@
           <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel {{ request()->is('admin/manage-user-konsumen') || request()->is('admin/manage-user-petani-verified') || request()->is('admin/manage-user-petani-unverified') ? 'kt-menu__item--open kt-menu__item--here' : '' }}" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
             <a href="javascript:;" class="kt-menu__link kt-menu__toggle" id="manageuser">
               <span class="kt-menu__link-text {{ request()->is('admin/manage-user-konsumen') || request()->is('admin/manage-user-petani-verified') || request()->is('admin/manage-user-petani-unverified') ? '' : 'top-text-nav' }}">Manage User</span>
-              <i class="kt-menu__ver-arrow la la-angle-right"></i>
+              <i class="fa fa-angle-down {{ request()->is('admin/manage-user-konsumen') || request()->is('admin/manage-user-petani-verified') || request()->is('admin/manage-user-petani-unverified') ? 'icon-here' : '' }}"></i>
             </a>
             <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
               <ul class="kt-menu__subnav">
