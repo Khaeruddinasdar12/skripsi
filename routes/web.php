@@ -37,7 +37,12 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 
 
 	// RUTE MENU GADAI SAWAH
-	Route::get('gadai-sawah', 'GadaiSawahController@index')->name('index.gadaisawah'); //menampilkan hal. data gadai sawah
+	Route::get('gadai-sawah-daftar-gadai', 'GadaiSawahController@daftargadai')->name('daftar.gadaisawah'); //menampilkan hal. data mendaftarkan sawah untuk digadai 
+	Route::get('gadai-sawah-sedang-gadai', 'GadaiSawahController@sedanggadai')->name('sedang.gadaisawah'); //menampilkan hal. data yang sedang menggadai sawahnya
+	Route::get('gadai-sawah-riwayat-gadai', 'GadaiSawahController@riwayatgadai')->name('riwayat.gadaisawah'); //menampilkan hal. data riwayat gadai sawah
+
+	Route::put('gadai-sawah-gadai-status/{id}', 'GadaiSawahController@gadaistatus')->name('gadaistatus.gadaisawah'); // mengubah "daftar gadai" menjadi "sedang gadai"
+	Route::put('gadai-sawah-selesai-status/{id}', 'GadaiSawahController@selesaistatus')->name('selesaistatus.gadaisawah'); // mengubah "sedang gadai" menjadi "riwayat gadai"
 	// END RUTE MENU GADAI SAWAH
 
 
@@ -56,16 +61,23 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 
 	// RUTE MENU MANAGE ADMIN
 	Route::get('manage-admin', 'AdminController@index')->name('index.manage-admin'); //menampilkan hal. data admin
+
+	Route::post('manage-admin', 'AdminController@store')->name('store.manage-admin')->middleware('CekAdmin'); // // input data admin, hanya untuk superadmin, jika admin otomatis gagal
+	Route::put('manage-admin/{id}', 'AdminController@update')->name('update.manage-admin')->middleware('CekAdmin'); // // edit data admin, hanya untuk superadmin, jika admin otomatis gagal
+	Route::delete('manage-admin/{id}', 'AdminController@delete')->name('delete.manage-admin')->middleware('CekAdmin'); // // delete data admin, hanya untuk superadmin, jika admin otomatis gagal
 	// END RUTE MANAGE ADMIN
 
 
 	// RUTE MENU MANAGE USER
-	Route::get('manage-user', 'UserController@index')->name('index.manage-user'); //menampilkan hal. data user
-	Route::put('manage-user/{id}', 'UserController@verified')->name('edit.manage-user');
+	Route::get('manage-user-konsumen', 'UserController@konsumen')->name('konsumen.manage-user'); //menampilkan hal. data user konsumen
+	Route::get('manage-user-petani-verified', 'UserController@verified')->name('verified.manage-user'); //menampilkan hal. data user petani terverifikasi
+	Route::get('manage-user-petani-unverified', 'UserController@unverified')->name('unverified.manage-user'); //menampilkan hal. data user petani belum terverifikasi
+
+	Route::put('manage-user/verified/{id}', 'UserController@buttonverified')->name('buttonverified.manage-user'); // rute untuk verified user
+	Route::put('manage-user/edit/{id}', 'UserController@update')->name('edit.manage-user')->middleware('CekAdmin'); // rute untuk edit user, hanya untuk superadmin, jika admin otomatis gagal
 	// END RUTE MANAGE USER
 
 	Route::namespace('Auth')->group(function () {
-
 
 		//Login Routes
 

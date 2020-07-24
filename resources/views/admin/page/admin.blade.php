@@ -106,10 +106,10 @@
       </div>
 
       <!-- modal tambah admin -->
-      <div class="modal modal-admin modal-add fade" id="modal-tambah-admin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal modal-add fade" id="modal-tambah-admin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
-            <span class="modal-add-icon">
+            <span class="modal-icon">
               <i class="fa fa-user-plus"></i>
             </span>
             <div class="modal-header">
@@ -179,7 +179,7 @@
                   </div>
                 </div>
                 <div class="button-add">
-                  <button type="button" class="btn btn-admin-add">Tambah data</button>
+                  <button type="button" class="btn btn-add">Tambah data</button>
                 </div>
               </form>
             </div>
@@ -189,10 +189,10 @@
       <!-- end modal tambah admin -->
 
       <!-- modal edit admin -->
-      <div class="modal modal-admin modal-edit fade" id="modal-edit-admin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal modal-edit fade" id="modal-edit-admin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
-            <span class="modal-add-icon">
+            <span class="modal-icon">
               <i class="fa fa-user-cog"></i>
             </span>
             <div class="modal-header">
@@ -261,8 +261,8 @@
                     </div>
                   </div>
                 </div>
-                <div class="button-add">
-                  <button type="button" class="btn btn-admin-add">Ubah data</button>
+                <div class="button-edit">
+                  <button type="button" class="btn btn-edit">Ubah data</button>
                 </div>
               </form>
             </div>

@@ -50,11 +50,6 @@ table {
         input {
             transition: 0.5s !important;
 
-            &:valid {
-                border-color: $galungcolor !important;
-                transition: 0.5s !important;
-            }
-
             &:hover {
                 border-color: $galungcolor !important;
                 transition: 0.5s !important;
@@ -69,11 +64,45 @@ table {
 }
 
 // modal
+.modal {
+    .modal-body {
+        .button-add {
+            border-top: 1px solid rgb(207, 207, 207);
+
+            .btn-add {
+                @extend %galung-button-fill;
+                width: 100%;
+                margin: 20px 0 20px 0;
+
+                &:hover {
+                    background-color: $galungcolorhover !important;
+                }
+            }
+        }
+
+        .button-edit {
+            text-align: right;
+            margin-top: 20px;
+
+            .btn-edit {
+                @extend %galung-button-fill;
+                width: 30%;
+                margin: 20px 0 0 0;
+                background-color: $biru !important;
+
+                &:hover {
+                    background-color: $biruhover !important;
+                }
+            }
+        }
+    }
+}
+
 .modal-add {
     .modal-content {
         border-top: 7px solid $galungcolor !important;
 
-        .modal-add-icon {
+        .modal-icon {
             position: absolute;
             text-align: center !important;
             width: 100% !important;
@@ -94,7 +123,7 @@ table {
     .modal-content {
         border-top: 7px solid $biru !important;
 
-        .modal-add-icon {
+        .modal-icon {
             position: absolute;
             text-align: center !important;
             width: 100% !important;
@@ -111,4 +140,102 @@ table {
     }
 }
 
+.modal-verif {
+    .modal-content {
+        border-top: 7px solid $galungcolor !important;
+
+        .modal-icon {
+            position: absolute;
+            text-align: center !important;
+            width: 100% !important;
+            transform: translateY(-30px);
+
+            i {
+                padding: 16px 22px 16px 22px;
+                border-radius: 100px;
+                font-size: 22px;
+                color: #fff;
+                background-color: $galungcolor
+            }
+        }
+
+        .modal-body {
+            text-align: center !important;
+            padding-top: 60px;
+
+            h3 {
+                margin-bottom: 30px;
+            }
+
+            .verif-form {
+                margin-top: 30px;
+
+                .close-modal {
+                    width: 100% !important;
+                    border: 1px solid rgb(194, 194, 194);
+
+                    &:hover {
+                        background-color: rgb(235, 241, 241);
+                    }
+                }
+
+                .btn-verif {
+                    background-color: $galungcolor;
+                    color: #fff;
+                    width: 100% !important;
+
+                    &:hover {
+                        background-color: $galungcolorhover;
+                    }
+                }
+            }
+        }
+    }
+}
+
 // end modal
+
+// alert
+.alert-error {
+    background-color: $merah !important;
+    border: 1px solid $merah !important;
+    box-shadow: 10px 10px 20px #88888863 !important;
+
+    .close {
+        color: #fff !important;
+        opacity: 1 !important;
+
+        &::before {
+            color: #fff !important;
+            opacity: 1 !important;
+        }
+    }
+
+    span {
+        font-weight: 700;
+        font-size: 15px;
+    }
+}
+
+.alert-win {
+    background-color: $biru !important;
+    border: 1px solid $biru !important;
+    box-shadow: 10px 10px 20px #88888863 !important;
+
+    .close {
+        color: #fff !important;
+        opacity: 1 !important;
+
+        &::before {
+            color: #fff !important;
+            opacity: 1 !important;
+        }
+    }
+
+    span {
+        font-weight: 700;
+        font-size: 15px;
+    }
+}
+
+// end alert

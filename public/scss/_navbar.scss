@@ -56,14 +56,42 @@
                 .top-text-nav {
                     color: #fff !important;
                 }
+
+                .fa-angle-down {
+                    color: rgba(255, 255, 255, 0.65) !important;
+                    padding-left: 10px;
+                    padding-top: 3px;
+                    transition: .5s;
+                }
+
+                .icon-here {
+                    color: #591df1ad !important;
+                }
+
+                &:hover .fa-angle-down {
+                    color: #fff !important;
+                    transition: .5s;
+                }
+
+                &:hover .icon-here {
+                    color: #591df1 !important;
+                    transition: .5s;
+                }
+            }
+
+            .kt-menu__submenu {
+                width: 200px !important;
             }
         }
 
-        #modaltanam,
         #gadaisawah,
-        #bibitpupuk,
-        #manageadmin,
         #manageuser {
+            width: 135px;
+        }
+
+        #modaltanam,
+        #bibitpupuk,
+        #manageadmin {
             width: 130px;
 
             .kt-menu__link-text {
