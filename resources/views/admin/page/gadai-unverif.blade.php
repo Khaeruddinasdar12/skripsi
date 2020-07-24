@@ -77,19 +77,25 @@
                       <th>Nama Penggadai</th>
                       <th>Periode Gadai</th>
                       <th>Harga Gadai</th>
-                      <th>Jenis Kelamin</th>
-                      <th>Jenis User</th>
+                      <th>Luas Sawah</th>
+                      <th>Status</th>
+                      <th>Admin Yang Menangani</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <th scope="row">aa</th>
-                      <td>aa</td>
-                      <td>aa</td>
-                      <td>aa</td>
-                      <td>aa</td>
-                      <td>aa</td>
+                      <th scope="row">1</th>
+                      <td>Brian Emanuel</td>
+                      <td>2 Tahun</td>
+                      <td>Rp. 3.000.000</td>
+                      <td>200m</td>
+                      <td>
+                        <div class="btn btn-bold btn-sm btn-font-sm  btn-label-danger" style="font-size: 14px;">
+                          Belum Terverifikasi
+                        </div>
+                      </td>
+                      <td>Joshua Kimmich</td>
                       <td>
                         <div class="dropdown dropdown-inline">
                           <a href="#" class="btn btn-default btn-icon btn-icon-md btn-sm btn-more-custom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -141,31 +147,37 @@
                       <div class="kt-widget__info">
                         <span class="kt-widget__username" id="name">
                         </span>
-                        <span class="kt-widget__desc" id="email">
-                        </span>
                       </div>
                     </div>
                     <div class="kt-widget__body widget-detail">
                       <div class="kt-widget__item">
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Tempat lahir :</span>
+                          <span class="kt-widget__label">Periode Gadai:</span>
                           <span class="kt-widget__data" id="tempat_lahir"></span>
                         </div>
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Tanggal lahir :</span>
+                          <span class="kt-widget__label">Harga Gadai :</span>
                           <span class="kt-widget__data" id="tanggal_lahir"></span>
                         </div>
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Jenis Kelamin :</span>
-                          <span class="kt-widget__data" id="jkel"></span>
+                          <span class="kt-widget__label">Luas Sawah :</span>
+                          <span class="kt-widget__data" id=""></span>
                         </div>
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">No. Telephone :</span>
+                          <span class="kt-widget__label">Jenis Bibit :</span>
+                          <span class="kt-widget__data" id=""></span>
+                        </div>
+                        <div class="kt-widget__contact">
+                          <span class="kt-widget__label">Jenis Pupuk :</span>
+                          <span class="kt-widget__data" id=""></span>
+                        </div>
+                        <div class="kt-widget__contact">
+                          <span class="kt-widget__label">Periode Tanam :</span>
+                          <span class="kt-widget__data" id=""></span>
+                        </div>
+                        <div class="kt-widget__contact">
+                          <span class="kt-widget__label">Titik Koordinat Sawah :</span>
                           <span class="kt-widget__data" id="nohp"></span>
-                        </div>
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Alamat :</span>
-                          <span class="kt-widget__data" id="alamat"></span>
                         </div>
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Provinsi :</span>
@@ -180,15 +192,19 @@
                           <span class="kt-widget__data" id="kelurahan"></span>
                         </div>
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">RT :</span>
-                          <span class="kt-widget__data" id="rt"></span>
+                          <span class="kt-widget__label">Alamat Lengkap :</span>
+                          <span class="kt-widget__data" id="alamat"></span>
                         </div>
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">RW :</span>
-                          <span class="kt-widget__data" id="rw"></span>
+                          <span class="kt-widget__label">Admin Yang Menangani :</span>
+                          <span class="kt-widget__data" id="role"></span>
                         </div>
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Jenis User :</span>
+                          <span class="kt-widget__label">Status :</span>
+                          <span class="kt-widget__data" id="role"></span>
+                        </div>
+                        <div class="kt-widget__contact">
+                          <span class="kt-widget__label">Keterangan :</span>
                           <span class="kt-widget__data" id="role"></span>
                         </div>
                       </div>

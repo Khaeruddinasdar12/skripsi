@@ -94,24 +94,38 @@ table .btn-more-custom {
 .galung-header .kt-header-menu .kt-menu__item a .top-text-nav {
   color: #fff !important;
 }
-.galung-header .kt-header-menu .kt-menu__item a .kt-menu__ver-arrow {
+.galung-header .kt-header-menu .kt-menu__item a .fa-angle-down {
+  color: rgba(255, 255, 255, 0.65) !important;
+  padding-left: 10px;
+  padding-top: 3px;
+  transition: 0.5s;
+}
+.galung-header .kt-header-menu .kt-menu__item a .icon-here {
+  color: #591df1ad !important;
+}
+.galung-header .kt-header-menu .kt-menu__item a:hover .fa-angle-down {
   color: #fff !important;
+  transition: 0.5s;
+}
+.galung-header .kt-header-menu .kt-menu__item a:hover .icon-here {
+  color: #591df1 !important;
+  transition: 0.5s;
 }
 .galung-header .kt-header-menu .kt-menu__item .kt-menu__submenu {
   width: 200px !important;
 }
-.galung-header .kt-header-menu #modaltanam,
 .galung-header .kt-header-menu #gadaisawah,
-.galung-header .kt-header-menu #bibitpupuk,
-.galung-header .kt-header-menu #manageadmin,
 .galung-header .kt-header-menu #manageuser {
+  width: 135px;
+}
+.galung-header .kt-header-menu #modaltanam,
+.galung-header .kt-header-menu #bibitpupuk,
+.galung-header .kt-header-menu #manageadmin {
   width: 130px;
 }
 .galung-header .kt-header-menu #modaltanam .kt-menu__link-text,
-.galung-header .kt-header-menu #gadaisawah .kt-menu__link-text,
 .galung-header .kt-header-menu #bibitpupuk .kt-menu__link-text,
-.galung-header .kt-header-menu #manageadmin .kt-menu__link-text,
-.galung-header .kt-header-menu #manageuser .kt-menu__link-text {
+.galung-header .kt-header-menu #manageadmin .kt-menu__link-text {
   justify-content: center;
 }
 .galung-header .kt-header__topbar .search-topbar .flaticon2-search-1 {
