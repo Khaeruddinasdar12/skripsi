@@ -89,7 +89,7 @@
                       <th scope="row">{{$no++}}</th>
                       <td>{{$gadais -> sawahs -> users -> name}}</td>
                       <td>{{$gadais -> periode}}</td>
-                      <td>{{$gadais -> harga}}</td>
+                      <td>Rp.{{format_uang($gadais -> harga)}}</td>
                       <td>{{$gadais -> sawahs -> luas_sawah}}</td>
                       <td>
                         <div class="btn btn-bold btn-sm btn-font-sm  btn-label-danger" style="font-size: 14px;">
@@ -104,7 +104,7 @@
                           <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
                             <ul class="kt-nav">
                               <li class="kt-nav__item">
-                                <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$gadais->id}}" data-periode="{{$gadais->periode}}" data-harga="{{$gadais->harga}}" data-keterangan="{{$gadais->keterangan}}" data-titik_koordinat="{{$gadais->sawahs->titik_koordinat}}" data-kecamatan="{{$gadais->sawahs->kecamatan}}" data-kelurahan="{{$gadais->sawahs->kelurahan}}" data-alamat="{{$gadais->sawahs->alamat}}" data-luas_sawah="{{$gadais->sawahs->luas_sawah}}" data-jenis_bibit="{{$gadais->sawahs->jenis_bibit}}" data-jenis_pupuk="{{$gadais->sawahs->jenis_pupuk}}" data-periode_tanam="{{$gadais->sawahs->periode_tanam}}" data-kota="{{$gadais->sawahs->alamats->tipe}} {{$gadais->sawahs->alamats->nama_kota}}" data-name="{{$gadais->sawahs->users->name}}">
+                                <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$gadais->id}}" data-periode="{{$gadais->periode}}" data-harga="Rp.{{format_uang($gadais->harga)}}" data-keterangan="{{$gadais->keterangan}}" data-titik_koordinat="{{$gadais->sawahs->titik_koordinat}}" data-kecamatan="{{$gadais->sawahs->kecamatan}}" data-kelurahan="{{$gadais->sawahs->kelurahan}}" data-alamat="{{$gadais->sawahs->alamat}}" data-luas_sawah="{{$gadais->sawahs->luas_sawah}}" data-jenis_bibit="{{$gadais->sawahs->jenis_bibit}}" data-jenis_pupuk="{{$gadais->sawahs->jenis_pupuk}}" data-periode_tanam="{{$gadais->sawahs->periode_tanam}}" data-kota="{{$gadais->sawahs->alamats->tipe}} {{$gadais->sawahs->alamats->nama_kota}}" data-name="{{$gadais->sawahs->users->name}}">
                                   <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
                                   <span class="kt-nav__link-text">Detail</span>
                                 </a>
