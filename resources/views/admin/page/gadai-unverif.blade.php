@@ -79,23 +79,23 @@
                       <th>Harga Gadai</th>
                       <th>Luas Sawah</th>
                       <th>Status</th>
-                      <th>Admin Yang Menangani</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
+                    @php $no = 1; @endphp
+                    @foreach ($data as $gadais)
                     <tr>
-                      <th scope="row">1</th>
-                      <td>Brian Emanuel</td>
-                      <td>2 Tahun</td>
-                      <td>Rp. 3.000.000</td>
-                      <td>200m</td>
+                      <th scope="row">{{$no++}}</th>
+                      <td>{{$gadais -> sawahs -> users -> name}}</td>
+                      <td>{{$gadais -> periode}}</td>
+                      <td>Rp.{{format_uang($gadais -> harga)}}</td>
+                      <td>{{$gadais -> sawahs -> luas_sawah}}</td>
                       <td>
                         <div class="btn btn-bold btn-sm btn-font-sm  btn-label-danger" style="font-size: 14px;">
                           Belum Terverifikasi
                         </div>
                       </td>
-                      <td>Joshua Kimmich</td>
                       <td>
                         <div class="dropdown dropdown-inline">
                           <a href="#" class="btn btn-default btn-icon btn-icon-md btn-sm btn-more-custom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -104,7 +104,7 @@
                           <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
                             <ul class="kt-nav">
                               <li class="kt-nav__item">
-                                <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user">
+                                <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$gadais->id}}" data-periode="{{$gadais->periode}}" data-harga="Rp.{{format_uang($gadais->harga)}}" data-keterangan="{{$gadais->keterangan}}" data-titik_koordinat="{{$gadais->sawahs->titik_koordinat}}" data-kecamatan="{{$gadais->sawahs->kecamatan}}" data-kelurahan="{{$gadais->sawahs->kelurahan}}" data-alamat="{{$gadais->sawahs->alamat}}" data-luas_sawah="{{$gadais->sawahs->luas_sawah}}" data-jenis_bibit="{{$gadais->sawahs->jenis_bibit}}" data-jenis_pupuk="{{$gadais->sawahs->jenis_pupuk}}" data-periode_tanam="{{$gadais->sawahs->periode_tanam}}" data-kota="{{$gadais->sawahs->alamats->tipe}} {{$gadais->sawahs->alamats->nama_kota}}" data-name="{{$gadais->sawahs->users->name}}">
                                   <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
                                   <span class="kt-nav__link-text">Detail</span>
                                 </a>
@@ -114,6 +114,7 @@
                         </div>
                       </td>
                     </tr>
+                    @endforeach
                   </tbody>
                 </table>
               </div>
@@ -153,35 +154,39 @@
                       <div class="kt-widget__item">
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Periode Gadai:</span>
-                          <span class="kt-widget__data" id="tempat_lahir"></span>
+                          <span class="kt-widget__data" id="periode"></span>
                         </div>
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Harga Gadai :</span>
-                          <span class="kt-widget__data" id="tanggal_lahir"></span>
+                          <span class="kt-widget__data" id="harga"></span>
                         </div>
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Luas Sawah :</span>
-                          <span class="kt-widget__data" id=""></span>
+                          <span class="kt-widget__data" id="luas_sawah"></span>
                         </div>
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Jenis Bibit :</span>
-                          <span class="kt-widget__data" id=""></span>
+                          <span class="kt-widget__data" id="jenis_bibit"></span>
                         </div>
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Jenis Pupuk :</span>
-                          <span class="kt-widget__data" id=""></span>
+                          <span class="kt-widget__data" id="jenis_pupuk"></span>
                         </div>
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Periode Tanam :</span>
-                          <span class="kt-widget__data" id=""></span>
+                          <span class="kt-widget__data" id="periode_tanam"></span>
                         </div>
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Titik Koordinat Sawah :</span>
-                          <span class="kt-widget__data" id="nohp"></span>
+                          <span class="kt-widget__data" id="titik_koordinat"></span>
                         </div>
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Provinsi :</span>
                           <span class="kt-widget__data">Sulawesi Selatan</span>
+                        </div>
+                        <div class="kt-widget__contact">
+                          <span class="kt-widget__label">Kota :</span>
+                          <span class="kt-widget__data" id="kota"></span>
                         </div>
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Kecamatan :</span>
@@ -192,20 +197,16 @@
                           <span class="kt-widget__data" id="kelurahan"></span>
                         </div>
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Alamat Lengkap :</span>
+                          <span class="kt-widget__label">Alamat :</span>
                           <span class="kt-widget__data" id="alamat"></span>
                         </div>
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Admin Yang Menangani :</span>
-                          <span class="kt-widget__data" id="role"></span>
-                        </div>
-                        <div class="kt-widget__contact">
                           <span class="kt-widget__label">Status :</span>
-                          <span class="kt-widget__data" id="role"></span>
+                          <span class="kt-widget__data">Belum Terverifikasi</span>
                         </div>
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Keterangan :</span>
-                          <span class="kt-widget__data" id="role"></span>
+                          <span class="kt-widget__data" id="keterangan"></span>
                         </div>
                       </div>
                     </div>
@@ -228,45 +229,36 @@
   // modal detail
   $('#modal-detail-user').on('show.bs.modal', function(event) {
     var a = $(event.relatedTarget)
-    var name = a.data('name')
-    var email = a.data('email')
-    var tempat_lahir = a.data('tempat_lahir')
+    var periode = a.data('periode')
+    var harga = a.data('harga')
+    var keterangan = a.data('keterangan')
     var tanggal_lahir = a.data('tanggal_lahir')
-    var alamat = a.data('alamat')
+    var titik_koordinat = a.data('titik_koordinat')
     var kecamatan = a.data('kecamatan')
     var kelurahan = a.data('kelurahan')
-    var nohp = a.data('nohp')
-    var petani_verified = a.data('petani_verified')
-    if (petani_verified == 0) {
-      var status = 'Belum terverifikasi';
-    } else {
-      var status = 'Terverifikasi';
-    }
-    var jkel = a.data('jkel')
-    if (jkel == 'L') {
-      var kelamin = 'Laki -laki';
-    } else {
-      var kelamin = 'Perempuan'
-    }
-    var rt = a.data('rt')
-    var rw = a.data('rw')
-    var role = a.data('role')
+    var alamat = a.data('alamat')
+    var luas_sawah = a.data('luas_sawah')
+    var jenis_bibit = a.data('jenis_bibit')
+    var jenis_pupuk = a.data('jenis_pupuk')
+    var periode_tanam = a.data('periode_tanam')
+    var kota = a.data('kota')
+    var name = a.data('name')
 
     var modal = $(this)
     modal.find('.modal-title').text('Detail ' + name)
     modal.find('.modal-body #name').text(name)
-    modal.find('.modal-body #email').text(email)
-    modal.find('.modal-body #tempat_lahir').text(tempat_lahir)
-    modal.find('.modal-body #tanggal_lahir').text(tanggal_lahir)
-    modal.find('.modal-body #alamat').text(alamat)
+    modal.find('.modal-body #periode').text(periode)
+    modal.find('.modal-body #harga').text(harga)
+    modal.find('.modal-body #luas_sawah').text(luas_sawah)
+    modal.find('.modal-body #jenis_bibit').text(jenis_bibit)
+    modal.find('.modal-body #jenis_pupuk').text(jenis_pupuk)
+    modal.find('.modal-body #periode_tanam').text(periode_tanam)
+    modal.find('.modal-body #titik_koordinat').text(titik_koordinat)
+    modal.find('.modal-body #kota').text(kota)
     modal.find('.modal-body #kecamatan').text(kecamatan)
     modal.find('.modal-body #kelurahan').text(kelurahan)
-    modal.find('.modal-body #nohp').text(nohp)
-    modal.find('.modal-body #petani_verified').text(status)
-    modal.find('.modal-body #jkel').text(kelamin)
-    modal.find('.modal-body #rt').text(rt)
-    modal.find('.modal-body #rw').text(rw)
-    modal.find('.modal-body #role').text(role)
+    modal.find('.modal-body #alamat').text(alamat)
+    modal.find('.modal-body #keterangan').text(keterangan)
   })
   // modal detail
 
