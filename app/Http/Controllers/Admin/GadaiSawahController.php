@@ -62,23 +62,35 @@ class GadaiSawahController extends Controller
 
     }
 
-    public function gadaistatus($id) //ganti status dari null (daftar gadai) menjadi sedang gadai 
+    public function gadaistatus(Request $request, $id) //ganti status dari null (daftar gadai) menjadi sedang gadai 
     {
         $data = GadaiSawah::findOrFail($id);
         $data->status = 'gadai';
+        $data->keterangan = $request->get('keterangan');
         $data->admin_by = Auth::guard('admin')->user()->id;
         $data->save();
         // return 'Gadai Done';
         return redirect()->back()->with('success', 'Berhasil ! Sawah ini sekarang sedang digadai');
     }
 
-    public function selesaistatus($id) //ganti status dari null (daftar gadai) menjadi sedang gadai 
+    public function selesaistatus(Request $request, $id) //ganti status dari null (daftar gadai) menjadi sedang gadai 
     {
+
         $data = GadaiSawah::findOrFail($id);
         $data->status = 'selesai';
         $data->admin_by = Auth::guard('admin')->user()->id;
+        $data->keterangan = $request->get('keterangan');
         $data->save();
         // return 'Data Berpindah ke Riwayat';
         return redirect()->back()->with('success', 'Berhasil ! Waktu gadai sawah ini telah berakhir silakan lihat datanya pada tab Riwayat Gadai');
+    }
+
+    public function editketerangan(Request $request, $id)
+    {
+        $data = GadaiSawah::findOrFail($id);
+        $data->admin_by = Auth::guard('admin')->user()->id;
+        $data->keterangan = $request->get('keterangan');
+        $data->save();
+        return redirect()->back()->with('success', 'Berhasil mengubah keterangan');
     }
 }

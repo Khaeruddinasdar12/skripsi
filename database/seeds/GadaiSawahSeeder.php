@@ -40,5 +40,15 @@ class GadaiSawahSeeder extends Seeder
             'status'    => 'selesai',
             'keterangan'=> 'Tergadai tanpa masalah'
         ]);
+
+        DB::table('gadai_sawahs')->insert([ // mendaftarkan sawahnya untuk di gadai
+            'periode'   => '1 tahun',
+            'harga'     => '38000000',
+            // 'admin_verified' => '0', //belum diverifikasi
+            'admin_by'  => null, //verified by role admin
+            'sawah_id'  => 4,
+            'status'    => null,
+            'keterangan'=> ''
+        ]);
     }
 }
