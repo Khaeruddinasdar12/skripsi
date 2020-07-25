@@ -111,6 +111,18 @@
                                   <span class="kt-nav__link-text">Detail</span>
                                 </a>
                               </li>
+                              <li class="kt-nav__item">
+                                <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-ket" data-id="{{$gadais->id}}" data-name="{{$gadais->sawahs->users->name}}" data-keterangan="{{$gadais->keterangan}}" data-href="{{ route('editketerangan.gadaisawah', ['id' => $gadais->id]) }}">
+                                  <i class=" kt-nav__link-icon flaticon2-settings"></i>
+                                  <span class="kt-nav__link-text">Edit Keterangan</span>
+                                </a>
+                              </li>
+                              <li class="kt-nav__item">
+                                <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-selesai-gadai" data-id="{{$gadais->id}}" data-keterangan="{{$gadais->keterangan}}" data-href="{{ route('selesaistatus.gadaisawah', ['id' => $gadais->id]) }}">
+                                  <i class="kt-nav__link-icon flaticon2-check-mark"></i>
+                                  <span class="kt-nav__link-text">Selesaikan Gadai</span>
+                                </a>
+                              </li>
                             </ul>
                           </div>
                         </div>
@@ -227,6 +239,78 @@
       </div>
       <!-- modal detail user -->
 
+      <!-- ,odal edit keterangan -->
+      <div class="modal modal-edit fade" id="modal-edit-ket" tabindex="-1" role="dialog" aria-labelledby="modal-edit-ket" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <span class="modal-icon">
+              <i class="fa fa-user-cog"></i>
+            </span>
+            <div class="modal-header">
+              <h5 class="modal-title"></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+                <form id="edit-ket" action="" method="POST">
+                  @csrf
+                  <input type="hidden" value="PUT" name="_method">
+
+                  <div class="form-group">
+                    <label for="exampleTextarea">Ubah keterangan :</label>
+                    <textarea class="form-control" id="keterangans" name="keterangan" rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 97px; resize: none" required></textarea>
+                  </div>
+
+                  <div class="button-edit">
+                    <button type="submit" class="btn btn-edit">Simpan perubahan</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end modal edit keterangan -->
+
+      <!-- modal verifikasi -->
+      <div class="modal modal-verif fade" id="modal-selesai-gadai" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <span class="modal-icon">
+              <i class="fa fa-info"></i>
+            </span>
+
+            <div class="modal-body">
+              <form action="" method="POST" id="selesai-gadai">
+                @csrf
+                <input type="hidden" value="PUT" name="_method">
+                <h3>Periode Gadai Sawah Telah Selesai?</h3>
+                <p>Data sawah yang telah berakhir periode gadainya</p>
+                <p>akan di pindahkan ke tab Riwayat Gadai</p>
+
+                <div class="form-group">
+                  <label for="exampleTextarea">Tambahkan keterangan :</label>
+                  <textarea class="form-control" id="keteranganss" name="keterangan" rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 97px; resize: none" required></textarea>
+                </div>
+
+                <div class="row verif-form">
+                  <div class="col-md-6">
+                    <button type="button" class="btn close-modal" data-dismiss="modal" aria-label="Close">Cancel</button>
+                  </div>
+
+                  <div class="col-md-6">
+
+                    <input type="submit" value="Verifikasi" class="btn btn-verif btn-flat">
+                  </div>
+                </div>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- end modal verifikasi -->
+
     </div>
   </div>
 </div>
@@ -270,16 +354,32 @@
   })
   // modal detail
 
-  //Modal Verifikasi Akun User
-  $('#modal-verif-user').on('show.bs.modal', function(event) {
+  // modal edit
+  $('#modal-edit-ket').on('show.bs.modal', function(event) {
     var a = $(event.relatedTarget)
     var href = a.data('href')
-    var email = a.data('email')
+    var name = a.data('name')
+    var keterangan = a.data('keterangan')
 
     var modal = $(this)
-    modal.find('.modal-body #verif-user-form').attr('action', href)
+    modal.find('.modal-title').text('Edit Keterangan ' + name)
+    modal.find('.modal-body #keterangans').val(keterangan)
+    modal.find('.modal-body #edit-ket').attr('action', href)
+
   })
-  //End Modal Verifikasi Akun User
+  // modal edit
+
+  //Modal Verifikasi gadai
+  $('#modal-selesai-gadai').on('show.bs.modal', function(event) {
+    var a = $(event.relatedTarget)
+    var keterangan = a.data('keterangan')
+    var href = a.data('href')
+
+    var modal = $(this)
+    modal.find('.modal-body #keteranganss').val(keterangan)
+    modal.find('.modal-body #selesai-gadai').attr('action', href)
+  })
+  //End Modal Verifikasi gadai
 </script>
 
 @endsection

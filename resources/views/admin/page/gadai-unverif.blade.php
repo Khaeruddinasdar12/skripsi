@@ -110,8 +110,7 @@
                                 </a>
                               </li>
                               <li class="kt-nav__item">
-                                <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-verif-gadai" data-id="{{$gadais->id}}" data-name="{{$gadais->sawahs->users->name}}" data-keterangan="{{$gadais->keterangan}}" 
-                                  data-href="{{ route('gadaistatus.gadaisawah', ['id' => $gadais->id]) }}">
+                                <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-verif-gadai" data-id="{{$gadais->id}}" data-name="{{$gadais->sawahs->users->name}}" data-keterangan="{{$gadais->keterangan}}" data-href="{{ route('gadaistatus.gadaisawah', ['id' => $gadais->id]) }}">
                                   <i class="kt-nav__link-icon flaticon2-check-mark"></i>
                                   <span class="kt-nav__link-text">Verifikasi</span>
                                 </a>
@@ -236,16 +235,16 @@
               <i class="fa fa-info"></i>
             </span>
 
-              <div class="modal-body">
-                <form action="" method="POST" id="verif-gadai-form">
-              @csrf
-              <input type="hidden" value="PUT" name="_method">
+            <div class="modal-body">
+              <form action="" method="POST" id="verif-gadai-form">
+                @csrf
+                <input type="hidden" value="PUT" name="_method">
                 <h3>Verifikasi Gadai?</h3>
                 <p>Pastikan sawah yang akan di verifikasi</p>
                 <p>telah di survei terlebih dahulu</p>
 
 
-                
+
                 <div class="form-group">
 
                   <label for="exampleTextarea">Tambahkan keterangan :</label>
@@ -262,7 +261,7 @@
                     <input type="submit" value="Verifikasi" class="btn btn-verif btn-flat">
                   </div>
                 </div>
-              </div>
+            </div>
             </form>
           </div>
         </div>
@@ -315,7 +314,6 @@
     var a = $(event.relatedTarget)
     var keterangan = a.data('keterangan')
     var href = a.data('href')
-    console.log(href)
 
     var modal = $(this)
     modal.find('.modal-body #keterangans').text(keterangan)
