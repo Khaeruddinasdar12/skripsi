@@ -170,8 +170,13 @@ table .btn-more-custom {
   background-color: #00A859;
 }
 
+.table-responsive {
+  padding-bottom: 70px !important;
+}
+
 table {
   font-size: 15px !important;
+  padding-bottom: 500px !important;
 }
 table .btn-more-custom i {
   font-size: 20px !important;
