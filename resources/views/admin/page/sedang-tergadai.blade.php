@@ -106,7 +106,7 @@
                           <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
                             <ul class="kt-nav">
                               <li class="kt-nav__item">
-                                <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$gadais->id}}" data-periode="{{$gadais->periode}}" data-harga="Rp.{{format_uang($gadais->harga)}}" data-keterangan="{{$gadais->keterangan}}" data-titik_koordinat="{{$gadais->sawahs->titik_koordinat}}" data-kecamatan="{{$gadais->sawahs->kecamatan}}" data-kelurahan="{{$gadais->sawahs->kelurahan}}" data-alamat="{{$gadais->sawahs->alamat}}" data-luas_sawah="{{$gadais->sawahs->luas_sawah}}" data-jenis_bibit="{{$gadais->sawahs->jenis_bibit}}" data-jenis_pupuk="{{$gadais->sawahs->jenis_pupuk}}" data-periode_tanam="{{$gadais->sawahs->periode_tanam}}" data-kota="{{$gadais->sawahs->alamats->tipe}} {{$gadais->sawahs->alamats->nama_kota}}" data-name="{{$gadais->sawahs->users->name}}" data-admin="{{$gadais->admins->name}}">
+                                <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$gadais->id}}" data-email="{{$gadais->sawahs->users->email}}" data-nohp="{{$gadais->sawahs->users->nohp}}" data-periode="{{$gadais->periode}}" data-harga="Rp.{{format_uang($gadais->harga)}}" data-keterangan="{{$gadais->keterangan}}" data-titik_koordinat="{{$gadais->sawahs->titik_koordinat}}" data-kecamatan="{{$gadais->sawahs->kecamatan}}" data-kelurahan="{{$gadais->sawahs->kelurahan}}" data-alamat="{{$gadais->sawahs->alamat}}" data-luas_sawah="{{$gadais->sawahs->luas_sawah}}" data-jenis_bibit="{{$gadais->sawahs->jenis_bibit}}" data-jenis_pupuk="{{$gadais->sawahs->jenis_pupuk}}" data-periode_tanam="{{$gadais->sawahs->periode_tanam}}" data-kota="{{$gadais->sawahs->alamats->tipe}} {{$gadais->sawahs->alamats->nama_kota}}" data-name="{{$gadais->sawahs->users->name}}" data-admin="{{$gadais->admins->name}}">
                                   <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
                                   <span class="kt-nav__link-text">Detail</span>
                                 </a>
@@ -161,7 +161,9 @@
                       </div>
                       <div class="kt-widget__info">
                         <span class="kt-widget__username" id="name">
-                        </span>
+                        </span><br>
+                        <span class="kt-widget__label" id="email"></span><br>
+                        <span class="kt-widget__label" id="nohp"></span>
                       </div>
                     </div>
                     <div class="kt-widget__body widget-detail">
@@ -319,6 +321,8 @@
   // modal detail
   $('#modal-detail-user').on('show.bs.modal', function(event) {
     var a = $(event.relatedTarget)
+    var email = a.data('email')
+    var nohp = a.data('nohp')
     var periode = a.data('periode')
     var harga = a.data('harga')
     var keterangan = a.data('keterangan')
@@ -337,6 +341,8 @@
 
     var modal = $(this)
     modal.find('.modal-title').text('Detail ' + name)
+    modal.find('.modal-body #email').text(email)
+    modal.find('.modal-body #nohp').text(nohp)
     modal.find('.modal-body #name').text(name)
     modal.find('.modal-body #periode').text(periode)
     modal.find('.modal-body #harga').text(harga)

@@ -44,6 +44,9 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 	Route::put('gadai-sawah-gadai-status/{id}', 'GadaiSawahController@gadaistatus')->name('gadaistatus.gadaisawah'); // mengubah "daftar gadai" menjadi "sedang gadai"
 	Route::put('gadai-sawah-selesai-status/{id}', 'GadaiSawahController@selesaistatus')->name('selesaistatus.gadaisawah'); // mengubah "sedang gadai" menjadi "riwayat gadai"
 	Route::put('gadai-sawah-edit-keterangan/{id}', 'GadaiSawahController@editketerangan')->name('editketerangan.gadaisawah'); // edit keterangan 
+
+	Route::delete('gadai-sawah-hapus-gadai/{id}', 'GadaiSawahController@delgadai')->name('delgadai.gadaisawah'); // menghapus gadai yang gagal di survey 
+	Route::delete('gadai-sawah-hapus-riwayat/{id}', 'GadaiSawahController@delriwayat')->name('delriwayat.gadaisawah')->middleware('CekAdmin'); // menghapus riwayat gadai hanya superadmin, jika admin otomatis gagal 
 	// END RUTE MENU GADAI SAWAH
 
 
