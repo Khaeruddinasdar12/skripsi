@@ -109,6 +109,12 @@
                                   <span class="kt-nav__link-text">Detail</span>
                                 </a>
                               </li>
+                              <li class="kt-nav__item">
+                                <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-verif-gadai" data-id="{{$gadais->id}}" data-name="{{$gadais->sawahs->users->name}}" data-href="{{ route('gadaistatus.gadaisawah', ['id' => $gadais->id]) }}">
+                                  <i class="kt-nav__link-icon flaticon2-check-mark"></i>
+                                  <span class="kt-nav__link-text">Verifikasi</span>
+                                </a>
+                              </li>
                             </ul>
                           </div>
                         </div>
@@ -221,6 +227,44 @@
       </div>
       <!-- modal detail user -->
 
+      <!-- modal verifikasi -->
+      <div class="modal modal-verif fade" id="modal-verif-gadai" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <span class="modal-icon">
+              <i class="fa fa-info"></i>
+            </span>
+            <div class="modal-body">
+              <h3>Verifikasi Gadai?</h3>
+              <p>Pastikan sawah yang akan di verifikasi</p>
+              <p>telah di survei terlebih dahulu</p>
+
+              <div class="form-group">
+                <label for="exampleTextarea">Tambahkan keterangan :</label>
+                <textarea class="form-control" rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 97px;" required></textarea>
+              </div>
+
+              <div class="row verif-form">
+                <div class="col-md-6">
+                  <button type="button" class="btn close-modal" data-dismiss="modal" aria-label="Close">Cancel</button>
+                </div>
+
+                <div class="col-md-6">
+                  <form action="" method="POST" id="verif-gadai-form">
+                    @csrf
+                    <input type="hidden" value="PUT" name="_method">
+
+                    <input type="submit" value="Verifikasi" class="btn btn-verif btn-flat">
+
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end modal verifikasi -->
+
     </div>
   </div>
 </div>
@@ -262,16 +306,15 @@
   })
   // modal detail
 
-  //Modal Verifikasi Akun User
-  $('#modal-verif-user').on('show.bs.modal', function(event) {
+  //Modal Verifikasi gadai
+  $('#modal-verif-gadai').on('show.bs.modal', function(event) {
     var a = $(event.relatedTarget)
     var href = a.data('href')
-    var email = a.data('email')
 
     var modal = $(this)
-    modal.find('.modal-body #verif-user-form').attr('action', href)
+    modal.find('.modal-body #verif-gadai-form').attr('action', href)
   })
-  //End Modal Verifikasi Akun User
+  //End Modal Verifikasi gadai
 </script>
 
 @endsection
