@@ -48,7 +48,7 @@ class UserController extends Controller
                 'tanggal_lahir' => 'required|date', // yyyy-mm-dd
                 'kota_id'       => 'required|numeric',
                 'alamat_lengkap'=>'required|string',
-                'kecamatan' => 'required|string|min:8',
+                'kecamatan' => 'required|string',
                 'kelurahan' => 'required|string',
                 'rt' => 'required|string',
                 'rw' => 'required|string',
