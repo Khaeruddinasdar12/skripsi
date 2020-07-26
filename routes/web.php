@@ -21,6 +21,8 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 
 	// RUTE MENU GABAHKU & TRANSAKSI GABAHKU
 	Route::get('gabah', 'GabahController@index')->name('index.gabah'); //menampilkan hal. data gabah
+	Route::get('gabah', 'GabahController@store')->name('store.gabah'); //menambah data gabah
+
 	Route::get('transaksi-gabah', 'GabahController@transaksi')->name('transaksi.gabah'); //menampilkan hal. data transaksi gabah
 	// END RUTE MENU GABAHKU & TRANSAKSI GABAHKU
 
