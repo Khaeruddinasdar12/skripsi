@@ -106,7 +106,7 @@ table .btn-more-custom {
 .galung-header .kt-header-menu .kt-menu__item a .icon-here {
   color: #00A859 !important;
 }
-.galung-header .kt-header-menu .kt-menu__item a:hover .fa-angle-down {
+.galung-header .kt-header-menu .kt-menu__item a:hover .fa-angle-down, .galung-header .kt-header-menu .kt-menu__item a:focus .fa-angle-down {
   color: #fff !important;
   transition: 0.5s;
   transform: translateY(3px);

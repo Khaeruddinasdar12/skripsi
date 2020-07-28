@@ -133,12 +133,21 @@
                                       <span class="kt-nav__link-text">Detail</span>
                                     </a>
                                   </li>
+                                  @if(Auth::guard('admin')->user()->role != 'superadmin')
+                                  <li class="kt-nav__item" style="display: none !important;">
+                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$gadais->id}}" data-href="{{ route('delriwayat.gadaisawah', ['id' => $gadais->id]) }}">
+                                      <i class="kt-nav__link-icon fa fa-trash-alt"></i>
+                                      <span class="kt-nav__link-text">Hapus Data</span>
+                                    </a>
+                                  </li>
+                                  @else
                                   <li class="kt-nav__item">
                                     <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$gadais->id}}" data-href="{{ route('delriwayat.gadaisawah', ['id' => $gadais->id]) }}">
                                       <i class="kt-nav__link-icon fa fa-trash-alt"></i>
                                       <span class="kt-nav__link-text">Hapus Data</span>
                                     </a>
                                   </li>
+                                  @endif
                                 </ul>
                               </div>
                             </div>
