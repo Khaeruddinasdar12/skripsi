@@ -20,7 +20,7 @@ class CreateBerasTable extends Migration
             $table->integer('min_beli');
             $table->integer('stok');
             $table->text('deskripsi');
-            $table->string('gambar');
+            $table->string('gambar')->nullable();
             $table->string('admin_by');
             $table->timestamps();
         });

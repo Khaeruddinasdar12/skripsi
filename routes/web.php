@@ -29,6 +29,9 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 
 	// RUTE MENU BERAS & TRANSAKSI BERAS
 	Route::get('beras', 'BerasController@index')->name('index.beras'); //menampilkan hal. data beras
+	Route::post('beras', 'BerasController@store')->name('store.beras'); //menambah data beras
+	Route::put('beras/{id}', 'BerasController@update')->name('update.beras'); //mengubah atau suplly data beras
+
 	Route::get('transaksi-beras', 'BerasController@transaksi')->name('transaksi.beras'); //menampilkan hal. data transaksi beras
 	// END RUTE MENU BERAS & TRANSAKSI BERAS
 
