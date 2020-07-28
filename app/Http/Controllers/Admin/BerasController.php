@@ -15,8 +15,8 @@ class BerasController extends Controller
 
     public function index() //menampilkan hal. data beras
     {
-        $data = Beras::with('users:id,name')->get();
-        // return $data; //uncomment ini untuk melihat api data
+        $data = Beras::with('admins:id,name')->get();
+        return $data; //uncomment ini untuk melihat api data
 
     	return view('', ['data' => $data]); //struktur folder di folder views
     	/*

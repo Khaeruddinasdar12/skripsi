@@ -11,8 +11,8 @@ class Beras extends Model
         'nama', 'harga', 'admin_by', 'min_beli', 'stok', 'deskripsi', 'gambar',
     ];
 
-    public function users()
+    public function admins()
     {
-        return $this->belongsTo('App\User', 'admin_by');
+        return $this->belongsTo('App\Admin', 'admin_by');
     }
 }
