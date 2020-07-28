@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Beras;
 use Auth;
+
 class BerasController extends Controller
 {
     public function __construct()
@@ -16,10 +17,10 @@ class BerasController extends Controller
     public function index() //menampilkan hal. data beras
     {
         $data = Beras::with('users:id,name')->get();
-        // return $data; //uncomment ini untuk melihat api data
+        return $data; //uncomment ini untuk melihat api data
 
-    	return view('', ['data' => $data]); //struktur folder di folder views
-    	/*
+        return view('', ['data' => $data]); //struktur folder di folder views
+        /*
     	syntax
     	return view('namafolder.namafile');
     	*/
@@ -45,7 +46,7 @@ class BerasController extends Controller
         $data->admin_by     = Auth::guard('admin')->user()->id;
 
         $gambar = $request->file('gambar');
-        if($gambar) {
+        if ($gambar) {
             $gambar_path = $gambar->store('gambar', 'public');
             $data->gambar = $gambar_path;
         }
@@ -73,9 +74,9 @@ class BerasController extends Controller
         $data->admin_by     = Auth::guard('admin')->user()->id;
 
         $gambar = $request->file('gambar');
-        if($gambar) {
-            if($data->gambar && file_exists(storage_path('app/public/' . $data->gambar))) { 
-                \Storage::delete('public/'. $data->gambar);
+        if ($gambar) {
+            if ($data->gambar && file_exists(storage_path('app/public/' . $data->gambar))) {
+                \Storage::delete('public/' . $data->gambar);
             }
             $gambar_path = $gambar->store('gambar', 'public');
             $data->gambar = $gambar_path;
@@ -94,8 +95,8 @@ class BerasController extends Controller
 
     public function transaksi() //menampilkan hal. data transaksi beras
     {
-    	return view(''); //struktur folder di folder views
-    	/*
+        return view(''); //struktur folder di folder views
+        /*
     	syntax
     	return view('namafolder.namafile');
     	*/
