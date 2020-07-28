@@ -55,82 +55,101 @@
         <a href="#" target="_blank" data-notify="url"></a>
       </div>
       @endif
-      <div class="kt-portlet admin-portlet">
-        <div class="kt-portlet__head">
-          <div class="kt-portlet__head-label">
-            <span class="kt-portlet__head-icon">
-              <i class="flaticon-avatar"></i>
-            </span>
-            <h3 class="kt-portlet__head-title">
-              Data Sawah Yang Sedang Tergadai ({{$jml}})
-            </h3>
+
+      <div class="row">
+        <div class="col-md-2">
+          <div class="kt-portlet sticky" data-sticky="true" data-margin-top="100px" data-sticky-for="1023" data-sticky-class="kt-sticky">
+            <div class="kt-portlet__body">
+              <h5 style="color: #222;">
+                Jumlah Data Sawah Yang Sedang Tergadai
+              </h5>
+              <h4 class="mt-3 kt-font-success" style="font-weight: 800;">
+                {{$jml}} Data
+              </h4>
+
+            </div>
           </div>
         </div>
-        <div class="kt-portlet__body">
-          <div class="kt-section">
-            <div class="kt-section__content">
-              <div class="table-responsive">
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Nama Penggadai</th>
-                      <th>Periode Gadai</th>
-                      <th>Harga Gadai</th>
-                      <th>Luas Sawah</th>
-                      <th>Status</th>
-                      <th>Admin Yang Menangani</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @php $no = 1; @endphp
-                    @foreach ($data as $gadais)
-                    <tr>
-                      <th scope="row">{{$no++}}</th>
-                      <td>{{$gadais -> sawahs -> users -> name}}</td>
-                      <td>{{$gadais -> periode}}</td>
-                      <td>Rp.{{format_uang($gadais -> harga)}}</td>
-                      <td>{{$gadais -> sawahs -> luas_sawah}}</td>
-                      <td>
-                        <div class="btn btn-bold btn-sm btn-font-sm  btn-label-warning" style="font-size: 14px;">
-                          Sedang Tergadai
-                        </div>
-                      </td>
-                      <td>{{$gadais->admins->name}}</td>
-                      <td>
-                        <div class="dropdown dropdown-inline">
-                          <a href="#" class="btn btn-default btn-icon btn-icon-md btn-sm btn-more-custom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="flaticon-more-1"></i>
-                          </a>
-                          <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
-                            <ul class="kt-nav">
-                              <li class="kt-nav__item">
-                                <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$gadais->id}}" data-email="{{$gadais->sawahs->users->email}}" data-nohp="{{$gadais->sawahs->users->nohp}}" data-periode="{{$gadais->periode}}" data-harga="Rp.{{format_uang($gadais->harga)}}" data-keterangan="{{$gadais->keterangan}}" data-titik_koordinat="{{$gadais->sawahs->titik_koordinat}}" data-kecamatan="{{$gadais->sawahs->kecamatan}}" data-kelurahan="{{$gadais->sawahs->kelurahan}}" data-alamat="{{$gadais->sawahs->alamat}}" data-luas_sawah="{{$gadais->sawahs->luas_sawah}}" data-jenis_bibit="{{$gadais->sawahs->jenis_bibit}}" data-jenis_pupuk="{{$gadais->sawahs->jenis_pupuk}}" data-periode_tanam="{{$gadais->sawahs->periode_tanam}}" data-kota="{{$gadais->sawahs->alamats->tipe}} {{$gadais->sawahs->alamats->nama_kota}}" data-name="{{$gadais->sawahs->users->name}}" data-admin="{{$gadais->admins->name}}">
-                                  <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
-                                  <span class="kt-nav__link-text">Detail</span>
-                                </a>
-                              </li>
-                              <li class="kt-nav__item">
-                                <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-ket" data-id="{{$gadais->id}}" data-name="{{$gadais->sawahs->users->name}}" data-keterangan="{{$gadais->keterangan}}" data-href="{{ route('editketerangan.gadaisawah', ['id' => $gadais->id]) }}">
-                                  <i class=" kt-nav__link-icon flaticon2-settings"></i>
-                                  <span class="kt-nav__link-text">Edit Keterangan</span>
-                                </a>
-                              </li>
-                              <li class="kt-nav__item">
-                                <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-selesai-gadai" data-id="{{$gadais->id}}" data-keterangan="{{$gadais->keterangan}}" data-href="{{ route('selesaistatus.gadaisawah', ['id' => $gadais->id]) }}">
-                                  <i class="kt-nav__link-icon flaticon2-check-mark"></i>
-                                  <span class="kt-nav__link-text">Selesaikan Gadai</span>
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    @endforeach
-                  </tbody>
-                </table>
+
+        <div class="col-md-10">
+          <div class="kt-portlet admin-portlet">
+            <div class="kt-portlet__head">
+              <div class="kt-portlet__head-label">
+                <span class="kt-portlet__head-icon">
+                  <i class="flaticon-avatar"></i>
+                </span>
+                <h3 class="kt-portlet__head-title">
+                  Data Sawah Yang Sedang Tergadai
+                </h3>
+              </div>
+            </div>
+            <div class="kt-portlet__body">
+              <div class="kt-section">
+                <div class="kt-section__content">
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Nama Penggadai</th>
+                          <th>Periode Gadai</th>
+                          <th>Harga Gadai</th>
+                          <th>Luas Sawah</th>
+                          <th>Status</th>
+                          <th>Admin Yang Menangani</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @php $no = 1; @endphp
+                        @foreach ($data as $gadais)
+                        <tr>
+                          <th scope="row">{{$no++}}</th>
+                          <td>{{$gadais -> sawahs -> users -> name}}</td>
+                          <td>{{$gadais -> periode}}</td>
+                          <td>Rp.{{format_uang($gadais -> harga)}}</td>
+                          <td>{{$gadais -> sawahs -> luas_sawah}}</td>
+                          <td>
+                            <div class="btn btn-bold btn-sm btn-font-sm  btn-label-warning" style="font-size: 14px;">
+                              Sedang Tergadai
+                            </div>
+                          </td>
+                          <td>{{$gadais->admins->name}}</td>
+                          <td>
+                            <div class="dropdown dropdown-inline">
+                              <a href="#" class="btn btn-default btn-icon btn-icon-md btn-sm btn-more-custom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="flaticon-more-1"></i>
+                              </a>
+                              <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
+                                <ul class="kt-nav">
+                                  <li class="kt-nav__item">
+                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$gadais->id}}" data-email="{{$gadais->sawahs->users->email}}" data-nohp="{{$gadais->sawahs->users->nohp}}" data-periode="{{$gadais->periode}}" data-harga="Rp.{{format_uang($gadais->harga)}}" data-keterangan="{{$gadais->keterangan}}" data-titik_koordinat="{{$gadais->sawahs->titik_koordinat}}" data-kecamatan="{{$gadais->sawahs->kecamatan}}" data-kelurahan="{{$gadais->sawahs->kelurahan}}" data-alamat="{{$gadais->sawahs->alamat}}" data-luas_sawah="{{$gadais->sawahs->luas_sawah}}" data-jenis_bibit="{{$gadais->sawahs->jenis_bibit}}" data-jenis_pupuk="{{$gadais->sawahs->jenis_pupuk}}" data-periode_tanam="{{$gadais->sawahs->periode_tanam}}" data-kota="{{$gadais->sawahs->alamats->tipe}} {{$gadais->sawahs->alamats->nama_kota}}" data-name="{{$gadais->sawahs->users->name}}" data-admin="{{$gadais->admins->name}}">
+                                      <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
+                                      <span class="kt-nav__link-text">Detail</span>
+                                    </a>
+                                  </li>
+                                  <li class="kt-nav__item">
+                                    <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-ket" data-id="{{$gadais->id}}" data-name="{{$gadais->sawahs->users->name}}" data-keterangan="{{$gadais->keterangan}}" data-href="{{ route('editketerangan.gadaisawah', ['id' => $gadais->id]) }}">
+                                      <i class=" kt-nav__link-icon flaticon2-settings"></i>
+                                      <span class="kt-nav__link-text">Edit Keterangan</span>
+                                    </a>
+                                  </li>
+                                  <li class="kt-nav__item">
+                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-selesai-gadai" data-id="{{$gadais->id}}" data-keterangan="{{$gadais->keterangan}}" data-href="{{ route('selesaistatus.gadaisawah', ['id' => $gadais->id]) }}">
+                                      <i class="kt-nav__link-icon flaticon2-check-mark"></i>
+                                      <span class="kt-nav__link-text">Selesaikan Gadai</span>
+                                    </a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

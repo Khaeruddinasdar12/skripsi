@@ -55,73 +55,92 @@
         <a href="#" target="_blank" data-notify="url"></a>
       </div>
       @endif
-      <div class="kt-portlet admin-portlet">
-        <div class="kt-portlet__head">
-          <div class="kt-portlet__head-label">
-            <span class="kt-portlet__head-icon">
-              <i class="flaticon-avatar"></i>
-            </span>
-            <h3 class="kt-portlet__head-title">
-              Data Konsumen ({{$jml}})
-            </h3>
+
+      <div class="row">
+        <div class="col-md-2">
+          <div class="kt-portlet sticky" data-sticky="true" data-margin-top="100px" data-sticky-for="1023" data-sticky-class="kt-sticky">
+            <div class="kt-portlet__body">
+              <h5 style="color: #222;">
+                Jumlah Data Konsumen
+              </h5>
+              <h4 class="mt-3 kt-font-success" style="font-weight: 800;">
+                {{$jml}} Data
+              </h4>
+
+            </div>
           </div>
         </div>
-        <div class="kt-portlet__body">
-          <div class="kt-section">
-            <div class="kt-section__content">
-              <div class="table-responsive">
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Nama Lengkap</th>
-                      <th>Email</th>
-                      <th>Kelurahan / Desa</th>
-                      <th>Jenis Kelamin</th>
-                      <th>Jenis User</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @php $no = 1; @endphp
-                    @foreach ($data as $user)
-                    <tr>
-                      <th scope="row">{{$no++}}</th>
-                      <td>{{$user->name}} </td>
-                      <td>{{$user->email}}</td>
-                      <td>{{$user->kelurahan}}</td>
-                      <td>
-                        @if($user->jkel == 'P') Perempuan
-                        @else Laki-laki @endif
-                      </td>
-                      <td>{{$user->role}}</td>
-                      <td>
-                        <div class="dropdown dropdown-inline">
-                          <a href="#" class="btn btn-default btn-icon btn-icon-md btn-sm btn-more-custom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="flaticon-more-1"></i>
-                          </a>
-                          <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
-                            <ul class="kt-nav">
-                              <li class="kt-nav__item">
-                                <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-email="{{$user->email}}" data-tempat_lahir="{{$user->tempat_lahir}}" data-tanggal_lahir="{{$user->tanggal_lahir}}" data-alamat="{{$user->alamat}}" data-kecamatan="{{$user->kecamatan}}" data-kelurahan="{{$user->kelurahan}}" data-nohp="{{$user->nohp}}" data-jkel="{{$user->jkel}}" data-rt="{{$user->rt}}" data-rw="{{$user->rw}}" data-role="{{$user->role}}">
-                                  <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
-                                  <span class="kt-nav__link-text">Detail</span>
-                                </a>
-                              </li>
-                              <li class="kt-nav__item">
-                                <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-email="{{$user->email}}" data-tempat_lahir="{{$user->tempat_lahir}}" data-tanggal_lahir="{{$user->tanggal_lahir}}" data-alamat="{{$user->alamat}}" data-kecamatan="{{$user->kecamatan}}" data-kelurahan="{{$user->kelurahan}}" data-nohp="{{$user->nohp}}" data-jkel="{{$user->jkel}}" data-rt="{{$user->rt}}" data-rw="{{$user->rw}}" data-role="{{$user->role}}" data-href="{{ route('edit.manage-user', ['id' => $user->id]) }}" data-alamat_id="{{$user->alamat_id}}">
-                                  <i class=" kt-nav__link-icon flaticon2-settings"></i>
-                                  <span class="kt-nav__link-text">Edit</span>
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    @endforeach
-                  </tbody>
-                </table>
+
+        <div class="col-md-10">
+          <div class="kt-portlet admin-portlet">
+            <div class="kt-portlet__head">
+              <div class="kt-portlet__head-label">
+                <span class="kt-portlet__head-icon">
+                  <i class="flaticon-avatar"></i>
+                </span>
+                <h3 class="kt-portlet__head-title">
+                  Data Konsumen
+                </h3>
+              </div>
+            </div>
+            <div class="kt-portlet__body">
+              <div class="kt-section">
+                <div class="kt-section__content">
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Nama Lengkap</th>
+                          <th>Email</th>
+                          <th>Kelurahan / Desa</th>
+                          <th>Jenis Kelamin</th>
+                          <th>Jenis User</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @php $no = 1; @endphp
+                        @foreach ($data as $user)
+                        <tr>
+                          <th scope="row">{{$no++}}</th>
+                          <td>{{$user->name}} </td>
+                          <td>{{$user->email}}</td>
+                          <td>{{$user->kelurahan}}</td>
+                          <td>
+                            @if($user->jkel == 'P') Perempuan
+                            @else Laki-laki @endif
+                          </td>
+                          <td>{{$user->role}}</td>
+                          <td>
+                            <div class="dropdown dropdown-inline">
+                              <a href="#" class="btn btn-default btn-icon btn-icon-md btn-sm btn-more-custom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="flaticon-more-1"></i>
+                              </a>
+                              <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
+                                <ul class="kt-nav">
+                                  <li class="kt-nav__item">
+                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-email="{{$user->email}}" data-tempat_lahir="{{$user->tempat_lahir}}" data-tanggal_lahir="{{$user->tanggal_lahir}}" data-alamat="{{$user->alamat}}" data-kecamatan="{{$user->kecamatan}}" data-kelurahan="{{$user->kelurahan}}" data-nohp="{{$user->nohp}}" data-jkel="{{$user->jkel}}" data-rt="{{$user->rt}}" data-rw="{{$user->rw}}" data-role="{{$user->role}}">
+                                      <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
+                                      <span class="kt-nav__link-text">Detail</span>
+                                    </a>
+                                  </li>
+                                  <li class="kt-nav__item">
+                                    <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-email="{{$user->email}}" data-tempat_lahir="{{$user->tempat_lahir}}" data-tanggal_lahir="{{$user->tanggal_lahir}}" data-alamat="{{$user->alamat}}" data-kecamatan="{{$user->kecamatan}}" data-kelurahan="{{$user->kelurahan}}" data-nohp="{{$user->nohp}}" data-jkel="{{$user->jkel}}" data-rt="{{$user->rt}}" data-rw="{{$user->rw}}" data-role="{{$user->role}}" data-href="{{ route('edit.manage-user', ['id' => $user->id]) }}" data-alamat_id="{{$user->alamat_id}}">
+                                      <i class=" kt-nav__link-icon flaticon2-settings"></i>
+                                      <span class="kt-nav__link-text">Edit</span>
+                                    </a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
