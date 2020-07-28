@@ -90,7 +90,7 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'Berhasil mengubah data petani');
     }
 
-    public function delete()
+    public function delete($id)
     {
         $data = User::findOrFail($id);
         $data->delete();
