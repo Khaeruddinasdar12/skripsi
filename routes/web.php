@@ -81,6 +81,8 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 
 	Route::put('manage-user/verified/{id}', 'UserController@buttonverified')->name('buttonverified.manage-user'); // rute untuk verified user
 	Route::put('manage-user/edit/{id}', 'UserController@update')->name('edit.manage-user')->middleware('CekAdmin'); // rute untuk edit user, hanya untuk superadmin, jika admin otomatis gagal
+
+	Route::delete('manage-user/delete/{id}', 'UserController@delete')->name('delete.manage-user'); // menghapus petani yang tidak terverifikasi
 	// END RUTE MANAGE USER
 
 	Route::namespace('Auth')->group(function () {

@@ -80,13 +80,21 @@ class UserController extends Controller
         $data->kecamatan    = $request->get('kecamatan');
         $data->nohp         = $request->get('nohp');
         $data->alamat_id    = $request->get('kota_id');
-        $data->tanggal_lahir = $request->get('tanggal_lahir');
+        $data->tanggal_lahir= $request->get('tanggal_lahir');
         $data->rt           = $request->get('rt');
         $data->rw           = $request->get('rw');
         $data->jkel         = $request->get('jkel');
         $data->kelurahan    = $request->get('kelurahan');
         $data->save();
 
-        return redirect()->back()->with('success', 'Berhasil mengubah data');
+        return redirect()->back()->with('success', 'Berhasil mengubah data petani');
+    }
+
+    public function delete()
+    {
+        $data = User::findOrFail($id);
+        $data->delete();
+
+        return redirect()->back()->with('success', 'Berhasil menghapus data petani');
     }
 }
