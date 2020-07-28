@@ -30,7 +30,7 @@ class UserController extends Controller
     {
         $data = User::where('role', 'petani')->where('petani_verified', '1')->paginate(10);
         $jml = User::where('role', 'petani')->where('petani_verified', '1')->count(); // menghitung jumlah petani terverifikasi
-        
+
         $kota = Kota::select('id', 'tipe', 'nama_kota')->where('provinsi_id', 28)->get();
         // return $data; // uncomment ini untuk melihat data user 
 
@@ -80,7 +80,7 @@ class UserController extends Controller
         $data->kecamatan    = $request->get('kecamatan');
         $data->nohp         = $request->get('nohp');
         $data->alamat_id    = $request->get('kota_id');
-        $data->tanggal_lahir= $request->get('tanggal_lahir');
+        $data->tanggal_lahir = $request->get('tanggal_lahir');
         $data->rt           = $request->get('rt');
         $data->rw           = $request->get('rw');
         $data->jkel         = $request->get('jkel');

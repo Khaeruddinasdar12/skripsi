@@ -100,6 +100,11 @@
                           <th>Action</th>
                         </tr>
                       </thead>
+                      @if ($jml == 0)
+                      <tbody style="text-align: center;">
+                        <td colspan="7">Belum ada data</td>
+                      </tbody>
+                      @endif
                       <tbody>
                         @php $no = 1; @endphp
                         @foreach ($data as $gadais)

@@ -105,6 +105,11 @@
                           <th>Action</th>
                         </tr>
                       </thead>
+                      @if ($jml == 0)
+                      <tbody style="text-align: center;">
+                        <td colspan="7">Belum ada data</td>
+                      </tbody>
+                      @endif
                       <tbody>
                         @php $no = 1; @endphp
                         @foreach ($data as $user)
@@ -156,6 +161,12 @@
                                     </a>
                                   </li>
                                   @endif
+                                  <li class="kt-nav__item">
+                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$user->id}}" data-href="{{ route('delete.manage-user', ['id' => $user->id]) }}">
+                                      <i class="kt-nav__link-icon fa fa-trash-alt"></i>
+                                      <span class="kt-nav__link-text">Hapus Data</span>
+                                    </a>
+                                  </li>
                                 </ul>
                               </div>
                             </div>
@@ -473,6 +484,39 @@
         </div>
       </div>
       <!-- end modal verifikasi -->
+
+      <!-- modal hapus -->
+      <div class="modal modal-hapus fade" id="modal-hapus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <span class="modal-icon">
+              <i class="fa fa-trash-alt"></i>
+            </span>
+            <div class="modal-body">
+              <h3>Hapus Data?</h3>
+              <p>Data yang telah di hapus tidak dapat</p>
+              <p>dikembalikan lagi</p>
+
+              <div class="row verif-form">
+                <div class="col-md-6">
+                  <button type="button" class="btn close-modal" data-dismiss="modal" aria-label="Close">Cancel</button>
+                </div>
+
+                <div class="col-md-6">
+                  <form action="" method="POST" id="hapus-data">
+                    @csrf
+                    <input type="hidden" value="delete" name="_method">
+
+                    <input type="submit" value="Hapus data" class="btn btn-verif btn-flat">
+
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end modal hapus -->
     </div>
   </div>
 </div>
@@ -594,6 +638,16 @@
     modal.find('.modal-body #verif-user-form').attr('action', href)
   })
   //End Modal Verifikasi Akun User
+
+  //Modal hapus
+  $('#modal-hapus').on('show.bs.modal', function(event) {
+    var a = $(event.relatedTarget)
+    var href = a.data('href')
+
+    var modal = $(this)
+    modal.find('.modal-body #hapus-data').attr('action', href)
+  })
+  //End Modal hapus
 </script>
 
 @endsection
