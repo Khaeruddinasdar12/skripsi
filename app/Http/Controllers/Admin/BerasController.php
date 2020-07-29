@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Beras;
 use Auth;
+
 class BerasController extends Controller
 {
     public function __construct()
@@ -16,13 +17,9 @@ class BerasController extends Controller
     public function index() //menampilkan hal. data beras
     {
         $data = Beras::with('admins:id,name')->get();
-        return $data; //uncomment ini untuk melihat api data
+        // return $data; //uncomment ini untuk melihat api data
 
-    	return view('', ['data' => $data]); //struktur folder di folder views
-    	/*
-    	syntax
-    	return view('namafolder.namafile');
-    	*/
+        return view('admin.page.beras', ['data' => $data]); //struktur folder di folder views
     }
 
     public function store(Request $request) //menambah data beras
@@ -36,7 +33,7 @@ class BerasController extends Controller
             'gambar'    => 'image|mimes:jpeg,png,jpg|max:3072'
         ]);
 
-        $data = new Sawah;
+        $data = new Beras;
         $data->nama         = $request->get('nama');
         $data->harga        = $request->get('harga');
         $data->min_beli     = $request->get('min_beli');
@@ -45,7 +42,7 @@ class BerasController extends Controller
         $data->admin_by     = Auth::guard('admin')->user()->id;
 
         $gambar = $request->file('gambar');
-        if($gambar) {
+        if ($gambar) {
             $gambar_path = $gambar->store('gambar', 'public');
             $data->gambar = $gambar_path;
         }
@@ -64,7 +61,7 @@ class BerasController extends Controller
             'gambar'    => 'image|mimes:jpeg,png,jpg|max:3072'
         ]);
 
-        $data = Sawah::findOrFail($id);
+        $data = Beras::findOrFail($id);
         $data->nama         = $request->get('nama');
         $data->harga        = $request->get('harga');
         $data->min_beli     = $request->get('min_beli');
@@ -73,9 +70,9 @@ class BerasController extends Controller
         $data->admin_by     = Auth::guard('admin')->user()->id;
 
         $gambar = $request->file('gambar');
-        if($gambar) {
-            if($data->gambar && file_exists(storage_path('app/public/' . $data->gambar))) { 
-                \Storage::delete('public/'. $data->gambar);
+        if ($gambar) {
+            if ($data->gambar && file_exists(storage_path('app/public/' . $data->gambar))) {
+                \Storage::delete('public/' . $data->gambar);
             }
             $gambar_path = $gambar->store('gambar', 'public');
             $data->gambar = $gambar_path;
@@ -94,8 +91,8 @@ class BerasController extends Controller
 
     public function transaksi() //menampilkan hal. data transaksi beras
     {
-    	return view(''); //struktur folder di folder views
-    	/*
+        return view(''); //struktur folder di folder views
+        /*
     	syntax
     	return view('namafolder.namafile');
     	*/
