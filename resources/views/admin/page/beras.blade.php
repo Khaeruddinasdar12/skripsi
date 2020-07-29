@@ -106,7 +106,6 @@
                           <th>Harga</th>
                           <th>Min Beli</th>
                           <th>Stok</th>
-                          <th>Gambar</th>
                           <th>Admin Yang Menangani</th>
                           <th>Action</th>
                         </tr>
@@ -120,7 +119,6 @@
                           <td>{{$beras -> harga}}</td>
                           <td>{{$beras -> min_beli}}</td>
                           <td>{{$beras -> stok}}</td>
-                          <td>tes</td>
                           <td>{{$beras -> admins -> name}}</td>
                           <td>
                             <div class="dropdown dropdown-inline">
@@ -130,7 +128,7 @@
                               <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
                                 <ul class="kt-nav">
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user">
+                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$beras->id}}" data-nama="{{$beras->nama}}" data-harga="{{$beras->harga}}" data-min_beli="{{$beras->min_beli}}" data-stok="{{$beras->stok}}" data-deskripsi="{{$beras->deskripsi}}" data-image="{{asset('storage/'.$beras->gambar)}}" data-admin_name="{{$beras->admins->name}}">
                                       <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
                                       <span class="kt-nav__link-text">Detail</span>
                                     </a>
@@ -165,7 +163,7 @@
 
       <!-- modal tambah admin -->
       <div class="modal modal-add fade" id="modal-tambah-beras" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
           <div class="modal-content">
             <span class="modal-icon">
               <i class="fa fa-user-plus"></i>
@@ -180,77 +178,71 @@
                 @csrf
                 <input type="hidden" value="POST" name="_method">
 
-                <div class="form-group ">
-                  <label>Nama / Jenis Beras</label>
-                  <div class="kt-input-icon kt-input-icon--right">
-                    <input type="text" class="form-control" placeholder="Masukkan nama / jenis beras" name="nama" id="generalSearch">
-                    <span class="kt-input-icon__icon kt-input-icon__icon--right">
-                      <span><i class="la la-search"></i></span>
-                    </span>
-                  </div>
-                </div>
-
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group ">
-                      <label>Harga</label>
-                      <div class="kt-input-icon kt-input-icon--right">
-                        <input type="text" class="form-control" placeholder="Masukkan harga beras" name="harga" id="generalSearch">
-                        <span class="kt-input-icon__icon kt-input-icon__icon--right">
-                          <span><i class="la la-search"></i></span>
-                        </span>
+                      <label>Nama / Jenis Beras</label>
+                      <input type="text" class="form-control" placeholder="Masukkan nama / jenis beras" name="nama" id="generalSearch" required>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group ">
+                          <label>Harga</label>
+                          <input type="text" class="form-control" placeholder="Masukkan harga beras" name="harga" id="generalSearch" required>
+                        </div>
                       </div>
+
+                      <div class="col-md-6">
+                        <div class="form-group ">
+                          <label>Stok</label>
+                          <input type="text" class="form-control" placeholder="Masukkan stok beras" name="stok" id="generalSearch" required>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group ">
+                      <label>Minimal Pembelian</label>
+                      <input type="text" class="form-control" placeholder="Masukkan minimal pembelian" name="min_beli" id="generalSearch" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleTextarea">Deskripsi</label>
+                      <textarea class="form-control" id="exampleTextarea" rows="6" style="resize: none;" name="deskripsi" required></textarea>
                     </div>
                   </div>
 
                   <div class="col-md-6">
-                    <div class="form-group ">
-                      <label>Stok</label>
-                      <div class="kt-input-icon kt-input-icon--right">
-                        <input type="text" class="form-control" placeholder="Masukkan stok beras" name="stok" id="generalSearch">
-                        <span class="kt-input-icon__icon kt-input-icon__icon--right">
-                          <span><i class="la la-search"></i></span>
-                        </span>
+                    <div class="form-group">
+                      <label>Upload Gambar</label>
+                      <div class="col-lg-9 col-xl-6">
+                        <div class="kt-avatar kt-avatar--outline" id="kt_user_add_avatar">
+                          <div class="kt-avatar__holder">
+                            <span class="message-image"> Max ukuran gambar 3MB </span>
+                            <img id="preview" src="" alt="" width="400px">
+                          </div>
+                          <label class="kt-avatar__upload" data-toggle="kt-tooltip" title="" data-original-title="Masukkan gambar">
+                            <i class="fa fa-plus"></i>
+                            <input type="file" name="gambar" onchange="tampilkanPreview(this,'preview')" accept="image/*" required>
+                          </label>
+                          <span class="kt-avatar__cancel" data-toggle="kt-tooltip" title="" data-original-title="Cancel avatar">
+                            <i class="fa fa-times"></i>
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div class="form-group ">
-                  <label>Minimal Pembelian</label>
-                  <div class="kt-input-icon kt-input-icon--right">
-                    <input type="text" class="form-control" placeholder="Masukkan minimal pembelian" name="min_beli" id="generalSearch">
-                    <span class="kt-input-icon__icon kt-input-icon__icon--right">
-                      <span><i class="la la-search"></i></span>
-                    </span>
+                <div class="row verif-form">
+                  <div class="col-md-6">
+                    <button type="button" class="btn close-modal" data-dismiss="modal" aria-label="Close">Cancel</button>
                   </div>
-                </div>
 
-                <div class="form-group">
-                  <label for="exampleTextarea">Example textarea</label>
-                  <textarea class="form-control" id="exampleTextarea" rows="3" style="resize: none;" name="deskripsi"></textarea>
-                </div>
+                  <div class="col-md-6">
 
-                <div class="form-group">
-                  <label>Avatar</label>
-                  <div class="col-lg-9 col-xl-6">
-                    <div class="kt-avatar kt-avatar--outline" id="kt_user_add_avatar">
-                      <div class="kt-avatar__holder">
-                        Max 3MB file size
-                      </div>
-                      <label class="kt-avatar__upload" data-toggle="kt-tooltip" title="" data-original-title="Change avatar">
-                        <i class="fa fa-pen"></i>
-                        <input type="file" name="kt_user_add_user_avatar" name="name">
-                      </label>
-                      <span class="kt-avatar__cancel" data-toggle="kt-tooltip" title="" data-original-title="Cancel avatar">
-                        <i class="fa fa-times"></i>
-                      </span>
-                    </div>
+                    <input type="submit" value="Tambah Data" class="btn btn-verif btn-flat">
                   </div>
-                </div>
-
-                <div class="button-add">
-                  <button type="submit" class="btn btn-add">Tambah data</button>
                 </div>
               </form>
             </div>
@@ -268,93 +260,35 @@
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               </button>
             </div>
-            <div class="modal-body detail-modal">
-              <div class="kt-portlet kt-portlet--height-fluid">
-                <div class="kt-portlet__body">
-
-                  <!--begin::Widget -->
-                  <div class="kt-widget kt-widget--user-profile-2">
-                    <div class="kt-widget__head">
-                      <div class="kt-widget__media">
-                        <img class="kt-hidden" src="assets/media/users/100_1.jpg" alt="image">
-                        <div class="kt-widget__pic kt-widget__pic--info kt-font-info kt-font-boldest  kt-hidden-">
-                          A D
-                        </div>
-                      </div>
-                      <div class="kt-widget__info">
-                        <span class="kt-widget__username" id="name">
-                        </span><br>
-                        <span class="kt-widget__label" id="email"></span><br>
-                        <span class="kt-widget__label" id="nohp"></span>
-                      </div>
-                    </div>
-                    <div class="kt-widget__body widget-detail">
-                      <div class="kt-widget__item">
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Periode Gadai:</span>
-                          <span class="kt-widget__data" id="periode"></span>
-                        </div>
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Harga Gadai :</span>
-                          <span class="kt-widget__data" id="harga"></span>
-                        </div>
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Luas Sawah :</span>
-                          <span class="kt-widget__data" id="luas_sawah"></span>
-                        </div>
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Jenis Bibit :</span>
-                          <span class="kt-widget__data" id="jenis_bibit"></span>
-                        </div>
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Jenis Pupuk :</span>
-                          <span class="kt-widget__data" id="jenis_pupuk"></span>
-                        </div>
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Periode Tanam :</span>
-                          <span class="kt-widget__data" id="periode_tanam"></span>
-                        </div>
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Titik Koordinat Sawah :</span>
-                          <span class="kt-widget__data" id="titik_koordinat"></span>
-                        </div>
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Provinsi :</span>
-                          <span class="kt-widget__data">Sulawesi Selatan</span>
-                        </div>
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Kota :</span>
-                          <span class="kt-widget__data" id="kota"></span>
-                        </div>
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Kecamatan :</span>
-                          <span class="kt-widget__data" id="kecamatan"></span>
-                        </div>
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Kelurahan / Desa :</span>
-                          <span class="kt-widget__data" id="kelurahan"></span>
-                        </div>
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Alamat :</span>
-                          <span class="kt-widget__data" id="alamat"></span>
-                        </div>
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Status :</span>
-                          <span class="kt-widget__data">Sedang Tergadai</span>
-                        </div>
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Admin Yang Menangani :</span>
-                          <span class="kt-widget__data" id="admin"></span>
-                        </div>
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Keterangan :</span>
-                          <span class="kt-widget__data" id="keterangan"></span>
-                        </div>
-                      </div>
+            <div class="modal-body detail-modal" style="padding-top: 10px;">
+              <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+                <div class="kt-portlet__body kt-portlet__body--fit kt-portlet__body--unfill">
+                  <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides">
+                    <img src="" alt="" id="image">
+                    <h3 class="kt-widget19__title kt-font-light" id="nama"></h3>
+                    <div class="kt-widget19__shadow"></div>
+                    <div class="kt-widget19__labels">
+                      <a href="#" class="btn btn-label-light-o2 btn-bold ">Recent</a>
                     </div>
                   </div>
-
-                  <!--end::Widget -->
+                </div>
+                <div class="kt-portlet__body">
+                  <div class="kt-widget19__wrapper">
+                    <div class="kt-widget19__content">
+                      <div class="kt-widget19__info">
+                        <span class="kt-widget19__username" id="harga"></span>
+                        <span class="kt-widget19__time" id="min_beli"></span>
+                      </div>
+                      <div class="kt-widget19__stats">
+                        <span class="kt-widget19__number kt-font-brand" id="stok"></span>
+                        <a href="#" class="kt-widget19__comment">
+                          Stok Tersedia
+                        </a>
+                      </div>
+                    </div>
+                    <div class="kt-widget19__text" id="deskripsi"></div>
+                  </div>
+                  <div class="kt-widget19__action" id="admin_name"></div>
                 </div>
               </div>
             </div>
@@ -580,75 +514,57 @@
   </div>
 </div>
 
-<script>
+<script type="text/javascript">
+  function tampilkanPreview(gambar, idpreview) {
+    //membuat objek gambar
+    var gb = gambar.files;
+    //loop untuk merender gambar
+    for (var i = 0; i < gb.length; i++) {
+      //bikin variabel
+      var gbPreview = gb[i];
+      var imageType = /image.*/;
+      var preview = document.getElementById(idpreview);
+      var reader = new FileReader();
+      if (gbPreview.type.match(imageType)) {
+        //jika tipe data sesuai
+        preview.file = gbPreview;
+        reader.onload = (function(element) {
+          return function(e) {
+            element.src = e.target.result;
+          };
+        })(preview);
+        //membaca data URL gambar
+        reader.readAsDataURL(gbPreview);
+      } else {
+        //jika tipe data tidak sesuai
+        alert("Type file tidak sesuai. Khusus image.");
+      }
+    }
+  }
+
   // modal detail
-  // $('#modal-detail-user').on('show.bs.modal', function(event) {
-  //   var a = $(event.relatedTarget)
-  //   var email = a.data('email')
-  //   var nohp = a.data('nohp')
-  //   var periode = a.data('periode')
-  //   var harga = a.data('harga')
-  //   var keterangan = a.data('keterangan')
-  //   var tanggal_lahir = a.data('tanggal_lahir')
-  //   var titik_koordinat = a.data('titik_koordinat')
-  //   var kecamatan = a.data('kecamatan')
-  //   var kelurahan = a.data('kelurahan')
-  //   var alamat = a.data('alamat')
-  //   var luas_sawah = a.data('luas_sawah')
-  //   var jenis_bibit = a.data('jenis_bibit')
-  //   var jenis_pupuk = a.data('jenis_pupuk')
-  //   var periode_tanam = a.data('periode_tanam')
-  //   var kota = a.data('kota')
-  //   var name = a.data('name')
-  //   var admin = a.data('admin')
+  $('#modal-detail-user').on('show.bs.modal', function(event) {
+    var a = $(event.relatedTarget)
+    var nama = a.data('nama')
+    var harga = a.data('harga')
+    var min_beli = a.data('min_beli')
+    var stok = a.data('stok')
+    var deskripsi = a.data('deskripsi')
+    var image = a.data('image')
+    var admin_name = a.data('admin_name')
 
-  //   var modal = $(this)
-  //   modal.find('.modal-title').text('Detail ' + name)
-  //   modal.find('.modal-body #email').text(email)
-  //   modal.find('.modal-body #nohp').text(nohp)
-  //   modal.find('.modal-body #name').text(name)
-  //   modal.find('.modal-body #periode').text(periode)
-  //   modal.find('.modal-body #harga').text(harga)
-  //   modal.find('.modal-body #luas_sawah').text(luas_sawah)
-  //   modal.find('.modal-body #jenis_bibit').text(jenis_bibit)
-  //   modal.find('.modal-body #jenis_pupuk').text(jenis_pupuk)
-  //   modal.find('.modal-body #periode_tanam').text(periode_tanam)
-  //   modal.find('.modal-body #titik_koordinat').text(titik_koordinat)
-  //   modal.find('.modal-body #kota').text(kota)
-  //   modal.find('.modal-body #kecamatan').text(kecamatan)
-  //   modal.find('.modal-body #kelurahan').text(kelurahan)
-  //   modal.find('.modal-body #alamat').text(alamat)
-  //   modal.find('.modal-body #admin').text(admin)
-  //   modal.find('.modal-body #keterangan').text(keterangan)
-  // })
+    var modal = $(this)
+    modal.find('.modal-title').text('Detail Beras ' + nama)
+    modal.find('.modal-body #nama').text('Beras ' + nama)
+    modal.find('.modal-body #harga').text('Harga Rp. ' + harga)
+    modal.find('.modal-body #min_beli').text('Minimal Pembelian ' + min_beli)
+    modal.find('.modal-body #stok').text(stok)
+    modal.find('.modal-body #deskripsi').text(deskripsi)
+    modal.find('.modal-body #admin_name').text('Admin yang menangani : ' + admin_name)
+    modal.find('.modal-body #image').attr('src', image)
+
+  })
   // modal detail
-
-  // modal edit
-  // $('#modal-edit-ket').on('show.bs.modal', function(event) {
-  //   var a = $(event.relatedTarget)
-  //   var href = a.data('href')
-  //   var name = a.data('name')
-  //   var keterangan = a.data('keterangan')
-
-  //   var modal = $(this)
-  //   modal.find('.modal-title').text('Edit Keterangan ' + name)
-  //   modal.find('.modal-body #keterangans').val(keterangan)
-  //   modal.find('.modal-body #edit-ket').attr('action', href)
-
-  // })
-  // modal edit
-
-  //Modal Verifikasi gadai
-  // $('#modal-selesai-gadai').on('show.bs.modal', function(event) {
-  //   var a = $(event.relatedTarget)
-  //   var keterangan = a.data('keterangan')
-  //   var href = a.data('href')
-
-  //   var modal = $(this)
-  //   modal.find('.modal-body #keteranganss').val(keterangan)
-  //   modal.find('.modal-body #selesai-gadai').attr('action', href)
-  // })
-  //End Modal Verifikasi gadai
 </script>
 
 @endsection
