@@ -16,14 +16,10 @@ class BerasController extends Controller
 
     public function index() //menampilkan hal. data beras
     {
-        $data = Beras::with('users:id,name')->get();
-        return $data; //uncomment ini untuk melihat api data
+        $data = Beras::with('admins:id,name')->get();
+        // return $data; //uncomment ini untuk melihat api data
 
-        return view('', ['data' => $data]); //struktur folder di folder views
-        /*
-    	syntax
-    	return view('namafolder.namafile');
-    	*/
+        return view('admin.page.beras', ['data' => $data]); //struktur folder di folder views
     }
 
     public function store(Request $request) //menambah data beras
@@ -37,7 +33,7 @@ class BerasController extends Controller
             'gambar'    => 'image|mimes:jpeg,png,jpg|max:3072'
         ]);
 
-        $data = new Sawah;
+        $data = new Beras;
         $data->nama         = $request->get('nama');
         $data->harga        = $request->get('harga');
         $data->min_beli     = $request->get('min_beli');
@@ -65,7 +61,7 @@ class BerasController extends Controller
             'gambar'    => 'image|mimes:jpeg,png,jpg|max:3072'
         ]);
 
-        $data = Sawah::findOrFail($id);
+        $data = Beras::findOrFail($id);
         $data->nama         = $request->get('nama');
         $data->harga        = $request->get('harga');
         $data->min_beli     = $request->get('min_beli');
