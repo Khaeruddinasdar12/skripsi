@@ -134,7 +134,7 @@
                                     </a>
                                   </li>
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-data" data-id="{{$beras->id}}" data-nama="{{$beras->nama}}" data-harga="{{format_uang($beras -> harga)}}" data-min_beli="{{$beras->min_beli}}" data-stok="{{$beras->stok}}" data-deskripsi="{{$beras->deskripsi}}" data-image="{{asset('storage/'.$beras->gambar)}}" data-admin_name="{{$beras->admins->name}}" data-href="{{ route('update.beras', ['id' => $beras->id]) }}">
+                                    <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-data" data-id="{{$beras->id}}" data-nama="{{$beras->nama}}" data-harga="{{$beras->harga}}" data-min_beli="{{$beras->min_beli}}" data-stok="{{$beras->stok}}" data-deskripsi="{{$beras->deskripsi}}" data-image="{{asset('storage/'.$beras->gambar)}}" data-admin_name="{{$beras->admins->name}}" data-href="{{ route('update.beras', ['id' => $beras->id]) }}">
                                       <i class=" kt-nav__link-icon flaticon2-settings"></i>
                                       <span class="kt-nav__link-text">Edit Data</span>
                                     </a>
@@ -318,28 +318,28 @@
                   <div class="col-md-6">
                     <div class="form-group ">
                       <label>Nama / Jenis Beras</label>
-                      <input type="text" class="form-control" placeholder="Masukkan nama / jenis beras" name="nama" id="namas" required>
+                      <input type="text" class="form-control" name="nama" id="namas" required>
                     </div>
 
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group ">
                           <label>Harga</label>
-                          <input type="text" class="form-control" placeholder="Masukkan harga beras" name="harga" id="hargas" required>
+                          <input type="text" class="form-control" name="harga" id="hargas" required>
                         </div>
                       </div>
 
                       <div class="col-md-6">
                         <div class="form-group ">
                           <label>Stok</label>
-                          <input type="text" class="form-control" placeholder="Masukkan stok beras" name="stok" id="stoks" required>
+                          <input type="text" class="form-control" name="stok" id="stoks" required>
                         </div>
                       </div>
                     </div>
 
                     <div class="form-group ">
                       <label>Minimal Pembelian</label>
-                      <input type="text" class="form-control" placeholder="Masukkan minimal pembelian" name="min_beli" id="min_belis" required>
+                      <input type="text" class="form-control" name="min_beli" id="min_belis" required>
                     </div>
 
                     <div class="form-group">
@@ -359,7 +359,7 @@
                           </div>
                           <label class="kt-avatar__upload" data-toggle="kt-tooltip" title="" data-original-title="Masukkan gambar">
                             <i class="fa fa-plus"></i>
-                            <input type="file" name="gambar" onchange="tampilkanPreview(this,'edit-preview')" accept="image/*" required>
+                            <input type="file" name="gambar" onchange="tampilkanPreview(this,'edit-preview')" accept="image/*">
                           </label>
                           <span class="kt-avatar__cancel" data-toggle="kt-tooltip" title="" data-original-title="Cancel avatar">
                             <i class="fa fa-times"></i>
@@ -376,7 +376,6 @@
                   </div>
 
                   <div class="col-md-6">
-
                     <input type="submit" value="Simpan perubahan" class="btn btn-verif btn-flat">
                   </div>
                 </div>
