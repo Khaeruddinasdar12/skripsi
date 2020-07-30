@@ -116,7 +116,7 @@
                         <tr>
                           <th scope="row">{{$no++}}</th>
                           <td>{{$beras -> nama}}</td>
-                          <td>{{$beras -> harga}}</td>
+                          <td>Rp.{{format_uang($beras -> harga)}}</td>
                           <td>{{$beras -> min_beli}}</td>
                           <td>{{$beras -> stok}}</td>
                           <td>{{$beras -> admins -> name}}</td>
@@ -128,13 +128,13 @@
                               <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
                                 <ul class="kt-nav">
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$beras->id}}" data-nama="{{$beras->nama}}" data-harga="{{$beras->harga}}" data-min_beli="{{$beras->min_beli}}" data-stok="{{$beras->stok}}" data-deskripsi="{{$beras->deskripsi}}" data-image="{{asset('storage/'.$beras->gambar)}}" data-admin_name="{{$beras->admins->name}}">
+                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$beras->id}}" data-nama="{{$beras->nama}}" data-harga="{{format_uang($beras -> harga)}}" data-min_beli="{{$beras->min_beli}}" data-stok="{{$beras->stok}}" data-deskripsi="{{$beras->deskripsi}}" data-image="{{asset('storage/'.$beras->gambar)}}" data-admin_name="{{$beras->admins->name}}">
                                       <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
                                       <span class="kt-nav__link-text">Detail</span>
                                     </a>
                                   </li>
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-data">
+                                    <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-data" data-id="{{$beras->id}}" data-nama="{{$beras->nama}}" data-harga="{{format_uang($beras -> harga)}}" data-min_beli="{{$beras->min_beli}}" data-stok="{{$beras->stok}}" data-deskripsi="{{$beras->deskripsi}}" data-image="{{asset('storage/'.$beras->gambar)}}" data-admin_name="{{$beras->admins->name}}" data-href="{{ route('update.beras', ['id' => $beras->id]) }}">
                                       <i class=" kt-nav__link-icon flaticon2-settings"></i>
                                       <span class="kt-nav__link-text">Edit Data</span>
                                     </a>
@@ -275,7 +275,7 @@
                 <div class="kt-portlet__body">
                   <div class="kt-widget19__wrapper">
                     <div class="kt-widget19__content">
-                      <div class="kt-widget19__info">
+                      <div class="kt-widget19__info" style="padding-left: 0;">
                         <span class="kt-widget19__username" id="harga"></span>
                         <span class="kt-widget19__time" id="min_beli"></span>
                       </div>
@@ -297,180 +297,95 @@
       </div>
       <!-- modal detail user -->
 
-      <!-- modal edit admin -->
-      <div class="modal modal-edit fade" id="modal-edit-data" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+      <!-- modal edit data -->
+      <div class="modal modal-add fade" id="modal-edit-data" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
           <div class="modal-content">
             <span class="modal-icon">
-              <i class="fa fa-user-cog"></i>
+              <i class="fa fa-user-plus"></i>
             </span>
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel"></h5>
+              <h5 class="modal-title" id="exampleModalLabel">Tambah Data Beras</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               </button>
             </div>
             <div class="modal-body">
-              <div class="container">
-                <form id="edit-user-form" action="" method="POST">
-                  @csrf
-                  <input type="hidden" value="PUT" name="_method">
+              <form action="" method="POST" id="edit-beras" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" value="PUT" name="_method">
 
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Nama Lengkap :</label>
-                        <div class="kt-input-icon">
-                          <input type="text" id="names" class="form-control" aria-describedby="nama" name="name" required>
-                          <span class="kt-input-icon__icon kt-input-icon__icon--right"><span><i class="fa fa-user"></i></span></span>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group ">
+                      <label>Nama / Jenis Beras</label>
+                      <input type="text" class="form-control" placeholder="Masukkan nama / jenis beras" name="nama" id="namas" required>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group ">
+                          <label>Harga</label>
+                          <input type="text" class="form-control" placeholder="Masukkan harga beras" name="harga" id="hargas" required>
+                        </div>
+                      </div>
+
+                      <div class="col-md-6">
+                        <div class="form-group ">
+                          <label>Stok</label>
+                          <input type="text" class="form-control" placeholder="Masukkan stok beras" name="stok" id="stoks" required>
                         </div>
                       </div>
                     </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Email :</label>
-                        <div class="kt-input-icon">
-                          <input type="email" id="emails" class="form-control" placeholder="Email" aria-describedby="email" disabled="" name="email" required>
-                          <span class="kt-input-icon__icon kt-input-icon__icon--right"><span><i class="fa fa-envelope"></i></span></span>
-                        </div>
-                      </div>
+
+                    <div class="form-group ">
+                      <label>Minimal Pembelian</label>
+                      <input type="text" class="form-control" placeholder="Masukkan minimal pembelian" name="min_beli" id="min_belis" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleTextarea">Deskripsi</label>
+                      <textarea class="form-control" id="deskripsis" rows="6" style="resize: none;" name="deskripsi" required></textarea>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Tempat lahir :</label>
-                        <div class="kt-input-icon">
-                          <input type="text" id="tempat_lahirs" class="form-control" placeholder="Tempat" aria-describedby="email" name="tempat_lahir" required>
-                          <span class="kt-input-icon__icon kt-input-icon__icon--right"><span><i class="fa fa-map-pin"></i></span></span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Tanggal lahir :</label>
-                        <div class="kt-input-icon">
-                          <input class="form-control" type="date" id="tanggal_lahirs" name="tanggal_lahir" required>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label>Alamat Lengkap :</label>
-                    <div class="kt-input-icon">
-                      <input type="text" id="alamats" class="form-control" name="alamat_lengkap" required>
-                      <span class="kt-input-icon__icon kt-input-icon__icon--right"><span><i class="fa fa-map-marked-alt"></i></span></span>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label>Provinsi :</label>
-                    <div class="kt-input-icon">
-                      <input type="text" id="provinsis" class="form-control" value="Sulawesi Selatan" aria-describedby="email" required readonly>
-                      <span class="kt-input-icon__icon kt-input-icon__icon--right"><span><i class="fa fa-map-marked-alt"></i></span></span>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Kota :</label>
-                        <select class="form-control" id="kotas" name="kota_id">
-                          <option value="">
-                            tes
-                          </option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Kecamatan :</label>
-                        <div class="kt-input-icon">
-                          <input type="text" id="kecamatans" name="kecamatan" class="form-control" placeholder="Kecamatan" aria-describedby="email" required>
-                          <span class="kt-input-icon__icon kt-input-icon__icon--right"><span><i class="fa fa-map"></i></span></span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Kelurahan / Desa :</label>
-                        <div class="kt-input-icon">
-                          <input type="text" id="kelurahans" class="form-control" placeholder="Kelurahan / Desa" aria-describedby="email" name="kelurahan" required>
-                          <span class="kt-input-icon__icon kt-input-icon__icon--right"><span><i class="fa fa-map-marker-alt "></i></span></span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>No. telephone :</label>
-                        <div class="kt-input-icon">
-                          <input type="tel" id="nohps" class="form-control" placeholder="No. Telephone" aria-describedby="email" name="nohp" required>
-                          <span class="kt-input-icon__icon kt-input-icon__icon--right"><span><i class="fa fa-phone"></i></span></span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Rukun Tetangga (RT) :</label>
-                        <div class="kt-input-icon">
-                          <input type="text" id="rts" class="form-control" aria-describedby="email" name="rt" required>
-                          <span class="kt-input-icon__icon kt-input-icon__icon--right"><span><i class="fa fa-map-marker"></i></span></span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Rukun Warga (RW) :</label>
-                        <div class="kt-input-icon">
-                          <input type="text" id="rws" class="form-control" aria-describedby="email" name="rw" required>
-                          <span class="kt-input-icon__icon kt-input-icon__icon--right"><span><i class="fa fa-map-marker"></i></span></span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-gr">
-                        <label>Jenis Kelamin :</label>
-                        <div class="kt-radio-inline">
-                          <label class="kt-radio">
-                            <input type="radio" id="L" name="jkel" value="L" required> Laki - laki
-                            <span></span>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Upload Gambar</label>
+                      <div class="col-lg-9 col-xl-6">
+                        <div class="kt-avatar kt-avatar--outline" id="kt_user_add_avatar">
+                          <div class="kt-avatar__holder">
+                            <span class="message-image"> Max ukuran gambar 3MB </span>
+                            <img id="edit-preview" src="" alt="" width="400px">
+                          </div>
+                          <label class="kt-avatar__upload" data-toggle="kt-tooltip" title="" data-original-title="Masukkan gambar">
+                            <i class="fa fa-plus"></i>
+                            <input type="file" name="gambar" onchange="tampilkanPreview(this,'edit-preview')" accept="image/*" required>
                           </label>
-                          <label class="kt-radio">
-                            <input type="radio" id="P" name="jkel" value="P" required> Perempuan
-                            <span></span>
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-gr">
-                        <label>Jenis User :</label>
-                        <div class="kt-radio-inline">
-                          <label class="kt-radio">
-                            <input type="radio" id="konsumen" name="role" value="admin" required> Konsumen
-                            <span></span>
-                          </label>
-                          <label class="kt-radio">
-                            <input type="radio" id="petani" name="role" value="super admin" required> Petani
-                            <span></span>
-                          </label>
+                          <span class="kt-avatar__cancel" data-toggle="kt-tooltip" title="" data-original-title="Cancel avatar">
+                            <i class="fa fa-times"></i>
+                          </span>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div class="button-edit">
-                    <button type="submit" class="btn btn-edit">Simpan perubahan</button>
+                </div>
+
+                <div class="row verif-form">
+                  <div class="col-md-6">
+                    <button type="button" class="btn close-modal" data-dismiss="modal" aria-label="Close">Cancel</button>
                   </div>
-                </form>
-              </div>
+
+                  <div class="col-md-6">
+
+                    <input type="submit" value="Simpan perubahan" class="btn btn-verif btn-flat">
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
-      <!-- end modal edit admin -->
+      <!-- end modal edit data -->
 
       <!-- modal verifikasi -->
       <div class="modal modal-verif fade" id="modal-selesai-gadai" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
@@ -565,6 +480,31 @@
 
   })
   // modal detail
+
+  // modal edit
+  $('#modal-edit-data').on('show.bs.modal', function(event) {
+    var a = $(event.relatedTarget)
+    var nama = a.data('nama')
+    var harga = a.data('harga')
+    var min_beli = a.data('min_beli')
+    var stok = a.data('stok')
+    var deskripsi = a.data('deskripsi')
+    var image = a.data('image')
+    var admin_name = a.data('admin_name')
+    var href = a.data('href')
+
+    var modal = $(this)
+    modal.find('.modal-title').text('Detail Beras ' + nama)
+    modal.find('.modal-body #namas').val(nama)
+    modal.find('.modal-body #hargas').val(harga)
+    modal.find('.modal-body #min_belis').val(min_beli)
+    modal.find('.modal-body #stoks').val(stok)
+    modal.find('.modal-body #deskripsis').val(deskripsi)
+    modal.find('.modal-body #admin_names').val(admin_name)
+    modal.find('.modal-body #edit-preview').attr('src', image)
+    modal.find('.modal-body #edit-beras').attr('action', href)
+  })
+  // modal edit
 </script>
 
 @endsection
