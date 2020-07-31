@@ -68,7 +68,7 @@
                 Jumlah Data Beras Yang Tersedia
               </h5>
               <h4 class="mt-3 kt-font-success" style="font-weight: 800;">
-                1 Data
+                {{$jml}} Data
               </h4>
 
             </div>
@@ -110,11 +110,11 @@
                           <th>Action</th>
                         </tr>
                       </thead>
-                      <!-- @if ($jml == 0)
+                      @if ($jml == 0)
                       <tbody style="text-align: center;">
                         <td colspan="7">Belum ada data</td>
                       </tbody>
-                      @endif -->
+                      @else
                       <tbody>
                         @php $no = 1; @endphp
                         @foreach ($data as $beras)
@@ -157,6 +157,7 @@
                         </tr>
                         @endforeach
                       </tbody>
+                      @endif
                     </table>
                   </div>
                 </div>

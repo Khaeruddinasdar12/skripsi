@@ -17,9 +17,10 @@ class BerasController extends Controller
     public function index() //menampilkan hal. data beras
     {
         $data = Beras::with('admins:id,name')->get();
+        $jml = Beras::count();
         // return $data; //uncomment ini untuk melihat api data
 
-        return view('admin.page.beras', ['data' => $data]); //struktur folder di folder views
+        return view('admin.page.beras', ['data' => $data, 'jml' => $jml]); //struktur folder di folder views
     }
 
     public function store(Request $request) //menambah data beras
