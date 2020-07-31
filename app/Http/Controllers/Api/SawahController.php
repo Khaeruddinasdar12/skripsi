@@ -4,30 +4,19 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use JWTAuth;
 use App\Sawah;
 use App\GadaiSawah;
-Use DB;
-use App\Transformers\UserTransformer;
-use Dingo\Api\Routing\Helpers;
+use Auth;
 use Illuminate\Support\Facades\Validator;
-use Tymon\JWTAuth\Exceptions\JWTException;
 class SawahController extends Controller
 {
-    // use Helpers;
     public function index() // daftar sawah petani berdasarkan id yang login
     { 
-        // return $this->response->collection(Sawah::all(), new UserTransformer);
-        try {
-         if (! $user = JWTAuth::parseToken()->authenticate()) {
-	            return response()->json(['user_not_found'], 404);
-	        }
-        } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
-                return response()->json(['token_expired'], $e->getStatusCode());
-        } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
-                return response()->json(['token_invalid'], $e->getStatusCode());
-        } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
-                return response()->json(['token_absent'], $e->getStatusCode());
+        if(!$user = Auth::user()) {
+                return response()->json([
+                    'status'    => false,
+                    'message'   => 'Invalid Token'
+                ]);
         }
 
         if($user->petani_verified == '0') {
@@ -36,26 +25,22 @@ class SawahController extends Controller
                 'message' => 'Akun petani belum diverifikasi'
             ]);
         }
+
         $data = \App\User::find($user->id)->sawahs()->get();
         return response()->json([
-                'status' => true, 
-                'message' => 'Daftar sawah yang dimiliki User yang sedang login',
-                'data' => $data
+                'status'    => true, 
+                'message'   => 'Daftar sawah yang dimiliki User yang sedang login',
+                'data'      => $data
             ]);
     }
 
     public function store(Request $request) // mendaftarkan sawah si petani
     { 
-        try {
-         if (! $user = JWTAuth::parseToken()->authenticate()) {
-	            return response()->json(['user_not_found'], 404);
-	        }
-        } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
-                return response()->json(['token_expired'], $e->getStatusCode());
-        } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
-                return response()->json(['token_invalid'], $e->getStatusCode());
-        } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
-                return response()->json(['token_absent'], $e->getStatusCode());
+        if(!$user = Auth::user()) {
+                return response()->json([
+                    'status'    => false,
+                    'message'   => 'Invalid Token'
+                ]);
         }
 
         if($user->petani_verified == '0') {
@@ -106,16 +91,11 @@ class SawahController extends Controller
 
     public function update(Request $request,$id) // mengedit sawah petani
     {
-        try {
-         if (! $user = JWTAuth::parseToken()->authenticate()) {
-                return response()->json(['user_not_found'], 404);
-            }
-        } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
-                return response()->json(['token_expired'], $e->getStatusCode());
-        } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
-                return response()->json(['token_invalid'], $e->getStatusCode());
-        } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
-                return response()->json(['token_absent'], $e->getStatusCode());
+        if(!$user = Auth::user()) {
+                return response()->json([
+                    'status'    => false,
+                    'message'   => 'Invalid Token'
+                ]);
         }
 
         if($user->petani_verified == '0') {
@@ -181,19 +161,14 @@ class SawahController extends Controller
 
     public function delete($id) //menghapus sawah petani
     {
-        try {
-         if (! $user = JWTAuth::parseToken()->authenticate()) {
-                return response()->json(['user_not_found'], 404);
-            }
-        } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
-                return response()->json(['token_expired'], $e->getStatusCode());
-        } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
-                return response()->json(['token_invalid'], $e->getStatusCode());
-        } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
-                return response()->json(['token_absent'], $e->getStatusCode());
+        if(!$user = Auth::user()) {
+                return response()->json([
+                    'status'    => false,
+                    'message'   => 'Invalid Token'
+                ]);
         }
 
-        $cek_gadai = GadaiSawah::where('sawah_id', $user->id)->get();
+        $cek_gadai = GadaiSawah::where('sawah_id', $id)->get();
         if($cek_gadai != null) {
             foreach ($$cek_gadai as $hps) {
                 if($hps->status == 'gadai') {

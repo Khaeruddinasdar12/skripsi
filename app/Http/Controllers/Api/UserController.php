@@ -16,22 +16,23 @@ class UserController extends Controller
             
                 if(!Auth::attempt($credentials)) {
                     return response()->json([
-                        'status' => false,
-                        'message' => 'Kesalahan email atau password',
+                        'status'    => false,
+                        'message'   => 'Kesalahan email atau password',
                     ]);
-               
                 }    
-                 if (Auth::check()) {
+
+                if (Auth::check()) {
                        Auth::user()->OauthAcessToken()->delete();                
-                    }
+                }
+                
                 $user = Auth::user();
 
                 $token = $user->createToken('nApp')->accessToken;
                 return response()->json([
-                    'status' => true,
-                    'message' => 'Berhasil login',
-                    'data' => $user,
-                    'token' => $token
+                    'status'    => true,
+                    'message'   => 'Berhasil login',
+                    'data'      => $user,
+                    'token'     => $token
                 ]);
             
         }
@@ -59,34 +60,36 @@ class UserController extends Controller
             if($validator->fails()) {
                 $message = $validator->messages()->first();
                 return response()->json([
-                    'status' => false,
-                    'messsage' => $message
+                    'status'    => false,
+                    'message'  => $message
                 ]);
             }
 
             $user = User::create([
-                'name' => $request->get('name'),
-                'email' => $request->get('email'),
-                'password' => Hash::make($request->get('password')),
+                'name'      => $request->get('name'),
+                'email'     => $request->get('email'),
+                'password'  => Hash::make($request->get('password')),
                 'tempat_lahir' => $request->get('tempat_lahir'),
-                'alamat' => $request->get('alamat_lengkap'),
-                'kecamatan' => $request->get('kecamatan'),
-                'nohp' => $request->get('nohp'),
-                'role' => $request->get('role'), //konsumen atau petani
-                'alamat_id' => $request->get('kota_id'),
                 'tanggal_lahir' => $request->get('tanggal_lahir'),
+                'alamat_id' => $request->get('kota_id'),
+                'alamat'    => $request->get('alamat_lengkap'),
+                'kecamatan' => $request->get('kecamatan'),
+                'kelurahan' => $request->get('kelurahan'),
+                'nohp'      => $request->get('nohp'),
+                'petani_verified' => '0',
+                'jkel'      => $request->get('jkel'),
                 'rt' => $request->get('rt'),
                 'rw' => $request->get('rw'),
-                'kelurahan' => $request->get('kelurahan'),
-                'jkel' => $request->get('jkel'),
+                'role'      => $request->get('role'), //konsumen atau petani
+                'verified_by' => null,        
             ]);
 
             $token = $user->createToken('nApp')->accessToken;
             return response()->json([
-                    'status' => true,
-                    'message' => 'Berhasil daftar',
-                    'data' => $user,
-                    'token' => $token
+                    'status'    => true,
+                    'message'   => 'Berhasil daftar',
+                    'data'      => $user,
+                    'token'     => $token
                 ]);
         }
 
@@ -94,8 +97,8 @@ class UserController extends Controller
         {
             if(!$user = Auth::user()){
                 return response()->json([
-                    'status' => false,
-                    'message' => 'Invalid Token'
+                    'status'    => false,
+                    'message'   => 'Invalid Token'
                 ]);
             }
 
@@ -116,8 +119,8 @@ class UserController extends Controller
             if($validator->fails()) {
                 $message = $validator->messages()->first();
                 return response()->json([
-                    'status' => false,
-                    'messsage' => $message
+                    'status'    => false,
+                    'messsage'  => $message
                 ]);
             }
                 // if($validator->fails()) {
@@ -136,8 +139,8 @@ class UserController extends Controller
                 $data = User::find($user->id);
                 if ($data == null) {
                     return response()->json([
-                        'status' => false, 
-                        'message' => 'Id user tidak ditemukan'
+                        'status'    => false, 
+                        'message'   => 'Id user tidak ditemukan'
                     ]);
                 }
                 $data->name         = $request->get('name');
@@ -153,8 +156,8 @@ class UserController extends Controller
                 $data->kelurahan    = $request->get('kelurahan');
             $data->save();
             return response()->json([
-                    'status' => true,
-                    'message' => 'Berhasil mengubah data'
+                    'status'    => true,
+                    'message'   => 'Berhasil mengubah data'
             ]);
         }
 
@@ -162,14 +165,14 @@ class UserController extends Controller
         {
             if(!$user = Auth::user()){
                 return response()->json([
-                    'status' => false,
-                    'message' => 'Invalid Token'
+                    'status'    => false,
+                    'message'   => 'Invalid Token'
                 ]);
             }
             return response()->json([
-                'status' => true,
-                'message' => 'Data user yang sedang login',
-                'data' => $user
+                'status'    => true,
+                'message'   => 'Data user yang sedang login',
+                'data'      => $user
             ]);
         }
 }
