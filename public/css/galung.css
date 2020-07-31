@@ -263,6 +263,25 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
   color: #fff;
   background-color: #3498db;
 }
+.modal-edit .modal-content .verif-form {
+  margin-top: 30px;
+}
+.modal-edit .modal-content .verif-form .close-modal {
+  width: 100% !important;
+  border: 1px solid #c2c2c2;
+}
+.modal-edit .modal-content .verif-form .close-modal:hover {
+  background-color: #ebf1f1;
+}
+.modal-edit .modal-content .verif-form .btn-verif {
+  background-color: #3498db;
+  color: #fff;
+  width: 100% !important;
+}
+.modal-edit .modal-content .verif-form .btn-verif:hover {
+  background-color: #2883c0;
+  color: #fff !important;
+}
 
 .modal-verif .modal-content {
   border-top: 7px solid #00A859 !important;
@@ -294,26 +313,6 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
   margin-top: 30px;
   border-top: 1px solid rgba(34, 34, 34, 0.109);
   border-bottom: 1px solid rgba(34, 34, 34, 0.109);
-}
-
-.verif-form {
-  margin-top: 30px;
-}
-.verif-form .close-modal {
-  width: 100% !important;
-  border: 1px solid #c2c2c2;
-}
-.verif-form .close-modal:hover {
-  background-color: #ebf1f1;
-}
-.verif-form .btn-verif {
-  background-color: #00A859;
-  color: #fff;
-  width: 100% !important;
-}
-.verif-form .btn-verif:hover {
-  background-color: #018346;
-  color: #fff !important;
 }
 
 .modal-hapus .modal-content {
