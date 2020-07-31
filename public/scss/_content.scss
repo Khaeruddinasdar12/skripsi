@@ -142,6 +142,30 @@ table {
                 background-color: $biru;
             }
         }
+
+        .verif-form {
+            margin-top: 30px;
+
+            .close-modal {
+                width: 100% !important;
+                border: 1px solid rgb(194, 194, 194);
+
+                &:hover {
+                    background-color: rgb(235, 241, 241);
+                }
+            }
+
+            .btn-verif {
+                background-color: $biru;
+                color: #fff;
+                width: 100% !important;
+
+                &:hover {
+                    background-color: $biruhover;
+                    color: #fff !important;
+                }
+            }
+        }
     }
 }
 
@@ -180,30 +204,6 @@ table {
                 border-top: 1px solid rgba(34, 34, 34, 0.109);
                 border-bottom: 1px solid rgba(34, 34, 34, 0.109);
             }
-        }
-    }
-}
-
-.verif-form {
-    margin-top: 30px;
-
-    .close-modal {
-        width: 100% !important;
-        border: 1px solid rgb(194, 194, 194);
-
-        &:hover {
-            background-color: rgb(235, 241, 241);
-        }
-    }
-
-    .btn-verif {
-        background-color: $galungcolor;
-        color: #fff;
-        width: 100% !important;
-
-        &:hover {
-            background-color: $galungcolorhover;
-            color: #fff !important;
         }
     }
 }

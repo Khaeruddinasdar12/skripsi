@@ -146,7 +146,7 @@
                                   </li>
                                   <li class="kt-nav__item">
                                     <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$beras->id}}" data-href="{{ route('delete.beras', ['id' => $beras->id]) }}">
-                                      <i class="kt-nav__link-icon flaticon2-check-mark"></i>
+                                      <i class="kt-nav__link-icon fa fa-trash-alt"></i>
                                       <span class="kt-nav__link-text">Hapus data</span>
                                     </a>
                                   </li>
@@ -195,7 +195,7 @@
                       <div class="col-md-6">
                         <div class="form-group ">
                           <label>Harga</label>
-                          <input type="text" class="form-control" placeholder="Masukkan harga beras" name="harga" id="generalSearch" required>
+                          <input type="text" class="form-control" placeholder="Masukkan harga beras" name="harga" id="rupiah" required>
                         </div>
                       </div>
 
@@ -304,7 +304,7 @@
       <!-- modal detail user -->
 
       <!-- modal edit data -->
-      <div class="modal modal-add fade" id="modal-edit-data" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal modal-edit fade" id="modal-edit-data" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
           <div class="modal-content">
             <span class="modal-icon">

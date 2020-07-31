@@ -39,7 +39,7 @@
             </a>
           </li>
 
-          <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
+          <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
             <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
               <span class="kt-menu__link-text top-text-nav">Gabah</span>
               <i class="fa fa-angle-down"></i>
@@ -66,7 +66,7 @@
             </a>
           </li>
 
-          <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel {{ request()->is('admin/gadai-sawah-daftar-gadai') || request()->is('admin/gadai-sawah-sedang-gadai') || request()->is('admin/gadai-sawah-riwayat-gadai') ? 'kt-menu__item--open kt-menu__item--here' : '' }}" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
+          <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel {{ request()->is('admin/gadai-sawah-daftar-gadai') || request()->is('admin/gadai-sawah-sedang-gadai') || request()->is('admin/gadai-sawah-riwayat-gadai') ? 'kt-menu__item--open kt-menu__item--here' : '' }}" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
             <a href="javascript:;" class="kt-menu__link kt-menu__toggle" id="gadaisawah">
               <span class="kt-menu__link-text {{ request()->is('admin/gadai-sawah-daftar-gadai') || request()->is('admin/gadai-sawah-sedang-gadai') || request()->is('admin/gadai-sawah-riwayat-gadai') ? '' : 'top-text-nav' }}">Gadai Sawah</span>
               <i class="fa fa-angle-down {{ request()->is('admin/gadai-sawah-daftar-gadai') || request()->is('admin/gadai-sawah-sedang-gadai') || request()->is('admin/gadai-sawah-riwayat-gadai') ? 'icon-here' : '' }} "></i>
@@ -92,7 +92,7 @@
             </div>
           </li>
 
-          <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel " data-ktmenu-submenu-toggle="click" aria-haspopup="true">
+          <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel " data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
             <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
               <span class="kt-menu__link-text top-text-nav">Penjualan</span>
               <i class="fa fa-angle-down"></i>
@@ -123,6 +123,14 @@
                           <span class="kt-menu__link-text">Transaksi Alat</span>
                         </a>
                       </li>
+                      <li class="kt-menu__item " aria-haspopup="true">
+                        <a href="#" class="kt-menu__link ">
+                          <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+                            <span></span>
+                          </i>
+                          <span class="kt-menu__link-text">Riwayat Transaksi</span>
+                        </a>
+                      </li>
                     </ul>
                   </div>
                 </li>
@@ -148,6 +156,14 @@
                             <span></span>
                           </i>
                           <span class="kt-menu__link-text">Transaksi Bibit & Pupuk</span>
+                        </a>
+                      </li>
+                      <li class="kt-menu__item " aria-haspopup="true">
+                        <a href="#" class="kt-menu__link ">
+                          <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+                            <span></span>
+                          </i>
+                          <span class="kt-menu__link-text">Riwayat Transaksi</span>
                         </a>
                       </li>
                     </ul>
@@ -177,6 +193,14 @@
                           <span class="kt-menu__link-text">Transaksi Beras</span>
                         </a>
                       </li>
+                      <li class="kt-menu__item " aria-haspopup="true">
+                        <a href="#" class="kt-menu__link ">
+                          <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+                            <span></span>
+                          </i>
+                          <span class="kt-menu__link-text">Riwayat Transaksi</span>
+                        </a>
+                      </li>
                     </ul>
                   </div>
                 </li>
@@ -190,7 +214,7 @@
             </a>
           </li>
 
-          <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel {{ request()->is('admin/manage-user-konsumen') || request()->is('admin/manage-user-petani-verified') || request()->is('admin/manage-user-petani-unverified') ? 'kt-menu__item--open kt-menu__item--here' : '' }}" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
+          <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel {{ request()->is('admin/manage-user-konsumen') || request()->is('admin/manage-user-petani-verified') || request()->is('admin/manage-user-petani-unverified') ? 'kt-menu__item--open kt-menu__item--here' : '' }}" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
             <a href="javascript:;" class="kt-menu__link kt-menu__toggle" id="manageuser">
               <span class="kt-menu__link-text {{ request()->is('admin/manage-user-konsumen') || request()->is('admin/manage-user-petani-verified') || request()->is('admin/manage-user-petani-unverified') ? '' : 'top-text-nav' }}">Manage User</span>
               <i class="fa fa-angle-down {{ request()->is('admin/manage-user-konsumen') || request()->is('admin/manage-user-petani-verified') || request()->is('admin/manage-user-petani-unverified') ? 'icon-here' : '' }}"></i>
