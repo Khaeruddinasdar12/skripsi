@@ -16,11 +16,10 @@ $api->version('v1', function($api) {
 	Route::get('provinsi', 'Api\AlamatController@provinsi');
 	Route::get('kabupaten/{id}', 'Api\AlamatController@kabupaten');
 	Route::post('register', 'Api\UserController@register');
-    Route::post('login', 'Api\UserController@authenticate');
-    Route::get('open', 'DataController@open');
+    Route::post('login', 'Api\UserController@login');
 
-    Route::group(['middleware' => ['jwt.verify']], function() {
-        Route::get('user', 'Api\UserController@getAuthenticatedUser');
+    Route::group(['middleware' => ['auth:api']], function() {
+        Route::get('user', 'Api\UserController@detail');
         Route::put('user', 'Api\UserController@update');
 
         // SAWAHCONTROLLER 
@@ -36,5 +35,4 @@ $api->version('v1', function($api) {
         Route::post('gadai-sawah', 'Api\GadaiSawahController@store');
         // END GADAI SAWAH
 
-        Route::get('closed', 'DataController@closed');
     });

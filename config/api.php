@@ -137,6 +137,7 @@ return [
     */
 
     'errorFormat' => [
+        'status' => false,
         'message' => ':message',
         'errors' => ':errors',
         'code' => ':code',

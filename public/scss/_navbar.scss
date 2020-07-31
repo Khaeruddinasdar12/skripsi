@@ -53,6 +53,10 @@
     .kt-header-menu {
         .kt-menu__item {
             a {
+                .kt-menu__link-text {
+                    color: $galungcolor !important;
+                }
+
                 .top-text-nav {
                     color: #fff !important;
                 }
@@ -65,12 +69,14 @@
                 }
 
                 .icon-here {
-                    color: #591df1ad !important;
+                    color: $galungcolor !important;
                 }
 
-                &:hover .fa-angle-down {
+                &:hover .fa-angle-down,
+                &:focus .fa-angle-down {
                     color: #fff !important;
                     transition: .5s;
+                    transform: translateY(3px);
                 }
 
                 &:hover .icon-here {

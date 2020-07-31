@@ -91,6 +91,9 @@ table .btn-more-custom {
   background: #fff;
   margin-right: 30px;
 }
+.galung-header .kt-header-menu .kt-menu__item a .kt-menu__link-text {
+  color: #00A859 !important;
+}
 .galung-header .kt-header-menu .kt-menu__item a .top-text-nav {
   color: #fff !important;
 }
@@ -101,11 +104,12 @@ table .btn-more-custom {
   transition: 0.5s;
 }
 .galung-header .kt-header-menu .kt-menu__item a .icon-here {
-  color: #591df1ad !important;
+  color: #00A859 !important;
 }
-.galung-header .kt-header-menu .kt-menu__item a:hover .fa-angle-down {
+.galung-header .kt-header-menu .kt-menu__item a:hover .fa-angle-down, .galung-header .kt-header-menu .kt-menu__item a:focus .fa-angle-down {
   color: #fff !important;
   transition: 0.5s;
+  transform: translateY(3px);
 }
 .galung-header .kt-header-menu .kt-menu__item a:hover .icon-here {
   color: #591df1 !important;
@@ -170,8 +174,13 @@ table .btn-more-custom {
   background-color: #00A859;
 }
 
+.table-responsive {
+  padding-bottom: 70px !important;
+}
+
 table {
   font-size: 15px !important;
+  padding-bottom: 500px !important;
 }
 table .btn-more-custom i {
   font-size: 20px !important;
@@ -213,7 +222,7 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
   margin-top: 20px;
 }
 .modal .modal-body .button-edit .btn-edit {
-  width: 30%;
+  width: 40%;
   margin: 20px 0 0 0;
   background-color: #3498db !important;
 }
@@ -278,23 +287,83 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
 .modal-verif .modal-content .modal-body h3 {
   margin-bottom: 30px;
 }
-.modal-verif .modal-content .modal-body .verif-form {
+.modal-verif .modal-content .modal-body .form-group {
+  text-align: left !important;
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
+  margin-top: 30px;
+  border-top: 1px solid rgba(34, 34, 34, 0.109);
+  border-bottom: 1px solid rgba(34, 34, 34, 0.109);
+}
+
+.verif-form {
   margin-top: 30px;
 }
-.modal-verif .modal-content .modal-body .verif-form .close-modal {
+.verif-form .close-modal {
   width: 100% !important;
   border: 1px solid #c2c2c2;
 }
-.modal-verif .modal-content .modal-body .verif-form .close-modal:hover {
+.verif-form .close-modal:hover {
   background-color: #ebf1f1;
 }
-.modal-verif .modal-content .modal-body .verif-form .btn-verif {
+.verif-form .btn-verif {
   background-color: #00A859;
   color: #fff;
   width: 100% !important;
 }
-.modal-verif .modal-content .modal-body .verif-form .btn-verif:hover {
+.verif-form .btn-verif:hover {
   background-color: #018346;
+  color: #fff !important;
+}
+
+.modal-hapus .modal-content {
+  border-top: 7px solid #ff3863 !important;
+}
+.modal-hapus .modal-content .modal-icon {
+  position: absolute;
+  text-align: center !important;
+  width: 100% !important;
+  transform: translateY(-30px);
+}
+.modal-hapus .modal-content .modal-icon i {
+  padding: 19px 22px 19px 22px;
+  border-radius: 100px;
+  font-size: 22px;
+  color: #fff;
+  background-color: #ff3863;
+}
+.modal-hapus .modal-content .modal-body {
+  text-align: center !important;
+  padding-top: 60px;
+}
+.modal-hapus .modal-content .modal-body h3 {
+  margin-bottom: 30px;
+}
+.modal-hapus .modal-content .modal-body .form-group {
+  text-align: left !important;
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
+  margin-top: 30px;
+  border-top: 1px solid rgba(34, 34, 34, 0.109);
+  border-bottom: 1px solid rgba(34, 34, 34, 0.109);
+}
+.modal-hapus .modal-content .modal-body .verif-form {
+  margin-top: 30px;
+}
+.modal-hapus .modal-content .modal-body .verif-form .close-modal {
+  width: 100% !important;
+  border: 1px solid #c2c2c2;
+}
+.modal-hapus .modal-content .modal-body .verif-form .close-modal:hover {
+  background-color: #ebf1f1;
+}
+.modal-hapus .modal-content .modal-body .verif-form .btn-verif {
+  background-color: #ff3863;
+  color: #fff;
+  width: 100% !important;
+}
+.modal-hapus .modal-content .modal-body .verif-form .btn-verif:hover {
+  background-color: #dd274e;
 }
 
 .alert-error {
@@ -331,6 +400,29 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
 .alert-win span {
   font-weight: 700;
   font-size: 15px;
+}
+
+.form-group .kt-avatar__holder {
+  position: relative !important;
+  overflow: hidden !important;
+  width: 350px !important;
+  height: 300px !important;
+}
+.form-group .kt-avatar__holder .message-image {
+  position: absolute !important;
+  top: 140px;
+  left: 100px;
+}
+.form-group .kt-avatar__holder img {
+  position: relative !important;
+  z-index: 1 !important;
+}
+.form-group .kt-avatar__upload {
+  position: absolute !important;
+  z-index: 1 !important;
+}
+.form-group .kt-avatar__upload i {
+  font-size: 18px !important;
 }
 
 .modal .detail-modal {

@@ -30,7 +30,7 @@ class UserController extends Controller
     {
         $data = User::where('role', 'petani')->where('petani_verified', '1')->paginate(10);
         $jml = User::where('role', 'petani')->where('petani_verified', '1')->count(); // menghitung jumlah petani terverifikasi
-        
+
         $kota = Kota::select('id', 'tipe', 'nama_kota')->where('provinsi_id', 28)->get();
         // return $data; // uncomment ini untuk melihat data user 
 
@@ -87,6 +87,14 @@ class UserController extends Controller
         $data->kelurahan    = $request->get('kelurahan');
         $data->save();
 
-        return redirect()->back()->with('success', 'Berhasil mengubah data');
+        return redirect()->back()->with('success', 'Berhasil mengubah data petani');
+    }
+
+    public function delete($id)
+    {
+        $data = User::findOrFail($id);
+        $data->delete();
+
+        return redirect()->back()->with('success', 'Berhasil menghapus data petani');
     }
 }

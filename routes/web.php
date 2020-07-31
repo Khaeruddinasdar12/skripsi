@@ -21,12 +21,17 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 
 	// RUTE MENU GABAHKU & TRANSAKSI GABAHKU
 	Route::get('gabah', 'GabahController@index')->name('index.gabah'); //menampilkan hal. data gabah
+	Route::get('gabah', 'GabahController@store')->name('store.gabah'); //menambah data gabah
+
 	Route::get('transaksi-gabah', 'GabahController@transaksi')->name('transaksi.gabah'); //menampilkan hal. data transaksi gabah
 	// END RUTE MENU GABAHKU & TRANSAKSI GABAHKU
 
 
 	// RUTE MENU BERAS & TRANSAKSI BERAS
 	Route::get('beras', 'BerasController@index')->name('index.beras'); //menampilkan hal. data beras
+	Route::post('beras', 'BerasController@store')->name('store.beras'); //menambah data beras
+	Route::put('beras/{id}', 'BerasController@update')->name('update.beras'); //mengubah atau suplly data beras
+	Route::delete('beras/{id}', 'BerasController@delete')->name('delete.beras'); //menghapus data beras
 	Route::get('transaksi-beras', 'BerasController@transaksi')->name('transaksi.beras'); //menampilkan hal. data transaksi beras
 	// END RUTE MENU BERAS & TRANSAKSI BERAS
 
@@ -43,6 +48,10 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 
 	Route::put('gadai-sawah-gadai-status/{id}', 'GadaiSawahController@gadaistatus')->name('gadaistatus.gadaisawah'); // mengubah "daftar gadai" menjadi "sedang gadai"
 	Route::put('gadai-sawah-selesai-status/{id}', 'GadaiSawahController@selesaistatus')->name('selesaistatus.gadaisawah'); // mengubah "sedang gadai" menjadi "riwayat gadai"
+	Route::put('gadai-sawah-edit-keterangan/{id}', 'GadaiSawahController@editketerangan')->name('editketerangan.gadaisawah'); // edit keterangan 
+
+	Route::delete('gadai-sawah-hapus-gadai/{id}', 'GadaiSawahController@delgadai')->name('delgadai.gadaisawah'); // menghapus gadai yang gagal di survey 
+	Route::delete('gadai-sawah-hapus-riwayat/{id}', 'GadaiSawahController@delriwayat')->name('delriwayat.gadaisawah')->middleware('CekAdmin'); // menghapus riwayat gadai hanya superadmin, jika admin otomatis gagal 
 	// END RUTE MENU GADAI SAWAH
 
 
@@ -75,6 +84,8 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 
 	Route::put('manage-user/verified/{id}', 'UserController@buttonverified')->name('buttonverified.manage-user'); // rute untuk verified user
 	Route::put('manage-user/edit/{id}', 'UserController@update')->name('edit.manage-user')->middleware('CekAdmin'); // rute untuk edit user, hanya untuk superadmin, jika admin otomatis gagal
+
+	Route::delete('manage-user/delete/{id}', 'UserController@delete')->name('delete.manage-user'); // menghapus petani yang tidak terverifikasi
 	// END RUTE MANAGE USER
 
 	Route::namespace('Auth')->group(function () {
