@@ -110,6 +110,11 @@
                           <th>Action</th>
                         </tr>
                       </thead>
+                      <!-- @if ($jml == 0)
+                      <tbody style="text-align: center;">
+                        <td colspan="7">Belum ada data</td>
+                      </tbody>
+                      @endif -->
                       <tbody>
                         @php $no = 1; @endphp
                         @foreach ($data as $beras)
@@ -140,9 +145,9 @@
                                     </a>
                                   </li>
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-selesai-gadai">
+                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$beras->id}}" data-href="{{ route('delete.beras', ['id' => $beras->id]) }}">
                                       <i class="kt-nav__link-icon flaticon2-check-mark"></i>
-                                      <span class="kt-nav__link-text">Selesaikan Gadai</span>
+                                      <span class="kt-nav__link-text">Hapus data</span>
                                     </a>
                                   </li>
                                 </ul>
@@ -386,43 +391,38 @@
       </div>
       <!-- end modal edit data -->
 
-      <!-- modal verifikasi -->
-      <div class="modal modal-verif fade" id="modal-selesai-gadai" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+      <!-- modal hapus -->
+      <div class="modal modal-hapus fade" id="modal-hapus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <span class="modal-icon">
-              <i class="fa fa-info"></i>
+              <i class="fa fa-trash-alt"></i>
             </span>
-
             <div class="modal-body">
-              <form action="" method="POST" id="selesai-gadai">
-                @csrf
-                <input type="hidden" value="PUT" name="_method">
-                <h3>Periode Gadai Sawah Telah Selesai?</h3>
-                <p>Data sawah yang telah berakhir periode gadainya</p>
-                <p>akan di pindahkan ke tab Riwayat Gadai</p>
+              <h3>Hapus Data?</h3>
+              <p>Data yang telah di hapus tidak dapat</p>
+              <p>dikembalikan lagi</p>
 
-                <div class="form-group">
-                  <label for="exampleTextarea">Tambahkan keterangan :</label>
-                  <textarea class="form-control" id="keteranganss" name="keterangan" rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 97px; resize: none" required></textarea>
+              <div class="row verif-form">
+                <div class="col-md-6">
+                  <button type="button" class="btn close-modal" data-dismiss="modal" aria-label="Close">Cancel</button>
                 </div>
 
-                <div class="row verif-form">
-                  <div class="col-md-6">
-                    <button type="button" class="btn close-modal" data-dismiss="modal" aria-label="Close">Cancel</button>
-                  </div>
+                <div class="col-md-6">
+                  <form action="" method="POST" id="hapus-data">
+                    @csrf
+                    <input type="hidden" value="delete" name="_method">
 
-                  <div class="col-md-6">
+                    <input type="submit" value="Hapus data" class="btn btn-verif btn-flat">
 
-                    <input type="submit" value="Verifikasi" class="btn btn-verif btn-flat">
-                  </div>
+                  </form>
                 </div>
+              </div>
             </div>
-            </form>
           </div>
         </div>
       </div>
-      <!-- end modal verifikasi -->
+      <!-- end modal hapus -->
 
     </div>
   </div>
@@ -504,6 +504,16 @@
     modal.find('.modal-body #edit-beras').attr('action', href)
   })
   // modal edit
+
+  //Modal hapus
+  $('#modal-hapus').on('show.bs.modal', function(event) {
+    var a = $(event.relatedTarget)
+    var href = a.data('href')
+
+    var modal = $(this)
+    modal.find('.modal-body #hapus-data').attr('action', href)
+  })
+  //End Modal hapus
 </script>
 
 @endsection
