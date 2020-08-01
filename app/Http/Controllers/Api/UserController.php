@@ -24,7 +24,7 @@ class UserController extends Controller
                 if (Auth::check()) {
                        Auth::user()->OauthAcessToken()->delete();                
                 }
-                
+
                 $user = Auth::user();
 
                 $token = $user->createToken('nApp')->accessToken;
@@ -65,7 +65,7 @@ class UserController extends Controller
                 ]);
             }
 
-            $user = User::create([
+            $user = User::create([ 
                 'name'      => $request->get('name'),
                 'email'     => $request->get('email'),
                 'password'  => Hash::make($request->get('password')),
@@ -80,10 +80,9 @@ class UserController extends Controller
                 'jkel'      => $request->get('jkel'),
                 'rt' => $request->get('rt'),
                 'rw' => $request->get('rw'),
-                'role'      => $request->get('role'), //konsumen atau petani
-                'verified_by' => null,        
+                'role'      => $request->get('role'), //konsumen atau petani    
+                'verified_by' => null,    
             ]);
-
             $token = $user->createToken('nApp')->accessToken;
             return response()->json([
                     'status'    => true,
@@ -95,7 +94,7 @@ class UserController extends Controller
 
         public function update(Request $request) // edit profile
         {
-            if(!$user = Auth::user()){
+            if(!$user = Auth::user()) {
                 return response()->json([
                     'status'    => false,
                     'message'   => 'Invalid Token'
