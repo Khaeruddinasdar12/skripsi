@@ -15,12 +15,9 @@ class AdminController extends Controller
 	public function index() //menampilkan hal. data user
 	{
 		$admin = Admin::all();
+		$jml = Admin::count();
 		// return $admin; // uncomment ini untuk melihat api data admin
-		return view('admin.page.admin', ['admin' => $admin]); //struktur folder di folder views
-		/*
-    	syntax
-    	return view('namafolder.namafile');
-    	*/
+		return view('admin.page.admin', ['admin' => $admin, 'jml' => $jml]); //struktur folder di folder views
 	}
 
 	public function store(Request $request)  
@@ -59,6 +56,13 @@ class AdminController extends Controller
 
 	public function delete($id)  
 	{
-		
+		if ($id == Auth::guard('admin')->user()->id) {
+			return redirect()->back()->with('error', 'Anda sedang login');
+		}
+
+		$admin = Admin::findOrFail($id);
+		$admin->delete();
+
+		return redirect()->back()->with('success', 'Berhasil menghapus data admin');	
 	}
 }
