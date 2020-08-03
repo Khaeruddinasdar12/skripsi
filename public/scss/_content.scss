@@ -91,7 +91,7 @@ table {
 
             .btn-edit {
                 @extend %galung-button-fill;
-                width: 40%;
+                width: 100%;
                 margin: 20px 0 0 0;
                 background-color: $biru !important;
 
@@ -119,6 +119,30 @@ table {
                 font-size: 22px;
                 color: #fff;
                 background-color: $galungcolor;
+            }
+        }
+
+        .verif-form {
+            margin-top: 30px;
+
+            .close-modal {
+                width: 100% !important;
+                border: 1px solid rgb(194, 194, 194);
+
+                &:hover {
+                    background-color: rgb(235, 241, 241);
+                }
+            }
+
+            .btn-verif {
+                background-color: $galungcolor;
+                color: #fff;
+                width: 100% !important;
+
+                &:hover {
+                    background-color: $galungcolorhover;
+                    color: #fff !important;
+                }
             }
         }
     }

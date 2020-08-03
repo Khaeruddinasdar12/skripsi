@@ -222,7 +222,7 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
   margin-top: 20px;
 }
 .modal .modal-body .button-edit .btn-edit {
-  width: 40%;
+  width: 100%;
   margin: 20px 0 0 0;
   background-color: #3498db !important;
 }
@@ -245,6 +245,25 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
   font-size: 22px;
   color: #fff;
   background-color: #00A859;
+}
+.modal-add .modal-content .verif-form {
+  margin-top: 30px;
+}
+.modal-add .modal-content .verif-form .close-modal {
+  width: 100% !important;
+  border: 1px solid #c2c2c2;
+}
+.modal-add .modal-content .verif-form .close-modal:hover {
+  background-color: #ebf1f1;
+}
+.modal-add .modal-content .verif-form .btn-verif {
+  background-color: #00A859;
+  color: #fff;
+  width: 100% !important;
+}
+.modal-add .modal-content .verif-form .btn-verif:hover {
+  background-color: #018346;
+  color: #fff !important;
 }
 
 .modal-edit .modal-content {
