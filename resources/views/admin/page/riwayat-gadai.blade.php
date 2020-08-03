@@ -113,7 +113,7 @@
                         @if($gadais->admins == null)
                         @php $admin = 'Admin Telah di hapus'; @endphp
                         @else
-                        @php $admin = $gadais->sawahs->users->name; @endphp
+                        @php $admin = $gadais->admins->name; @endphp
                         @endif
                         <!-- End jika admin tersedia atau tidak -->
                         <tr>
