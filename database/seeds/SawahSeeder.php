@@ -12,6 +12,7 @@ class SawahSeeder extends Seeder
     public function run()
     {
         DB::table('sawahs')->insert([
+        	'nama'	=> 'sawah 1',
 	        'alamat_id'  => 87, //id kabupaten bone dari tabel Kotas
 	        'kecamatan' => 'Kec. Barebbo',
 	        'kelurahan' 	=> 'Desa Kampuno',
@@ -24,6 +25,7 @@ class SawahSeeder extends Seeder
 		]);
 
 		DB::table('sawahs')->insert([
+			'nama'	=> 'sawah 2',
 	        'alamat_id'  => 87, //id kabupaten bone dari tabel Kotas
 	        'kecamatan' => 'Kec. Barebbo',
 	        'kelurahan' 	=> 'Desa Talungeng',
@@ -36,6 +38,7 @@ class SawahSeeder extends Seeder
 		]);
 
 		DB::table('sawahs')->insert([
+			'nama'	=> 'sawah 3',
 	        'alamat_id'  => 87, //id kabupaten bone dari tabel Kotas
 	        'kecamatan' => 'Kec. Barebbo',
 	        'kelurahan' 	=> 'Desa Lampoko',
@@ -48,6 +51,7 @@ class SawahSeeder extends Seeder
 		]);
 
 		DB::table('sawahs')->insert([
+			'nama'	=> 'sawah 4',
 	        'alamat_id'  => 87, //id kabupaten bone dari tabel Kotas
 	        'kecamatan' => 'Kec. Barebbo',
 	        'kelurahan' 	=> 'Desa Sugiale',

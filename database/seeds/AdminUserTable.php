@@ -6,7 +6,9 @@ class AdminUserTable extends Seeder
 {
     public function run()
     {
-        DB::table('users')->insert([ // Role kosumen
+    	// DATA USER
+
+        $user1 = DB::table('users')->insert([ // Role kosumen
 	        'name'  => 'Konsumen User Role',
 	        'email' => 'konsumen@gmail.com',
 	        'role' 	=> 'konsumen',
@@ -22,8 +24,9 @@ class AdminUserTable extends Seeder
 	        'password'  => bcrypt('12345678'),
 	        'petani_verified' => '0'
 		]);
+		// $token = $user1->createToken('nApp')->accessToken;
 
-		DB::table('users')->insert([ // Role Petani terverifikasi
+		$user2 = DB::table('users')->insert([ // Role Petani terverifikasi
 	        'name'  => 'Petani User Role',
 	        'email' => 'petani@gmail.com',
 	        'role' 	=> 'petani',
@@ -39,8 +42,9 @@ class AdminUserTable extends Seeder
 	        'petani_verified' => '1',
 	        'kelurahan'	=> 'Galung',
 		]);
+		// $token = $user2->createToken('nApp')->accessToken;
 
-		DB::table('users')->insert([ // Role Petani belum terverifikasi
+		$user3 = DB::table('users')->insert([ // Role Petani belum terverifikasi
 	        'name'  => 'Petani User Unverified',
 	        'email' => 'petaniunverified@gmail.com',
 	        'role' 	=> 'petani',
@@ -56,8 +60,9 @@ class AdminUserTable extends Seeder
 	        'petani_verified' => '0',
 	        'kelurahan'	=> 'Galung',
 		]);
+		// $token = $user3->createToken('nApp')->accessToken;
 
-		DB::table('users')->insert([ // Role Petani belum terverifikasi 2
+		$user4 = DB::table('users')->insert([ // Role Petani belum terverifikasi 2
 	        'name'  => 'Petani User Unverified2',
 	        'email' => 'petaniunverified2@gmail.com',
 	        'role' 	=> 'petani',
@@ -73,6 +78,13 @@ class AdminUserTable extends Seeder
 	        'petani_verified' => '0',
 	        'kelurahan'	=> 'Galung',
 		]);
+		// $token = $user4->createToken('nApp')->accessToken;
+
+		//END DATA USER
+
+
+
+		//DATA ADMIN
 
 		DB::table('admins')->insert([ //Role Admin
 	        'name'  => 'Admin Role',
@@ -87,5 +99,7 @@ class AdminUserTable extends Seeder
 	        'role' 	=> 'superadmin',
 	        'password'  => bcrypt('12345678')
 		]);
+
+		// END DATA ADMIN
     }
 }
