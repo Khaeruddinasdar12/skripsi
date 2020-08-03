@@ -126,12 +126,21 @@
                                       <span class="kt-nav__link-text">Edit</span>
                                     </a>
                                   </li>
+                                  @if(Auth::guard('admin')->user()->role != 'superadmin')
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link hapus-data">
+                                    <a href="#" style="display: none !important;" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$datas->id}}" data-href="{{ route('delete.manage-admin', ['id' => $datas->id]) }}">
                                       <i class="kt-nav__link-icon flaticon2-rubbish-bin-delete-button"></i>
                                       <span class="kt-nav__link-text">Hapus</span>
                                     </a>
                                   </li>
+                                  @else
+                                  <li class="kt-nav__item">
+                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$datas->id}}" data-href="{{ route('delete.manage-admin', ['id' => $datas->id]) }}">
+                                      <i class="kt-nav__link-icon flaticon2-rubbish-bin-delete-button"></i>
+                                      <span class="kt-nav__link-text">Hapus</span>
+                                    </a>
+                                  </li>
+                                  @endif
                                 </ul>
                               </div>
                             </div>
@@ -235,48 +244,17 @@
             </div>
             <div class="modal-body">
               <form>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <div class="input-group">
-                        <div class="input-group-prepend"><span class="input-group-text" id="nama">
-                            <i class="flaticon-avatar kt-font-brand"></i></span></div>
-                        <input type="text" class="form-control" placeholder="Nama Admin" aria-describedby="nama" required>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <div class="input-group">
-                        <div class="input-group-prepend"><span class="input-group-text" id="username">
-                            <i class="flaticon-avatar kt-font-brand"></i></span></div>
-                        <input type="text" class="form-control" placeholder="Username" aria-describedby="username" required>
-                      </div>
-                    </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend"><span class="input-group-text" id="nama">
+                        <i class="flaticon-avatar kt-font-brand"></i></span></div>
+                    <input type="text" class="form-control" placeholder="Nama Admin" aria-describedby="nama" required>
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group">
                     <div class="input-group-prepend"><span class="input-group-text" id="email"><i class="flaticon2-email kt-font-brand"></i></span></div>
                     <input type="email" class="form-control" placeholder="Email" aria-describedby="email" required>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <div class="input-group">
-                        <div class="input-group-prepend"><span class="input-group-text" id="password1"><i class="flaticon2-lock kt-font-brand"></i></span></div>
-                        <input type="password" class="form-control" placeholder="password" aria-describedby="password1" required>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <div class="input-group">
-                        <div class="input-group-prepend"><span class="input-group-text" id="password2"><i class="flaticon2-lock kt-font-brand"></i></span></div>
-                        <input type="password" class="form-control" placeholder="ulangi password" aria-describedby="password2" required>
-                      </div>
-                    </div>
                   </div>
                 </div>
                 <div class="form-group row">
@@ -303,6 +281,39 @@
         </div>
       </div>
       <!-- end modal edit admin -->
+
+      <!-- modal hapus -->
+      <div class="modal modal-hapus fade" id="modal-hapus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <span class="modal-icon">
+              <i class="fa fa-trash-alt"></i>
+            </span>
+            <div class="modal-body">
+              <h3>Hapus Data?</h3>
+              <p>Data yang telah di hapus tidak dapat</p>
+              <p>dikembalikan lagi</p>
+
+              <div class="row verif-form">
+                <div class="col-md-6">
+                  <button type="button" class="btn close-modal" data-dismiss="modal" aria-label="Close">Cancel</button>
+                </div>
+
+                <div class="col-md-6">
+                  <form action="" method="POST" id="hapus-data">
+                    @csrf
+                    <input type="hidden" value="delete" name="_method">
+
+                    <input type="submit" value="Hapus data" class="btn btn-verif btn-flat">
+
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end modal hapus -->
     </div>
   </div>
 </div>
@@ -322,6 +333,16 @@
       }
     });
   });
+
+  //Modal hapus
+  $('#modal-hapus').on('show.bs.modal', function(event) {
+    var a = $(event.relatedTarget)
+    var href = a.data('href')
+
+    var modal = $(this)
+    modal.find('.modal-body #hapus-data').attr('action', href)
+  })
+  //End Modal hapus
 </script>
 
 @endsection
