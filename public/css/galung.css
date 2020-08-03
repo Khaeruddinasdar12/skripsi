@@ -318,6 +318,25 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
   color: #fff;
   background-color: #00A859;
 }
+.modal-verif .modal-content .verif-form {
+  margin-top: 30px;
+}
+.modal-verif .modal-content .verif-form .close-modal {
+  width: 100% !important;
+  border: 1px solid #c2c2c2;
+}
+.modal-verif .modal-content .verif-form .close-modal:hover {
+  background-color: #ebf1f1;
+}
+.modal-verif .modal-content .verif-form .btn-verif {
+  background-color: #00A859;
+  color: #fff;
+  width: 100% !important;
+}
+.modal-verif .modal-content .verif-form .btn-verif:hover {
+  background-color: #018346;
+  color: #fff !important;
+}
 .modal-verif .modal-content .modal-body {
   text-align: center !important;
   padding-top: 60px;

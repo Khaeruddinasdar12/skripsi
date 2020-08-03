@@ -110,11 +110,11 @@
                         @php $no = 1; @endphp
                         @foreach ($data as $gadais)
                         <!-- jika admin tersedia atau tidak -->
-                          @if($gadais->admins == null)
-                            @php $admin = 'Admin Telah di hapus'; @endphp
-                          @else
-                            @php $admin = $gadais->sawahs->users->name; @endphp
-                          @endif
+                        @if($gadais->admins == null)
+                        @php $admin = 'Admin Telah di hapus'; @endphp
+                        @else
+                        @php $admin = $gadais->admins->name; @endphp
+                        @endif
                         <!-- End jika admin tersedia atau tidak -->
                         <tr>
                           <th scope="row">{{$no++}}</th>
