@@ -115,7 +115,17 @@ class SawahController extends Controller
             ]);
         }
 
-        $sawah = Sawah::find($id);
+        $sawah = Sawah::where('created_by', $user->id)->get(); //cek nama sawah
+        foreach ($sawah as $ceks) {
+            if($request->get('nama') == $ceks->nama) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'nama sawah sudah ada'
+                ]);
+            }
+        }
+
+        $sawah = Sawah::find($id); // cek apakah id nya ada
 
         if ($sawah == null) {
             return response()->json([
@@ -132,6 +142,7 @@ class SawahController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
+                'nama'      => 'required|string',
                 'alamat_id' => 'required|numeric',
                 'kecamatan' => 'required|string',
                 'kelurahan' => 'required|string',
@@ -150,6 +161,7 @@ class SawahController extends Controller
                 ]);
         }
 
+        $sawah->nama            = $request->get('nama');
         $sawah->titik_koordinat = $request->get('titik_koordinat');
         $sawah->alamat_id       = $request->get('alamat_id');
         $sawah->kelurahan       = $request->get('kelurahan');

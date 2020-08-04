@@ -17,7 +17,7 @@ class TransaksiBerasController extends Controller
     {
     	//mengurutkan dari terbaru ke terlama (descending)
     	$data = TransaksiBeras::where('status', '0')
-    			->with('users:id,name')
+    			->with('users:id,name', 'beras:id,nama')
     			->orderBy('created_at', 'desc')
     			->paginate(10);
         $jml = TransaksiBeras::where('status', '0')
