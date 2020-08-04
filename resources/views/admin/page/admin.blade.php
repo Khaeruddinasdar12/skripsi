@@ -66,7 +66,7 @@
                 Jumlah Data Beras Yang Tersedia
               </h5>
               <h4 class="mt-3 kt-font-success" style="font-weight: 800;">
-                1 Data
+                {{$jml}} Data
               </h4>
             </div>
           </div>
@@ -149,6 +149,7 @@
                         @endforeach
                       </tbody>
                     </table>
+                    {{$admin->links()}}
                   </div>
                 </div>
               </div>

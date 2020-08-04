@@ -17,7 +17,10 @@ class UserController extends Controller
 
     public function konsumen() //menampilkan hal. data user konsumen
     {
-        $data = User::where('role', 'konsumen')->paginate(10); //semua data konsumen
+        //mengurutkan dari terbaru ke terlama (descending)
+        $data = User::where('role', 'konsumen')
+                ->orderBy('created_at', 'desc')
+                ->paginate(10); //semua data konsumen
         $jml = User::where('role', 'konsumen')->count(); // menghitung jumlah konsumen
 
         $kota = Kota::select('id', 'tipe', 'nama_kota')->where('provinsi_id', 28)->get();
@@ -28,21 +31,39 @@ class UserController extends Controller
 
     public function verified() //menampilkan hal. data user petani terverifikasi
     {
-        $data = User::where('role', 'petani')->where('petani_verified', '1')->paginate(10);
-        $jml = User::where('role', 'petani')->where('petani_verified', '1')->count(); // menghitung jumlah petani terverifikasi
+        //mengurutkan dari terbaru ke terlama (descending)
+        $data = User::where('role', 'petani')
+                ->where('petani_verified', '1')
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
 
-        $kota = Kota::select('id', 'tipe', 'nama_kota')->where('provinsi_id', 28)->get();
+        $jml = User::where('role', 'petani')
+                ->where('petani_verified', '1')
+                ->count(); // menghitung jumlah petani terverifikasi
+
+        $kota = Kota::select('id', 'tipe', 'nama_kota')
+                ->where('provinsi_id', 28)
+                ->get();
         // return $data; // uncomment ini untuk melihat data user 
 
         return view('admin.page.petani-verif', ['data' => $data, 'kota' => $kota, 'jml' => $jml]);
     }
 
     public function unverified() //menampilkan hal. data user petani belum terverifikasi
-    {
-        $data = User::where('role', 'petani')->where('petani_verified', '0')->paginate(10);
-        $jml = User::where('role', 'petani')->where('petani_verified', '0')->count(); // menghitung jumlah petani belum terverifikasi
+    {   
+        //mengurutkan dari terbaru ke terlama (descending)
+        $data = User::where('role', 'petani')
+                ->where('petani_verified', '0')
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
 
-        $kota = Kota::select('id', 'tipe', 'nama_kota')->where('provinsi_id', 28)->get();
+        $jml = User::where('role', 'petani')
+                ->where('petani_verified', '0')
+                ->count(); // menghitung jumlah petani belum terverifikasi
+
+        $kota = Kota::select('id', 'tipe', 'nama_kota')
+                ->where('provinsi_id', 28)
+                ->get();
         // return $data; // uncomment ini untuk melihat data user 
 
         return view('admin.page.petani-unverif', ['data' => $data, 'kota' => $kota, 'jml' => $jml]);

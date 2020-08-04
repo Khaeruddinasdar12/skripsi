@@ -8,7 +8,7 @@ class GadaiSawah extends Model
 {
 	protected $table = 'gadai_sawahs';
     protected $fillable = [
-        'string', 'harga', 'admin_by', 'sawah_id', 'keterangan', 'status',
+        'string', 'harga', 'admin_by', 'sawah_id', 'keterangan', 'status', 'status_at',
     ];
 
     public function sawahs()
