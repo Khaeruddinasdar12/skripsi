@@ -21,8 +21,12 @@ class TransaksiBerasController extends Controller
             ->with('users:id,name')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
+        $jml = TransaksiBeras::where('status', '0')
+            ->count();
 
-        return $data;
+        // return $data; //uncomment ini untuk melihat data
+
+        return view('admin.page.transaksiberas', ['data' => $data, 'jml' => $jml]);
     }
 
     public function riwayat() //menampilkan hal. data riwayat transaksi beras
