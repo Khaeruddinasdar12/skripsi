@@ -16,7 +16,7 @@
         </a>
         <span class="kt-subheader__breadcrumbs-separator"></span>
         <a href="#" class="kt-subheader__breadcrumbs-link">
-          Data Beras
+          Transaksi Beras
         </a>
       </div>
     </div>
@@ -65,7 +65,7 @@
           <div class="kt-portlet sticky" data-sticky="true" data-margin-top="100px" data-sticky-for="1023" data-sticky-class="kt-sticky">
             <div class="kt-portlet__body">
               <h5 style="color: #222;">
-                Jumlah Data Beras Yang Tersedia
+                Jumlah Data Transaksi Beras Yang Tersedia
               </h5>
               <h4 class="mt-3 kt-font-success" style="font-weight: 800;">
                 {{$jml}} Data
@@ -83,7 +83,7 @@
                   <i class="flaticon-avatar"></i>
                 </span>
                 <h3 class="kt-portlet__head-title">
-                  Data Beras
+                  Data Transaksi Beras
                 </h3>
               </div>
             </div>
@@ -95,11 +95,11 @@
                       <thead>
                         <tr>
                           <th>#</th>
-                          <th>Nama / jenis Beras</th>
+                          <th>Nama Pembeli</th>
+                          <th>Nama / Jenis Beras</th>
+                          <th>Jumlah Beras</th>
                           <th>Harga</th>
-                          <th>Min Beli</th>
-                          <th>Stok</th>
-                          <th>Admin Yang Menangani</th>
+                          <th>Jenis Pembayaran</th>
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -110,13 +110,20 @@
                       @else
                       <tbody>
                         @php $no = 1; @endphp
+                        @foreach ($data as $transaksi)
                         <tr>
                           <th scope="row">{{$no++}}</th>
-                          <td>tes</td>
-                          <td>tes</td>
-                          <td>tes</td>
-                          <td>tes</td>
-                          <td>tes</td>
+                          <td>{{$transaksi -> users -> name}}</td>
+                          <td>{{$transaksi -> beras -> nama}}</td>
+                          <td>{{$transaksi -> jumlah}}</td>
+                          <td>{{$transaksi -> harga}}</td>
+                          <td>
+                            @if($transaksi->jenis_bayar == 'cod')
+                            Cash On Delivery
+                            @else
+                            <button type="button" class="btn btn-bold btn-bukti btn-sm" data-toggle="modal" data-target="#buktipembayaran"> Lihat Bukti Pembayaran</button>
+                            @endif
+                          </td>
                           <td>
                             <div class="dropdown dropdown-inline">
                               <a href="#" class="btn btn-default btn-icon btn-icon-md btn-sm btn-more-custom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -147,6 +154,7 @@
                             </div>
                           </td>
                         </tr>
+                        @endforeach
                       </tbody>
                       @endif
                     </table>
@@ -158,6 +166,29 @@
           </div>
         </div>
       </div>
+
+      <!-- modal buktipembayaran -->
+      <div class="modal fade" id="buktipembayaran" tabindex="-1" role="dialog" aria-labelledby="modal-detail-user">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Bukti Transfer</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              </button>
+            </div>
+            <div class="modal-body detail-modal" style="padding-top: 10px;">
+              <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+                <div class="kt-portlet__body kt-portlet__body--fit kt-portlet__body--unfill">
+                  <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides">
+                    <img src="{{ asset('img/test.JPG') }}" alt="" id="image">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- modal buktipembayaran-->
 
       <!-- modal edit data -->
       <!-- <div class="modal modal-edit fade" id="modal-edit-data" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">

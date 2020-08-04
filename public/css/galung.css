@@ -462,6 +462,24 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
   font-size: 18px !important;
 }
 
+.btn-bukti {
+  background-color: transparent !important;
+  color: #00A859 !important;
+  border: 1px solid #00A859 !important;
+  font-size: 15px !important;
+  transition: 0.5s !important;
+}
+.btn-bukti:hover {
+  background-color: #00A859 !important;
+  color: #fff !important;
+  border: 1px solid #00A859 !important;
+  transition: 0.5s !important;
+}
+
+.row .col-md-2 .kt-portlet .kt-portlet__body {
+  border-left: 5px solid #00A859 !important;
+}
+
 .modal .detail-modal {
   padding-top: 50px;
 }

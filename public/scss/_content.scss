@@ -392,3 +392,30 @@ table {
         }
     }
 }
+
+// btn-bukti-transfer
+.btn-bukti {
+    background-color: transparent !important;
+    color: $galungcolor !important;
+    border: 1px solid $galungcolor !important;
+    font-size: 15px !important;
+    transition: .5s !important;
+
+    &:hover {
+        background-color: $galungcolor !important;
+        color: #fff !important;
+        border: 1px solid $galungcolor !important;
+        transition: .5s !important;
+    }
+}
+
+// portlet-jml
+.row {
+    .col-md-2 {
+        .kt-portlet {
+            .kt-portlet__body {
+                border-left: 5px solid $galungcolor !important;
+            }
+        }
+    }
+}
