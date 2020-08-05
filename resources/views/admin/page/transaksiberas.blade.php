@@ -98,7 +98,7 @@
                           <th>Nama Pembeli</th>
                           <th>Nama / Jenis Beras</th>
                           <th>Jumlah Beras</th>
-                          <th>Harga</th>
+                          <th>Total Harga</th>
                           <th>Jenis Pembayaran</th>
                           <th>Action</th>
                         </tr>
@@ -111,12 +111,23 @@
                       <tbody>
                         @php $no = 1; @endphp
                         @foreach ($data as $transaksi)
+                        @php
+                        $total = (($transaksi -> jumlah)*($transaksi -> harga));
+                        @endphp
+
+                        <!-- Mengganti nama jenis bayar untuk detail -->
+                        @if($transaksi->jenis_bayar == 'cod')
+                        @php $pembayaran = 'Cash On Delivery (cod)'; @endphp
+                        @else
+                        @php $pembayaran = 'Transfer Bank'; @endphp
+                        @endif
+                        <!-- End Mengganti nama jenis bayar untuk detail -->
                         <tr>
                           <th scope="row">{{$no++}}</th>
                           <td>{{$transaksi -> users -> name}}</td>
                           <td>{{$transaksi -> beras -> nama}}</td>
-                          <td>{{$transaksi -> jumlah}}</td>
-                          <td>{{$transaksi -> harga}}</td>
+                          <td>{{$transaksi -> jumlah}} Kg</td>
+                          <td>Rp.{{format_uang($total)}}</td>
                           <td>
                             @if($transaksi->jenis_bayar == 'cod')
                             Cash On Delivery
@@ -132,21 +143,9 @@
                               <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
                                 <ul class="kt-nav">
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user">
+                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-beras" data-id="{{$transaksi->id}}" data-jumlah="{{$transaksi->jumlah}}" data-harga="Rp.{{format_uang($transaksi->harga)}}" data-total="Rp.{{format_uang($total)}}" data-alamat="{{$transaksi->alamat}}" data-kecamatan="{{$transaksi->kecamatan}}" data-kelurahan="{{$transaksi->kelurahan}}" data-keterangan="{{$transaksi->keterangan}}" data-jenis_bayar="{{$pembayaran}}" data-users-name="{{$transaksi->users->name}}" data-beras-nama="{{$transaksi->beras->nama}}">
                                       <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
                                       <span class="kt-nav__link-text">Detail</span>
-                                    </a>
-                                  </li>
-                                  <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-data">
-                                      <i class=" kt-nav__link-icon flaticon2-settings"></i>
-                                      <span class="kt-nav__link-text">Edit Data</span>
-                                    </a>
-                                  </li>
-                                  <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus">
-                                      <i class="kt-nav__link-icon fa fa-trash-alt"></i>
-                                      <span class="kt-nav__link-text">Hapus data</span>
                                     </a>
                                   </li>
                                 </ul>
@@ -190,127 +189,92 @@
       </div>
       <!-- modal buktipembayaran-->
 
-      <!-- modal edit data -->
-      <!-- <div class="modal modal-edit fade" id="modal-edit-data" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <!-- modal detail user -->
+      <div class="modal fade" id="modal-detail-beras" tabindex="-1" role="dialog" aria-labelledby="modal-detail-user">
+        <div class="modal-dialog" role="document">
           <div class="modal-content">
-            <span class="modal-icon">
-              <i class="fa fa-user-plus"></i>
-            </span>
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Tambah Data Beras</h5>
+              <h5 class="modal-title"></h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               </button>
             </div>
-            <div class="modal-body">
-              <form action="" method="POST" id="edit-beras" enctype="multipart/form-data">
-                @csrf
-                <input type="hidden" value="PUT" name="_method">
+            <div class="modal-body detail-modal">
+              <div class="kt-portlet kt-portlet--height-fluid">
+                <div class="kt-portlet__body">
 
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group ">
-                      <label>Nama / Jenis Beras</label>
-                      <input type="text" class="form-control" name="nama" id="namas" required>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group ">
-                          <label>Harga</label>
-                          <input type="text" class="form-control" name="harga" id="hargas" required>
+                  <!--begin::Widget -->
+                  <div class="kt-widget kt-widget--user-profile-2">
+                    <div class="kt-widget__head">
+                      <div class="kt-widget__media">
+                        <img class="kt-hidden" src="assets/media/users/100_1.jpg" alt="image">
+                        <div class="kt-widget__pic kt-widget__pic--info kt-font-info kt-font-boldest  kt-hidden-">
+                          A D
                         </div>
                       </div>
-
-                      <div class="col-md-6">
-                        <div class="form-group ">
-                          <label>Stok</label>
-                          <input type="text" class="form-control" name="stok" id="stoks" required>
-                        </div>
+                      <div class="kt-widget__info">
+                        <span class="kt-widget__username" id="usersnames">
+                        </span>
                       </div>
                     </div>
-
-                    <div class="form-group ">
-                      <label>Minimal Pembelian</label>
-                      <input type="text" class="form-control" name="min_beli" id="min_belis" required>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="exampleTextarea">Deskripsi</label>
-                      <textarea class="form-control" id="deskripsis" rows="6" style="resize: none;" name="deskripsi" required></textarea>
-                    </div>
-                  </div>
-
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label>Upload Gambar</label>
-                      <div class="col-lg-9 col-xl-6">
-                        <div class="kt-avatar kt-avatar--outline" id="kt_user_add_avatar">
-                          <div class="kt-avatar__holder">
-                            <span class="message-image"> Max ukuran gambar 3MB </span>
-                            <img id="edit-preview" src="" alt="" width="400px">
-                          </div>
-                          <label class="kt-avatar__upload" data-toggle="kt-tooltip" title="" data-original-title="Masukkan gambar">
-                            <i class="fa fa-plus"></i>
-                            <input type="file" name="gambar" onchange="tampilkanPreview(this,'edit-preview')" accept="image/*">
-                          </label>
-                          <span class="kt-avatar__cancel" data-toggle="kt-tooltip" title="" data-original-title="Cancel avatar">
-                            <i class="fa fa-times"></i>
-                          </span>
+                    <div class="kt-widget__body widget-detail">
+                      <div class="kt-widget__item">
+                        <div class="kt-widget__contact">
+                          <span class="kt-widget__label">Nama Beras Yang Dibeli :</span>
+                          <span class="kt-widget__data" id="berasnamas"></span>
                         </div>
+
+                        <div class="kt-widget__contact">
+                          <span class="kt-widget__label">Jumlah Beras Yang Dibeli :</span>
+                          <span class="kt-widget__data" id="jumlahs"></span>
+                        </div>
+
+                        <div class="kt-widget__contact">
+                          <span class="kt-widget__label">Harga Perkilo :</span>
+                          <span class="kt-widget__data" id="hargas"></span>
+                        </div>
+
+                        <div class="kt-widget__contact">
+                          <span class="kt-widget__label">Total Harga :</span>
+                          <span class="kt-widget__data" id="totals"></span>
+                        </div>
+
+                        <div class="kt-widget__contact">
+                          <span class="kt-widget__label">Alamat :</span>
+                          <span class="kt-widget__data" id="alamats"></span>
+                        </div>
+
+                        <div class="kt-widget__contact">
+                          <span class="kt-widget__label">Kecamatan :</span>
+                          <span class="kt-widget__data" id="kecamatans"></span>
+                        </div>
+
+                        <div class="kt-widget__contact">
+                          <span class="kt-widget__label">Kelurahan :</span>
+                          <span class="kt-widget__data" id="kelurahans"></span>
+                        </div>
+
+                        <div class="kt-widget__contact">
+                          <span class="kt-widget__label">Jenis Bayar :</span>
+                          <span class="kt-widget__data" id="jenisbayars"></span>
+                        </div>
+
+                        <div class="kt-widget__contact">
+                          <span class="kt-widget__label">Keterangan :</span>
+                          <span class="kt-widget__data" id="keterangans"></span>
+                        </div>
+
                       </div>
                     </div>
                   </div>
-                </div>
 
-                <div class="row verif-form">
-                  <div class="col-md-6">
-                    <button type="button" class="btn close-modal" data-dismiss="modal" aria-label="Close">Cancel</button>
-                  </div>
-
-                  <div class="col-md-6">
-                    <input type="submit" value="Simpan perubahan" class="btn btn-verif btn-flat">
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div> -->
-      <!-- end modal edit data -->
-
-      <!-- modal hapus -->
-      <!-- <div class="modal modal-hapus fade" id="modal-hapus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <span class="modal-icon">
-              <i class="fa fa-trash-alt"></i>
-            </span>
-            <div class="modal-body">
-              <h3>Hapus Data?</h3>
-              <p>Data yang telah di hapus tidak dapat</p>
-              <p>dikembalikan lagi</p>
-
-              <div class="row verif-form">
-                <div class="col-md-6">
-                  <button type="button" class="btn close-modal" data-dismiss="modal" aria-label="Close">Cancel</button>
-                </div>
-
-                <div class="col-md-6">
-                  <form action="" method="POST" id="hapus-data">
-                    @csrf
-                    <input type="hidden" value="delete" name="_method">
-
-                    <input type="submit" value="Hapus data" class="btn btn-verif btn-flat">
-
-                  </form>
+                  <!--end::Widget -->
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div> -->
-      <!-- end modal hapus -->
+      </div>
+      <!-- modal detail user -->
 
     </div>
   </div>
@@ -345,63 +309,34 @@
   }
 
   // modal detail
-  // $('#modal-detail-user').on('show.bs.modal', function(event) {
-  //     var a = $(event.relatedTarget)
-  //     var nama = a.data('nama')
-  //     var harga = a.data('harga')
-  //     var min_beli = a.data('min_beli')
-  //     var stok = a.data('stok')
-  //     var deskripsi = a.data('deskripsi')
-  //     var image = a.data('image')
-  //     var admin_name = a.data('admin_name')
+  $('#modal-detail-beras').on('show.bs.modal', function(event) {
+    var a = $(event.relatedTarget)
+    var jumlah = a.data('jumlah')
+    var harga = a.data('harga')
+    var alamat = a.data('alamat')
+    var kecamatan = a.data('kecamatan')
+    var kelurahan = a.data('kelurahan')
+    var keterangan = a.data('keterangan')
+    var jenis_bayar = a.data('jenis_bayar')
+    var usersname = a.data('users-name')
+    var berasnama = a.data('beras-nama')
+    var total = a.data('total')
 
-  //     var modal = $(this)
-  //     modal.find('.modal-title').text('Detail Beras ' + nama)
-  //     modal.find('.modal-body #nama').text('Beras ' + nama)
-  //     modal.find('.modal-body #harga').text('Harga Rp. ' + harga)
-  //     modal.find('.modal-body #min_beli').text('Minimal Pembelian ' + min_beli)
-  //     modal.find('.modal-body #stok').text(stok)
-  //     modal.find('.modal-body #deskripsi').text(deskripsi)
-  //     modal.find('.modal-body #admin_name').text('Admin yang menangani : ' + admin_name)
-  //     modal.find('.modal-body #image').attr('src', image)
+    var modal = $(this)
+    modal.find('.modal-title').text('Detail Transaksi ' + usersname)
+    modal.find('.modal-body #usersnames').text('Pembeli : ' + usersname)
+    modal.find('.modal-body #jumlahs').text(jumlah + ' Kg')
+    modal.find('.modal-body #hargas').text(harga)
+    modal.find('.modal-body #alamats').text(alamat)
+    modal.find('.modal-body #kecamatans').text(kecamatan)
+    modal.find('.modal-body #kelurahans').text(kelurahan)
+    modal.find('.modal-body #keterangans').text(keterangan)
+    modal.find('.modal-body #jenisbayars').text(jenis_bayar)
+    modal.find('.modal-body #berasnamas').text(berasnama)
+    modal.find('.modal-body #totals').text(total)
 
-  // })
+  })
   // modal detail
-
-  // modal edit
-  // $('#modal-edit-data').on('show.bs.modal', function(event) {
-  //     var a = $(event.relatedTarget)
-  //     var nama = a.data('nama')
-  //     var harga = a.data('harga')
-  //     var min_beli = a.data('min_beli')
-  //     var stok = a.data('stok')
-  //     var deskripsi = a.data('deskripsi')
-  //     var image = a.data('image')
-  //     var admin_name = a.data('admin_name')
-  //     var href = a.data('href')
-
-  //     var modal = $(this)
-  //     modal.find('.modal-title').text('Detail Beras ' + nama)
-  //     modal.find('.modal-body #namas').val(nama)
-  //     modal.find('.modal-body #hargas').val(harga)
-  //     modal.find('.modal-body #min_belis').val(min_beli)
-  //     modal.find('.modal-body #stoks').val(stok)
-  //     modal.find('.modal-body #deskripsis').val(deskripsi)
-  //     modal.find('.modal-body #admin_names').val(admin_name)
-  //     modal.find('.modal-body #edit-preview').attr('src', image)
-  //     modal.find('.modal-body #edit-beras').attr('action', href)
-  // })
-  // modal edit
-
-  //Modal hapus
-  // $('#modal-hapus').on('show.bs.modal', function(event) {
-  //     var a = $(event.relatedTarget)
-  //     var href = a.data('href')
-
-  //     var modal = $(this)
-  //     modal.find('.modal-body #hapus-data').attr('action', href)
-  // })
-  //End Modal hapus
 </script>
 
 @endsection
