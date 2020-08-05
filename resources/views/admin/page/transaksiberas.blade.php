@@ -6,13 +6,17 @@
   <div class="kt-container ">
     <div class="kt-subheader__main">
       <h3 class="kt-subheader__title">
-        Gadai Sawah </h3>
+        Penjualan </h3>
       <span class="kt-subheader__separator kt-hidden"></span>
       <div class="kt-subheader__breadcrumbs">
         <a href="" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
         <span class="kt-subheader__breadcrumbs-separator"></span>
         <a href="#" class="kt-subheader__breadcrumbs-link">
-          Riwayat Gadai
+          Beras
+        </a>
+        <span class="kt-subheader__breadcrumbs-separator"></span>
+        <a href="#" class="kt-subheader__breadcrumbs-link">
+          Transaksi Beras
         </a>
       </div>
     </div>
@@ -61,7 +65,7 @@
           <div class="kt-portlet sticky" data-sticky="true" data-margin-top="100px" data-sticky-for="1023" data-sticky-class="kt-sticky">
             <div class="kt-portlet__body">
               <h5 style="color: #222;">
-                Jumlah Data Sawah Yang Pernah Tergadai
+                Jumlah Data Transaksi Beras Yang Tersedia
               </h5>
               <h4 class="mt-3 kt-font-success" style="font-weight: 800;">
                 {{$jml}} Data
@@ -79,7 +83,7 @@
                   <i class="flaticon-avatar"></i>
                 </span>
                 <h3 class="kt-portlet__head-title">
-                  Data Riwayat Gadai Sawah
+                  Data Transaksi Beras
                 </h3>
               </div>
             </div>
@@ -91,43 +95,46 @@
                       <thead>
                         <tr>
                           <th>#</th>
-                          <th>Nama Penggadai</th>
-                          <th>Nama Sawah</th>
-                          <th>Periode Gadai</th>
-                          <th>Harga Gadai</th>
-                          <th>Status</th>
-                          <th>Admin Yang Menangani</th>
+                          <th>Nama Pembeli</th>
+                          <th>Nama / Jenis Beras</th>
+                          <th>Jumlah Beras</th>
+                          <th>Total Harga</th>
+                          <th>Jenis Pembayaran</th>
                           <th>Action</th>
                         </tr>
                       </thead>
                       @if ($jml == 0)
                       <tbody style="text-align: center;">
-                        <td colspan="8">Belum ada data</td>
+                        <td colspan="7">Belum ada data</td>
                       </tbody>
-                      @endif
-
+                      @else
                       <tbody>
                         @php $no = 1; @endphp
-                        @foreach ($data as $gadais)
-                        <!-- jika admin tersedia atau tidak -->
-                        @if($gadais->admins == null)
-                        @php $admin = 'Admin Telah di hapus'; @endphp
+                        @foreach ($data as $transaksi)
+                        @php
+                        $total = (($transaksi -> jumlah)*($transaksi -> harga));
+                        @endphp
+
+                        <!-- Mengganti nama jenis bayar untuk detail -->
+                        @if($transaksi->jenis_bayar == 'cod')
+                        @php $pembayaran = 'Cash On Delivery (cod)'; @endphp
                         @else
-                        @php $admin = $gadais->admins->name; @endphp
+                        @php $pembayaran = 'Transfer Bank'; @endphp
                         @endif
-                        <!-- End jika admin tersedia atau tidak -->
+                        <!-- End Mengganti nama jenis bayar untuk detail -->
                         <tr>
                           <th scope="row">{{$no++}}</th>
-                          <td>{{$gadais -> sawahs -> users -> name}}</td>
-                          <td>{{$gadais -> sawahs -> nama}}</td>
-                          <td>{{$gadais -> periode}}</td>
-                          <td>Rp.{{format_uang($gadais -> harga)}}</td>
+                          <td>{{$transaksi -> users -> name}}</td>
+                          <td>{{$transaksi -> beras -> nama}}</td>
+                          <td>{{$transaksi -> jumlah}} Kg</td>
+                          <td>Rp.{{format_uang($total)}}</td>
                           <td>
-                            <div class="btn btn-bold btn-sm btn-font-sm  btn-label-success" style="font-size: 14px;">
-                              Riwayat Gadai
-                            </div>
+                            @if($transaksi->jenis_bayar == 'cod')
+                            Cash On Delivery
+                            @else
+                            <button type="button" class="btn btn-bold btn-bukti btn-sm" data-toggle="modal" data-target="#buktipembayaran"> Lihat Bukti Pembayaran</button>
+                            @endif
                           </td>
-                          <td>{{$admin}}</td>
                           <td>
                             <div class="dropdown dropdown-inline">
                               <a href="#" class="btn btn-default btn-icon btn-icon-md btn-sm btn-more-custom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -136,26 +143,17 @@
                               <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
                                 <ul class="kt-nav">
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$gadais->id}}" data-email="{{$gadais->sawahs->users->email}}" data-nama-sawah="{{$gadais -> sawahs -> nama}}" data-nohp="{{$gadais->sawahs->users->nohp}}" data-periode="{{$gadais->periode}}" data-harga="Rp.{{format_uang($gadais->harga)}}" data-keterangan="{{$gadais->keterangan}}" data-titik_koordinat="{{$gadais->sawahs->titik_koordinat}}" data-kecamatan="{{$gadais->sawahs->kecamatan}}" data-kelurahan="{{$gadais->sawahs->kelurahan}}" data-alamat="{{$gadais->sawahs->alamat}}" data-luas_sawah="{{$gadais->sawahs->luas_sawah}}" data-jenis_bibit="{{$gadais->sawahs->jenis_bibit}}" data-jenis_pupuk="{{$gadais->sawahs->jenis_pupuk}}" data-periode_tanam="{{$gadais->sawahs->periode_tanam}}" data-kota="{{$gadais->sawahs->alamats->tipe}} {{$gadais->sawahs->alamats->nama_kota}}" data-name="{{$gadais->sawahs->users->name}}" data-admin="{{$admin}}">
+                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-beras" data-id="{{$transaksi->id}}" data-jumlah="{{$transaksi->jumlah}}" data-harga="Rp.{{format_uang($transaksi->harga)}}" data-total="Rp.{{format_uang($total)}}" data-alamat="{{$transaksi->alamat}}" data-kecamatan="{{$transaksi->kecamatan}}" data-kelurahan="{{$transaksi->kelurahan}}" data-keterangan="{{$transaksi->keterangan}}" data-jenis_bayar="{{$pembayaran}}" data-users-name="{{$transaksi->users->name}}" data-beras-nama="{{$transaksi->beras->nama}}">
                                       <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
                                       <span class="kt-nav__link-text">Detail</span>
                                     </a>
                                   </li>
-                                  @if(Auth::guard('admin')->user()->role != 'superadmin')
-                                  <li class="kt-nav__item" style="display: none !important;">
-                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$gadais->id}}" data-href="{{ route('delriwayat.gadaisawah', ['id' => $gadais->id]) }}">
-                                      <i class="kt-nav__link-icon fa fa-trash-alt"></i>
-                                      <span class="kt-nav__link-text">Hapus Data</span>
-                                    </a>
-                                  </li>
-                                  @else
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$gadais->id}}" data-href="{{ route('delriwayat.gadaisawah', ['id' => $gadais->id]) }}">
-                                      <i class="kt-nav__link-icon fa fa-trash-alt"></i>
-                                      <span class="kt-nav__link-text">Hapus Data</span>
+                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-pembelian-user" data-id="{{$transaksi->id}}" data-href="{{ route('status.tberas', ['id' => $transaksi->id]) }}">
+                                      <i class="kt-nav__link-icon flaticon2-check-mark"></i>
+                                      <span class="kt-nav__link-text">Verifikasi Pembelian</span>
                                     </a>
                                   </li>
-                                  @endif
                                 </ul>
                               </div>
                             </div>
@@ -163,6 +161,7 @@
                         </tr>
                         @endforeach
                       </tbody>
+                      @endif
                     </table>
                     {{$data->links()}}
                   </div>
@@ -173,8 +172,31 @@
         </div>
       </div>
 
+      <!-- modal buktipembayaran -->
+      <div class="modal fade" id="buktipembayaran" tabindex="-1" role="dialog" aria-labelledby="modal-detail-user">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Bukti Transfer</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              </button>
+            </div>
+            <div class="modal-body detail-modal" style="padding-top: 10px;">
+              <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+                <div class="kt-portlet__body kt-portlet__body--fit kt-portlet__body--unfill">
+                  <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides">
+                    <img src="{{ asset('img/test.JPG') }}" alt="" id="image">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- modal buktipembayaran-->
+
       <!-- modal detail user -->
-      <div class="modal fade" id="modal-detail-user" tabindex="-1" role="dialog" aria-labelledby="modal-detail-user">
+      <div class="modal fade" id="modal-detail-beras" tabindex="-1" role="dialog" aria-labelledby="modal-detail-user">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -196,78 +218,57 @@
                         </div>
                       </div>
                       <div class="kt-widget__info">
-                        <span class="kt-widget__username" id="name">
-                        </span><br>
-                        <span class="kt-widget__label" id="email"></span><br>
-                        <span class="kt-widget__label" id="nohp"></span>
+                        <span class="kt-widget__username" id="usersnames">
+                        </span>
                       </div>
                     </div>
                     <div class="kt-widget__body widget-detail">
                       <div class="kt-widget__item">
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Nama Sawah :</span>
-                          <span class="kt-widget__data" id="nama-sawah"></span>
+                          <span class="kt-widget__label">Nama Beras Yang Dibeli :</span>
+                          <span class="kt-widget__data" id="berasnamas"></span>
                         </div>
+
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Periode Gadai :</span>
-                          <span class="kt-widget__data" id="periode"></span>
+                          <span class="kt-widget__label">Jumlah Beras Yang Dibeli :</span>
+                          <span class="kt-widget__data" id="jumlahs"></span>
                         </div>
+
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Harga Gadai :</span>
-                          <span class="kt-widget__data" id="harga"></span>
+                          <span class="kt-widget__label">Harga Perkilo :</span>
+                          <span class="kt-widget__data" id="hargas"></span>
                         </div>
+
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Luas Sawah :</span>
-                          <span class="kt-widget__data" id="luas_sawah"></span>
+                          <span class="kt-widget__label">Total Harga :</span>
+                          <span class="kt-widget__data" id="totals"></span>
                         </div>
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Jenis Bibit :</span>
-                          <span class="kt-widget__data" id="jenis_bibit"></span>
-                        </div>
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Jenis Pupuk :</span>
-                          <span class="kt-widget__data" id="jenis_pupuk"></span>
-                        </div>
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Periode Tanam :</span>
-                          <span class="kt-widget__data" id="periode_tanam"></span>
-                        </div>
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Titik Koordinat Sawah :</span>
-                          <span class="kt-widget__data" id="titik_koordinat"></span>
-                        </div>
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Provinsi :</span>
-                          <span class="kt-widget__data">Sulawesi Selatan</span>
-                        </div>
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Kota :</span>
-                          <span class="kt-widget__data" id="kota"></span>
-                        </div>
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Kecamatan :</span>
-                          <span class="kt-widget__data" id="kecamatan"></span>
-                        </div>
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Kelurahan / Desa :</span>
-                          <span class="kt-widget__data" id="kelurahan"></span>
-                        </div>
+
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Alamat :</span>
-                          <span class="kt-widget__data" id="alamat"></span>
+                          <span class="kt-widget__data" id="alamats"></span>
                         </div>
+
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Status :</span>
-                          <span class="kt-widget__data">Riwayat Gadai</span>
+                          <span class="kt-widget__label">Kecamatan :</span>
+                          <span class="kt-widget__data" id="kecamatans"></span>
                         </div>
+
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Admin Yang Menangani :</span>
-                          <span class="kt-widget__data" id="admin"></span>
+                          <span class="kt-widget__label">Kelurahan :</span>
+                          <span class="kt-widget__data" id="kelurahans"></span>
                         </div>
+
+                        <div class="kt-widget__contact">
+                          <span class="kt-widget__label">Jenis Bayar :</span>
+                          <span class="kt-widget__data" id="jenisbayars"></span>
+                        </div>
+
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Keterangan :</span>
-                          <span class="kt-widget__data" id="keterangan"></span>
+                          <span class="kt-widget__data" id="keterangans"></span>
                         </div>
+
                       </div>
                     </div>
                   </div>
@@ -281,17 +282,17 @@
       </div>
       <!-- modal detail user -->
 
-      <!-- modal hapus -->
-      <div class="modal modal-hapus fade" id="modal-hapus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+      <!-- modal verifikasi -->
+      <div class="modal modal-verif fade" id="modal-pembelian-user" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <span class="modal-icon">
-              <i class="fa fa-trash-alt"></i>
+              <i class="fa fa-info"></i>
             </span>
             <div class="modal-body">
-              <h3>Hapus Data?</h3>
-              <p>Data yang telah di hapus tidak dapat</p>
-              <p>dikembalikan lagi</p>
+              <h3>Verifikasi Pembelian?</h3>
+              <p>Verifikasi petani hanya dapat di lakukan satu kali</p>
+              <p>dan tidak dapat di batalkan</p>
 
               <div class="row verif-form">
                 <div class="col-md-6">
@@ -299,11 +300,11 @@
                 </div>
 
                 <div class="col-md-6">
-                  <form action="" method="POST" id="hapus-data">
+                  <form action="" method="POST" id="verif-pembelian-form">
                     @csrf
-                    <input type="hidden" value="delete" name="_method">
+                    <input type="hidden" value="PUT" name="_method">
 
-                    <input type="submit" value="Hapus data" class="btn btn-verif btn-flat">
+                    <input type="submit" value="Verifikasi" class="btn btn-verif btn-flat">
 
                   </form>
                 </div>
@@ -312,66 +313,79 @@
           </div>
         </div>
       </div>
-      <!-- end modal hapus -->
+      <!-- end modal verifikasi -->
 
     </div>
   </div>
 </div>
 
-<script>
+<script type="text/javascript">
+  function tampilkanPreview(gambar, idpreview) {
+    //membuat objek gambar
+    var gb = gambar.files;
+    //loop untuk merender gambar
+    for (var i = 0; i < gb.length; i++) {
+      //bikin variabel
+      var gbPreview = gb[i];
+      var imageType = /image.*/;
+      var preview = document.getElementById(idpreview);
+      var reader = new FileReader();
+      if (gbPreview.type.match(imageType)) {
+        //jika tipe data sesuai
+        preview.file = gbPreview;
+        reader.onload = (function(element) {
+          return function(e) {
+            element.src = e.target.result;
+          };
+        })(preview);
+        //membaca data URL gambar
+        reader.readAsDataURL(gbPreview);
+      } else {
+        //jika tipe data tidak sesuai
+        alert("Type file tidak sesuai. Khusus image.");
+      }
+    }
+  }
+
   // modal detail
-  $('#modal-detail-user').on('show.bs.modal', function(event) {
+  $('#modal-detail-beras').on('show.bs.modal', function(event) {
     var a = $(event.relatedTarget)
-    var email = a.data('email')
-    var namasawah = a.data('nama-sawah')
-    var nohp = a.data('nohp')
-    var periode = a.data('periode')
+    var jumlah = a.data('jumlah')
     var harga = a.data('harga')
-    var keterangan = a.data('keterangan')
-    var tanggal_lahir = a.data('tanggal_lahir')
-    var titik_koordinat = a.data('titik_koordinat')
+    var alamat = a.data('alamat')
     var kecamatan = a.data('kecamatan')
     var kelurahan = a.data('kelurahan')
-    var alamat = a.data('alamat')
-    var luas_sawah = a.data('luas_sawah')
-    var jenis_bibit = a.data('jenis_bibit')
-    var jenis_pupuk = a.data('jenis_pupuk')
-    var periode_tanam = a.data('periode_tanam')
-    var kota = a.data('kota')
-    var name = a.data('name')
-    var admin = a.data('admin')
+    var keterangan = a.data('keterangan')
+    var jenis_bayar = a.data('jenis_bayar')
+    var usersname = a.data('users-name')
+    var berasnama = a.data('beras-nama')
+    var total = a.data('total')
 
     var modal = $(this)
-    modal.find('.modal-title').text('Detail ' + name)
-    modal.find('.modal-body #name').text(name)
-    modal.find('.modal-body #nama-sawah').text(namasawah)
-    modal.find('.modal-body #email').text(email)
-    modal.find('.modal-body #nohp').text(nohp)
-    modal.find('.modal-body #periode').text(periode)
-    modal.find('.modal-body #harga').text(harga)
-    modal.find('.modal-body #luas_sawah').text(luas_sawah)
-    modal.find('.modal-body #jenis_bibit').text(jenis_bibit)
-    modal.find('.modal-body #jenis_pupuk').text(jenis_pupuk)
-    modal.find('.modal-body #periode_tanam').text(periode_tanam)
-    modal.find('.modal-body #titik_koordinat').text(titik_koordinat)
-    modal.find('.modal-body #kota').text(kota)
-    modal.find('.modal-body #kecamatan').text(kecamatan)
-    modal.find('.modal-body #kelurahan').text(kelurahan)
-    modal.find('.modal-body #alamat').text(alamat)
-    modal.find('.modal-body #admin').text(admin)
-    modal.find('.modal-body #keterangan').text(keterangan)
+    modal.find('.modal-title').text('Detail Transaksi ' + usersname)
+    modal.find('.modal-body #usersnames').text('Pembeli : ' + usersname)
+    modal.find('.modal-body #jumlahs').text(jumlah + ' Kg')
+    modal.find('.modal-body #hargas').text(harga)
+    modal.find('.modal-body #alamats').text(alamat)
+    modal.find('.modal-body #kecamatans').text(kecamatan)
+    modal.find('.modal-body #kelurahans').text(kelurahan)
+    modal.find('.modal-body #keterangans').text(keterangan)
+    modal.find('.modal-body #jenisbayars').text(jenis_bayar)
+    modal.find('.modal-body #berasnamas').text(berasnama)
+    modal.find('.modal-body #totals').text(total)
+
   })
   // modal detail
 
-  //Modal hapus
-  $('#modal-hapus').on('show.bs.modal', function(event) {
+  //Modal Verifikasi
+  $('#modal-pembelian-user').on('show.bs.modal', function(event) {
     var a = $(event.relatedTarget)
     var href = a.data('href')
 
     var modal = $(this)
-    modal.find('.modal-body #hapus-data').attr('action', href)
+    modal.find('.modal-body #verif-pembelian-form').attr('action', href)
   })
-  //End Modal hapus
+  //End Modal Verifikasi
 </script>
 
 @endsection

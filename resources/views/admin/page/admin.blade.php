@@ -320,21 +320,6 @@
 </div>
 
 <script type="text/javascript">
-  $(document).ready(function() {
-    $('#add-admin').validate({
-      rules: {
-        password2: {
-          equalTo: "#password"
-        }
-      },
-      messages: {
-        password2: {
-          equalTo: "<p>Password yang Anda Masukan Tidak Sama</p>"
-        }
-      }
-    });
-  });
-
   //Modal hapus
   $('#modal-hapus').on('show.bs.modal', function(event) {
     var a = $(event.relatedTarget)

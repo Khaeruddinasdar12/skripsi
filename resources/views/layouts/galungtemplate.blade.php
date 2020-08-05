@@ -83,6 +83,23 @@
   <script src="{{ asset('assets/js/pages/components/extended/bootstrap-notify.js') }}" type="text/javascript"></script>
   <!-- metronic -->
 
+  <script>
+    $(document).ready(function() {
+      $('#add-admin').validate({
+        rules: {
+          password_confirmation: {
+            equalTo: "#password"
+          }
+        },
+        messages: {
+          password_confirmation: {
+            equalTo: "<p>Password yang Anda Masukan Tidak Sama</p>"
+          }
+        }
+      });
+    });
+  </script>
+
   <!--end::Page Scripts-->
 </body>
 
