@@ -38,6 +38,7 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 	Route::get('transaksi-beras', 'TransaksiBerasController@index')->name('index.tberas'); //menampilkan hal. data transaksi beras
 	Route::get('riwayat-transaksi-beras', 'TransaksiBerasController@riwayat')->name('riwayat.tberas'); //menampilkan hal. data riwayat transaksi beras
 	Route::put('transaksi-beras-status/{id}', 'TransaksiBerasController@status')->name('status.tberas');// mengubah status pembelian beras menjadi riwayat
+	Route::delete('transaksi-beras-delete/{id}', 'TransaksiBerasController@delete')->name('delete.tberas');// mengubah status pembelian beras menjadi riwayat
 	// END RUTE MENU BERAS & TRANSAKSI BERAS
 
 

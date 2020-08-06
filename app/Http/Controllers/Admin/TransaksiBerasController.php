@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
 use App\TransaksiBeras;
+use App\Beras;
 
 class TransaksiBerasController extends Controller
 {
@@ -41,12 +42,25 @@ class TransaksiBerasController extends Controller
                 return redirect()->back()->with('error', 'Pembeli belum mengirim bukti transfer');
             }
         }
-            
+        $jml = $data->jumlah;
+        $beras = Beras::findOrFail($data->beras_id);
+        $stok = $beras->stok;
+
+        if($jml > $stok) {
+            return redirect()->back()->with('error', 'Stok beras tidak cukup');
+        }
 
         $data->status   = '1';
         $data->admin_id = Auth::guard('admin')->user()->id;
         $data->save();
 
         return redirect()->back()->with('success', 'Transaksi berhasil');
+    }
+
+    public function delete($id)
+    {
+        $data = TransaksiBeras::findOrFail($id);
+        $data->delete();
+        return redirect()->back()->with('success', 'Pesanan dihapus');
     }
 }
