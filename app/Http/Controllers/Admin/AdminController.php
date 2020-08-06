@@ -15,6 +15,7 @@ class AdminController extends Controller
 
 	public function index() //menampilkan hal. data user
 	{
+		//mengurutkan dari terbaru ke terlama (descending)
 		$admin = Admin::orderBy('created_at', 'desc')->paginate(10);
 		$jml = Admin::count();
 		// return $admin; // uncomment ini untuk melihat api data admin
