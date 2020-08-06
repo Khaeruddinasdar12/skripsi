@@ -32,13 +32,13 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 
 
 	// RUTE MENU BERAS & TRANSAKSI BERAS
-		// 1. Menu Beras
+	// 1. Menu Beras
 	Route::get('beras', 'BerasController@index')->name('index.beras'); //menampilkan hal. data beras
 	Route::post('beras', 'BerasController@store')->name('store.beras'); //menambah data beras
 	Route::put('beras/{id}', 'BerasController@update')->name('update.beras'); //mengubah atau suplly data beras
 	Route::delete('beras/{id}', 'BerasController@delete')->name('delete.beras'); //menghapus data beras
 
-		// 2. Menu Transaksi Beras dan Riwayat Transaksi Beras
+	// 2. Menu Transaksi Beras dan Riwayat Transaksi Beras
 	Route::get('transaksi-beras', 'TransaksiBerasController@index')->name('index.tberas'); //menampilkan hal. data transaksi beras
 	Route::get('riwayat-transaksi-beras', 'TransaksiBerasController@riwayat')->name('riwayat.tberas'); //menampilkan hal. data riwayat transaksi beras
 	Route::put('transaksi-beras-status/{id}', 'TransaksiBerasController@status')->name('status.tberas');// mengubah status pembelian beras menjadi riwayat
