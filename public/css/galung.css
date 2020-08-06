@@ -476,6 +476,15 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
   transition: 0.5s !important;
 }
 
+.btn-proses-bayar {
+  background-color: transparent !important;
+  color: #ff3863 !important;
+  border: 1px solid #ff3863 !important;
+  font-size: 15px !important;
+  transition: 0.5s !important;
+  cursor: not-allowed !important;
+}
+
 .row .col-md-2 .kt-portlet .kt-portlet__body {
   border-left: 5px solid #00A859 !important;
 }
