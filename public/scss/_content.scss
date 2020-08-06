@@ -409,6 +409,15 @@ table {
     }
 }
 
+.btn-proses-bayar {
+    background-color: transparent !important;
+    color: $merah !important;
+    border: 1px solid $merah !important;
+    font-size: 15px !important;
+    transition: .5s !important;
+    cursor: not-allowed !important;
+}
+
 // portlet-jml
 .row {
     .col-md-2 {

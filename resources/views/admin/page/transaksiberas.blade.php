@@ -132,7 +132,11 @@
                             @if($transaksi->jenis_bayar == 'cod')
                             Cash On Delivery
                             @else
+                            @if($transaksi->bukti == null)
+                            <button type="button" class="btn btn-bold btn-proses-bayar btn-sm">Bukti Pembayaran Belum Ada</button>
+                            @else
                             <button type="button" class="btn btn-bold btn-bukti btn-sm" data-toggle="modal" data-target="#buktipembayaran"> Lihat Bukti Pembayaran</button>
+                            @endif
                             @endif
                           </td>
                           <td>
