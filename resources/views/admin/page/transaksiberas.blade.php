@@ -152,12 +152,30 @@
                                       <span class="kt-nav__link-text">Detail</span>
                                     </a>
                                   </li>
+                                  @if($transaksi->jenis_bayar == 'cod')
                                   <li class="kt-nav__item">
                                     <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-pembelian-user" data-id="{{$transaksi->id}}" data-href="{{ route('status.tberas', ['id' => $transaksi->id]) }}">
                                       <i class="kt-nav__link-icon flaticon2-check-mark"></i>
                                       <span class="kt-nav__link-text">Verifikasi Pembelian</span>
                                     </a>
                                   </li>
+                                  @else
+                                  @if($transaksi->bukti == null )
+                                  <li class="kt-nav__item" style="display: none !important;">
+                                    <a href="#" class="kt-nav__link hapus-data">
+                                      <i class="kt-nav__link-icon flaticon2-check-mark"></i>
+                                      <span class="kt-nav__link-text">Verifikasi Pembelian</span>
+                                    </a>
+                                  </li>
+                                  @else
+                                  <li class="kt-nav__item">
+                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-pembelian-user" data-id="{{$transaksi->id}}" data-href="{{ route('status.tberas', ['id' => $transaksi->id]) }}">
+                                      <i class="kt-nav__link-icon flaticon2-check-mark"></i>
+                                      <span class="kt-nav__link-text">Verifikasi Pembelian</span>
+                                    </a>
+                                  </li>
+                                  @endif
+                                  @endif
                                 </ul>
                               </div>
                             </div>
