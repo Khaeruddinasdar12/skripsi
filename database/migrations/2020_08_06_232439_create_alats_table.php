@@ -18,6 +18,7 @@ class CreateAlatsTable extends Migration
             $table->string('nama');
             $table->integer('stok');
             $table->integer('harga');
+            $table->string('keterangan')->nullable();
             $table->integer('admin_id');
             $table->timestamps();
         });
