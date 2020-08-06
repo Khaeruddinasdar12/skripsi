@@ -72,6 +72,13 @@ class TransaksiBerasController extends Controller
     {
         $data = TransaksiBeras::findOrFail($id);
         $data->delete();
-        return redirect()->back()->with('success', 'Pesanan dihapus');
+        return redirect()->back()->with('success', 'Pesanan beras dihapus');
+    }
+
+    public function deleteBySuperadmin($id) // mengapus data transaksi beras (riwayat Transaksi by superadmin)
+    {
+        $data = TransaksiBeras::findOrFail($id);
+        $data->delete();
+        return redirect()->back()->with('success', 'Riwayat transaksi beras telah dihapus');
     }
 }
