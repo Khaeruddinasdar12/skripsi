@@ -42,14 +42,14 @@ class TransaksiBerasController extends Controller
 
         // return $data; //uncomment ini untuk melihat data
 
-        return view('', ['data' => $data, 'jml' => $jml]);
+        return view('admin.page.riwayat-beras', ['data' => $data, 'jml' => $jml]);
     }
 
     public function status($id) // mengubah status pembelian beras menjadi riwayat
     {
         $data = TransaksiBeras::findOrFail($id);
-        if($data->jenis_bayar == 'tf') {
-            if($data->bukti == null) {
+        if ($data->jenis_bayar == 'tf') {
+            if ($data->bukti == null) {
                 return redirect()->back()->with('error', 'Pembeli belum mengirim bukti transfer');
             }
         }
@@ -57,7 +57,7 @@ class TransaksiBerasController extends Controller
         $beras = Beras::findOrFail($data->beras_id);
         $stok = $beras->stok;
 
-        if($jml > $stok) {
+        if ($jml > $stok) {
             return redirect()->back()->with('error', 'Stok beras tidak cukup');
         }
 
