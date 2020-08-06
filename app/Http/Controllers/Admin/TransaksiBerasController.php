@@ -35,5 +35,18 @@ class TransaksiBerasController extends Controller
 
     public function status($id) // mengubah status pembelian beras menjadi riwayat
     {
+        $data = TransaksiBeras::findOrFail($id);
+        if($data->jenis_bayar == 'tf') {
+            if($data->bukti == null) {
+                return redirect()->back()->with('error', 'Pembeli belum mengirim bukti transfer');
+            }
+        }
+            
+
+        $data->status   = '1';
+        $data->admin_id = Auth::guard('admin')->user()->id;
+        $data->save();
+
+        return redirect()->back()->with('success', 'Transaksi berhasil');
     }
 }
