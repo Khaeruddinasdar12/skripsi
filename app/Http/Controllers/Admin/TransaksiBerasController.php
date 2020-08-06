@@ -32,6 +32,17 @@ class TransaksiBerasController extends Controller
 
     public function riwayat() //menampilkan hal. data riwayat transaksi beras
     {
+        //mengurutkan dari terbaru ke terlama (descending)
+        $data = TransaksiBeras::where('status', '1')
+            ->with('users:id,name', 'beras:id,nama')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        $jml = TransaksiBeras::where('status', '1')
+            ->count();
+
+        // return $data; //uncomment ini untuk melihat data
+
+        return view('', ['data' => $data, 'jml' => $jml]);
     }
 
     public function status($id) // mengubah status pembelian beras menjadi riwayat
@@ -57,7 +68,7 @@ class TransaksiBerasController extends Controller
         return redirect()->back()->with('success', 'Transaksi berhasil');
     }
 
-    public function delete($id)
+    public function delete($id) // mengapus data transaksi beras
     {
         $data = TransaksiBeras::findOrFail($id);
         $data->delete();
