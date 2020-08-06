@@ -176,6 +176,22 @@
                                   </li>
                                   @endif
                                   @endif
+
+                                  @if($transaksi->jenis_bayar == 'tf')
+                                  <li class="kt-nav__item">
+                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$transaksi->id}}" data-href="{{ route('delete.tberas', ['id' => $transaksi->id]) }}">
+                                      <i class="kt-nav__link-icon fa fa-trash-alt"></i>
+                                      <span class="kt-nav__link-text">Hapus Data</span>
+                                    </a>
+                                  </li>
+                                  @else
+                                  <li class="kt-nav__item" style="display: none !important;">
+                                    <a href="#" class="kt-nav__link hapus-data">
+                                      <i class="kt-nav__link-icon fa fa-trash-alt"></i>
+                                      <span class="kt-nav__link-text">Hapus Data</span>
+                                    </a>
+                                  </li>
+                                  @endif
                                 </ul>
                               </div>
                             </div>
@@ -337,6 +353,39 @@
       </div>
       <!-- end modal verifikasi -->
 
+      <!-- modal hapus -->
+      <div class="modal modal-hapus fade" id="modal-hapus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <span class="modal-icon">
+              <i class="fa fa-trash-alt"></i>
+            </span>
+            <div class="modal-body">
+              <h3>Hapus Data?</h3>
+              <p>Data yang telah di hapus tidak dapat</p>
+              <p>dikembalikan lagi</p>
+
+              <div class="row verif-form">
+                <div class="col-md-6">
+                  <button type="button" class="btn close-modal" data-dismiss="modal" aria-label="Close">Cancel</button>
+                </div>
+
+                <div class="col-md-6">
+                  <form action="" method="POST" id="hapus-data">
+                    @csrf
+                    <input type="hidden" value="delete" name="_method">
+
+                    <input type="submit" value="Hapus data" class="btn btn-verif btn-flat">
+
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end modal hapus -->
+
     </div>
   </div>
 </div>
@@ -408,6 +457,16 @@
     modal.find('.modal-body #verif-pembelian-form').attr('action', href)
   })
   //End Modal Verifikasi
+
+  //Modal hapus
+  $('#modal-hapus').on('show.bs.modal', function(event) {
+    var a = $(event.relatedTarget)
+    var href = a.data('href')
+
+    var modal = $(this)
+    modal.find('.modal-body #hapus-data').attr('action', href)
+  })
+  //End Modal hapus
 </script>
 
 @endsection
