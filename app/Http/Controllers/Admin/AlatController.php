@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\ALat;
+
+use App\Alat;
 
 class AlatController extends Controller
 {
@@ -61,7 +62,7 @@ class AlatController extends Controller
 
     public function delete($id) //menghapus data alat
     {
-        $data = ALat::findOrFail($id);
+        $data = Alat::findOrFail($id);
         $data->delete();
 
         return redirect()->back()->with('success', 'Berhasil mengahapus data alat');

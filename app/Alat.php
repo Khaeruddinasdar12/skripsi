@@ -8,7 +8,7 @@ class Alat extends Model
 {
     protected $table = 'alats';
     protected $fillable = [
-        'nama', 'stok', 'harga', 'admin_id',
+        'nama', 'stok', 'harga', 'keterangan', 'admin_id',
     ];
 
     public function admins()
