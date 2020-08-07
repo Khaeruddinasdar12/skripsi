@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\ALat;
+
 class AlatController extends Controller
 {
     public function __construct()
@@ -17,13 +18,9 @@ class AlatController extends Controller
         //mengurutkan dari terbaru ke terlama (descending)
         $data   = Alat::orderBy('created_at', 'desc')->paginate(10);
         $jml    = Alat::count();
-        // return $data; // uncomment ini untuk melihat data
+        return $data; // uncomment ini untuk melihat data
 
-    	return view('', ['data' => $data, 'jml' => $jml]); //struktur folder di folder views
-    	/*
-    	syntax
-    	return view('namafolder.namafile');
-    	*/
+        return view('admin.page.alat', ['data' => $data, 'jml' => $jml]); //struktur folder di folder views
     }
 
     public function store(Request $request) //menambah data alat
@@ -35,11 +32,11 @@ class AlatController extends Controller
         ]);
 
         $alat = Alat::create([
-            'nama'  => $request->get('nama'), 
+            'nama'  => $request->get('nama'),
             'stok'  => $request->get('stok'),
             'harga' => $request->get('harga'),
             'admin_id'  => Auth::guard('admin')->user()->id
-            ]);
+        ]);
 
         return redirect()->back()->with('success', 'Berhasil menambah data alat');
     }
@@ -56,7 +53,7 @@ class AlatController extends Controller
         $alat->nama    = $request->get('nama');
         $alat->stok    = $request->get('stok');
         $alat->harga   = $request->get('harga');
-        $alat->admin_id= Auth::guard('admin')->user()->id;
+        $alat->admin_id = Auth::guard('admin')->user()->id;
         $alat->save();
 
         return redirect()->back()->with('success', 'Berhasil mengubah data alat');
