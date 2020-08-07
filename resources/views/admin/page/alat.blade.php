@@ -105,7 +105,6 @@
 													<th>Nama Alat</th>
 													<th>Harga</th>
 													<th>Stok</th>
-													<th>Admin Yang Menangani</th>
 													<th>Action</th>
 												</tr>
 											</thead>
@@ -120,9 +119,8 @@
 												<tr>
 													<th scope="row">{{$no++}}</th>
 													<td>{{$alat -> nama}}</td>
-													<td>Rp.{{format_uang($alat -> harga)}}</td>
+													<td>Rp. {{format_uang($alat -> harga)}}</td>
 													<td>{{$alat -> stok}}</td>
-													<td>Admin 1</td>
 													<td>
 														<div class="dropdown dropdown-inline">
 															<a href="#" class="btn btn-default btn-icon btn-icon-md btn-sm btn-more-custom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
