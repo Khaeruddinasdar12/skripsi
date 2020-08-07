@@ -108,7 +108,7 @@
                   <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--right">
                     <ul class="kt-menu__subnav">
                       <li class="kt-menu__item " aria-haspopup="true">
-                        <a href="#" class="kt-menu__link ">
+                        <a href="{{ route('index.alat') }}" class="kt-menu__link ">
                           <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
                             <span></span>
                           </i>
