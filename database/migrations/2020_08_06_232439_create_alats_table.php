@@ -19,6 +19,7 @@ class CreateAlatsTable extends Migration
             $table->integer('stok');
             $table->integer('harga');
             $table->string('keterangan')->nullable();
+            $table->string('gambar')->nullable();
             $table->integer('admin_id');
             $table->timestamps();
         });
