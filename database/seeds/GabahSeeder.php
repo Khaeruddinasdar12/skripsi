@@ -12,21 +12,21 @@ class GabahSeeder extends Seeder
     public function run()
     {
         DB::table('gabahs')->insert([
-	        'jenis'  => 'Ketan', 
+	        'nama'  => 'Ketan', 
 	        'harga' => 6000, //per KG
-	        'admin_by' 	=> 1 // rolenya admin di tabel users
+	        'admin_id' 	=> 1 // rolenya admin di tabel users
 		]);
 
 		DB::table('gabahs')->insert([
-	        'jenis'  => 'Pera', 
+	        'nama'  => 'Pera', 
 	        'harga' => 5000, //per KG
-	        'admin_by' 	=> 1 // rolenya admin di tabel users
+	        'admin_id' 	=> 1 // rolenya admin di tabel users
 		]);
 
 		DB::table('gabahs')->insert([
-	        'jenis'  => 'Pulen', 
+	        'nama'  => 'Pulen', 
 	        'harga' => 4500, //per KG
-	        'admin_by' 	=> 1 // rolenya admin di tabel users
+	        'admin_id' 	=> 1 // rolenya admin di tabel users
 		]);
     }
 }

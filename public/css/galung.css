@@ -318,6 +318,25 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
   color: #fff;
   background-color: #00A859;
 }
+.modal-verif .modal-content .verif-form {
+  margin-top: 30px;
+}
+.modal-verif .modal-content .verif-form .close-modal {
+  width: 100% !important;
+  border: 1px solid #c2c2c2;
+}
+.modal-verif .modal-content .verif-form .close-modal:hover {
+  background-color: #ebf1f1;
+}
+.modal-verif .modal-content .verif-form .btn-verif {
+  background-color: #00A859;
+  color: #fff;
+  width: 100% !important;
+}
+.modal-verif .modal-content .verif-form .btn-verif:hover {
+  background-color: #018346;
+  color: #fff !important;
+}
 .modal-verif .modal-content .modal-body {
   text-align: center !important;
   padding-top: 60px;
@@ -441,6 +460,33 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
 }
 .form-group .kt-avatar__upload i {
   font-size: 18px !important;
+}
+
+.btn-bukti {
+  background-color: transparent !important;
+  color: #00A859 !important;
+  border: 1px solid #00A859 !important;
+  font-size: 15px !important;
+  transition: 0.5s !important;
+}
+.btn-bukti:hover {
+  background-color: #00A859 !important;
+  color: #fff !important;
+  border: 1px solid #00A859 !important;
+  transition: 0.5s !important;
+}
+
+.btn-proses-bayar {
+  background-color: transparent !important;
+  color: #ff3863 !important;
+  border: 1px solid #ff3863 !important;
+  font-size: 15px !important;
+  transition: 0.5s !important;
+  cursor: not-allowed !important;
+}
+
+.row .col-md-2 .kt-portlet .kt-portlet__body {
+  border-left: 5px solid #00A859 !important;
 }
 
 .modal .detail-modal {

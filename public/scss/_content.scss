@@ -212,6 +212,30 @@ table {
             }
         }
 
+        .verif-form {
+            margin-top: 30px;
+
+            .close-modal {
+                width: 100% !important;
+                border: 1px solid rgb(194, 194, 194);
+
+                &:hover {
+                    background-color: rgb(235, 241, 241);
+                }
+            }
+
+            .btn-verif {
+                background-color: $galungcolor;
+                color: #fff;
+                width: 100% !important;
+
+                &:hover {
+                    background-color: $galungcolorhover;
+                    color: #fff !important;
+                }
+            }
+        }
+
         .modal-body {
             text-align: center !important;
             padding-top: 60px;
@@ -365,6 +389,42 @@ table {
 
         i {
             font-size: 18px !important;
+        }
+    }
+}
+
+// btn-bukti-transfer
+.btn-bukti {
+    background-color: transparent !important;
+    color: $galungcolor !important;
+    border: 1px solid $galungcolor !important;
+    font-size: 15px !important;
+    transition: .5s !important;
+
+    &:hover {
+        background-color: $galungcolor !important;
+        color: #fff !important;
+        border: 1px solid $galungcolor !important;
+        transition: .5s !important;
+    }
+}
+
+.btn-proses-bayar {
+    background-color: transparent !important;
+    color: $merah !important;
+    border: 1px solid $merah !important;
+    font-size: 15px !important;
+    transition: .5s !important;
+    cursor: not-allowed !important;
+}
+
+// portlet-jml
+.row {
+    .col-md-2 {
+        .kt-portlet {
+            .kt-portlet__body {
+                border-left: 5px solid $galungcolor !important;
+            }
         }
     }
 }

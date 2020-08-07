@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGadaiSawahsTable extends Migration
+class CreateAlatsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,14 @@ class CreateGadaiSawahsTable extends Migration
      */
     public function up()
     {
-        Schema::create('gadai_sawahs', function (Blueprint $table) {
+        Schema::create('alats', function (Blueprint $table) {
             $table->id();
-            $table->string('periode');
+            $table->string('nama');
+            $table->integer('stok');
             $table->integer('harga');
-            // $table->enum('admin_verified', [0, 1]);
-            $table->integer('admin_by')->nullable();
-            $table->integer('sawah_id');
-            $table->enum('status', ['gadai', 'selesai'])->nullable();
             $table->string('keterangan')->nullable();
-            $table->datetime('status_at')->nullable();
+            $table->string('gambar')->nullable();
+            $table->integer('admin_id');
             $table->timestamps();
         });
     }
@@ -34,6 +32,6 @@ class CreateGadaiSawahsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gadai_sawahs');
+        Schema::dropIfExists('alats');
     }
 }

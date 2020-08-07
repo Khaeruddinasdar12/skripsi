@@ -20,19 +20,30 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 	Route::get('/', 'HomeController@index')->name('admin.home');
 
 	// RUTE MENU GABAHKU & TRANSAKSI GABAHKU
+	// 1. Menu Gabah
 	Route::get('gabah', 'GabahController@index')->name('index.gabah'); //menampilkan hal. data gabah
-	Route::get('gabah', 'GabahController@store')->name('store.gabah'); //menambah data gabah
+	Route::post('gabah', 'GabahController@store')->name('store.gabah'); //menambah data gabah
+	Route::put('gabah/{id}', 'GabahController@update')->name('update.gabah'); //mengubah data gabah
+	Route::delete('gabah/{id}', 'GabahController@delete')->name('delete.gabah'); //menghapus data gabah
 
+	// 2. Menu Transaksi Gabah
 	Route::get('transaksi-gabah', 'GabahController@transaksi')->name('transaksi.gabah'); //menampilkan hal. data transaksi gabah
 	// END RUTE MENU GABAHKU & TRANSAKSI GABAHKU
 
 
 	// RUTE MENU BERAS & TRANSAKSI BERAS
+	// 1. Menu Beras
 	Route::get('beras', 'BerasController@index')->name('index.beras'); //menampilkan hal. data beras
 	Route::post('beras', 'BerasController@store')->name('store.beras'); //menambah data beras
 	Route::put('beras/{id}', 'BerasController@update')->name('update.beras'); //mengubah atau suplly data beras
 	Route::delete('beras/{id}', 'BerasController@delete')->name('delete.beras'); //menghapus data beras
-	Route::get('transaksi-beras', 'BerasController@transaksi')->name('transaksi.beras'); //menampilkan hal. data transaksi beras
+
+	// 2. Menu Transaksi Beras dan Riwayat Transaksi Beras
+	Route::get('transaksi-beras', 'TransaksiBerasController@index')->name('index.tberas'); //menampilkan hal. data transaksi beras
+	Route::get('riwayat-transaksi-beras', 'TransaksiBerasController@riwayat')->name('riwayat.tberas'); //menampilkan hal. data riwayat transaksi beras
+	Route::put('transaksi-beras-status/{id}', 'TransaksiBerasController@status')->name('status.tberas'); // mengubah status pembelian beras menjadi riwayat
+	Route::delete('transaksi-beras-delete/{id}', 'TransaksiBerasController@delete')->name('delete.tberas'); // mengapus data transaksi beras
+	Route::delete('transaksi-beras-delete-riwayat/{id}', 'TransaksiBerasController@deleteBySuperadmin')->name('deleteriwayat.tberas')->middleware('CekAdmin'); // mengapus data transaksi beras (riwayat Transaksi by superadmin)
 	// END RUTE MENU BERAS & TRANSAKSI BERAS
 
 
@@ -56,7 +67,13 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 
 
 	// RUTE MENU ALAT
+	// 1. Menu Alat
 	Route::get('alat', 'AlatController@index')->name('index.alat'); //menampilkan hal. data alat
+	Route::post('alat', 'AlatController@store')->name('store.alat'); //menambah data alat
+	Route::put('alat/{id}', 'AlatController@update')->name('update.alat'); //mengubah data alat
+	Route::delete('alat/{id}', 'AlatController@delete')->name('delete.alat'); //menghapus data alat
+
+	// 2. Menu Transaksi Alat
 	Route::get('alat/transaksi-sewa', 'AlatController@sewa')->name('sewa.alat'); //menampilkan hal. data transaksi sewa alat
 	Route::get('alat/transaksi-beli', 'AlatController@beli')->name('beli.beras'); //menampilkan hal. data transaksi beli alat
 	// END RUTE MENU ALAT

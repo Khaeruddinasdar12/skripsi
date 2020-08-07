@@ -92,9 +92,9 @@
                         <tr>
                           <th>#</th>
                           <th>Nama Penggadai</th>
+                          <th>Nama Sawah</th>
                           <th>Periode Gadai</th>
                           <th>Harga Gadai</th>
-                          <th>Luas Sawah</th>
                           <th>Status</th>
                           <th>Admin Yang Menangani</th>
                           <th>Action</th>
@@ -108,18 +108,25 @@
                       <tbody>
                         @php $no = 1; @endphp
                         @foreach ($data as $gadais)
+                        <!-- jika admin tersedia atau tidak -->
+                        @if($gadais->admins == null)
+                        @php $admin = 'Admin Telah di hapus'; @endphp
+                        @else
+                        @php $admin = $gadais->sawahs->users->name; @endphp
+                        @endif
+                        <!-- End jika admin tersedia atau tidak -->
                         <tr>
                           <th scope="row">{{$no++}}</th>
                           <td>{{$gadais -> sawahs -> users -> name}}</td>
+                          <td>{{$gadais -> sawahs -> nama}}</td>
                           <td>{{$gadais -> periode}}</td>
                           <td>Rp.{{format_uang($gadais -> harga)}}</td>
-                          <td>{{$gadais -> sawahs -> luas_sawah}}</td>
                           <td>
                             <div class="btn btn-bold btn-sm btn-font-sm  btn-label-warning" style="font-size: 14px;">
                               Sedang Tergadai
                             </div>
                           </td>
-                          <td>{{$gadais->admins->name}}</td>
+                          <td>{{$admin}}</td>
                           <td>
                             <div class="dropdown dropdown-inline">
                               <a href="#" class="btn btn-default btn-icon btn-icon-md btn-sm btn-more-custom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -128,7 +135,7 @@
                               <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
                                 <ul class="kt-nav">
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$gadais->id}}" data-email="{{$gadais->sawahs->users->email}}" data-nohp="{{$gadais->sawahs->users->nohp}}" data-periode="{{$gadais->periode}}" data-harga="Rp.{{format_uang($gadais->harga)}}" data-keterangan="{{$gadais->keterangan}}" data-titik_koordinat="{{$gadais->sawahs->titik_koordinat}}" data-kecamatan="{{$gadais->sawahs->kecamatan}}" data-kelurahan="{{$gadais->sawahs->kelurahan}}" data-alamat="{{$gadais->sawahs->alamat}}" data-luas_sawah="{{$gadais->sawahs->luas_sawah}}" data-jenis_bibit="{{$gadais->sawahs->jenis_bibit}}" data-jenis_pupuk="{{$gadais->sawahs->jenis_pupuk}}" data-periode_tanam="{{$gadais->sawahs->periode_tanam}}" data-kota="{{$gadais->sawahs->alamats->tipe}} {{$gadais->sawahs->alamats->nama_kota}}" data-name="{{$gadais->sawahs->users->name}}" data-admin="{{$gadais->admins->name}}">
+                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$gadais->id}}" data-nama-sawah="{{$gadais -> sawahs -> nama}}" data-email="{{$gadais->sawahs->users->email}}" data-nohp="{{$gadais->sawahs->users->nohp}}" data-periode="{{$gadais->periode}}" data-harga="Rp.{{format_uang($gadais->harga)}}" data-keterangan="{{$gadais->keterangan}}" data-titik_koordinat="{{$gadais->sawahs->titik_koordinat}}" data-kecamatan="{{$gadais->sawahs->kecamatan}}" data-kelurahan="{{$gadais->sawahs->kelurahan}}" data-alamat="{{$gadais->sawahs->alamat}}" data-luas_sawah="{{$gadais->sawahs->luas_sawah}}" data-jenis_bibit="{{$gadais->sawahs->jenis_bibit}}" data-jenis_pupuk="{{$gadais->sawahs->jenis_pupuk}}" data-periode_tanam="{{$gadais->sawahs->periode_tanam}}" data-kota="{{$gadais->sawahs->alamats->tipe}} {{$gadais->sawahs->alamats->nama_kota}}" data-name="{{$gadais->sawahs->users->name}}" data-admin="{{$admin}}">
                                       <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
                                       <span class="kt-nav__link-text">Detail</span>
                                     </a>
@@ -153,6 +160,7 @@
                         @endforeach
                       </tbody>
                     </table>
+                    {{$data->links()}}
                   </div>
                 </div>
               </div>
@@ -192,6 +200,10 @@
                     </div>
                     <div class="kt-widget__body widget-detail">
                       <div class="kt-widget__item">
+                        <div class="kt-widget__contact">
+                          <span class="kt-widget__label">Nama Sawah:</span>
+                          <span class="kt-widget__data" id="nama-sawah"></span>
+                        </div>
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Periode Gadai:</span>
                           <span class="kt-widget__data" id="periode"></span>
@@ -246,11 +258,7 @@
                         </div>
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Admin Yang Menangani :</span>
-                          @if($gadais->admins->name == null)
-                          <span class="kt-widget__data">Data admin telah terhapus</span>
-                          @else
                           <span class="kt-widget__data" id="admin"></span>
-                          @endif
                         </div>
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Keterangan :</span>
@@ -350,6 +358,7 @@
   $('#modal-detail-user').on('show.bs.modal', function(event) {
     var a = $(event.relatedTarget)
     var email = a.data('email')
+    var namasawah = a.data('nama-sawah')
     var nohp = a.data('nohp')
     var periode = a.data('periode')
     var harga = a.data('harga')
@@ -370,6 +379,7 @@
     var modal = $(this)
     modal.find('.modal-title').text('Detail ' + name)
     modal.find('.modal-body #email').text(email)
+    modal.find('.modal-body #nama-sawah').text(namasawah)
     modal.find('.modal-body #nohp').text(nohp)
     modal.find('.modal-body #name').text(name)
     modal.find('.modal-body #periode').text(periode)

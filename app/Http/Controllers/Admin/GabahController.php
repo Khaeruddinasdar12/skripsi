@@ -14,8 +14,13 @@ class GabahController extends Controller
 
     public function index() //menampilkan hal. data gabah
     {
-        $data = Gabah::paginate(10);
-    	return view('', ['data' => $data]); //struktur folder di folder views
+        //mengurutkan dari terbaru ke terlama (descending)
+        $data = Gabah::orderBy('created_at', 'desc')->paginate(10);
+        $jml = Gabah::count();
+
+        // return $data; // uncomment ini untuk melihat data
+
+    	return view('', ['data' => $data, 'jml' => $jml]); //struktur folder di folder views
     	/*
     	syntax
     	return view('namafolder.namafile');
@@ -25,25 +30,41 @@ class GabahController extends Controller
     public function store(Request $request) //menambah data gabah
     {
         $validasi = $this->validate($request, [
-            'name'          => 'required|string',
-            'tempat_lahir'  => 'required|string'
+            'nama'          => 'required|string',
+            'harga'         => 'required|numeric'
         ]);
 
         $user = Gabah::create([
-            'jenis'  => $request->get('jenis'), 
+            'nama'  => $request->get('nama'), 
             'harga' => $request->get('harga'), //per KG
-            'admin_by'  => Auth::guard('admin')->user()->id
+            'admin_id'  => Auth::guard('admin')->user()->id
             ]);
 
         return redirect()->back()->with('success', 'Berhasil menambah data gabah');
     }
 
-    public function transaksi() // menampilkan hal. data transaksi gabah
+    public function update(Request $request, $id) //mengubah data gabah
     {
-    	return view(''); //struktur folder di folder views
-    	/*
-    	syntax
-    	return view('namafolder.namafile');
-    	*/
+        $validasi = $this->validate($request, [
+            'nama'          => 'required|string',
+            'harga'         => 'required|numeric'
+        ]);
+
+
+        $gabah = Gabah::findOrFail($id);
+        $gabah->nama    = $request->get('nama');
+        $gabah->harga   = $request->get('harga');
+        $gabah->admin_id= Auth::guard('admin')->user()->id;
+        $gabah->save();
+
+        return redirect()->back()->with('success', 'Berhasil mengubah data gabah');
+    }
+
+    public function delete($id) //menghapus data gabah
+    {
+        $data = Gabah::findOrFail($id);
+        $data->delete();
+
+        return redirect()->back()->with('success', 'Berhasil mengahapus data gabah');
     }
 }

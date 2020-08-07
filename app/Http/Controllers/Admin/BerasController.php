@@ -16,7 +16,10 @@ class BerasController extends Controller
 
     public function index() //menampilkan hal. data beras
     {
-        $data = Beras::with('admins:id,name')->get();
+        //mengurutkan dari terbaru ke terlama (descending)
+        $data = Beras::with('admins:id,name')
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
         $jml = Beras::count();
         // return $data; //uncomment ini untuk melihat api data
 
@@ -88,14 +91,5 @@ class BerasController extends Controller
         $data->delete();
 
         return redirect()->back()->with('success', 'Berhasil menghapus data beras');
-    }
-
-    public function transaksi() //menampilkan hal. data transaksi beras
-    {
-        return view(''); //struktur folder di folder views
-        /*
-    	syntax
-    	return view('namafolder.namafile');
-    	*/
     }
 }
