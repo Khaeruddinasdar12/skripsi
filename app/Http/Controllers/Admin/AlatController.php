@@ -19,7 +19,7 @@ class AlatController extends Controller
         //mengurutkan dari terbaru ke terlama (descending)
         $data   = Alat::orderBy('created_at', 'desc')->paginate(10);
         $jml    = Alat::count();
-        // return $data; // uncomment ini untuk melihat data
+        return $data; // uncomment ini untuk melihat data
 
         return view('admin.page.alat', ['data' => $data, 'jml' => $jml]); //struktur folder di folder views
     }
@@ -33,11 +33,6 @@ class AlatController extends Controller
             'keterangan'    => 'string',
             'gambar'        => 'image|mimes:jpeg,png,jpg|max:3072'
         ]);
-        $gambar = $request->file('gambar');
-        if ($gambar) {
-            $gambar_path = $gambar->store('gambar', 'public');
-            $data->gambar = $gambar_path;
-        }
 
         $data = new Alat;
         $data->nama         = $request->get('nama');
@@ -65,14 +60,6 @@ class AlatController extends Controller
             'stok'          => 'required|numeric'
         ]);
 
-<<<<<<< HEAD
-        $alat = Alat::findOrFail($id);
-        $alat->nama    = $request->get('nama');
-        $alat->stok    = $request->get('stok');
-        $alat->harga   = $request->get('harga');
-        $alat->admin_id = Auth::guard('admin')->user()->id;
-        $alat->save();
-=======
         $data = Alat::findOrFail($id);
         $data->nama         = $request->get('nama');
         $data->harga        = $request->get('harga');
@@ -89,7 +76,6 @@ class AlatController extends Controller
             $data->gambar = $gambar_path;
         }
         $data->save();
->>>>>>> 5b4ad8da8cd09ed84444ef34cff7e0bf8f8d46eb
 
         return redirect()->back()->with('success', 'Berhasil mengubah data alat');
     }
