@@ -19,7 +19,7 @@ class AlatController extends Controller
         //mengurutkan dari terbaru ke terlama (descending)
         $data   = Alat::orderBy('created_at', 'desc')->paginate(10);
         $jml    = Alat::count();
-        return $data; // uncomment ini untuk melihat data
+        // return $data; // uncomment ini untuk melihat data
 
         return view('admin.page.alat', ['data' => $data, 'jml' => $jml]); //struktur folder di folder views
     }
