@@ -31,15 +31,30 @@ class AlatController extends Controller
         $validasi = $this->validate($request, [
             'nama'          => 'required|string',
             'harga'         => 'required|numeric',
-            'stok'          => 'required|numeric'
+            'stok'          => 'required|numeric',
+            'keterangan'    => 'string',
+            'gambar'        => 'image|mimes:jpeg,png,jpg|max:3072'
         ]);
 
-        $alat = Alat::create([
-            'nama'  => $request->get('nama'), 
-            'stok'  => $request->get('stok'),
-            'harga' => $request->get('harga'),
-            'admin_id'  => Auth::guard('admin')->user()->id
-            ]);
+        $gambar = $request->file('gambar');
+        if ($gambar) {
+            $gambar_path = $gambar->store('gambar', 'public');
+            $data->gambar = $gambar_path;
+        }
+
+        $data = new Alat;
+        $data->nama         = $request->get('nama');
+        $data->harga        = $request->get('harga');
+        $data->stok         = $request->get('stok');
+        $data->keterangan   = $request->get('keterangan'); //boleh kosong
+        $data->admin_id     = Auth::guard('admin')->user()->id;
+
+        $gambar = $request->file('gambar');
+        if ($gambar) {
+            $gambar_path = $gambar->store('gambar', 'public');
+            $data->gambar = $gambar_path;
+        }
+        $data->save();
 
         return redirect()->back()->with('success', 'Berhasil menambah data alat');
     }
@@ -49,15 +64,26 @@ class AlatController extends Controller
         $validasi = $this->validate($request, [
             'nama'          => 'required|string',
             'harga'         => 'required|numeric',
+            'keterangan'    => 'string',
             'stok'          => 'required|numeric'
         ]);
 
-        $alat = Alat::findOrFail($id);
-        $alat->nama    = $request->get('nama');
-        $alat->stok    = $request->get('stok');
-        $alat->harga   = $request->get('harga');
-        $alat->admin_id= Auth::guard('admin')->user()->id;
-        $alat->save();
+        $data = Alat::findOrFail($id);
+        $data->nama         = $request->get('nama');
+        $data->harga        = $request->get('harga');
+        $data->stok         = $request->get('stok');
+        $data->keterangan   = $request->get('keterangan'); //boleh kosong
+        $data->admin_id     = Auth::guard('admin')->user()->id;
+
+        $gambar = $request->file('gambar');
+        if ($gambar) {
+            if ($data->gambar && file_exists(storage_path('app/public/' . $data->gambar))) {
+                \Storage::delete('public/' . $data->gambar);
+            }
+            $gambar_path = $gambar->store('gambar', 'public');
+            $data->gambar = $gambar_path;
+        }
+        $data->save();
 
         return redirect()->back()->with('success', 'Berhasil mengubah data alat');
     }
