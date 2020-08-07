@@ -246,7 +246,11 @@
                         </div>
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Admin Yang Menangani :</span>
+                          @if($gadais->admins->name == null)
+                          <span class="kt-widget__data">Data admin telah terhapus</span>
+                          @else
                           <span class="kt-widget__data" id="admin"></span>
+                          @endif
                         </div>
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Keterangan :</span>

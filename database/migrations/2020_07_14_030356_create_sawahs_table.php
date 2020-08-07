@@ -15,6 +15,7 @@ class CreateSawahsTable extends Migration
     {
         Schema::create('sawahs', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
             $table->string('titik_koordinat')->nullable();
             $table->integer('alamat_id');
             $table->string('kecamatan');

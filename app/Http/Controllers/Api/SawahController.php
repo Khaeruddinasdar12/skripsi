@@ -51,6 +51,7 @@ class SawahController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
+                'nama'      => 'required|string',
                 'alamat_id' => 'required|numeric',
                 'kecamatan' => 'required|string',
                 'kelurahan' => 'required|string',
@@ -65,11 +66,20 @@ class SawahController extends Controller
                 $message = $validator->messages()->first();
                 return response()->json([
                     'status' => false,
-                    'messsage' => $message
+                    'message' => $message
                 ]);
         }
-
+        $cek = Sawah::where('created_by', $user->id)->get();
+        foreach ($cek as $ceks) {
+            if($request->get('nama') == $ceks->nama) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'nama sawah sudah ada'
+                ]);
+            }
+        }
         $sawah = Sawah::create([
+                'nama'      => $request->get('nama'),
                 'titik_koordinat' => $request->get('titik_koordinat'),
                 'alamat_id' => $request->get('alamat_id'), // id kota atau kabupaten dari tabel kotas
                 'kelurahan' => $request->get('kelurahan'),
@@ -136,7 +146,7 @@ class SawahController extends Controller
                 $message = $validator->messages()->first();
                 return response()->json([
                     'status' => false,
-                    'messsage' => $message
+                    'message' => $message
                 ]);
         }
 
