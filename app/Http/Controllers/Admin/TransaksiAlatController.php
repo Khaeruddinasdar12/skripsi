@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\TransaksiAlat;
 use App\Alat;
+
 class TransaksiAlatController extends Controller
 {
     public function __construct()
@@ -24,9 +25,9 @@ class TransaksiAlatController extends Controller
         $jml = TransaksiAlat::where('status', '0')
             ->count();
 
-        return $data; //uncomment ini untuk melihat data
+        // return $data; //uncomment ini untuk melihat data
 
-        return view('', ['data' => $data, 'jml' => $jml]);
+        return view('admin.page.transaksialat', ['data' => $data, 'jml' => $jml]);
     }
 
     public function riwayat() //menampilkan hal. data riwayat transaksi alat
@@ -39,9 +40,9 @@ class TransaksiAlatController extends Controller
         $jml = TransaksiAlat::where('status', '1')
             ->count();
 
-        return $data; //uncomment ini untuk melihat data
+        // return $data; //uncomment ini untuk melihat data
 
-        return view('', ['data' => $data, 'jml' => $jml]);
+        return view('admin.page.riwayat-alat', ['data' => $data, 'jml' => $jml]);
     }
 
     public function status($id) // mengubah status pembelian alat menjadi riwayat
@@ -52,22 +53,22 @@ class TransaksiAlatController extends Controller
         //         return redirect()->back()->with('error', 'Pembeli belum mengirim bukti transfer');
         //     }
         // }
-        	$jml = $data->jumlah; // jumlah pesanan alat yang dipesan
-        	$alat = Alat::findOrFail($data->alat_id);
-	        $stok = $alat->stok;
+        $jml = $data->jumlah; // jumlah pesanan alat yang dipesan
+        $alat = Alat::findOrFail($data->alat_id);
+        $stok = $alat->stok;
 
-	        if ($jml > $stok) {
-	            return redirect()->back()->with('error', 'Stok alat tani'.$alat->nama.' tidak cukup. stok tersedia '.$alat->stok);
-	        }
-	        $alat->stok = $alat->stok - $jml;
-	        $alat->save();
+        if ($jml > $stok) {
+            return redirect()->back()->with('error', 'Stok alat tani' . $alat->nama . ' tidak cukup. stok tersedia ' . $alat->stok);
+        }
+        $alat->stok = $alat->stok - $jml;
+        $alat->save();
 
 
         $data->status   = '1';
         $data->admin_id = Auth::guard('admin')->user()->id;
         $data->save();
 
-        return redirect()->back()->with('success', 'Transaksi alat '.$alat->nama.' dengan jumlah '.$jml.' unit berhasil');
+        return redirect()->back()->with('success', 'Transaksi alat ' . $alat->nama . ' dengan jumlah ' . $jml . ' unit berhasil');
     }
 
     public function delete($id) // menghapus data transaksi alat belum verif
