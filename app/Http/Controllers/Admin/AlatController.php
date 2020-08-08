@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use auth;
 use App\Alat;
 
 class AlatController extends Controller
@@ -18,8 +18,8 @@ class AlatController extends Controller
     {
         //mengurutkan dari terbaru ke terlama (descending)
         $data   = Alat::with('admins:id,name')
-                    ->orderBy('created_at', 'desc')
-                    ->paginate(10);
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
         $jml    = Alat::count();
         // return $data; // uncomment ini untuk melihat data
 

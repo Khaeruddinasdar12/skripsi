@@ -50,7 +50,7 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 	Route::delete('transaksi-beras-delete-riwayat/{id}', 'TransaksiBerasController@deleteBySuperadmin')->name('deleteriwayat.tberas')->middleware('CekAdmin'); // menghapus data transaksi beras (riwayat Transaksi by superadmin)
 	// END RUTE MENU BERAS & TRANSAKSI BERAS
 
-	
+
 	// RUTE MENU GABAHKU & TRANSAKSI GABAHKU
 	// 1. Menu Gabah
 	Route::get('gabah', 'GabahController@index')->name('index.gabah'); //menampilkan hal. data gabah
