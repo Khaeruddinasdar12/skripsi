@@ -19,7 +19,7 @@ class TransaksiBerasController extends Controller
     {
         //mengurutkan dari terbaru ke terlama (descending)
         $data = TransaksiBeras::where('status', '0')
-            ->with('users:id,name', 'beras:id,nama')
+            ->with('users:id,name,email,nohp', 'beras:id,nama')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         $jml = TransaksiBeras::where('status', '0')
@@ -34,7 +34,7 @@ class TransaksiBerasController extends Controller
     {
         //mengurutkan dari terbaru ke terlama (descending)
         $data = TransaksiBeras::where('status', '1')
-            ->with('users:id,name', 'beras:id,nama', 'admins:id,name')
+            ->with('users:id,name,email,nohp', 'beras:id,nama', 'admins:id,name')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         $jml = TransaksiBeras::where('status', '1')
@@ -48,34 +48,35 @@ class TransaksiBerasController extends Controller
     public function status($id) // mengubah status pembelian beras menjadi riwayat
     {
         $data = TransaksiBeras::findOrFail($id);
-        if ($data->jenis_bayar == 'tf') {
-            if ($data->bukti == null) {
-                return redirect()->back()->with('error', 'Pembeli belum mengirim bukti transfer');
+        // if ($data->jenis_bayar == 'tf') {
+        //     if ($data->bukti == null) {
+        //         return redirect()->back()->with('error', 'Pembeli belum mengirim bukti transfer');
+        //     }
+        // }
+            $jml = $data->jumlah; // jumlah pesanan beras yang dipesan
+            $beras = Beras::findOrFail($data->beras_id);
+            $stok = $beras->stok;
+
+            if ($jml > $stok) {
+                return redirect()->back()->with('error', 'Stok beras '.$beras->nama.' tidak cukup. stok tersedia '.$beras->stok);
             }
-        }
-        $jml = $data->jumlah;
-        $beras = Beras::findOrFail($data->beras_id);
-        $stok = $beras->stok;
-
-        if ($jml > $stok) {
-            return redirect()->back()->with('error', 'Stok beras tidak cukup');
-        }
-
+            $beras->stok = $beras->stok - $jml;
+            $beras->save();
         $data->status   = '1';
         $data->admin_id = Auth::guard('admin')->user()->id;
         $data->save();
 
-        return redirect()->back()->with('success', 'Transaksi berhasil');
+        return redirect()->back()->with('success', 'Transaksi beras '.$beras->nama.' dengan jumlah '.$jml.' kg berhasil');
     }
 
-    public function delete($id) // mengapus data transaksi beras
+    public function delete($id) // menghapus data transaksi beras
     {
         $data = TransaksiBeras::findOrFail($id);
         $data->delete();
         return redirect()->back()->with('success', 'Pesanan beras dihapus');
     }
 
-    public function deleteBySuperadmin($id) // mengapus data transaksi beras (riwayat Transaksi by superadmin)
+    public function deleteBySuperadmin($id) // menghapus data transaksi beras (riwayat Transaksi by superadmin)
     {
         $data = TransaksiBeras::findOrFail($id);
         $data->delete();
