@@ -40,9 +40,9 @@ class TransaksiAlatController extends Controller
         $jml = TransaksiAlat::where('status', '1')
             ->count();
 
-        return $data; //uncomment ini untuk melihat data
+        // return $data; //uncomment ini untuk melihat data
 
-        return view('', ['data' => $data, 'jml' => $jml]);
+        return view('admin.page.riwayat-alat', ['data' => $data, 'jml' => $jml]);
     }
 
     public function status($id) // mengubah status pembelian alat menjadi riwayat
