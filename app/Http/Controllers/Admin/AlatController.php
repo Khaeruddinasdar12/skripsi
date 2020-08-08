@@ -17,7 +17,9 @@ class AlatController extends Controller
     public function index() //menampilkan hal. data alat
     {
         //mengurutkan dari terbaru ke terlama (descending)
-        $data   = Alat::orderBy('created_at', 'desc')->paginate(10);
+        $data   = Alat::with('admins:id,name')
+                    ->orderBy('created_at', 'desc')
+                    ->paginate(10);
         $jml    = Alat::count();
         // return $data; // uncomment ini untuk melihat data
 
