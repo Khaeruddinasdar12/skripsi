@@ -50,7 +50,7 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 	Route::delete('transaksi-beras-delete-riwayat/{id}', 'TransaksiBerasController@deleteBySuperadmin')->name('deleteriwayat.tberas')->middleware('CekAdmin'); // menghapus data transaksi beras (riwayat Transaksi by superadmin)
 	// END RUTE MENU BERAS & TRANSAKSI BERAS
 
-	
+
 	// RUTE MENU GABAHKU & TRANSAKSI GABAHKU
 	// 1. Menu Gabah
 	Route::get('gabah', 'GabahController@index')->name('index.gabah'); //menampilkan hal. data gabah
@@ -59,7 +59,11 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 	Route::delete('gabah/{id}', 'GabahController@delete')->name('delete.gabah'); //menghapus data gabah
 
 	// 2. Menu Transaksi Gabah
-	Route::get('transaksi-gabah', 'GabahController@transaksi')->name('transaksi.gabah'); //menampilkan hal. data transaksi gabah
+	Route::get('transaksi-gabah', 'TransaksiGabahController@index')->name('index.tgabah'); //menampilkan hal. data transaksi gabah
+	Route::get('riwayat-transaksi-gabah', 'TransaksiGabahController@riwayat')->name('riwayat.tgabah'); //menampilkan hal. data riwayat transaksi gabah
+	Route::put('transaksi-gabah-status/{id}', 'TransaksiGabahController@status')->name('status.tgabah'); // mengubah status pembelian gabah menjadi riwayat
+	Route::delete('transaksi-gabah-delete/{id}', 'TransaksiGabahController@delete')->name('delete.tgabah'); // menghapus data transaksi gabah
+	Route::delete('transaksi-gabah-delete-riwayat/{id}', 'TransaksiGabahController@deleteBySuperadmin')->name('deleteriwayat.tgabah')->middleware('CekAdmin'); // menghapus data transaksi gabah (riwayat Transaksi by superadmin)
 	// END RUTE MENU GABAHKU & TRANSAKSI GABAHKU
 
 

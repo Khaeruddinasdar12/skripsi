@@ -8,7 +8,7 @@ class TransaksiAlat extends Model
 {
 	protected $table = 'transaksi_alats';
     protected $fillable = [
-        'nama', 'harga', 'admin_by', 'min_beli', 'stok', 'deskripsi', 'gambar',
+        'jumlah', 'harga', 'alamat', 'kecamatan', 'kelurahan', 'keterangan', 'jenis_bayar', 'bukti', 'status', 'alat_id', 'user_id', 'admin_id',
     ];
 
     public function admins()

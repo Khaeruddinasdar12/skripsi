@@ -15,10 +15,12 @@ class GabahController extends Controller
     public function index() //menampilkan hal. data gabah
     {
         //mengurutkan dari terbaru ke terlama (descending)
-        $data = Gabah::orderBy('created_at', 'desc')->paginate(10);
+        $data = Gabah::with('admins:id,name')
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
         $jml = Gabah::count();
 
-        // return $data; // uncomment ini untuk melihat data
+        return $data; // uncomment ini untuk melihat data
 
     	return view('', ['data' => $data, 'jml' => $jml]); //struktur folder di folder views
     	/*
