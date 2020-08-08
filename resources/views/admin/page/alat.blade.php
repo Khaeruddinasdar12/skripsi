@@ -135,13 +135,13 @@
                                     </a>
                                   </li>
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-data" data-id="{{$alat->id}}" data-nama="{{$alat->nama}}" data-harga="{{$alat->harga}}" data-stok="{{$alat->stok}}" data-deskripsi="{{$alat->keterangan}}" data-image="{{asset('storage/'.$alat->gambar)}}" data-admin_name="{{$alat->admins->name}}" data-href="{{ route('update.beras', ['id' => $alat->id]) }}">
+                                    <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-data" data-id="{{$alat->id}}" data-nama="{{$alat->nama}}" data-harga="{{$alat->harga}}" data-stok="{{$alat->stok}}" data-keterangan="{{$alat->keterangan}}" data-image="{{asset('storage/'.$alat->gambar)}}" data-admin_name="{{$alat->admins->name}}" data-href="{{ route('update.alat', ['id' => $alat->id]) }}">
                                       <i class=" kt-nav__link-icon flaticon2-settings"></i>
                                       <span class="kt-nav__link-text">Edit Data</span>
                                     </a>
                                   </li>
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus">
+                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$alat->id}}" data-href="{{ route('delete.alat', ['id' => $alat->id]) }}">
                                       <i class="kt-nav__link-icon fa fa-trash-alt"></i>
                                       <span class="kt-nav__link-text">Hapus data</span>
                                     </a>
@@ -455,7 +455,7 @@
     modal.find('.modal-body #nama').text('Alat ' + nama)
     modal.find('.modal-body #harga').text('Harga Rp. ' + harga)
     modal.find('.modal-body #stok').text(stok)
-    modal.find('.modal-body #keterangan').text(keterangan)
+    modal.find('.modal-body #keterangan').text('Keterangan : ' + keterangan)
     modal.find('.modal-body #admin_name').text('Admin yang menangani : ' + admin_name)
     modal.find('.modal-body #image').attr('src', image)
 
