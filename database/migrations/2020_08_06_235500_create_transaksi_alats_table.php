@@ -15,6 +15,18 @@ class CreateTransaksiAlatsTable extends Migration
     {
         Schema::create('transaksi_alats', function (Blueprint $table) {
             $table->id();
+            $table->integer('jumlah');
+            $table->integer('harga');
+            $table->string('alamat');
+            $table->string('kecamatan');
+            $table->string('kelurahan');
+            $table->string('keterangan')->nullable();
+            $table->enum('jenis_bayar', ['tf', 'cod']);
+            $table->string('bukti')->nullable();
+            $table->enum('status', ['0','1']);
+            $table->integer('alat_id');
+            $table->integer('user_id');
+            $table->integer('admin_id')->nullable();
             $table->timestamps();
         });
     }
