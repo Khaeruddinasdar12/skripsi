@@ -27,7 +27,7 @@ class TransaksiGabahController extends Controller
 
         // return $data; //uncomment ini untuk melihat data
 
-        return view('', ['data' => $data, 'jml' => $jml]);
+        return view('admin.page.transaksigabah', ['data' => $data, 'jml' => $jml]);
     }
 
     public function riwayat() //menampilkan hal. data riwayat transaksi gabah
@@ -42,7 +42,7 @@ class TransaksiGabahController extends Controller
 
         // return $data; //uncomment ini untuk melihat data
 
-        return view('', ['data' => $data, 'jml' => $jml]);
+        return view('admin.page.riwayat-gabah', ['data' => $data, 'jml' => $jml]);
     }
 
     public function status($id) // mengubah status pembelian gabah menjadi riwayat
@@ -57,7 +57,7 @@ class TransaksiGabahController extends Controller
         $data->admin_id = Auth::guard('admin')->user()->id;
         $data->save();
 
-        return redirect()->back()->with('success', 'Transaksi gabah dengan jumlah '.$data->jumlah.' kg berhasil');
+        return redirect()->back()->with('success', 'Transaksi gabah dengan jumlah ' . $data->jumlah . ' kg berhasil');
     }
 
     public function delete($id) // menghapus data transaksi gabah

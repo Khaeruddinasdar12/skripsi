@@ -19,14 +19,14 @@ class TransaksiBerasController extends Controller
     {
         //mengurutkan dari terbaru ke terlama (descending)
         $data = TransaksiBarang::whereHas('barangs', function ($query) {
-                    $query->where('jenis', 'beras')->where('status', '0');
-                })
+            $query->where('jenis', 'beras')->where('status', '0');
+        })
             ->with('users:id,name,email,nohp', 'barangs:id,nama,gambar')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         $jml = TransaksiBarang::whereHas('barangs', function ($query) {
-                    $query->where('jenis', 'beras')->where('status', '0');
-                })
+            $query->where('jenis', 'beras')->where('status', '0');
+        })
             ->count();
 
         // return $data; //uncomment ini untuk melihat data
@@ -38,14 +38,14 @@ class TransaksiBerasController extends Controller
     {
         //mengurutkan dari terbaru ke terlama (descending)
         $data = TransaksiBarang::whereHas('barangs', function ($query) {
-                    $query->where('jenis', 'beras')->where('status', '1');
-                })
+            $query->where('jenis', 'beras')->where('status', '1');
+        })
             ->with('users:id,name,email,nohp', 'barangs:id,nama,gambar', 'admins:id,name')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         $jml = TransaksiBarang::whereHas('barangs', function ($query) {
-                    $query->where('jenis', 'beras')->where('status', '1');
-                })
+            $query->where('jenis', 'beras')->where('status', '1');
+        })
             ->count();
 
         // return $data; //uncomment ini untuk melihat data
@@ -61,24 +61,25 @@ class TransaksiBerasController extends Controller
         //         return redirect()->back()->with('error', 'Pembeli belum mengirim bukti transfer');
         //     }
         // }
-            $jml = $data->jumlah; // jumlah pesanan beras yang dipesan
-            $beras = Barang::findOrFail($data->barang_id);
-            if($alat->jenis != 'beras') {
-                return redirect()->back()->with('error', 'Oops ! Ngapain bre ?');
-            }
 
-            $stok = $beras->stok;
+        $jml = $data->jumlah; // jumlah pesanan beras yang dipesan
+        $beras = Barang::findOrFail($data->barang_id);
+        if ($alat->jenis != 'beras') {
+            return redirect()->back()->with('error', 'Oops ! Ngapain bre ?');
+        }
 
-            if ($jml > $stok) {
-                return redirect()->back()->with('error', 'Stok beras '.$beras->nama.' tidak cukup. stok tersedia '.$beras->stok);
-            }
-            $beras->stok = $beras->stok - $jml;
-            $beras->save();
+        $stok = $beras->stok;
+
+        if ($jml > $stok) {
+            return redirect()->back()->with('error', 'Stok beras ' . $beras->nama . ' tidak cukup. stok tersedia ' . $beras->stok);
+        }
+        $beras->stok = $beras->stok - $jml;
+        $beras->save();
         $data->status   = '1';
         $data->admin_id = Auth::guard('admin')->user()->id;
         $data->save();
 
-        return redirect()->back()->with('success', 'Transaksi beras '.$beras->nama.' dengan jumlah '.$jml.' kg berhasil');
+        return redirect()->back()->with('success', 'Transaksi beras ' . $beras->nama . ' dengan jumlah ' . $jml . ' kg berhasil');
     }
 
     public function delete($id) // menghapus data transaksi beras
