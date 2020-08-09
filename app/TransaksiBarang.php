@@ -21,8 +21,8 @@ class TransaksiBarang extends Model
         return $this->belongsTo('App\User', 'user_id');
     }
 
-    public function alats()
+    public function barangs()
     {
-        return $this->belongsTo('App\Alat', 'alat_id');
+        return $this->belongsTo('App\Barang', 'barang_id');
     }
 }

@@ -12,7 +12,7 @@ class BarangSeeder extends Seeder
     public function run()
     {
     	// BERAS
-        DB::table('barangs')->insert([
+        DB::table('barangs')->insert([ // id 1
 	        'nama'  	=> 'Ketan', 
 	        'jenis'		=> 'beras',
 	        'harga' 	=> 6000, //per KG
@@ -23,7 +23,7 @@ class BarangSeeder extends Seeder
 	        'admin_id' 	=> 1 //admin
 		]);
 
-		DB::table('barangs')->insert([
+		DB::table('barangs')->insert([ // id 2
 	        'nama'  	=> 'Pulut',
 	        'jenis'		=> 'beras', 
 	        'harga' 	=> 5000, //per KG
@@ -37,7 +37,7 @@ class BarangSeeder extends Seeder
 
 
 		// ALAT
-		DB::table('barangs')->insert([
+		DB::table('barangs')->insert([ // id 3
 	        'nama'  	=> 'Pompa Air',
 	        'jenis'		=> 'alat', 
 	        'harga' 	=> 1450000, //per unit
@@ -48,7 +48,7 @@ class BarangSeeder extends Seeder
 	        'admin_id' 	=> 1 //admin
 		]);
 
-		DB::table('barangs')->insert([
+		DB::table('barangs')->insert([ // id 5
 	        'nama'  	=> 'Selang pompa Air',
 	        'jenis'		=> 'alat',  
 	        'harga' 	=> 1450000, //per unit
@@ -62,7 +62,7 @@ class BarangSeeder extends Seeder
 
 
 		// BIBIT
-		DB::table('barangs')->insert([
+		DB::table('barangs')->insert([ // id 5
 	        'nama'  	=> 'Situ bagendit',
 	        'jenis'		=> 'bibit', 
 	        'harga' 	=> 6500, // per kg
@@ -73,7 +73,7 @@ class BarangSeeder extends Seeder
 	        'admin_id' 	=> 1 //admin
 		]);
 
-		DB::table('barangs')->insert([
+		DB::table('barangs')->insert([ // id 6
 	        'nama'  	=> 'Ciliwung',
 	        'jenis'		=> 'bibit',  
 	        'harga' 	=> 7000, // per kg
@@ -87,7 +87,7 @@ class BarangSeeder extends Seeder
 
 
 		// PUPUK
-		DB::table('barangs')->insert([
+		DB::table('barangs')->insert([ // id 7
 	        'nama'  	=> 'Urea',
 	        'jenis'		=> 'pupuk', 
 	        'harga' 	=> 8000, // per kg
@@ -98,7 +98,7 @@ class BarangSeeder extends Seeder
 	        'admin_id' 	=> 1 //admin
 		]);
 
-		DB::table('barangs')->insert([
+		DB::table('barangs')->insert([ // id 8
 	        'nama'  	=> 'Phonska',
 	        'jenis'		=> 'pupuk',  
 	        'harga' 	=> 110000, // per kg
