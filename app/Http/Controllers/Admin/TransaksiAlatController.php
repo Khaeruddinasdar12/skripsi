@@ -25,7 +25,7 @@ class TransaksiAlatController extends Controller
         $jml = TransaksiAlat::where('status', '0')
             ->count();
 
-        return $data; //uncomment ini untuk melihat data
+        // return $data; //uncomment ini untuk melihat data
 
         return view('admin.page.transaksialat', ['data' => $data, 'jml' => $jml]);
     }

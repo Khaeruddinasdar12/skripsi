@@ -152,6 +152,12 @@
                                       <span class="kt-nav__link-text">Detail</span>
                                     </a>
                                   </li>
+                                  <li class="kt-nav__item">
+                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-gambar" data-id="{{$riwayat->id}}" data-image="{{asset('storage/'.$riwayat->beras->gambar)}}" data-beras-nama="{{$riwayat->beras->nama}}">
+                                      <i class=" kt-nav__link-icon fa fa-eye"></i>
+                                      <span class="kt-nav__link-text">Lihat Gambar Beras</span>
+                                    </a>
+                                  </li>
                                   @if(Auth::guard('admin')->user()->role != 'superadmin')
                                   <li class="kt-nav__item" style="display: none !important;">
                                     <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$riwayat->id}}" data-href="{{ route('deleteriwayat.tberas', ['id' => $riwayat->id]) }}">
@@ -295,6 +301,29 @@
       </div>
       <!-- modal detail user -->
 
+      <div class="modal fade" id="modal-detail-gambar" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Beras Yang Dibeli</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              </button>
+            </div>
+            <div class="modal-body detail-modal" style="padding-top: 10px;">
+              <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+                <div class="kt-portlet__body kt-portlet__body--fit kt-portlet__body--unfill">
+                  <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides">
+                    <img src="" alt="" id="image">
+                    <h3 class="kt-widget19__title kt-font-light" id="berasnamass"></h3>
+                    <div class="kt-widget19__shadow"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- modal hapus -->
       <div class="modal modal-hapus fade" id="modal-hapus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -389,6 +418,19 @@
 
   })
   // modal detail
+
+  // modal gambar
+  $('#modal-detail-gambar').on('show.bs.modal', function(event) {
+    var a = $(event.relatedTarget)
+    var berasnama = a.data('beras-nama')
+    var image = a.data('image')
+
+    var modal = $(this)
+    modal.find('.modal-body #berasnamass').text(berasnama)
+    modal.find('.modal-body #image').attr('src', image)
+
+  })
+  // modal gambar
 
   //Modal hapus
   $('#modal-hapus').on('show.bs.modal', function(event) {
