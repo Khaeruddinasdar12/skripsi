@@ -156,74 +156,33 @@
 
       <!-- modal tambah admin -->
       <div class="modal modal-add fade" id="modal-tambah-beras" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <span class="modal-icon">
               <i class="fa fa-user-plus"></i>
             </span>
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Tambah Data Beras</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Tambah Data Gabah</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               </button>
             </div>
             <div class="modal-body">
-              <form action="{{ route('store.beras') }}" method="POST" enctype="multipart/form-data">
+              <form action="{{ route('store.gabah') }}" method="POST">
                 @csrf
                 <input type="hidden" value="POST" name="_method">
 
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                     <div class="form-group ">
-                      <label>Nama / Jenis Beras</label>
-                      <input type="text" class="form-control" placeholder="Masukkan nama / jenis beras" name="nama" id="generalSearch" required>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group ">
-                          <label>Harga</label>
-                          <input type="text" class="form-control" placeholder="Masukkan harga beras" name="harga" id="rupiah" required>
-                        </div>
-                      </div>
-
-                      <div class="col-md-6">
-                        <div class="form-group ">
-                          <label>Stok</label>
-                          <input type="text" class="form-control" placeholder="Masukkan stok beras" name="stok" id="generalSearch" required>
-                        </div>
-                      </div>
+                      <label>Nama Gabah</label>
+                      <input type="text" class="form-control" placeholder="Masukkan nama gabah" name="nama" id="generalSearch" required>
                     </div>
 
                     <div class="form-group ">
-                      <label>Minimal Pembelian</label>
-                      <input type="text" class="form-control" placeholder="Masukkan minimal pembelian" name="min_beli" id="generalSearch" required>
+                      <label>Harga</label>
+                      <input type="text" class="form-control" placeholder="Masukkan harga gabah" name="harga" id="rupiah" required>
                     </div>
 
-                    <div class="form-group">
-                      <label for="exampleTextarea">Deskripsi</label>
-                      <textarea class="form-control" id="exampleTextarea" rows="6" style="resize: none;" name="deskripsi" required></textarea>
-                    </div>
-                  </div>
-
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label>Upload Gambar</label>
-                      <div class="col-lg-9 col-xl-6">
-                        <div class="kt-avatar kt-avatar--outline" id="kt_user_add_avatar">
-                          <div class="kt-avatar__holder">
-                            <span class="message-image"> Max ukuran gambar 3MB </span>
-                            <img id="preview" src="" alt="" width="400px">
-                          </div>
-                          <label class="kt-avatar__upload" data-toggle="kt-tooltip" title="" data-original-title="Masukkan gambar">
-                            <i class="fa fa-plus"></i>
-                            <input type="file" name="gambar" onchange="tampilkanPreview(this,'preview')" accept="image/*" required>
-                          </label>
-                          <span class="kt-avatar__cancel" data-toggle="kt-tooltip" title="" data-original-title="Cancel avatar">
-                            <i class="fa fa-times"></i>
-                          </span>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
 
