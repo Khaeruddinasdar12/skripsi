@@ -47,13 +47,18 @@
             <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
               <ul class="kt-menu__subnav">
                 <li class="kt-menu__item  kt-menu__item--submenu">
-                  <a href="{{ route('admin.home') }}" class="kt-menu__link">
+                  <a href="{{ route('index.gabah') }}" class="kt-menu__link">
                     <span class="kt-menu__link-text">Data Gabah</span>
                   </a>
                 </li>
                 <li class="kt-menu__item  kt-menu__item--submenu">
-                  <a href="{{ route('admin.home') }}" class="kt-menu__link">
+                  <a href="{{ route('index.tgabah') }}" class="kt-menu__link">
                     <span class="kt-menu__link-text">Transaksi Gabah</span>
+                  </a>
+                </li>
+                <li class="kt-menu__item  kt-menu__item--submenu">
+                  <a href="{{ route('riwayat.tgabah') }}" class="kt-menu__link">
+                    <span class="kt-menu__link-text">Riwayat Transaksi</span>
                   </a>
                 </li>
               </ul>

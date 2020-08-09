@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Gabah;
+use Auth;
+
 class GabahController extends Controller
 {
     public function __construct()
@@ -16,17 +18,13 @@ class GabahController extends Controller
     {
         //mengurutkan dari terbaru ke terlama (descending)
         $data = Gabah::with('admins:id,name')
-                ->orderBy('created_at', 'desc')
-                ->paginate(10);
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
         $jml = Gabah::count();
 
-        return $data; // uncomment ini untuk melihat data
+        // return $data; // uncomment ini untuk melihat data
 
-    	return view('', ['data' => $data, 'jml' => $jml]); //struktur folder di folder views
-    	/*
-    	syntax
-    	return view('namafolder.namafile');
-    	*/
+        return view('admin.page.gabah', ['data' => $data, 'jml' => $jml]); //struktur folder di folder views
     }
 
     public function store(Request $request) //menambah data gabah
@@ -37,10 +35,10 @@ class GabahController extends Controller
         ]);
 
         $user = Gabah::create([
-            'nama'  => $request->get('nama'), 
+            'nama'  => $request->get('nama'),
             'harga' => $request->get('harga'), //per KG
             'admin_id'  => Auth::guard('admin')->user()->id
-            ]);
+        ]);
 
         return redirect()->back()->with('success', 'Berhasil menambah data gabah');
     }
@@ -56,7 +54,7 @@ class GabahController extends Controller
         $gabah = Gabah::findOrFail($id);
         $gabah->nama    = $request->get('nama');
         $gabah->harga   = $request->get('harga');
-        $gabah->admin_id= Auth::guard('admin')->user()->id;
+        $gabah->admin_id = Auth::guard('admin')->user()->id;
         $gabah->save();
 
         return redirect()->back()->with('success', 'Berhasil mengubah data gabah');
