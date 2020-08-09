@@ -19,7 +19,7 @@ class TransaksiAlatController extends Controller
     {
         //mengurutkan dari terbaru ke terlama (descending)
         $data = TransaksiAlat::where('status', '0')
-            ->with('users:id,name,email,nohp', 'alats:id,nama')
+            ->with('users:id,name,email,nohp', 'alats:id,nama,gambar')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         $jml = TransaksiAlat::where('status', '0')
@@ -34,7 +34,7 @@ class TransaksiAlatController extends Controller
     {
         //mengurutkan dari terbaru ke terlama (descending)
         $data = TransaksiAlat::where('status', '1')
-            ->with('users:id,name,email,nohp', 'alats:id,nama', 'admins:id,name')
+            ->with('users:id,name,email,nohp', 'alats:id,nama,gambar', 'admins:id,name')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         $jml = TransaksiAlat::where('status', '1')
