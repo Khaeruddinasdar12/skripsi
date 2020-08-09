@@ -42,7 +42,7 @@ class TransaksiGabahController extends Controller
 
         // return $data; //uncomment ini untuk melihat data
 
-        return view('', ['data' => $data, 'jml' => $jml]);
+        return view('admin.page.riwayat-gabah', ['data' => $data, 'jml' => $jml]);
     }
 
     public function status($id) // mengubah status pembelian gabah menjadi riwayat
