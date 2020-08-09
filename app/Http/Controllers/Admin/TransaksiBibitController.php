@@ -8,52 +8,52 @@ use Auth;
 use App\TransaksiBarang;
 use App\Barang;
 
-class TransaksiAlatController extends Controller
+class TransaksiBibitController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth:admin');
     }
 
-    public function index() //menampilkan hal. data transaksi
+    public function index() //menampilkan hal. data transaksi bibit
     {
         //mengurutkan dari terbaru ke terlama (descending)
         $data = TransaksiBarang::whereHas('barangs', function ($query) {
-                    $query->where('jenis', 'alat')->where('status', '0');
+                    $query->where('jenis', 'bibit')->where('status', '0');
                 })
             ->with('users:id,name,email,nohp', 'barangs:id,nama,gambar')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         $jml = TransaksiBarang::whereHas('barangs', function ($query) {
-                    $query->where('jenis', 'alat')->where('status', '0');
-                })
-            ->count();
-
-        return $data; //uncomment ini untuk melihat data
-
-        return view('admin.page.transaksialat', ['data' => $data, 'jml' => $jml]);
-    }
-
-    public function riwayat() //menampilkan hal. data riwayat transaksi alat
-    {
-        //mengurutkan dari terbaru ke terlama (descending)
-        $data = TransaksiBarang::whereHas('barangs', function ($query) {
-                    $query->where('jenis', 'alat')->where('status', '1');
-                })
-            ->with('users:id,name,email,nohp', 'barangs:id,nama,gambar', 'admins:id,name')
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
-        $jml = TransaksiBarang::whereHas('barangs', function ($query) {
-                    $query->where('jenis', 'alat')->where('status', '1');
+                    $query->where('jenis', 'bibit')->where('status', '0');
                 })
             ->count();
 
         // return $data; //uncomment ini untuk melihat data
 
-        return view('admin.page.riwayat-alat', ['data' => $data, 'jml' => $jml]);
+        return view('', ['data' => $data, 'jml' => $jml]);
     }
 
-    public function status($id) // mengubah status pembelian alat menjadi riwayat
+    public function riwayat() //menampilkan hal. data riwayat transaksi bibit
+    {
+        //mengurutkan dari terbaru ke terlama (descending)
+        $data = TransaksiBarang::whereHas('barangs', function ($query) {
+                    $query->where('jenis', 'bibit')->where('status', '1');
+                })
+            ->with('users:id,name,email,nohp', 'barangs:id,nama,gambar', 'admins:id,name')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        $jml = TransaksiBarang::whereHas('barangs', function ($query) {
+                    $query->where('jenis', 'bibit')->where('status', '1');
+                })
+            ->count();
+
+        // return $data; //uncomment ini untuk melihat data
+
+        return view('', ['data' => $data, 'jml' => $jml]);
+    }
+
+    public function status($id) // mengubah status pembelian bibit menjadi riwayat
     {
         $data = TransaksiBarang::findOrFail($id);
         // if ($data->jenis_bayar == 'tf') {
@@ -61,39 +61,36 @@ class TransaksiAlatController extends Controller
         //         return redirect()->back()->with('error', 'Pembeli belum mengirim bukti transfer');
         //     }
         // }
-        $jml = $data->jumlah; // jumlah pesanan alat yang dipesan
-        $alat = Barang::findOrFail($data->barang_id);
-            if($alat->jenis != 'alat') {
+            $jml = $data->jumlah; // jumlah pesanan bibit yang dipesan
+            $bibit = Barang::findOrFail($data->barang_id);
+            if($alat->jenis != 'bibit') {
                 return redirect()->back()->with('error', 'Oops ! Ngapain bre ?');
             }
+            $stok = $bibit->stok;
 
-        $stok = $alat->stok;
-
-        if ($jml > $stok) {
-            return redirect()->back()->with('error', 'Stok alat tani' . $alat->nama . ' tidak cukup. stok tersedia ' . $alat->stok);
-        }
-        $alat->stok = $alat->stok - $jml;
-        $alat->save();
-
-
+            if ($jml > $stok) {
+                return redirect()->back()->with('error', 'Stok bibit '.$bibit->nama.' tidak cukup. stok tersedia '.$bibit->stok);
+            }
+            $bibit->stok = $bibit->stok - $jml;
+            $bibit->save();
         $data->status   = '1';
         $data->admin_id = Auth::guard('admin')->user()->id;
         $data->save();
 
-        return redirect()->back()->with('success', 'Transaksi alat ' . $alat->nama . ' dengan jumlah ' . $jml . ' unit berhasil');
+        return redirect()->back()->with('success', 'Transaksi bibit '.$bibit->nama.' dengan jumlah '.$jml.' kg berhasil');
     }
 
-    public function delete($id) // menghapus data transaksi alat belum verif
+    public function delete($id) // menghapus data transaksi bibit
     {
         $data = TransaksiBarang::findOrFail($id);
         $data->delete();
-        return redirect()->back()->with('success', 'Pesanan alat tani dihapus');
+        return redirect()->back()->with('success', 'Pesanan bibit dihapus');
     }
 
-    public function deleteBySuperadmin($id) // menghapus data transaksi alat (riwayat Transaksi by superadmin)
+    public function deleteBySuperadmin($id) // menghapus data transaksi bibit (riwayat Transaksi by superadmin)
     {
         $data = TransaksiBarang::findOrFail($id);
         $data->delete();
-        return redirect()->back()->with('success', 'Riwayat transaksi alat telah dihapus');
+        return redirect()->back()->with('success', 'Riwayat transaksi bibit telah dihapus');
     }
 }

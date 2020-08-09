@@ -4,31 +4,30 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Barang;
 use Auth;
-
-class BerasController extends Controller
+use App\Barang;
+class BibitController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth:admin');
     }
 
-    public function index() //menampilkan hal. data beras
+    public function index() //menampilkan hal. data bibit
     {
         //mengurutkan dari terbaru ke terlama (descending)
-        $data = Barang::where('jenis', 'beras')
+        $data = Barang::where('jenis', 'bibit')
                 ->with('admins:id,name')
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
-        $jml = Barang::where('jenis', 'beras')
+        $jml = Barang::where('jenis', 'bibit')
                 ->count();
         // return $data; //uncomment ini untuk melihat api data
 
-        return view('admin.page.beras', ['data' => $data, 'jml' => $jml]); //struktur folder di folder views
+        return view('', ['data' => $data, 'jml' => $jml]); //struktur folder di folder views
     }
 
-    public function store(Request $request) //menambah data beras
+    public function store(Request $request) //menambah data bibit
     {
         $validasi = $this->validate($request, [
             'nama'      => 'required|string',
@@ -41,7 +40,7 @@ class BerasController extends Controller
 
         $data = new Barang;
         $data->nama         = $request->get('nama');
-        $data->jenis        = 'beras';
+        $data->jenis        = 'bibit';
         $data->harga        = $request->get('harga');
         $data->min_beli     = $request->get('min_beli');
         $data->stok         = $request->get('stok');
@@ -54,10 +53,10 @@ class BerasController extends Controller
             $data->gambar = $gambar_path;
         }
         $data->save();
-        return redirect()->back()->with('success', 'Berhasil menghapus data beras');
+        return redirect()->back()->with('success', 'Berhasil menghapus data pupuk');
     }
 
-    public function update(Request $request, $id) //mengubah atau suplly data beras
+    public function update(Request $request, $id) //mengubah atau suplly data bibit
     {
         $validasi = $this->validate($request, [
             'nama'      => 'required|string',
@@ -85,7 +84,7 @@ class BerasController extends Controller
             $data->gambar = $gambar_path;
         }
         $data->save();
-        return redirect()->back()->with('success', 'Berhasil mengubah data beras');
+        return redirect()->back()->with('success', 'Berhasil mengubah data bibit');
     }
 
     public function delete($id)
@@ -93,6 +92,6 @@ class BerasController extends Controller
         $data = Barang::findOrFail($id);
         $data->delete();
 
-        return redirect()->back()->with('success', 'Berhasil menghapus data beras');
+        return redirect()->back()->with('success', 'Berhasil menghapus data bibit');
     }
 }

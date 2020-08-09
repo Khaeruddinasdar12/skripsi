@@ -19,6 +19,38 @@ Route::post('/logout', 'LoginController@logout')->name('admin.logout');
 Route::prefix('admin')->namespace('Admin')->group(function () {
 	Route::get('/', 'HomeController@index')->name('admin.home');
 
+	// RUTE MENU BIBIT & TRANSAKSI BIBIT
+	// 1. Menu Bibit
+	Route::get('bibit', 'BibitController@index')->name('index.bibit'); //menampilkan hal. data bibit
+	Route::post('bibit', 'BibitController@store')->name('store.bibit'); //menambah data bibit
+	Route::put('bibit/{id}', 'BibitController@update')->name('update.bibit'); //mengubah data bibit
+	Route::delete('bibit/{id}', 'BibitController@delete')->name('delete.bibit'); //menghapus data bibit
+
+	// 2. Menu Transaksi Bibit
+	Route::get('transaksi-bibit', 'TransaksiBibitController@index')->name('index.tbibit'); //menampilkan hal. data transaksi bibit
+	Route::get('riwayat-transaksi-bibit', 'TransaksiBibitController@riwayat')->name('riwayat.tbibit'); //menampilkan hal. data riwayat transaksi gabah
+	Route::put('transaksi-bibit-status/{id}', 'TransaksiBibitController@status')->name('status.tbibit'); // mengubah status pembelian bibit menjadi riwayat
+	Route::delete('transaksi-bibit-delete/{id}', 'TransaksiBibitController@delete')->name('delete.tbibit'); // menghapus data transaksi bibit
+	Route::delete('transaksi-bibit-delete-riwayat/{id}', 'TransaksiBibitController@deleteBySuperadmin')->name('deleteriwayat.tbibit')->middleware('CekAdmin'); // menghapus data transaksi bibit (riwayat Transaksi by superadmin)
+	// END RUTE MENU BIBIT & TRANSAKSI BIBIT
+
+
+	// RUTE MENU PUPUK & TRANSAKSI PUPUK
+	// 1. Menu Pupuk
+	Route::get('pupuk', 'PupukController@index')->name('index.pupuk'); //menampilkan hal. data pupuk
+	Route::post('pupuk', 'PupukController@store')->name('store.pupuk'); //menambah data pupuk
+	Route::put('pupuk/{id}', 'PupukController@update')->name('update.pupuk'); //mengubah data pupuk
+	Route::delete('pupuk/{id}', 'PupukController@delete')->name('delete.pupuk'); //menghapus data pupuk
+
+	// 2. Menu Transaksi Pupuk
+	Route::get('transaksi-pupuk', 'TransaksiPupukController@index')->name('index.tpupuk'); //menampilkan hal. data transaksi pupuk
+	Route::get('riwayat-transaksi-pupuk', 'TransaksiPupukController@riwayat')->name('riwayat.tpupuk'); //menampilkan hal. data riwayat transaksi pupuk
+	Route::put('transaksi-pupuk-status/{id}', 'TransaksiPupukController@status')->name('status.tpupuk'); // mengubah status pembelian pupuk menjadi riwayat
+	Route::delete('transaksi-pupuk-delete/{id}', 'TransaksiPupukController@delete')->name('delete.tpupuk'); // menghapus data transaksi pupuk
+	Route::delete('transaksi-pupuk-delete-riwayat/{id}', 'TransaksiPupukController@deleteBySuperadmin')->name('deleteriwayat.tpupuk')->middleware('CekAdmin'); // menghapus data transaksi pupuk (riwayat Transaksi by superadmin)
+	// END RUTE MENU PUPUK & TRANSAKSI PUPUK
+
+
 	// RUTE MENU ALAT
 	// 1. Menu Alat
 	Route::get('alat', 'AlatController@index')->name('index.alat'); //menampilkan hal. data alat
@@ -84,12 +116,6 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 	Route::delete('gadai-sawah-hapus-gadai/{id}', 'GadaiSawahController@delgadai')->name('delgadai.gadaisawah'); // menghapus gadai yang gagal di survey 
 	Route::delete('gadai-sawah-hapus-riwayat/{id}', 'GadaiSawahController@delriwayat')->name('delriwayat.gadaisawah')->middleware('CekAdmin'); // menghapus riwayat gadai hanya superadmin, jika admin otomatis gagal 
 	// END RUTE MENU GADAI SAWAH
-
-
-	// RUTE MENU BIBIT PUPUK
-	Route::get('bibit-pupuk', 'BibitPupukController@index')->name('index.bibit-pupuk'); //menampilkan hal. data bibit-pupuk
-	Route::get('transaksi-bibit-pupuk', 'AlatController@sewa')->name('transaksi.bibit-pupuk'); //menampilkan hal. data transaksi bibit-pupuk
-	// END RUTE BIBIT PUPUK
 
 
 	// RUTE MENU MANAGE ADMIN
