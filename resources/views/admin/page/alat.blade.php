@@ -12,11 +12,11 @@
 				<a href="" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
 				<span class="kt-subheader__breadcrumbs-separator"></span>
 				<a href="#" class="kt-subheader__breadcrumbs-link">
-					Beras
+					Alat
 				</a>
 				<span class="kt-subheader__breadcrumbs-separator"></span>
 				<a href="#" class="kt-subheader__breadcrumbs-link">
-					Data Beras
+					Data Alat
 				</a>
 			</div>
 		</div>
