@@ -29,7 +29,7 @@ class TransaksiAlatController extends Controller
                 })
             ->count();
 
-        return $data; //uncomment ini untuk melihat data
+        // return $data; //uncomment ini untuk melihat data
 
         return view('admin.page.transaksialat', ['data' => $data, 'jml' => $jml]);
     }

@@ -4,13 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class GadaiSawah extends Model
+class ModalTanam extends Model
 {
-	protected $table = 'gadai_sawahs';
+	protected $table = 'modal_tanams';
     protected $fillable = [
-        'periode', 'harga', 'admin_by', 'sawah_id', 'keterangan', 'status', 'status_at',
+        'string', 'harga', 'admin_by', 'sawah_id', 'keterangan', 'status', 'status_at',
     ];
-
     public function sawahs()
     {
         return $this->belongsTo('App\Sawah', 'sawah_id');

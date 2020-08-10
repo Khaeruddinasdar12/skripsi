@@ -101,6 +101,7 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 
 	// RUTE MENU MODAL TANAM
 	Route::get('modal-tanam', 'ModalTanamController@index')->name('index.modaltanam'); //menampilkan hal. data modal tanam
+	Route::post('modal-tanam', 'ModalTanamController@store')->name('store.modaltanam'); //menampilkan hal. data modal tanam
 	// END RUTE MENU MODAL TANAM
 
 
