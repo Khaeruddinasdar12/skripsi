@@ -23,9 +23,9 @@ class CreateSawahsTable extends Migration
             $table->string('alamat'); //alamat lengkap
             $table->integer('created_by');
             $table->string('luas_sawah');
-            $table->string('jenis_bibit');
-            $table->string('jenis_pupuk');
-            $table->string('periode_tanam');
+            // $table->string('jenis_bibit');
+            // $table->string('jenis_pupuk');
+            // $table->string('periode_tanam');
             $table->timestamps();
         });
     }

@@ -18,10 +18,12 @@ class CreateTransaksiSawahsTable extends Migration
             $table->enum('jenis', ['mt', 'gs']);
             $table->string('periode')->nullable();
             $table->integer('harga')->nullable();
-            // $table->enum('admin_verified', [0, 1]);
             $table->integer('admin_id')->nullable();
             $table->integer('sawah_id');
             $table->enum('status', ['gadai', 'selesai'])->nullable();
+            $table->string('jenis_bibit')->nullable();
+            $table->string('jenis_pupuk')->nullable();
+            $table->string('periode_tanam')->nullable();
             $table->string('keterangan')->nullable();
             $table->datetime('status_at')->nullable();
             $table->timestamps();
