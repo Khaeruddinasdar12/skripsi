@@ -101,6 +101,43 @@ class UserController extends Controller
                 ]);
             }
 
+            if($request->get('password_lama') != null) {
+                // custom validator
+                Validator::extend('password', function ($attribute, $value, $parameters, $validator) {
+                    return Hash::check($value, \Auth::user()->password);
+                });
+         
+                // message for custom validation
+                $messages = [
+                    'password' => 'Password lama tidak sesuai',
+                ];
+         
+                // validate form
+                $validator = Validator::make(request()->all(), [
+                    'password_lama'         => 'required|password',
+                    'password'              => 'required|min:8|confirmed',
+                    'password_confirmation' => 'required',
+         
+                ], $messages);
+         
+                // if validation fails
+                if ($validator->fails()) {
+                    $message = $validator->messages()->first();
+                    return response()->json([
+                        'status'    => false,
+                        'message'  => $message
+                    ]);
+                }
+                $data = User::find($user->id);
+                $user->password = bcrypt(request('password'));
+                $user->save();
+                return response()->json([
+                    'status'    => true,
+                    'message'   => 'Berhasil mengubah paasword'
+                ]);
+            }
+            
+
             $validator = Validator::make($request->all(), [
                 'name'          => 'required|string',
                 'tempat_lahir'  => 'required|string',
