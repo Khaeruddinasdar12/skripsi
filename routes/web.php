@@ -19,16 +19,52 @@ Route::post('/logout', 'LoginController@logout')->name('admin.logout');
 Route::prefix('admin')->namespace('Admin')->group(function () {
 	Route::get('/', 'HomeController@index')->name('admin.home');
 
-	// RUTE MENU GABAHKU & TRANSAKSI GABAHKU
-	// 1. Menu Gabah
-	Route::get('gabah', 'GabahController@index')->name('index.gabah'); //menampilkan hal. data gabah
-	Route::post('gabah', 'GabahController@store')->name('store.gabah'); //menambah data gabah
-	Route::put('gabah/{id}', 'GabahController@update')->name('update.gabah'); //mengubah data gabah
-	Route::delete('gabah/{id}', 'GabahController@delete')->name('delete.gabah'); //menghapus data gabah
+	// RUTE MENU BIBIT & TRANSAKSI BIBIT
+	// 1. Menu Bibit
+	Route::get('bibit', 'BibitController@index')->name('index.bibit'); //menampilkan hal. data bibit
+	Route::post('bibit', 'BibitController@store')->name('store.bibit'); //menambah data bibit
+	Route::put('bibit/{id}', 'BibitController@update')->name('update.bibit'); //mengubah data bibit
+	Route::delete('bibit/{id}', 'BibitController@delete')->name('delete.bibit'); //menghapus data bibit
 
-	// 2. Menu Transaksi Gabah
-	Route::get('transaksi-gabah', 'GabahController@transaksi')->name('transaksi.gabah'); //menampilkan hal. data transaksi gabah
-	// END RUTE MENU GABAHKU & TRANSAKSI GABAHKU
+	// 2. Menu Transaksi Bibit
+	Route::get('transaksi-bibit', 'TransaksiBibitController@index')->name('index.tbibit'); //menampilkan hal. data transaksi bibit
+	Route::get('riwayat-transaksi-bibit', 'TransaksiBibitController@riwayat')->name('riwayat.tbibit'); //menampilkan hal. data riwayat transaksi gabah
+	Route::put('transaksi-bibit-status/{id}', 'TransaksiBibitController@status')->name('status.tbibit'); // mengubah status pembelian bibit menjadi riwayat
+	Route::delete('transaksi-bibit-delete/{id}', 'TransaksiBibitController@delete')->name('delete.tbibit'); // menghapus data transaksi bibit
+	Route::delete('transaksi-bibit-delete-riwayat/{id}', 'TransaksiBibitController@deleteBySuperadmin')->name('deleteriwayat.tbibit')->middleware('CekAdmin'); // menghapus data transaksi bibit (riwayat Transaksi by superadmin)
+	// END RUTE MENU BIBIT & TRANSAKSI BIBIT
+
+
+	// RUTE MENU PUPUK & TRANSAKSI PUPUK
+	// 1. Menu Pupuk
+	Route::get('pupuk', 'PupukController@index')->name('index.pupuk'); //menampilkan hal. data pupuk
+	Route::post('pupuk', 'PupukController@store')->name('store.pupuk'); //menambah data pupuk
+	Route::put('pupuk/{id}', 'PupukController@update')->name('update.pupuk'); //mengubah data pupuk
+	Route::delete('pupuk/{id}', 'PupukController@delete')->name('delete.pupuk'); //menghapus data pupuk
+
+	// 2. Menu Transaksi Pupuk
+	Route::get('transaksi-pupuk', 'TransaksiPupukController@index')->name('index.tpupuk'); //menampilkan hal. data transaksi pupuk
+	Route::get('riwayat-transaksi-pupuk', 'TransaksiPupukController@riwayat')->name('riwayat.tpupuk'); //menampilkan hal. data riwayat transaksi pupuk
+	Route::put('transaksi-pupuk-status/{id}', 'TransaksiPupukController@status')->name('status.tpupuk'); // mengubah status pembelian pupuk menjadi riwayat
+	Route::delete('transaksi-pupuk-delete/{id}', 'TransaksiPupukController@delete')->name('delete.tpupuk'); // menghapus data transaksi pupuk
+	Route::delete('transaksi-pupuk-delete-riwayat/{id}', 'TransaksiPupukController@deleteBySuperadmin')->name('deleteriwayat.tpupuk')->middleware('CekAdmin'); // menghapus data transaksi pupuk (riwayat Transaksi by superadmin)
+	// END RUTE MENU PUPUK & TRANSAKSI PUPUK
+
+
+	// RUTE MENU ALAT
+	// 1. Menu Alat
+	Route::get('alat', 'AlatController@index')->name('index.alat'); //menampilkan hal. data alat
+	Route::post('alat', 'AlatController@store')->name('store.alat'); //menambah data alat
+	Route::put('alat/{id}', 'AlatController@update')->name('update.alat'); //mengubah data alat
+	Route::delete('alat/{id}', 'AlatController@delete')->name('delete.alat'); //menghapus data alat
+
+	// 2. Menu Transaksi Alat
+	Route::get('transaksi-alat', 'TransaksiAlatController@index')->name('index.talat'); //menampilkan hal. data transaksi
+	Route::get('riwayat-transaksi-alat', 'TransaksiAlatController@riwayat')->name('riwayat.talat'); //menampilkan hal. data riwayat transaksi alat
+	Route::put('transaksi-alat-status/{id}', 'TransaksiAlatController@status')->name('status.talat'); // mengubah status pembelian alat menjadi riwayat
+	Route::delete('transaksi-alat-delete/{id}', 'TransaksiAlatController@delete')->name('delete.talat'); // menghapus data transaksi alat belum verif
+	Route::delete('transaksi-alat-delete-riwayat/{id}', 'TransaksiAlatController@deleteBySuperadmin')->name('deleteriwayat.talat')->middleware('CekAdmin'); // menghapus data transaksi alat (riwayat Transaksi by superadmin)
+	// END RUTE MENU ALAT
 
 
 	// RUTE MENU BERAS & TRANSAKSI BERAS
@@ -42,13 +78,30 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 	Route::get('transaksi-beras', 'TransaksiBerasController@index')->name('index.tberas'); //menampilkan hal. data transaksi beras
 	Route::get('riwayat-transaksi-beras', 'TransaksiBerasController@riwayat')->name('riwayat.tberas'); //menampilkan hal. data riwayat transaksi beras
 	Route::put('transaksi-beras-status/{id}', 'TransaksiBerasController@status')->name('status.tberas'); // mengubah status pembelian beras menjadi riwayat
-	Route::delete('transaksi-beras-delete/{id}', 'TransaksiBerasController@delete')->name('delete.tberas'); // mengapus data transaksi beras
-	Route::delete('transaksi-beras-delete-riwayat/{id}', 'TransaksiBerasController@deleteBySuperadmin')->name('deleteriwayat.tberas')->middleware('CekAdmin'); // mengapus data transaksi beras (riwayat Transaksi by superadmin)
+	Route::delete('transaksi-beras-delete/{id}', 'TransaksiBerasController@delete')->name('delete.tberas'); // menghapus data transaksi beras
+	Route::delete('transaksi-beras-delete-riwayat/{id}', 'TransaksiBerasController@deleteBySuperadmin')->name('deleteriwayat.tberas')->middleware('CekAdmin'); // menghapus data transaksi beras (riwayat Transaksi by superadmin)
 	// END RUTE MENU BERAS & TRANSAKSI BERAS
+
+
+	// RUTE MENU GABAHKU & TRANSAKSI GABAHKU
+	// 1. Menu Gabah
+	Route::get('gabah', 'GabahController@index')->name('index.gabah'); //menampilkan hal. data gabah
+	Route::post('gabah', 'GabahController@store')->name('store.gabah'); //menambah data gabah
+	Route::put('gabah/{id}', 'GabahController@update')->name('update.gabah'); //mengubah data gabah
+	Route::delete('gabah/{id}', 'GabahController@delete')->name('delete.gabah'); //menghapus data gabah
+
+	// 2. Menu Transaksi Gabah
+	Route::get('transaksi-gabah', 'TransaksiGabahController@index')->name('index.tgabah'); //menampilkan hal. data transaksi gabah
+	Route::get('riwayat-transaksi-gabah', 'TransaksiGabahController@riwayat')->name('riwayat.tgabah'); //menampilkan hal. data riwayat transaksi gabah
+	Route::put('transaksi-gabah-status/{id}', 'TransaksiGabahController@status')->name('status.tgabah'); // mengubah status pembelian gabah menjadi riwayat
+	Route::delete('transaksi-gabah-delete/{id}', 'TransaksiGabahController@delete')->name('delete.tgabah'); // menghapus data transaksi gabah
+	Route::delete('transaksi-gabah-delete-riwayat/{id}', 'TransaksiGabahController@deleteBySuperadmin')->name('deleteriwayat.tgabah')->middleware('CekAdmin'); // menghapus data transaksi gabah (riwayat Transaksi by superadmin)
+	// END RUTE MENU GABAHKU & TRANSAKSI GABAHKU
 
 
 	// RUTE MENU MODAL TANAM
 	Route::get('modal-tanam', 'ModalTanamController@index')->name('index.modaltanam'); //menampilkan hal. data modal tanam
+	Route::post('modal-tanam', 'ModalTanamController@store')->name('store.modaltanam'); //menampilkan hal. data modal tanam
 	// END RUTE MENU MODAL TANAM
 
 
@@ -64,25 +117,6 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 	Route::delete('gadai-sawah-hapus-gadai/{id}', 'GadaiSawahController@delgadai')->name('delgadai.gadaisawah'); // menghapus gadai yang gagal di survey 
 	Route::delete('gadai-sawah-hapus-riwayat/{id}', 'GadaiSawahController@delriwayat')->name('delriwayat.gadaisawah')->middleware('CekAdmin'); // menghapus riwayat gadai hanya superadmin, jika admin otomatis gagal 
 	// END RUTE MENU GADAI SAWAH
-
-
-	// RUTE MENU ALAT
-	// 1. Menu Alat
-	Route::get('alat', 'AlatController@index')->name('index.alat'); //menampilkan hal. data alat
-	Route::post('alat', 'AlatController@store')->name('store.alat'); //menambah data alat
-	Route::put('alat/{id}', 'AlatController@update')->name('update.alat'); //mengubah data alat
-	Route::delete('alat/{id}', 'AlatController@delete')->name('delete.alat'); //menghapus data alat
-
-	// 2. Menu Transaksi Alat
-	Route::get('alat/transaksi-sewa', 'AlatController@sewa')->name('sewa.alat'); //menampilkan hal. data transaksi sewa alat
-	Route::get('alat/transaksi-beli', 'AlatController@beli')->name('beli.beras'); //menampilkan hal. data transaksi beli alat
-	// END RUTE MENU ALAT
-
-
-	// RUTE MENU BIBIT PUPUK
-	Route::get('bibit-pupuk', 'BibitPupukController@index')->name('index.bibit-pupuk'); //menampilkan hal. data bibit-pupuk
-	Route::get('transaksi-bibit-pupuk', 'AlatController@sewa')->name('transaksi.bibit-pupuk'); //menampilkan hal. data transaksi bibit-pupuk
-	// END RUTE BIBIT PUPUK
 
 
 	// RUTE MENU MANAGE ADMIN

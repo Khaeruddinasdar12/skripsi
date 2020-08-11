@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class TransaksiBerasSeeder extends Seeder
+class TransaksiGabahSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,44 +11,44 @@ class TransaksiBerasSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('transaksi_beras')->insert([
-        	'jumlah'	=> 8,
+        DB::table('transaksi_gabahs')->insert([
+        	'jumlah'	=> 400,
 	        'harga'  	=> 6000, //id kabupaten bone dari tabel Kotas
 	        'kecamatan' => 'Kec. Barebbo',
 	        'kelurahan' 	=> 'Desa Kampuno',
 	        'alamat' => 'Kampuno, Desa Kampuno Kec. Barebbo Kab. Bone',
 	        'user_id'=> 2, //dari tabel user role petani (dari seeder)
-	        'keterangan' => 'proses secepatnya dong',
+	        'keterangan' => 'saya mau cepat gabah saya kak oke ?',
 	        'jenis_bayar' => 'cod',
 	        'status' => '0',
-	        'beras_id' => 1
+	        'gabah_id' => 1
 		]);
 
-		DB::table('transaksi_beras')->insert([
-        	'jumlah'	=> 8,
+		DB::table('transaksi_gabahs')->insert([
+        	'jumlah'	=> 380,
 	        'harga'  	=> 6000, //id kabupaten bone dari tabel Kotas
 	        'kecamatan' => 'Kec. Bulutempe',
 	        'kelurahan' 	=> 'Desa Sugiale',
 	        'alamat' => 'Sugiale, Desa Sugiale Kec. Bulutempe Kab. Pare-pare',
 	        'user_id'=> 2, //dari tabel user role petani (dari seeder)
-	        'keterangan' => 'proses cepat please ya kaka',
+	        'keterangan' => 'saya punya gabah untuk di jual kak',
 	        'jenis_bayar' => 'cod',
 	        'status' => '0',
-	        'beras_id' => 1
+	        'gabah_id' => 1
 		]);
 
-		//riwayat transaksi Beras
-		DB::table('transaksi_beras')->insert([
-        	'jumlah'	=> 5,
-	        'harga'  	=> 5500,
+		//riwayat transaksi Gabah
+		DB::table('transaksi_gabahs')->insert([
+        	'jumlah'	=> 500,
+	        'harga'  	=> 4000,
 	        'kecamatan' => 'Kec. Bulutempe',
 	        'kelurahan' 	=> 'Desa Sugiale',
 	        'alamat' => 'Sugiale, Desa Sugiale Kec. Bulutempe Kab. Pare-pare',
 	        'user_id'=> 2, //dari tabel user role petani (dari seeder)
-	        'keterangan' => 'ini adalah contoh riwayat transaksi beras',
+	        'keterangan' => 'senang bertransaksi gabah',
 	        'jenis_bayar' => 'cod',
 	        'status' => '1',
-	        'beras_id' => 1,
+	        'gabah_id' => 1,
 	        'admin_id' => 1
 		]);
     }

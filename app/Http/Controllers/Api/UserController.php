@@ -119,7 +119,7 @@ class UserController extends Controller
                 $message = $validator->messages()->first();
                 return response()->json([
                     'status'    => false,
-                    'messsage'  => $message
+                    'message'  => $message
                 ]);
             }
                 // if($validator->fails()) {

@@ -12,7 +12,7 @@ class GabahSeeder extends Seeder
     public function run()
     {
         DB::table('gabahs')->insert([
-	        'nama'  => 'Ketan', 
+	        'nama'  => 'Ciliwung', 
 	        'harga' => 6000, //per KG
 	        'admin_id' 	=> 1 // rolenya admin di tabel users
 		]);

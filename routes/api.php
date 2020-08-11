@@ -20,13 +20,13 @@ $api->version('v1', function($api) {
 
     Route::group(['middleware' => ['auth:api']], function() {
         Route::get('user', 'Api\UserController@detail');
-        Route::put('user', 'Api\UserController@update');
+        Route::post('edit-user', 'Api\UserController@update');
 
         // SAWAHCONTROLLER 
         Route::get('sawah', 'Api\SawahController@index'); // data sawah berdasarkan id yang login
         Route::post('sawah', 'Api\SawahController@store'); // mendaftarkan sawah berdasarkan id yang login
-        Route::put('sawah/{id}', 'Api\SawahController@update'); //edit sawah berdasarkan id sawah (tidak bisa edit jika data terdapat di table lain)
-        Route::delete('sawah/{id}', 'Api\SawahController@delete'); //hapus sawah berdasarkan id sawah
+        Route::post('sawah/{id}', 'Api\SawahController@update'); //edit sawah berdasarkan id sawah (tidak bisa edit jika data terdapat di table lain)
+        Route::post('sawah/{id}', 'Api\SawahController@delete'); //hapus sawah berdasarkan id sawah
         // END SAWAHCONTROLLER
 
 

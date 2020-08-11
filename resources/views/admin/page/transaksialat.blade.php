@@ -12,11 +12,11 @@
         <a href="" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
         <span class="kt-subheader__breadcrumbs-separator"></span>
         <a href="#" class="kt-subheader__breadcrumbs-link">
-          Beras
+          Alat
         </a>
         <span class="kt-subheader__breadcrumbs-separator"></span>
         <a href="#" class="kt-subheader__breadcrumbs-link">
-          Transaksi Beras
+          Transaksi Alat
         </a>
       </div>
     </div>
@@ -65,7 +65,7 @@
           <div class="kt-portlet sticky" data-sticky="true" data-margin-top="100px" data-sticky-for="1023" data-sticky-class="kt-sticky">
             <div class="kt-portlet__body">
               <h5 style="color: #222;">
-                Jumlah Data Transaksi Beras Yang Tersedia
+                Jumlah Data Transaksi Alat Yang Tersedia
               </h5>
               <h4 class="mt-3 kt-font-success" style="font-weight: 800;">
                 {{$jml}} Data
@@ -83,7 +83,7 @@
                   <i class="flaticon-avatar"></i>
                 </span>
                 <h3 class="kt-portlet__head-title">
-                  Data Transaksi Beras
+                  Data Transaksi Alat
                 </h3>
               </div>
             </div>
@@ -96,8 +96,8 @@
                         <tr>
                           <th>#</th>
                           <th>Nama Pembeli</th>
-                          <th>Nama / Jenis Beras</th>
-                          <th>Jumlah Beras</th>
+                          <th>Nama Alat</th>
+                          <th>Jumlah Alat</th>
                           <th>Total Harga</th>
                           <th>Jenis Pembayaran</th>
                           <th>Action</th>
@@ -125,7 +125,7 @@
                         <tr>
                           <th scope="row">{{$no++}}</th>
                           <td>{{$transaksi -> users -> name}}</td>
-                          <td>{{$transaksi -> beras -> nama}}</td>
+                          <td>{{$transaksi -> alats -> nama}}</td>
                           <td>{{$transaksi -> jumlah}} Kg</td>
                           <td>Rp.{{format_uang($total)}}</td>
                           <td>
@@ -147,20 +147,20 @@
                               <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
                                 <ul class="kt-nav">
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-beras" data-id="{{$transaksi->id}}" data-jumlah="{{$transaksi->jumlah}}" data-harga="Rp.{{format_uang($transaksi->harga)}}" data-total="Rp.{{format_uang($total)}}" data-alamat="{{$transaksi->alamat}}" data-kecamatan="{{$transaksi->kecamatan}}" data-kelurahan="{{$transaksi->kelurahan}}" data-keterangan="{{$transaksi->keterangan}}" data-jenis_bayar="{{$pembayaran}}" data-users-name="{{$transaksi->users->name}}" data-beras-nama="{{$transaksi->beras->nama}}">
-                                      <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
+                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-beras" data-id="{{$transaksi->id}}" data-jumlah="{{$transaksi->jumlah}}" data-harga="Rp.{{format_uang($transaksi->harga)}}" data-total="Rp.{{format_uang($total)}}" data-alamat="{{$transaksi->alamat}}" data-kecamatan="{{$transaksi->kecamatan}}" data-kelurahan="{{$transaksi->kelurahan}}" data-keterangan="{{$transaksi->keterangan}}" data-jenis_bayar="{{$pembayaran}}" data-users-name="{{$transaksi->users->name}}" data-users-email="{{$transaksi->users->email}}" data-users-nohp="{{$transaksi->users->nohp}}" data-beras-nama="{{$transaksi->alats->nama}}">
+                                      <i class=" kt-nav__link-icon flaticon2-indent-dots"></i>
                                       <span class="kt-nav__link-text">Detail</span>
                                     </a>
                                   </li>
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-gambar" data-id="{{$transaksi->id}}" data-image="{{asset('storage/'.$transaksi->beras->gambar)}}" data-beras-nama="{{$transaksi->beras->nama}}">
+                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-gambar" data-id="{{$transaksi->id}}" data-image="{{asset('storage/'.$transaksi->alats->gambar)}}" data-beras-nama="{{$transaksi->alats->nama}}">
                                       <i class=" kt-nav__link-icon fa fa-eye"></i>
-                                      <span class="kt-nav__link-text">Lihat Gambar Beras</span>
+                                      <span class="kt-nav__link-text">Lihat Gambar Alat</span>
                                     </a>
                                   </li>
                                   @if($transaksi->jenis_bayar == 'cod')
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-pembelian-user" data-id="{{$transaksi->id}}" data-href="{{ route('status.tberas', ['id' => $transaksi->id]) }}">
+                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-pembelian-user" data-id="{{$transaksi->id}}" data-href="{{ route('status.talat', ['id' => $transaksi->id]) }}">
                                       <i class="kt-nav__link-icon flaticon2-check-mark"></i>
                                       <span class="kt-nav__link-text">Verifikasi Pembelian</span>
                                     </a>
@@ -175,7 +175,7 @@
                                   </li>
                                   @else
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-pembelian-user" data-id="{{$transaksi->id}}" data-href="{{ route('status.tberas', ['id' => $transaksi->id]) }}">
+                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-pembelian-user" data-id="{{$transaksi->id}}" data-href="{{ route('status.talat', ['id' => $transaksi->id]) }}">
                                       <i class="kt-nav__link-icon flaticon2-check-mark"></i>
                                       <span class="kt-nav__link-text">Verifikasi Pembelian</span>
                                     </a>
@@ -185,7 +185,7 @@
 
                                   @if($transaksi->jenis_bayar == 'tf')
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$transaksi->id}}" data-href="{{ route('delete.tberas', ['id' => $transaksi->id]) }}">
+                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$transaksi->id}}" data-href="{{ route('delete.talat', ['id' => $transaksi->id]) }}">
                                       <i class="kt-nav__link-icon fa fa-trash-alt"></i>
                                       <span class="kt-nav__link-text">Hapus Data</span>
                                     </a>
@@ -264,22 +264,26 @@
                       <div class="kt-widget__info">
                         <span class="kt-widget__username" id="usersnames">
                         </span>
+                        <span class="kt-widget__desc" id="email">
+                        </span>
+                        <span class="kt-widget__desc" id="nohp">
+                        </span>
                       </div>
                     </div>
                     <div class="kt-widget__body widget-detail">
                       <div class="kt-widget__item">
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Nama Beras Yang Dibeli :</span>
+                          <span class="kt-widget__label">Nama Alat Yang Dibeli :</span>
                           <span class="kt-widget__data" id="berasnamas"></span>
                         </div>
 
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Jumlah Beras Yang Dibeli :</span>
+                          <span class="kt-widget__label">Jumlah Alat Yang Dibeli :</span>
                           <span class="kt-widget__data" id="jumlahs"></span>
                         </div>
 
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Harga Perkilo :</span>
+                          <span class="kt-widget__label">Harga Satuan :</span>
                           <span class="kt-widget__data" id="hargas"></span>
                         </div>
 
@@ -326,29 +330,6 @@
       </div>
       <!-- modal detail user -->
 
-      <div class="modal fade" id="modal-detail-gambar" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Beras Yang Dibeli</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              </button>
-            </div>
-            <div class="modal-body detail-modal" style="padding-top: 10px;">
-              <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
-                <div class="kt-portlet__body kt-portlet__body--fit kt-portlet__body--unfill">
-                  <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides">
-                    <img src="" alt="" id="image">
-                    <h3 class="kt-widget19__title kt-font-light" id="berasnamass"></h3>
-                    <div class="kt-widget19__shadow"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <!-- modal verifikasi -->
       <div class="modal modal-verif fade" id="modal-pembelian-user" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -381,6 +362,29 @@
         </div>
       </div>
       <!-- end modal verifikasi -->
+
+      <div class="modal fade" id="modal-detail-gambar" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Alat Yang Dibeli</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              </button>
+            </div>
+            <div class="modal-body detail-modal" style="padding-top: 10px;">
+              <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+                <div class="kt-portlet__body kt-portlet__body--fit kt-portlet__body--unfill">
+                  <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides">
+                    <img src="" alt="" id="image">
+                    <h3 class="kt-widget19__title kt-font-light" id="berasnamass"></h3>
+                    <div class="kt-widget19__shadow"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <!-- modal hapus -->
       <div class="modal modal-hapus fade" id="modal-hapus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
@@ -458,12 +462,17 @@
     var keterangan = a.data('keterangan')
     var jenis_bayar = a.data('jenis_bayar')
     var usersname = a.data('users-name')
+    var usersemail = a.data('users-email')
+    var usersnohp = a.data('users-nohp')
     var berasnama = a.data('beras-nama')
     var total = a.data('total')
+    var image = a.data('image')
 
     var modal = $(this)
     modal.find('.modal-title').text('Detail Transaksi ' + usersname)
     modal.find('.modal-body #usersnames').text('Pembeli : ' + usersname)
+    modal.find('.modal-body #email').text(usersemail)
+    modal.find('.modal-body #nohp').text(usersnohp)
     modal.find('.modal-body #jumlahs').text(jumlah + ' Kg')
     modal.find('.modal-body #hargas').text(harga)
     modal.find('.modal-body #alamats').text(alamat)
@@ -473,6 +482,7 @@
     modal.find('.modal-body #jenisbayars').text(jenis_bayar)
     modal.find('.modal-body #berasnamas').text(berasnama)
     modal.find('.modal-body #totals').text(total)
+    modal.find('.modal-body #image').attr('src', image)
 
   })
   // modal detail

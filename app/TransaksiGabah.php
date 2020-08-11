@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TransaksiBeras extends Model
+class TransaksiGabah extends Model
 {
-    protected $table = 'transaksi_beras';
+    protected $table = 'transaksi_gabahs';
 
     protected $fillable = [
-        'jumlah', 'harga', 'alamat', 'kecamatan', 'kelurahan', 'keterangan', 'jenis_bayar', 'bukti', 'status', 'beras_id', 'user_id', 'admin_id',
+        'jumlah', 'harga', 'alamat', 'kecamatan', 'kelurahan', 'keterangan', 'jenis_bayar', 'bukti', 'status', 'gabah_id', 'user_id', 'admin_id',
     ];
 
     public function admins()
@@ -22,8 +22,8 @@ class TransaksiBeras extends Model
         return $this->belongsTo('App\User', 'user_id');
     }
 
-    public function beras()
+    public function gabahs()
     {
-        return $this->belongsTo('App\Beras', 'beras_id');
+        return $this->belongsTo('App\Gabah', 'gabah_id');
     }
 }

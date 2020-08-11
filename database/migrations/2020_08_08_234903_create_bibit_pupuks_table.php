@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTransaksiAlatsTable extends Migration
+class CreateBibitPupuksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTransaksiAlatsTable extends Migration
      */
     public function up()
     {
-        Schema::create('transaksi_alats', function (Blueprint $table) {
+        Schema::create('bibit_pupuks', function (Blueprint $table) {
             $table->id();
             $table->integer('jumlah');
             $table->integer('harga');
@@ -24,7 +24,7 @@ class CreateTransaksiAlatsTable extends Migration
             $table->enum('jenis_bayar', ['tf', 'cod']);
             $table->string('bukti')->nullable();
             $table->enum('status', ['0','1']);
-            $table->integer('alat_id');
+            $table->integer('bp_id'); //bibit pupuk
             $table->integer('user_id');
             $table->integer('admin_id')->nullable();
             $table->timestamps();
@@ -38,6 +38,6 @@ class CreateTransaksiAlatsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transaksi_alats');
+        Schema::dropIfExists('bibit_pupuks');
     }
 }
