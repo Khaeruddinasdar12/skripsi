@@ -273,12 +273,12 @@
                     <div class="kt-widget__body widget-detail">
                       <div class="kt-widget__item">
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Nama Alat Yang Dibeli :</span>
+                          <span class="kt-widget__label">Nama Bibit Yang Dibeli :</span>
                           <span class="kt-widget__data" id="berasnamas"></span>
                         </div>
 
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Jumlah Alat Yang Dibeli :</span>
+                          <span class="kt-widget__label">Jumlah Bibit Yang Dibeli :</span>
                           <span class="kt-widget__data" id="jumlahs"></span>
                         </div>
 
@@ -367,7 +367,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Alat Yang Dibeli</h5>
+              <h5 class="modal-title">Bibit Yang Dibeli</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               </button>
             </div>

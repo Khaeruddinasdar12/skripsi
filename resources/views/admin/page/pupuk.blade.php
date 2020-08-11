@@ -172,7 +172,7 @@
               <i class="fa fa-user-plus"></i>
             </span>
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Tambah Data Bibit</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Tambah Data Pupuk</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               </button>
             </div>
@@ -466,8 +466,8 @@
     var admin_name = a.data('admin_name')
 
     var modal = $(this)
-    modal.find('.modal-title').text('Detail Bibit ' + nama)
-    modal.find('.modal-body #nama').text('Bibit ' + nama)
+    modal.find('.modal-title').text('Detail Pupuk ' + nama)
+    modal.find('.modal-body #nama').text('Pupuk ' + nama)
     modal.find('.modal-body #harga').text('Harga Rp. ' + harga)
     modal.find('.modal-body #stok').text(stok)
     modal.find('.modal-body #min_beli').text('Minimal Pembelian : ' + min_beli)
@@ -491,7 +491,7 @@
     var href = a.data('href')
 
     var modal = $(this)
-    modal.find('.modal-title').text('Edit Bibit ' + nama)
+    modal.find('.modal-title').text('Edit Pupuk ' + nama)
     modal.find('.modal-body #namas').val(nama)
     modal.find('.modal-body #hargas').val(harga)
     modal.find('.modal-body #stoks').val(stok)
