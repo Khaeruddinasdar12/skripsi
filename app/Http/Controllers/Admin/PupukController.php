@@ -45,7 +45,7 @@ class PupukController extends Controller
         $data->harga        = $request->get('harga');
         $data->min_beli     = $request->get('min_beli');
         $data->stok         = $request->get('stok');
-        $data->deskripsi    = $request->get('keterangan');
+        $data->keterangan   = $request->get('keterangan');
         $data->admin_id     = Auth::guard('admin')->user()->id;
 
         $gambar = $request->file('gambar');
