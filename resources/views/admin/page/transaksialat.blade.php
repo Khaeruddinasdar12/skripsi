@@ -125,7 +125,7 @@
                         <tr>
                           <th scope="row">{{$no++}}</th>
                           <td>{{$transaksi -> users -> name}}</td>
-                          <td>{{$transaksi -> alats -> nama}}</td>
+                          <td>{{$transaksi -> barangs -> nama}}</td>
                           <td>{{$transaksi -> jumlah}} Kg</td>
                           <td>Rp.{{format_uang($total)}}</td>
                           <td>
@@ -147,13 +147,13 @@
                               <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
                                 <ul class="kt-nav">
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-beras" data-id="{{$transaksi->id}}" data-jumlah="{{$transaksi->jumlah}}" data-harga="Rp.{{format_uang($transaksi->harga)}}" data-total="Rp.{{format_uang($total)}}" data-alamat="{{$transaksi->alamat}}" data-kecamatan="{{$transaksi->kecamatan}}" data-kelurahan="{{$transaksi->kelurahan}}" data-keterangan="{{$transaksi->keterangan}}" data-jenis_bayar="{{$pembayaran}}" data-users-name="{{$transaksi->users->name}}" data-users-email="{{$transaksi->users->email}}" data-users-nohp="{{$transaksi->users->nohp}}" data-beras-nama="{{$transaksi->alats->nama}}">
+                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-beras" data-id="{{$transaksi->id}}" data-jumlah="{{$transaksi->jumlah}}" data-harga="Rp.{{format_uang($transaksi->harga)}}" data-total="Rp.{{format_uang($total)}}" data-alamat="{{$transaksi->alamat}}" data-kecamatan="{{$transaksi->kecamatan}}" data-kelurahan="{{$transaksi->kelurahan}}" data-keterangan="{{$transaksi->keterangan}}" data-jenis_bayar="{{$pembayaran}}" data-users-name="{{$transaksi->users->name}}" data-users-email="{{$transaksi->users->email}}" data-users-nohp="{{$transaksi->users->nohp}}" data-beras-nama="{{$transaksi->barangs->nama}}">
                                       <i class=" kt-nav__link-icon flaticon2-indent-dots"></i>
                                       <span class="kt-nav__link-text">Detail</span>
                                     </a>
                                   </li>
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-gambar" data-id="{{$transaksi->id}}" data-image="{{asset('storage/'.$transaksi->alats->gambar)}}" data-beras-nama="{{$transaksi->alats->nama}}">
+                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-gambar" data-id="{{$transaksi->id}}" data-image="{{asset('storage/'.$transaksi->barangs->gambar)}}" data-beras-nama="{{$transaksi->barangs->nama}}">
                                       <i class=" kt-nav__link-icon fa fa-eye"></i>
                                       <span class="kt-nav__link-text">Lihat Gambar Alat</span>
                                     </a>

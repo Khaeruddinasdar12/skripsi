@@ -44,8 +44,8 @@ class BibitController extends Controller
         $data->harga        = $request->get('harga');
         $data->min_beli     = $request->get('min_beli');
         $data->stok         = $request->get('stok');
-        $data->deskripsi    = $request->get('keterangan');
-        $data->admin_by     = Auth::guard('admin')->user()->id;
+        $data->keterangan   = $request->get('keterangan');
+        $data->admin_id     = Auth::guard('admin')->user()->id;
 
         $gambar = $request->file('gambar');
         if ($gambar) {
@@ -73,7 +73,7 @@ class BibitController extends Controller
         $data->min_beli     = $request->get('min_beli');
         $data->stok         = $request->get('stok');
         $data->keterangan   = $request->get('keterangan');
-        $data->admin_by     = Auth::guard('admin')->user()->id;
+        $data->admin_id     = Auth::guard('admin')->user()->id;
 
         $gambar = $request->file('gambar');
         if ($gambar) {
