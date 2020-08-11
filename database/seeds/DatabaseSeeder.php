@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ProvinsiSeeder::class);
         $this->call(KotaSeeder::class);
         $this->call(SawahSeeder::class);
-        $this->call(GadaiSawahSeeder::class);
+        // $this->call(GadaiSawahSeeder::class);
         $this->call(GabahSeeder::class);
 
         // $this->call(BerasSeeder::class);
@@ -26,5 +26,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TransaksiGabahSeeder::class);
         $this->call(BarangSeeder::class);
         $this->call(TransaksiBarangSeeder::class);
+        $this->call(TransaksiSawahSeeder::class);
     }
 }
