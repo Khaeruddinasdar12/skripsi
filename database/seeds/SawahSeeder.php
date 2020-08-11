@@ -19,10 +19,10 @@ class SawahSeeder extends Seeder
 	        'kelurahan' 	=> 'Desa Kampuno',
 	        'alamat' => 'Kampuno, Desa Kampuno Kec. Barebbo Kab. Bone',
 	        'created_by'=> 2, //dari tabel user role petani (dari seeder)
-	        'luas_sawah'	=> '20 Ha',
-	        'jenis_bibit'	=> 'ciliwung',
-	        'jenis_pupuk'	=> 'phonska',
-	        'periode_tanam'		=> '3 bulan'
+	        'luas_sawah'	=> '20 Ha'
+	        // 'jenis_bibit'	=> 'ciliwung',
+	        // 'jenis_pupuk'	=> 'phonska',
+	        // 'periode_tanam'		=> '3 bulan'
 		]);
 
 		DB::table('sawahs')->insert([ // id 2
@@ -32,10 +32,10 @@ class SawahSeeder extends Seeder
 	        'kelurahan' 	=> 'Desa Talungeng',
 	        'alamat' => 'Galung, Desa Talungeng Kec. Barebbo Kab. Bone',
 	        'created_by'=> 2, //dari tabel user role petani (dari seeder)
-	        'luas_sawah'	=> '50 Ha',
-	        'jenis_bibit'	=> 'ciliwung',
-	        'jenis_pupuk'	=> 'phonska',
-	        'periode_tanam'		=> '3 bulan'
+	        'luas_sawah'	=> '50 Ha'
+	        // 'jenis_bibit'	=> 'ciliwung',
+	        // 'jenis_pupuk'	=> 'phonska',
+	        // 'periode_tanam'		=> '3 bulan'
 		]);
 
 		DB::table('sawahs')->insert([ // id 3
@@ -45,10 +45,10 @@ class SawahSeeder extends Seeder
 	        'kelurahan' 	=> 'Desa Lampoko',
 	        'alamat' => 'Lampoko, Desa Lampoko Kec. Barebbo Kab. Bone',
 	        'created_by'=> 2, //dari tabel user role petani (dari seeder)
-	        'luas_sawah'	=> '80 Ha',
-	        'jenis_bibit'	=> 'ciliwung',
-	        'jenis_pupuk'	=> 'phonska',
-	        'periode_tanam'		=> '3 bulan'
+	        'luas_sawah'	=> '80 Ha'
+	        // 'jenis_bibit'	=> 'ciliwung',
+	        // 'jenis_pupuk'	=> 'phonska',
+	        // 'periode_tanam'		=> '3 bulan'
 		]);
 
 		DB::table('sawahs')->insert([ // id 4
@@ -58,10 +58,10 @@ class SawahSeeder extends Seeder
 	        'kelurahan' 	=> 'Desa Sugiale',
 	        'alamat' => 'Ale, Desa Sugiale Kec. Barebbo Kab. Bone',
 	        'created_by'=> 2, //dari tabel user role petani (dari seeder)
-	        'luas_sawah'	=> '38 Ha',
-	        'jenis_bibit'	=> 'ciliwung',
-	        'jenis_pupuk'	=> 'phonska',
-	        'periode_tanam'		=> '3 bulan'
+	        'luas_sawah'	=> '38 Ha'
+	        // 'jenis_bibit'	=> 'ciliwung',
+	        // 'jenis_pupuk'	=> 'phonska',
+	        // 'periode_tanam'		=> '3 bulan'
 		]);
 		// end untuk gadai sawah
 
@@ -73,10 +73,10 @@ class SawahSeeder extends Seeder
 	        'kelurahan' 	=> 'Desa Panyili',
 	        'alamat' => 'Panyili, Desa Panyili Kec. Barebbo Kab. Bone',
 	        'created_by'=> 2, //dari tabel user role petani (dari seeder)
-	        'luas_sawah'	=> '40 Ha',
-	        'jenis_bibit'	=> 'ciliwung',
-	        'jenis_pupuk'	=> 'phonska',
-	        'periode_tanam'		=> '3 bulan'
+	        'luas_sawah'	=> '40 Ha'
+	        // 'jenis_bibit'	=> 'ciliwung',
+	        // 'jenis_pupuk'	=> 'phonska',
+	        // 'periode_tanam'		=> '3 bulan'
 		]);
 
 		DB::table('sawahs')->insert([ // id 6
@@ -86,10 +86,10 @@ class SawahSeeder extends Seeder
 	        'kelurahan' 	=> 'Desa Apala',
 	        'alamat' => 'Apala, Desa Apala Kec. Barebbo Kab. Bone',
 	        'created_by'=> 2, //dari tabel user role petani (dari seeder)
-	        'luas_sawah'	=> '20 Ha',
-	        'jenis_bibit'	=> 'ciliwung',
-	        'jenis_pupuk'	=> 'phonska',
-	        'periode_tanam'		=> '3 bulan'
+	        'luas_sawah'	=> '20 Ha'
+	        // 'jenis_bibit'	=> 'ciliwung',
+	        // 'jenis_pupuk'	=> 'phonska',
+	        // 'periode_tanam'		=> '3 bulan'
 		]);
 
 		DB::table('sawahs')->insert([ // id 7
@@ -99,10 +99,10 @@ class SawahSeeder extends Seeder
 	        'kelurahan' 	=> 'Desa Lamuru',
 	        'alamat' => 'Lamuru, Desa Lamuru Kec. Barebbo Kab. Bone',
 	        'created_by'=> 2, //dari tabel user role petani (dari seeder)
-	        'luas_sawah'	=> '25 Ha',
-	        'jenis_bibit'	=> 'ciliwung',
-	        'jenis_pupuk'	=> 'phonska',
-	        'periode_tanam'		=> '3 bulan'
+	        'luas_sawah'	=> '25 Ha'
+	        // 'jenis_bibit'	=> 'ciliwung',
+	        // 'jenis_pupuk'	=> 'phonska',
+	        // 'periode_tanam'		=> '3 bulan'
 		]);
 		// end untuk modal tanam
     }

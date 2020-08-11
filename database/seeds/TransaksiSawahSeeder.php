@@ -61,7 +61,10 @@ class TransaksiSawahSeeder extends Seeder
 	            'jenis'		=> 'mt',
 	            'sawah_id'  => 5,
 	            'status'    => null,
-	            'keterangan'=> 'daftar modal tanam'
+	            'keterangan'=> 'daftar modal tanam',
+	            'jenis_bibit'	=> 'ciliwung',
+		        'jenis_pupuk'	=> 'phonska',
+		        'periode_tanam'	=> '3 bulan'
 	        ]);
 
 	        DB::table('transaksi_sawahs')->insert([ //  tergadai modal tanam (id 6)
@@ -69,7 +72,10 @@ class TransaksiSawahSeeder extends Seeder
 	            'admin_id'  => 1, //verified by role admin
 	            'sawah_id'  => 6,
 	            'status'    => 'gadai',
-	            'keterangan'=> 'sedang modal tanam'
+	            'keterangan'=> 'sedang modal tanam',
+	            'jenis_bibit'	=> 'situ bagendit',
+		        'jenis_pupuk'	=> 'urea',
+		        'periode_tanam'	=> '3 bulan'
 	        ]);
 
 	        DB::table('transaksi_sawahs')->insert([ //  tergadai modal tanam (id 6)
@@ -77,7 +83,10 @@ class TransaksiSawahSeeder extends Seeder
 	            'admin_id'  => 1, //verified by role admin
 	            'sawah_id'  => 7,
 	            'status'    => 'selesai',
-	            'keterangan'=> 'selesai/keterangan modal tanam'
+	            'keterangan'=> 'selesai/keterangan modal tanam',
+	            'jenis_bibit'	=> 'barelle',
+	        	'jenis_pupuk'	=> 'urea plus',
+	        	'periode_tanam'	=> '3 bulan'
 	        ]);
 	    // END MODAL TANAM
         
