@@ -129,13 +129,13 @@
                               <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
                                 <ul class="kt-nav">
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-alat" data-id="{{$alat->id}}" data-nama="{{$alat->nama}}" data-harga="{{format_uang($alat -> harga)}}" data-stok="{{$alat->stok}}" data-keterangan="{{$alat->keterangan}}" data-image="{{asset('storage/'.$alat->gambar)}}" data-admin_name="{{$alat->admins->name}}">
+                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-alat" data-id="{{$alat->id}}" data-nama="{{$alat->nama}}" data-harga="{{format_uang($alat -> harga)}}" data-stok="{{$alat->stok}}" data-keterangan="{{$alat->keterangan}}" data-image="{{asset('storage/'.$alat->gambar)}}" data-admin_name="{{$alat->admins->name}}" data-min_beli="{{$alat->min_beli}}">
                                       <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
                                       <span class="kt-nav__link-text">Detail</span>
                                     </a>
                                   </li>
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-data" data-id="{{$alat->id}}" data-nama="{{$alat->nama}}" data-harga="{{$alat->harga}}" data-stok="{{$alat->stok}}" data-keterangan="{{$alat->keterangan}}" data-image="{{asset('storage/'.$alat->gambar)}}" data-admin_name="{{$alat->admins->name}}" data-href="{{ route('update.alat', ['id' => $alat->id]) }}">
+                                    <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-data" data-id="{{$alat->id}}" data-nama="{{$alat->nama}}" data-harga="{{$alat->harga}}" data-stok="{{$alat->stok}}" data-keterangan="{{$alat->keterangan}}" data-image="{{asset('storage/'.$alat->gambar)}}" data-admin_name="{{$alat->admins->name}}" data-href="{{ route('update.alat', ['id' => $alat->id]) }}" data-min_beli="{{$alat->min_beli}}">
                                       <i class=" kt-nav__link-icon flaticon2-settings"></i>
                                       <span class="kt-nav__link-text">Edit Data</span>
                                     </a>
@@ -164,7 +164,7 @@
         </div>
       </div>
 
-      <!-- modal tambah admin -->
+      <!-- modal tambah alat -->
       <div class="modal modal-add fade" id="modal-tambah-alat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
           <div class="modal-content">
@@ -183,23 +183,32 @@
 
                 <div class="row">
                   <div class="col-md-6">
-                    <div class="form-group ">
-                      <label>Nama Alat Tani</label>
-                      <input type="text" class="form-control" placeholder="Masukkan nama alat tani" name="nama" id="generalSearch" required>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group ">
+                          <label>Nama Alat Tani</label>
+                          <input type="text" class="form-control" placeholder="Masukkan nama alat" name="nama" required>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group ">
+                          <label>Harga (per Kg)</label>
+                          <input type="text" class="form-control" placeholder="Masukkan harga" name="harga" id="rupiah" required>
+                        </div>
+                      </div>
                     </div>
 
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group ">
-                          <label>Harga</label>
-                          <input type="text" class="form-control" placeholder="Masukkan harga" name="harga" id="rupiah" required>
+                          <label>Stok (per Kg)</label>
+                          <input type="text" class="form-control" placeholder="Masukkan stok" name="stok" id="generalSearch" required>
                         </div>
                       </div>
-
                       <div class="col-md-6">
                         <div class="form-group ">
-                          <label>Stok</label>
-                          <input type="text" class="form-control" placeholder="Masukkan stok" name="stok" id="generalSearch" required>
+                          <label>Minimal Pembelian</label>
+                          <input type="text" class="form-control" placeholder="Masukkan Minimal Pembelian" name="min_beli" required>
                         </div>
                       </div>
                     </div>
@@ -247,9 +256,9 @@
           </div>
         </div>
       </div>
-      <!-- end modal tambah admin -->
+      <!-- end modal tambah alat -->
 
-      <!-- modal detail user -->
+      <!-- modal detail alat -->
       <div class="modal fade" id="modal-detail-alat" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -272,6 +281,8 @@
                     <div class="kt-widget19__content">
                       <div class="kt-widget19__info" style="padding-left: 0;">
                         <span class="kt-widget19__username" id="harga"></span>
+                        <span class="kt-widget19__comment" id="min_beli">
+                        </span>
                       </div>
                       <div class="kt-widget19__stats">
                         <span class="kt-widget19__number kt-font-brand" id="stok"></span>
@@ -289,7 +300,7 @@
           </div>
         </div>
       </div>
-      <!-- modal detail user -->
+      <!-- modal detail alat -->
 
       <!-- modal edit data -->
       <div class="modal modal-edit fade" id="modal-edit-data" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
@@ -299,7 +310,7 @@
               <i class="fa fa-user-plus"></i>
             </span>
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Tambah Data Beras</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Edit Data Beras</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               </button>
             </div>
@@ -310,22 +321,31 @@
 
                 <div class="row">
                   <div class="col-md-6">
-                    <div class="form-group ">
-                      <label>Nama Alat Tani</label>
-                      <input type="text" class="form-control" name="nama" id="namas" required>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group ">
+                          <label>Nama Alat Tani</label>
+                          <input type="text" class="form-control" name="nama" id="namas" required>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group ">
+                          <label>Minimal Pembelian</label>
+                          <input type="text" class="form-control" name="min_beli" id="min_belis" placeholder="Masukkan Minimal Pembelian" required>
+                        </div>
+                      </div>
                     </div>
 
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group ">
-                          <label>Harga</label>
+                          <label>Harga (per Kg)</label>
                           <input type="text" class="form-control" name="harga" id="hargas" required>
                         </div>
                       </div>
-
                       <div class="col-md-6">
                         <div class="form-group ">
-                          <label>Stok</label>
+                          <label>Stok (per Kg)</label>
                           <input type="text" class="form-control" name="stok" id="stoks" required>
                         </div>
                       </div>
@@ -446,6 +466,7 @@
     var nama = a.data('nama')
     var harga = a.data('harga')
     var stok = a.data('stok')
+    var min_beli = a.data('min_beli')
     var keterangan = a.data('keterangan')
     var image = a.data('image')
     var admin_name = a.data('admin_name')
@@ -455,6 +476,7 @@
     modal.find('.modal-body #nama').text('Alat ' + nama)
     modal.find('.modal-body #harga').text('Harga Rp. ' + harga)
     modal.find('.modal-body #stok').text(stok)
+    modal.find('.modal-body #min_beli').text('Minimal Pembelian : ' + min_beli)
     modal.find('.modal-body #keterangan').text('Keterangan : ' + keterangan)
     modal.find('.modal-body #admin_name').text('Admin yang menangani : ' + admin_name)
     modal.find('.modal-body #image').attr('src', image)
@@ -468,6 +490,7 @@
     var nama = a.data('nama')
     var harga = a.data('harga')
     var stok = a.data('stok')
+    var min_beli = a.data('min_beli')
     var keterangan = a.data('keterangan')
     var image = a.data('image')
     var admin_name = a.data('admin_name')
@@ -478,6 +501,7 @@
     modal.find('.modal-body #namas').val(nama)
     modal.find('.modal-body #hargas').val(harga)
     modal.find('.modal-body #stoks').val(stok)
+    modal.find('.modal-body #min_belis').val(min_beli)
     modal.find('.modal-body #keterangans').val(keterangan)
     modal.find('.modal-body #admin_names').val(admin_name)
     modal.find('.modal-body #edit-preview').attr('src', image)
