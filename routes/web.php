@@ -100,8 +100,16 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 
 
 	// RUTE MENU MODAL TANAM
-	Route::get('modal-tanam', 'ModalTanamController@index')->name('index.modaltanam'); //menampilkan hal. data modal tanam
-	Route::post('modal-tanam', 'ModalTanamController@store')->name('store.modaltanam'); //menampilkan hal. data modal tanam
+	Route::get('modal-tanam-daftar-gadai', 'ModalTanamController@daftargadai')->name('daftar.modaltanam'); //menampilkan hal. data mendaftarkan sawah untuk digadai 
+	Route::get('modal-tanam-sedang-gadai', 'ModalTanamController@sedanggadai')->name('sedang.modaltanam'); //menampilkan hal. data yang sedang menggadai sawahnya
+	Route::get('modal-tanam-riwayat-gadai', 'ModalTanamController@riwayatgadai')->name('riwayat.modaltanam'); //menampilkan hal. data riwayat gadai sawah
+
+	Route::put('modal-tanam-gadai-status/{id}', 'ModalTanamController@gadaistatus')->name('gadaistatus.modaltanam'); // mengubah "daftar gadai" menjadi "sedang gadai"
+	Route::put('modal-tanam-selesai-status/{id}', 'ModalTanamController@selesaistatus')->name('selesaistatus.modaltanam'); // mengubah "sedang gadai" menjadi "riwayat gadai"
+	Route::put('modal-tanam-edit-keterangan/{id}', 'ModalTanamController@editketerangan')->name('editketerangan.modaltanam'); // edit keterangan 
+
+	Route::delete('modal-tanam-hapus-gadai/{id}', 'ModalTanamController@delgadai')->name('delgadai.modaltanam'); // menghapus gadai yang gagal di survey 
+	Route::delete('modal-tanam-hapus-riwayat/{id}', 'ModalTanamController@delriwayat')->name('delriwayat.modaltanam')->middleware('CekAdmin'); // menghapus riwayat gadai hanya superadmin, jika admin otomatis gagal 
 	// END RUTE MENU MODAL TANAM
 
 

@@ -11,7 +11,8 @@ class SawahSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('sawahs')->insert([
+    	// untuk gadai sawah
+        DB::table('sawahs')->insert([ // id 1
         	'nama'	=> 'sawah 1',
 	        'alamat_id'  => 87, //id kabupaten bone dari tabel Kotas
 	        'kecamatan' => 'Kec. Barebbo',
@@ -24,7 +25,7 @@ class SawahSeeder extends Seeder
 	        'periode_tanam'		=> '3 bulan'
 		]);
 
-		DB::table('sawahs')->insert([
+		DB::table('sawahs')->insert([ // id 2
 			'nama'	=> 'sawah 2',
 	        'alamat_id'  => 87, //id kabupaten bone dari tabel Kotas
 	        'kecamatan' => 'Kec. Barebbo',
@@ -37,7 +38,7 @@ class SawahSeeder extends Seeder
 	        'periode_tanam'		=> '3 bulan'
 		]);
 
-		DB::table('sawahs')->insert([
+		DB::table('sawahs')->insert([ // id 3
 			'nama'	=> 'sawah 3',
 	        'alamat_id'  => 87, //id kabupaten bone dari tabel Kotas
 	        'kecamatan' => 'Kec. Barebbo',
@@ -50,7 +51,7 @@ class SawahSeeder extends Seeder
 	        'periode_tanam'		=> '3 bulan'
 		]);
 
-		DB::table('sawahs')->insert([
+		DB::table('sawahs')->insert([ // id 4
 			'nama'	=> 'sawah 4',
 	        'alamat_id'  => 87, //id kabupaten bone dari tabel Kotas
 	        'kecamatan' => 'Kec. Barebbo',
@@ -62,5 +63,47 @@ class SawahSeeder extends Seeder
 	        'jenis_pupuk'	=> 'phonska',
 	        'periode_tanam'		=> '3 bulan'
 		]);
+		// end untuk gadai sawah
+
+		// untuk modal tanam
+		DB::table('sawahs')->insert([ // id 5
+			'nama'	=> 'sawah 5',
+	        'alamat_id'  => 87, //id kabupaten bone dari tabel Kotas
+	        'kecamatan' => 'Kec. Barebbo',
+	        'kelurahan' 	=> 'Desa Panyili',
+	        'alamat' => 'Panyili, Desa Panyili Kec. Barebbo Kab. Bone',
+	        'created_by'=> 2, //dari tabel user role petani (dari seeder)
+	        'luas_sawah'	=> '40 Ha',
+	        'jenis_bibit'	=> 'ciliwung',
+	        'jenis_pupuk'	=> 'phonska',
+	        'periode_tanam'		=> '3 bulan'
+		]);
+
+		DB::table('sawahs')->insert([ // id 6
+			'nama'	=> 'sawah 6',
+	        'alamat_id'  => 87, //id kabupaten bone dari tabel Kotas
+	        'kecamatan' => 'Kec. Barebbo',
+	        'kelurahan' 	=> 'Desa Apala',
+	        'alamat' => 'Apala, Desa Apala Kec. Barebbo Kab. Bone',
+	        'created_by'=> 2, //dari tabel user role petani (dari seeder)
+	        'luas_sawah'	=> '20 Ha',
+	        'jenis_bibit'	=> 'ciliwung',
+	        'jenis_pupuk'	=> 'phonska',
+	        'periode_tanam'		=> '3 bulan'
+		]);
+
+		DB::table('sawahs')->insert([ // id 7
+			'nama'	=> 'sawah 7',
+	        'alamat_id'  => 87, //id kabupaten bone dari tabel Kotas
+	        'kecamatan' => 'Kec. Barebbo',
+	        'kelurahan' 	=> 'Desa Lamuru',
+	        'alamat' => 'Lamuru, Desa Lamuru Kec. Barebbo Kab. Bone',
+	        'created_by'=> 2, //dari tabel user role petani (dari seeder)
+	        'luas_sawah'	=> '25 Ha',
+	        'jenis_bibit'	=> 'ciliwung',
+	        'jenis_pupuk'	=> 'phonska',
+	        'periode_tanam'		=> '3 bulan'
+		]);
+		// end untuk modal tanam
     }
 }
