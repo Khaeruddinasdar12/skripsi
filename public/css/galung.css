@@ -144,9 +144,6 @@ table .btn-more-custom {
 .galung-header .kt-header__topbar .user-topbar .kt-visible-desktop {
   color: #fff !important;
 }
-.galung-header .kt-header__topbar .user-topbar img {
-  border: 2px solid #fff;
-}
 .galung-header .kt-header__topbar .user-topbar .btn-logout-user {
   background-color: #00A859;
   color: #fff;

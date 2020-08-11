@@ -33,12 +33,15 @@
       <div id="kt_header_menu" class="kt-header-menu kt-header-menu-mobile ">
         <ul class="kt-menu__nav ">
 
+          <!-- dashboard menu -->
           <li class="kt-menu__item kt-menu__item--rel {{ request()->is('admin') ? 'kt-menu__item--open kt-menu__item--here' : '' }}">
             <a href="{{ route('admin.home') }}" class="kt-menu__link">
               <span class="kt-menu__link-text {{ request()->is('admin') ? '' : 'top-text-nav' }}">Dashboard</span>
             </a>
           </li>
+          <!-- end dashboard menu -->
 
+          <!-- gabah menu -->
           <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
             <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
               <span class="kt-menu__link-text top-text-nav">Gabah</span>
@@ -64,13 +67,17 @@
               </ul>
             </div>
           </li>
+          <!-- end and gabah -->
 
+          <!-- modal tanam menu -->
           <li class="kt-menu__item kt-menu__item--rel">
             <a href="{{ route('admin.home') }}" class="kt-menu__link" id="modaltanam">
               <span class="kt-menu__link-text top-text-nav">Modal Tanam</span>
             </a>
           </li>
+          <!-- end modal tanam -->
 
+          <!-- sawah menu -->
           <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel {{ request()->is('admin/gadai-sawah-daftar-gadai') || request()->is('admin/gadai-sawah-sedang-gadai') || request()->is('admin/gadai-sawah-riwayat-gadai') ? 'kt-menu__item--open kt-menu__item--here' : '' }}" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
             <a href="javascript:;" class="kt-menu__link kt-menu__toggle" id="gadaisawah">
               <span class="kt-menu__link-text {{ request()->is('admin/gadai-sawah-daftar-gadai') || request()->is('admin/gadai-sawah-sedang-gadai') || request()->is('admin/gadai-sawah-riwayat-gadai') ? '' : 'top-text-nav' }}">Gadai Sawah</span>
@@ -96,7 +103,9 @@
               </ul>
             </div>
           </li>
+          <!-- end sawah -->
 
+          <!-- penjualan menu -->
           <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel {{ request()->is('admin/alat') || request()->is('admin/transaksi-alat') || request()->is('admin/riwayat-transaksi-alat') || request()->is('admin/beras') || request()->is('admin/transaksi-beras') || request()->is('admin/riwayat-transaksi-beras')  ? 'kt-menu__item--open kt-menu__item--here' : '' }}" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
             <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
               <span class="kt-menu__link-text {{ request()->is('admin/alat') || request()->is('admin/transaksi-alat') || request()->is('admin/riwayat-transaksi-alat') || request()->is('admin/beras') || request()->is('admin/transaksi-beras') || request()->is('admin/riwayat-transaksi-beras') ? '' : 'top-text-nav' }}">Penjualan</span>
@@ -104,6 +113,7 @@
             </a>
             <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
               <ul class="kt-menu__subnav">
+                <!-- alat -->
                 <li class="kt-menu__item kt-menu__item--submenu" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
                   <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
                     <span class="kt-menu__link-text">Alat</span>
@@ -139,32 +149,35 @@
                     </ul>
                   </div>
                 </li>
+                <!-- end alat -->
+
+                <!-- bibit -->
                 <li class="kt-menu__item kt-menu__item--submenu" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
                   <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
-                    <span class="kt-menu__link-text">Bibit & Pupuk</span>
+                    <span class="kt-menu__link-text">Bibit</span>
                     <i class="kt-menu__hor-arrow la la-angle-right"></i>
                     <i class="kt-menu__ver-arrow la la-angle-right"></i>
                   </a>
                   <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--right">
                     <ul class="kt-menu__subnav">
                       <li class="kt-menu__item " aria-haspopup="true">
-                        <a href="#" class="kt-menu__link ">
+                        <a href="{{ route('index.bibit') }}" class="kt-menu__link ">
                           <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
                             <span></span>
                           </i>
-                          <span class="kt-menu__link-text">Data Bibit & Pupuk</span>
+                          <span class="kt-menu__link-text">Data Bibit</span>
                         </a>
                       </li>
                       <li class="kt-menu__item " aria-haspopup="true">
-                        <a href="#" class="kt-menu__link ">
+                        <a href="{{ route('index.tbibit') }}" class="kt-menu__link ">
                           <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
                             <span></span>
                           </i>
-                          <span class="kt-menu__link-text">Transaksi Bibit & Pupuk</span>
+                          <span class="kt-menu__link-text">Transaksi Bibit</span>
                         </a>
                       </li>
                       <li class="kt-menu__item " aria-haspopup="true">
-                        <a href="#" class="kt-menu__link ">
+                        <a href="{{ route('riwayat.tbibit') }}" class="kt-menu__link ">
                           <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
                             <span></span>
                           </i>
@@ -174,6 +187,47 @@
                     </ul>
                   </div>
                 </li>
+                <!-- end bibit -->
+
+                <!-- pupuk -->
+                <li class="kt-menu__item kt-menu__item--submenu" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
+                  <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+                    <span class="kt-menu__link-text">Pupuk</span>
+                    <i class="kt-menu__hor-arrow la la-angle-right"></i>
+                    <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                  </a>
+                  <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--right">
+                    <ul class="kt-menu__subnav">
+                      <li class="kt-menu__item " aria-haspopup="true">
+                        <a href="{{ route('index.pupuk') }}" class="kt-menu__link ">
+                          <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+                            <span></span>
+                          </i>
+                          <span class="kt-menu__link-text">Data Pupuk</span>
+                        </a>
+                      </li>
+                      <li class="kt-menu__item " aria-haspopup="true">
+                        <a href="{{ route('index.tpupuk') }}" class="kt-menu__link ">
+                          <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+                            <span></span>
+                          </i>
+                          <span class="kt-menu__link-text">Transaksi Pupuk</span>
+                        </a>
+                      </li>
+                      <li class="kt-menu__item " aria-haspopup="true">
+                        <a href="{{ route('riwayat.tpupuk') }}" class="kt-menu__link ">
+                          <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+                            <span></span>
+                          </i>
+                          <span class="kt-menu__link-text">Riwayat Transaksi</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <!-- end pupuk -->
+
+                <!-- beras -->
                 <li class="kt-menu__item kt-menu__item--submenu" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
                   <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
                     <span class="kt-menu__link-text">Beras</span>
@@ -209,16 +263,22 @@
                     </ul>
                   </div>
                 </li>
+                <!-- end beras -->
               </ul>
             </div>
           </li>
+          <!-- end penjualan -->
 
+          <!-- manage admin menu -->
           <li class="kt-menu__item kt-menu__item--rel {{ request()->is('admin/manage-admin') ? 'kt-menu__item--open kt-menu__item--here' : '' }}">
             <a href="{{ route('index.manage-admin') }}" class="kt-menu__link" id="manageadmin">
               <span class="kt-menu__link-text kt-menu__link-text {{ request()->is('admin/manage-admin') ? '' : 'top-text-nav' }}">Manage Admin</span>
             </a>
           </li>
+          <!-- end manage admin -->
 
+
+          <!-- manage user menu -->
           <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel {{ request()->is('admin/manage-user-konsumen') || request()->is('admin/manage-user-petani-verified') || request()->is('admin/manage-user-petani-unverified') ? 'kt-menu__item--open kt-menu__item--here' : '' }}" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
             <a href="javascript:;" class="kt-menu__link kt-menu__toggle" id="manageuser">
               <span class="kt-menu__link-text {{ request()->is('admin/manage-user-konsumen') || request()->is('admin/manage-user-petani-verified') || request()->is('admin/manage-user-petani-unverified') ? '' : 'top-text-nav' }}">Manage User</span>
@@ -261,6 +321,8 @@
               </ul>
             </div>
           </li>
+          <!-- end manage user -->
+
         </ul>
       </div>
     </div>
@@ -270,48 +332,17 @@
     <!-- begin:: Header Topbar -->
     <div class="kt-header__topbar kt-grid__item">
 
-      <!--begin: Search -->
-      <div class="kt-header__topbar-item kt-header__topbar-item--search dropdown" id="kt_quick_search_toggle">
-        <div class="kt-header__topbar-wrapper search-topbar" data-toggle="dropdown" data-offset="10px,0px">
-          <span class="kt-header__topbar-icon"><i class="flaticon2-search-1"></i></span>
-        </div>
-        <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-lg">
-          <div class="kt-quick-search kt-quick-search--dropdown kt-quick-search--result-compact" id="kt_quick_search_dropdown">
-            <form method="get" class="kt-quick-search__form">
-              <div class="input-group">
-                <div class="input-group-prepend"><span class="input-group-text"><i class="flaticon2-search-1"></i></span></div>
-                <input type="text" class="form-control kt-quick-search__input" placeholder="Search...">
-                <div class="input-group-append"><span class="input-group-text"><i class="la la-close kt-quick-search__close"></i></span></div>
-              </div>
-            </form>
-            <div class="kt-quick-search__wrapper kt-scroll ps" data-scroll="true" data-height="325" data-mobile-height="200" style="height: 325px; overflow: hidden;">
-              <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
-                <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
-              </div>
-              <div class="ps__rail-y" style="top: 0px; right: 0px;">
-                <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!--end: Search -->
-
       <!--begin: User bar -->
       <div class="kt-header__topbar-item kt-header__topbar-item--user user-topbar">
         <div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="10px,0px">
           <span class="kt-header__topbar-welcome kt-visible-desktop">Hi,</span>
           <span class="kt-header__topbar-username kt-visible-desktop">{{ Auth::guard('admin')->user()->name }}</span>
-          <img alt="Pic" src="{{ asset('assets/media/users/300_21.jpg') }}">
+          <img alt="Pic" src="{{ asset('img/user.png') }}">
         </div>
         <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-xl">
 
           <!--begin: Head -->
           <div class="kt-user-card kt-user-card--skin-light kt-notification-item-padding-x">
-            <div class="kt-user-card__avatar">
-              <img class="kt-hidden-" alt="Pic" src="{{ asset('assets/media/users/300_21.jpg') }}">
-            </div>
             <div class="kt-user-card__name">
               {{ Auth::guard('admin')->user()->name }}
             </div>

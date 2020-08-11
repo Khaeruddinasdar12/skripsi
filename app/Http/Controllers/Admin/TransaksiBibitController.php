@@ -19,38 +19,38 @@ class TransaksiBibitController extends Controller
     {
         //mengurutkan dari terbaru ke terlama (descending)
         $data = TransaksiBarang::whereHas('barangs', function ($query) {
-                    $query->where('jenis', 'bibit')->where('status', '0');
-                })
+            $query->where('jenis', 'bibit')->where('status', '0');
+        })
             ->with('users:id,name,email,nohp', 'barangs:id,nama,gambar')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         $jml = TransaksiBarang::whereHas('barangs', function ($query) {
-                    $query->where('jenis', 'bibit')->where('status', '0');
-                })
+            $query->where('jenis', 'bibit')->where('status', '0');
+        })
             ->count();
 
         // return $data; //uncomment ini untuk melihat data
 
-        return view('', ['data' => $data, 'jml' => $jml]);
+        return view('admin.page.transaksibibit', ['data' => $data, 'jml' => $jml]);
     }
 
     public function riwayat() //menampilkan hal. data riwayat transaksi bibit
     {
         //mengurutkan dari terbaru ke terlama (descending)
         $data = TransaksiBarang::whereHas('barangs', function ($query) {
-                    $query->where('jenis', 'bibit')->where('status', '1');
-                })
+            $query->where('jenis', 'bibit')->where('status', '1');
+        })
             ->with('users:id,name,email,nohp', 'barangs:id,nama,gambar', 'admins:id,name')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         $jml = TransaksiBarang::whereHas('barangs', function ($query) {
-                    $query->where('jenis', 'bibit')->where('status', '1');
-                })
+            $query->where('jenis', 'bibit')->where('status', '1');
+        })
             ->count();
 
         // return $data; //uncomment ini untuk melihat data
 
-        return view('', ['data' => $data, 'jml' => $jml]);
+        return view('admin.page.riwayat-bibit', ['data' => $data, 'jml' => $jml]);
     }
 
     public function status($id) // mengubah status pembelian bibit menjadi riwayat
@@ -61,23 +61,23 @@ class TransaksiBibitController extends Controller
         //         return redirect()->back()->with('error', 'Pembeli belum mengirim bukti transfer');
         //     }
         // }
-            $jml = $data->jumlah; // jumlah pesanan bibit yang dipesan
-            $bibit = Barang::findOrFail($data->barang_id);
-            if($alat->jenis != 'bibit') {
-                return redirect()->back()->with('error', 'Oops ! Ngapain bre ?');
-            }
-            $stok = $bibit->stok;
+        $jml = $data->jumlah; // jumlah pesanan bibit yang dipesan
+        $bibit = Barang::findOrFail($data->barang_id);
+        if ($bibit->jenis != 'bibit') {
+            return redirect()->back()->with('error', 'Oops ! Ngapain bre ?');
+        }
+        $stok = $bibit->stok;
 
-            if ($jml > $stok) {
-                return redirect()->back()->with('error', 'Stok bibit '.$bibit->nama.' tidak cukup. stok tersedia '.$bibit->stok);
-            }
-            $bibit->stok = $bibit->stok - $jml;
-            $bibit->save();
+        if ($jml > $stok) {
+            return redirect()->back()->with('error', 'Stok bibit ' . $bibit->nama . ' tidak cukup. stok tersedia ' . $bibit->stok);
+        }
+        $bibit->stok = $bibit->stok - $jml;
+        $bibit->save();
         $data->status   = '1';
         $data->admin_id = Auth::guard('admin')->user()->id;
         $data->save();
 
-        return redirect()->back()->with('success', 'Transaksi bibit '.$bibit->nama.' dengan jumlah '.$jml.' kg berhasil');
+        return redirect()->back()->with('success', 'Transaksi bibit ' . $bibit->nama . ' dengan jumlah ' . $jml . ' kg berhasil');
     }
 
     public function delete($id) // menghapus data transaksi bibit

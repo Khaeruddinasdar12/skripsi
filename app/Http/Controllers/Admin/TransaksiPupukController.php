@@ -19,38 +19,38 @@ class TransaksiPupukController extends Controller
     {
         //mengurutkan dari terbaru ke terlama (descending)
         $data = TransaksiBarang::whereHas('barangs', function ($query) {
-                    $query->where('jenis', 'pupuk')->where('status', '0');
-                })
+            $query->where('jenis', 'pupuk')->where('status', '0');
+        })
             ->with('users:id,name,email,nohp', 'barangs:id,nama,gambar')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         $jml = TransaksiBarang::whereHas('barangs', function ($query) {
-                    $query->where('jenis', 'pupuk')->where('status', '0');
-                })
+            $query->where('jenis', 'pupuk')->where('status', '0');
+        })
             ->count();
 
         // return $data; //uncomment ini untuk melihat data
 
-        return view('', ['data' => $data, 'jml' => $jml]);
+        return view('admin.page.transaksipupuk', ['data' => $data, 'jml' => $jml]);
     }
 
     public function riwayat() //menampilkan hal. data riwayat transaksi pupuk
     {
         //mengurutkan dari terbaru ke terlama (descending)
         $data = TransaksiBarang::whereHas('barangs', function ($query) {
-                    $query->where('jenis', 'pupuk')->where('status', '1');
-                })
+            $query->where('jenis', 'pupuk')->where('status', '1');
+        })
             ->with('users:id,name,email,nohp', 'barangs:id,nama,gambar', 'admins:id,name')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         $jml = TransaksiBarang::whereHas('barangs', function ($query) {
-                    $query->where('jenis', 'pupuk')->where('status', '1');
-                })
+            $query->where('jenis', 'pupuk')->where('status', '1');
+        })
             ->count();
 
         // return $data; //uncomment ini untuk melihat data
 
-        return view('', ['data' => $data, 'jml' => $jml]);
+        return view('admin.page.riwayat-pupuk', ['data' => $data, 'jml' => $jml]);
     }
 
     public function status($id) // mengubah status pembelian pupuk menjadi riwayat
@@ -61,23 +61,23 @@ class TransaksiPupukController extends Controller
         //         return redirect()->back()->with('error', 'Pembeli belum mengirim bukti transfer');
         //     }
         // }
-            $jml = $data->jumlah; // jumlah pesanan pupuk yang dipesan
-            $pupuk = Barang::findOrFail($data->barang_id);
-            if($alat->jenis != 'pupuk') {
-                return redirect()->back()->with('error', 'Oops ! Ngapain bre ?');
-            }
-            $stok = $pupuk->stok;
+        $jml = $data->jumlah; // jumlah pesanan pupuk yang dipesan
+        $pupuk = Barang::findOrFail($data->barang_id);
+        if ($pupuk->jenis != 'pupuk') {
+            return redirect()->back()->with('error', 'Oops ! Ngapain bre ?');
+        }
+        $stok = $pupuk->stok;
 
-            if ($jml > $stok) {
-                return redirect()->back()->with('error', 'Stok pupuk '.$pupuk->nama.' tidak cukup. stok tersedia '.$pupuk->stok);
-            }
-            $pupuk->stok = $pupuk->stok - $jml;
-            $pupuk->save();
+        if ($jml > $stok) {
+            return redirect()->back()->with('error', 'Stok pupuk ' . $pupuk->nama . ' tidak cukup. stok tersedia ' . $pupuk->stok);
+        }
+        $pupuk->stok = $pupuk->stok - $jml;
+        $pupuk->save();
         $data->status   = '1';
         $data->admin_id = Auth::guard('admin')->user()->id;
         $data->save();
 
-        return redirect()->back()->with('success', 'Transaksi pupuk '.$pupuk->nama.' dengan jumlah '.$jml.' kg berhasil');
+        return redirect()->back()->with('success', 'Transaksi pupuk ' . $pupuk->nama . ' dengan jumlah ' . $jml . ' kg berhasil');
     }
 
     public function delete($id) // menghapus data transaksi pupuk
