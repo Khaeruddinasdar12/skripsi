@@ -50,7 +50,7 @@ class TransaksiBibitController extends Controller
 
         // return $data; //uncomment ini untuk melihat data
 
-        return view('', ['data' => $data, 'jml' => $jml]);
+        return view('admin.page.riwayat-bibit', ['data' => $data, 'jml' => $jml]);
     }
 
     public function status($id) // mengubah status pembelian bibit menjadi riwayat

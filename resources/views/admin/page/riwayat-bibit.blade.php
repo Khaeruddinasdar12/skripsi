@@ -12,11 +12,11 @@
         <a href="" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
         <span class="kt-subheader__breadcrumbs-separator"></span>
         <a href="#" class="kt-subheader__breadcrumbs-link">
-          Alat
+          Bibit
         </a>
         <span class="kt-subheader__breadcrumbs-separator"></span>
         <a href="#" class="kt-subheader__breadcrumbs-link">
-          Riwayat Transaksi Alat
+          Riwayat Transaksi Bibit
         </a>
       </div>
     </div>
@@ -65,7 +65,7 @@
           <div class="kt-portlet sticky" data-sticky="true" data-margin-top="100px" data-sticky-for="1023" data-sticky-class="kt-sticky">
             <div class="kt-portlet__body">
               <h5 style="color: #222;">
-                Jumlah Data Riwayat Transaksi Alat Yang Tersedia
+                Jumlah Data Riwayat Transaksi Bibit Yang Tersedia
               </h5>
               <h4 class="mt-3 kt-font-success" style="font-weight: 800;">
                 {{$jml}} Data
@@ -83,7 +83,7 @@
                   <i class="flaticon-avatar"></i>
                 </span>
                 <h3 class="kt-portlet__head-title">
-                  Data Riwayat Transaksi Alat
+                  Data Riwayat Transaksi Bibit
                 </h3>
               </div>
             </div>
@@ -160,14 +160,14 @@
                                   </li>
                                   @if(Auth::guard('admin')->user()->role != 'superadmin')
                                   <li class="kt-nav__item" style="display: none !important;">
-                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$riwayat->id}}" data-href="{{ route('deleteriwayat.talat', ['id' => $riwayat->id]) }}">
+                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$riwayat->id}}" data-href="{{ route('deleteriwayat.tbibit', ['id' => $riwayat->id]) }}">
                                       <i class="kt-nav__link-icon fa fa-trash-alt"></i>
                                       <span class="kt-nav__link-text">Hapus Data</span>
                                     </a>
                                   </li>
                                   @else
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$riwayat->id}}" data-href="{{ route('deleteriwayat.talat', ['id' => $riwayat->id]) }}">
+                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$riwayat->id}}" data-href="{{ route('deleteriwayat.tbibit', ['id' => $riwayat->id]) }}">
                                       <i class="kt-nav__link-icon fa fa-trash-alt"></i>
                                       <span class="kt-nav__link-text">Hapus Data</span>
                                     </a>
@@ -248,12 +248,12 @@
                     <div class="kt-widget__body widget-detail">
                       <div class="kt-widget__item">
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Nama Alat Tani Yang Dibeli :</span>
+                          <span class="kt-widget__label">Nama Bibit Yang Dibeli :</span>
                           <span class="kt-widget__data" id="berasnamas"></span>
                         </div>
 
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Jumlah Alat Yang Dibeli :</span>
+                          <span class="kt-widget__label">Jumlah Bibit Yang Dibeli :</span>
                           <span class="kt-widget__data" id="jumlahs"></span>
                         </div>
 
@@ -309,7 +309,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Alat Yang Dibeli</h5>
+              <h5 class="modal-title">Bibit Yang Dibeli</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               </button>
             </div>

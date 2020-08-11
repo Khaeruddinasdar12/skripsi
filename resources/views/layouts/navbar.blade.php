@@ -177,7 +177,7 @@
                         </a>
                       </li>
                       <li class="kt-menu__item " aria-haspopup="true">
-                        <a href="#" class="kt-menu__link ">
+                        <a href="{{ route('riwayat.tbibit') }}" class="kt-menu__link ">
                           <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
                             <span></span>
                           </i>
