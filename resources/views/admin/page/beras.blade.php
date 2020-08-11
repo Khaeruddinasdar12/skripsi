@@ -133,13 +133,13 @@
                               <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
                                 <ul class="kt-nav">
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$beras->id}}" data-nama="{{$beras->nama}}" data-harga="{{format_uang($beras -> harga)}}" data-min_beli="{{$beras->min_beli}}" data-stok="{{$beras->stok}}" data-deskripsi="{{$beras->deskripsi}}" data-image="{{asset('storage/'.$beras->gambar)}}" data-admin_name="{{$beras->admins->name}}">
+                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$beras->id}}" data-nama="{{$beras->nama}}" data-harga="{{format_uang($beras -> harga)}}" data-min_beli="{{$beras->min_beli}}" data-stok="{{$beras->stok}}" data-deskripsi="{{$beras->keterangan}}" data-image="{{asset('storage/'.$beras->gambar)}}" data-admin_name="{{$beras->admins->name}}">
                                       <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
                                       <span class="kt-nav__link-text">Detail</span>
                                     </a>
                                   </li>
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-data" data-id="{{$beras->id}}" data-nama="{{$beras->nama}}" data-harga="{{$beras->harga}}" data-min_beli="{{$beras->min_beli}}" data-stok="{{$beras->stok}}" data-deskripsi="{{$beras->deskripsi}}" data-image="{{asset('storage/'.$beras->gambar)}}" data-admin_name="{{$beras->admins->name}}" data-href="{{ route('update.beras', ['id' => $beras->id]) }}">
+                                    <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-data" data-id="{{$beras->id}}" data-nama="{{$beras->nama}}" data-harga="{{$beras->harga}}" data-min_beli="{{$beras->min_beli}}" data-stok="{{$beras->stok}}" data-deskripsi="{{$beras->keterangan}}" data-image="{{asset('storage/'.$beras->gambar)}}" data-admin_name="{{$beras->admins->name}}" data-href="{{ route('update.beras', ['id' => $beras->id]) }}">
                                       <i class=" kt-nav__link-icon flaticon2-settings"></i>
                                       <span class="kt-nav__link-text">Edit Data</span>
                                     </a>
@@ -215,7 +215,7 @@
 
                     <div class="form-group">
                       <label for="exampleTextarea">Deskripsi</label>
-                      <textarea class="form-control" id="exampleTextarea" rows="6" style="resize: none;" name="deskripsi" required></textarea>
+                      <textarea class="form-control" id="exampleTextarea" rows="6" style="resize: none;" name="keterangan" required></textarea>
                     </div>
                   </div>
 
@@ -351,7 +351,7 @@
 
                     <div class="form-group">
                       <label for="exampleTextarea">Deskripsi</label>
-                      <textarea class="form-control" id="deskripsis" rows="6" style="resize: none;" name="deskripsi" required></textarea>
+                      <textarea class="form-control" id="deskripsis" rows="6" style="resize: none;" name="keterangan" required></textarea>
                     </div>
                   </div>
 

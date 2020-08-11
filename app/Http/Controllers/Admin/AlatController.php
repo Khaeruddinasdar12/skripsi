@@ -34,6 +34,7 @@ class AlatController extends Controller
             'nama'          => 'required|string',
             'harga'         => 'required|numeric',
             'stok'          => 'required|numeric',
+            'min_beli'      => 'required|numeric|min:0',
             'keterangan'    => 'string',
             'gambar'        => 'image|mimes:jpeg,png,jpg|max:3072'
         ]);
@@ -43,6 +44,7 @@ class AlatController extends Controller
         $data->jenis        = 'alat';
         $data->harga        = $request->get('harga');
         $data->stok         = $request->get('stok');
+        $data->min_beli     = $request->get('min_beli');
         $data->keterangan   = $request->get('keterangan'); //boleh kosong
         $data->admin_id     = Auth::guard('admin')->user()->id;
 
@@ -61,6 +63,7 @@ class AlatController extends Controller
         $validasi = $this->validate($request, [
             'nama'          => 'required|string',
             'harga'         => 'required|numeric',
+            'min_beli'      => 'required|numeric|min:0',
             'keterangan'    => 'string',
             'stok'          => 'required|numeric'
         ]);
@@ -69,6 +72,7 @@ class AlatController extends Controller
         $data->nama         = $request->get('nama');
         $data->harga        = $request->get('harga');
         $data->stok         = $request->get('stok');
+        $data->min_beli     = $request->get('min_beli');
         $data->keterangan   = $request->get('keterangan'); //boleh kosong
         $data->admin_id     = Auth::guard('admin')->user()->id;
 

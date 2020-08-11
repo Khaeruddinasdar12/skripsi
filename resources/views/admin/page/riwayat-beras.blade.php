@@ -125,7 +125,7 @@
                         <tr>
                           <th scope="row">{{$no++}}</th>
                           <td>{{$riwayat -> users -> name}}</td>
-                          <td>{{$riwayat -> beras -> nama}}</td>
+                          <td>{{$riwayat -> barangs -> nama}}</td>
                           <td>{{$riwayat -> jumlah}} Kg</td>
                           <td>Rp.{{format_uang($total)}}</td>
                           <td>
@@ -147,13 +147,13 @@
                               <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
                                 <ul class="kt-nav">
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-beras" data-id="{{$riwayat->id}}" data-jumlah="{{$riwayat->jumlah}}" data-harga="Rp.{{format_uang($riwayat->harga)}}" data-total="Rp.{{format_uang($total)}}" data-alamat="{{$riwayat->alamat}}" data-kecamatan="{{$riwayat->kecamatan}}" data-kelurahan="{{$riwayat->kelurahan}}" data-keterangan="{{$riwayat->keterangan}}" data-jenis_bayar="{{$pembayaran}}" data-users-name="{{$riwayat->users->name}}" data-beras-nama="{{$riwayat->beras->nama}}">
+                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-beras" data-id="{{$riwayat->id}}" data-jumlah="{{$riwayat->jumlah}}" data-harga="Rp.{{format_uang($riwayat->harga)}}" data-total="Rp.{{format_uang($total)}}" data-alamat="{{$riwayat->alamat}}" data-kecamatan="{{$riwayat->kecamatan}}" data-kelurahan="{{$riwayat->kelurahan}}" data-keterangan="{{$riwayat->keterangan}}" data-jenis_bayar="{{$pembayaran}}" data-users-name="{{$riwayat->users->name}}" data-beras-nama="{{$riwayat->barangs->nama}}">
                                       <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
                                       <span class="kt-nav__link-text">Detail</span>
                                     </a>
                                   </li>
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-gambar" data-id="{{$riwayat->id}}" data-image="{{asset('storage/'.$riwayat->beras->gambar)}}" data-beras-nama="{{$riwayat->beras->nama}}">
+                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-gambar" data-id="{{$riwayat->id}}" data-image="{{asset('storage/'.$riwayat->barangs->gambar)}}" data-beras-nama="{{$riwayat->barangs->nama}}">
                                       <i class=" kt-nav__link-icon fa fa-eye"></i>
                                       <span class="kt-nav__link-text">Lihat Gambar Beras</span>
                                     </a>
