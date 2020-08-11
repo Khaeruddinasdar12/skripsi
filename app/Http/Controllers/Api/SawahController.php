@@ -57,9 +57,6 @@ class SawahController extends Controller
                 'kelurahan' => 'required|string',
                 'alamat_lengkap' =>'required|string',
                 'luas_sawah' => 'required|string',
-                'jenis_bibit'=> 'required|string',
-                'jenis_pupuk'=> 'required|string',
-                'periode_tanam' => 'required|string',
             ]);
 
         if($validator->fails()) {
@@ -87,9 +84,6 @@ class SawahController extends Controller
                 'kecamatan' => $request->get('kecamatan'),
                 'created_by' => $user->id, //id user yang sedang login
                 'luas_sawah' => $request->get('luas_sawah'), 
-                'jenis_bibit' => $request->get('jenis_bibit'),
-                'jenis_pupuk' => $request->get('jenis_pupuk'),
-                'periode_tanam' => $request->get('periode_tanam'),
             ]);
 
         return response()->json([
@@ -148,9 +142,6 @@ class SawahController extends Controller
                 'kelurahan' => 'required|string',
                 'alamat_lengkap' =>'required|string',
                 'luas_sawah' => 'required|string',
-                'jenis_bibit'=> 'required|string',
-                'jenis_pupuk'=> 'required|string',
-                'periode_tanam' => 'required|string',
             ]);
 
         if($validator->fails()) {
@@ -168,9 +159,6 @@ class SawahController extends Controller
         $sawah->alamat          = $request->get('alamat_lengkap');
         $sawah->kecamatan       = $request->get('kecamatan');
         $sawah->luas_sawah      = $request->get('luas_sawah');
-        $sawah->jenis_bibit     = $request->get('jenis_bibit');
-        $sawah->jenis_pupuk     = $request->get('jenis_pupuk');
-        $sawah->periode_tanam   = $request->get('periode_tanam');
         $sawah->save();
 
         return response()->json([

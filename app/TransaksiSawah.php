@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class GadaiSawah extends Model
+class TransaksiSawah extends Model
 {
-	protected $table = 'gadai_sawahs';
+    protected $table = 'transaksi_sawahs';
     protected $fillable = [
-        'periode', 'harga', 'admin_id', 'sawah_id', 'keterangan', 'status', 'status_at',
+        'periode', 'jenis', 'harga', 'admin_id', 'sawah_id', 'jenis_bibit', 'jenis_pupuk', 'periode_tanam', 'keterangan', 'status', 'status_at',
     ];
 
     public function sawahs()
