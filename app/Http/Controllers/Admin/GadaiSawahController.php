@@ -31,7 +31,7 @@ class GadaiSawahController extends Controller
         return view('admin.page.gadai-unverif', ['data' => $data, 'jml' => $jml]); //struktur folder di folder views
 
     }
-    
+
     public function sedanggadai() //menampilkan hal. data yang sedang menggadai sawahnya
     {
         //mengurutkan dari terbaru ke terlama (descending)
@@ -103,7 +103,7 @@ class GadaiSawahController extends Controller
     public function delgadai($id) // menghapus gadai yang gagal di survey 
     {
         $data = TransaksiSawah::findOrFail($id);
-        if($data->status == 'gadai' || $data->status == 'selesai') {
+        if ($data->status == 'gadai' || $data->status == 'selesai') {
             return redirect()->back()->with('error', 'Data ingin dihapus dengan cara yang tidak semestinya, status in DB');
         }
         $data->delete();

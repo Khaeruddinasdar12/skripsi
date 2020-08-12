@@ -76,7 +76,7 @@
                 &:focus .fa-angle-down {
                     color: #fff !important;
                     transition: .5s;
-                    transform: translateY(3px);
+                    margin-top: 3px !important;
                 }
 
                 &:hover .icon-here {
@@ -95,7 +95,10 @@
             width: 135px;
         }
 
-        #modaltanam,
+        #modaltanam {
+            width: 138px;
+        }
+
         #bibitpupuk,
         #manageadmin {
             width: 130px;
