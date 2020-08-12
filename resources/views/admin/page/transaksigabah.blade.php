@@ -11,7 +11,6 @@
       <div class="kt-subheader__breadcrumbs">
         <a href="" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
         <span class="kt-subheader__breadcrumbs-separator"></span>
-        <span class="kt-subheader__breadcrumbs-separator"></span>
         <a href="#" class="kt-subheader__breadcrumbs-link">
           Transaksi Gabah
         </a>
@@ -94,7 +93,7 @@
                           <th>#</th>
                           <th>Nama Pembeli</th>
                           <th>Nama Gabah</th>
-                          <th>Jumlah Beras</th>
+                          <th>Jumlah Gabah</th>
                           <th>Total Harga</th>
                           <th>Jenis Pembayaran</th>
                           <th>Action</th>
