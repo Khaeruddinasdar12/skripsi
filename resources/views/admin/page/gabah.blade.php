@@ -98,7 +98,7 @@
                       <thead>
                         <tr>
                           <th>#</th>
-                          <th>Nama / jenis Beras</th>
+                          <th>Nama / jenis Gabah</th>
                           <th>Harga</th>
                           <th>Admin Yang Menangani</th>
                           <th>Action</th>
@@ -211,7 +211,7 @@
               <i class="fa fa-user-plus"></i>
             </span>
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Tambah Data Beras</h5>
+              <h5 class="modal-title" id="exampleModalLabel"></h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               </button>
             </div>
@@ -297,7 +297,7 @@
     var href = a.data('href')
 
     var modal = $(this)
-    modal.find('.modal-title').text('Detail Beras ' + nama)
+    modal.find('.modal-title').text('Edit Gabah ' + nama)
     modal.find('.modal-body #namas').val(nama)
     modal.find('.modal-body #hargas').val(harga)
     modal.find('.modal-body #admin_names').val(admin_name)

@@ -42,10 +42,10 @@
           <!-- end dashboard menu -->
 
           <!-- gabah menu -->
-          <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
+          <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel {{ request()->is('admin/gabah') || request()->is('admin/transaksi-gabah') || request()->is('admin/riwayat-transaksi-gabah') ? 'kt-menu__item--open kt-menu__item--here' : '' }}" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
             <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
-              <span class="kt-menu__link-text top-text-nav">Gabah</span>
-              <i class="fa fa-angle-down"></i>
+              <span class="kt-menu__link-text {{ request()->is('admin/gabah') || request()->is('admin/transaksi-gabah') || request()->is('admin/riwayat-transaksi-gabah') ? '' : 'top-text-nav' }}">Gabah</span>
+              <i class=" fa fa-angle-down {{ request()->is('admin/gabah') || request()->is('admin/transaksi-gabah') || request()->is('admin/riwayat-transaksi-gabah') ? 'icon-here' : '' }}"></i>
             </a>
             <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
               <ul class="kt-menu__subnav">
@@ -106,10 +106,10 @@
           <!-- end sawah -->
 
           <!-- penjualan menu -->
-          <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel {{ request()->is('admin/alat') || request()->is('admin/transaksi-alat') || request()->is('admin/riwayat-transaksi-alat') || request()->is('admin/beras') || request()->is('admin/transaksi-beras') || request()->is('admin/riwayat-transaksi-beras')  ? 'kt-menu__item--open kt-menu__item--here' : '' }}" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
+          <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel {{ request()->is('admin/alat') || request()->is('admin/transaksi-alat') || request()->is('admin/riwayat-transaksi-alat') || request()->is('admin/beras') || request()->is('admin/transaksi-beras') || request()->is('admin/riwayat-transaksi-beras') || request()->is('admin/bibit') || request()->is('admin/transaksi-bibit') || request()->is('admin/riwayat-transaksi-bibit') || request()->is('admin/pupuk') || request()->is('admin/transaksi-pupuk') || request()->is('admin/riwayat-transaksi-pupuk')  ? 'kt-menu__item--open kt-menu__item--here' : '' }}" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
             <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
-              <span class="kt-menu__link-text {{ request()->is('admin/alat') || request()->is('admin/transaksi-alat') || request()->is('admin/riwayat-transaksi-alat') || request()->is('admin/beras') || request()->is('admin/transaksi-beras') || request()->is('admin/riwayat-transaksi-beras') ? '' : 'top-text-nav' }}">Penjualan</span>
-              <i class="fa fa-angle-down {{ request()->is('admin/alat') || request()->is('admin/transaksi-alat') || request()->is('admin/riwayat-transaksi-alat') || request()->is('admin/beras') || request()->is('admin/transaksi-beras') || request()->is('admin/riwayat-transaksi-beras') ? 'icon-here' : '' }}"></i>
+              <span class="kt-menu__link-text {{ request()->is('admin/alat') || request()->is('admin/transaksi-alat') || request()->is('admin/riwayat-transaksi-alat') || request()->is('admin/beras') || request()->is('admin/transaksi-beras') || request()->is('admin/riwayat-transaksi-beras') || request()->is('admin/bibit') || request()->is('admin/transaksi-bibit') || request()->is('admin/riwayat-transaksi-bibit') || request()->is('admin/pupuk') || request()->is('admin/transaksi-pupuk') || request()->is('admin/riwayat-transaksi-pupuk')  ? '' : 'top-text-nav' }}">Penjualan</span>
+              <i class="fa fa-angle-down {{ request()->is('admin/alat') || request()->is('admin/transaksi-alat') || request()->is('admin/riwayat-transaksi-alat') || request()->is('admin/beras') || request()->is('admin/transaksi-beras') || request()->is('admin/riwayat-transaksi-beras') || request()->is('admin/bibit') || request()->is('admin/transaksi-bibit') || request()->is('admin/riwayat-transaksi-bibit') || request()->is('admin/pupuk') || request()->is('admin/transaksi-pupuk') || request()->is('admin/riwayat-transaksi-pupuk') ? 'icon-here' : '' }}"></i>
             </a>
             <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
               <ul class="kt-menu__subnav">
