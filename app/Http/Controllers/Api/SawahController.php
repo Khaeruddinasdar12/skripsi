@@ -120,7 +120,6 @@ class SawahController extends Controller
         }
 
         $sawah = Sawah::find($id); // cek apakah id nya ada
-
         if ($sawah == null) {
             return response()->json([
                 'status' => false, 
