@@ -27,7 +27,7 @@ class ModalTanamController extends Controller
         $jml = TransaksiSawah::where('jenis', 'mt')
             ->where('status', null)->count();
 
-        // return $data; // uncomment ini untuk melihat data 
+        return $data; // uncomment ini untuk melihat data 
         return view('', ['data' => $data, 'jml' => $jml]);
 
     }
