@@ -256,7 +256,7 @@
               <form action="" method="POST" id="verif-gadai-form">
                 @csrf
                 <input type="hidden" value="PUT" name="_method">
-                <h3>Verifikasi Gadai?</h3>
+                <h3>Verifikasi Modal Tanam?</h3>
                 <p>Pastikan sawah yang akan di verifikasi</p>
                 <p>telah di survei terlebih dahulu</p>
 

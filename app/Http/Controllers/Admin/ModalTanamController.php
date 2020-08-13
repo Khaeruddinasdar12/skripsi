@@ -46,7 +46,7 @@ class ModalTanamController extends Controller
             ->where('status', 'gadai')
             ->count();
 
-        return $data; // uncomment ini untuk melihat data 
+        // return $data; // uncomment ini untuk melihat data 
         return view('admin.page.modaltanam-verif', ['data' => $data, 'jml' => $jml]);
     }
 
@@ -65,7 +65,7 @@ class ModalTanamController extends Controller
             ->count();
 
         // return $data; // uncomment ini untuk melihat data 
-        return view('admin.page,riwayat-modaltanam', ['data' => $data, 'jml' => $jml]);
+        return view('admin.page.riwayat-modaltanam', ['data' => $data, 'jml' => $jml]);
     }
 
     public function gadaistatus(Request $request, $id) // mengubah "daftar gadai" menjadi "sedang gadai" modal tanam
