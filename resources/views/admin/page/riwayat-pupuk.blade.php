@@ -12,11 +12,11 @@
         <a href="" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
         <span class="kt-subheader__breadcrumbs-separator"></span>
         <a href="#" class="kt-subheader__breadcrumbs-link">
-          Alat
+          Pupuk
         </a>
         <span class="kt-subheader__breadcrumbs-separator"></span>
         <a href="#" class="kt-subheader__breadcrumbs-link">
-          Riwayat Transaksi Alat
+          Riwayat Transaksi Pupuk
         </a>
       </div>
     </div>
@@ -65,7 +65,7 @@
           <div class="kt-portlet sticky" data-sticky="true" data-margin-top="100px" data-sticky-for="1023" data-sticky-class="kt-sticky">
             <div class="kt-portlet__body">
               <h5 style="color: #222;">
-                Jumlah Data Riwayat Transaksi Alat Yang Tersedia
+                Jumlah Data Riwayat Transaksi Pupuk Yang Tersedia
               </h5>
               <h4 class="mt-3 kt-font-success" style="font-weight: 800;">
                 {{$jml}} Data
@@ -83,7 +83,7 @@
                   <i class="flaticon-avatar"></i>
                 </span>
                 <h3 class="kt-portlet__head-title">
-                  Data Riwayat Transaksi Alat
+                  Data Riwayat Transaksi Pupuk
                 </h3>
               </div>
             </div>
@@ -96,8 +96,8 @@
                         <tr>
                           <th>#</th>
                           <th>Nama Pembeli</th>
-                          <th>Nama Alat</th>
-                          <th>Jumlah Alat</th>
+                          <th>Nama Pupuk</th>
+                          <th>Jumlah Pupuk</th>
                           <th>Total Harga</th>
                           <th>Jenis Pembayaran</th>
                           <th>Action</th>
@@ -147,7 +147,7 @@
                               <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
                                 <ul class="kt-nav">
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-alat" data-id="{{$riwayat->id}}" data-jumlah="{{$riwayat->jumlah}}" data-harga="Rp.{{format_uang($riwayat->harga)}}" data-total="Rp.{{format_uang($total)}}" data-alamat="{{$riwayat->alamat}}" data-kecamatan="{{$riwayat->kecamatan}}" data-kelurahan="{{$riwayat->kelurahan}}" data-keterangan="{{$riwayat->keterangan}}" data-jenis_bayar="{{$pembayaran}}" data-users-name="{{$riwayat->users->name}}" data-users-email="{{$riwayat->users->email}}" data-users-nohp="{{$riwayat->users->nohp}}" data-beras-nama="{{$riwayat->barangs->nama}}">
+                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-pupuk" data-id="{{$riwayat->id}}" data-jumlah="{{$riwayat->jumlah}}" data-harga="Rp.{{format_uang($riwayat->harga)}}" data-total="Rp.{{format_uang($total)}}" data-alamat="{{$riwayat->alamat}}" data-kecamatan="{{$riwayat->kecamatan}}" data-kelurahan="{{$riwayat->kelurahan}}" data-keterangan="{{$riwayat->keterangan}}" data-jenis_bayar="{{$pembayaran}}" data-users-name="{{$riwayat->users->name}}" data-users-email="{{$riwayat->users->email}}" data-users-nohp="{{$riwayat->users->nohp}}" data-beras-nama="{{$riwayat->barangs->nama}}">
                                       <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
                                       <span class="kt-nav__link-text">Detail</span>
                                     </a>
@@ -160,14 +160,14 @@
                                   </li>
                                   @if(Auth::guard('admin')->user()->role != 'superadmin')
                                   <li class="kt-nav__item" style="display: none !important;">
-                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$riwayat->id}}" data-href="{{ route('deleteriwayat.talat', ['id' => $riwayat->id]) }}">
+                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$riwayat->id}}" data-href="{{ route('deleteriwayat.tpupuk', ['id' => $riwayat->id]) }}">
                                       <i class="kt-nav__link-icon fa fa-trash-alt"></i>
                                       <span class="kt-nav__link-text">Hapus Data</span>
                                     </a>
                                   </li>
                                   @else
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$riwayat->id}}" data-href="{{ route('deleteriwayat.talat', ['id' => $riwayat->id]) }}">
+                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$riwayat->id}}" data-href="{{ route('deleteriwayat.tpupuk', ['id' => $riwayat->id]) }}">
                                       <i class="kt-nav__link-icon fa fa-trash-alt"></i>
                                       <span class="kt-nav__link-text">Hapus Data</span>
                                     </a>
@@ -215,7 +215,7 @@
       <!-- modal buktipembayaran-->
 
       <!-- modal detail user -->
-      <div class="modal fade" id="modal-detail-alat" tabindex="-1" role="dialog" aria-labelledby="modal-detail-user">
+      <div class="modal fade" id="modal-detail-pupuk" tabindex="-1" role="dialog" aria-labelledby="modal-detail-user">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -248,12 +248,12 @@
                     <div class="kt-widget__body widget-detail">
                       <div class="kt-widget__item">
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Nama Alat Tani Yang Dibeli :</span>
+                          <span class="kt-widget__label">Nama Pupuk Yang Dibeli :</span>
                           <span class="kt-widget__data" id="berasnamas"></span>
                         </div>
 
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Jumlah Alat Yang Dibeli :</span>
+                          <span class="kt-widget__label">Jumlah Pupuk Yang Dibeli :</span>
                           <span class="kt-widget__data" id="jumlahs"></span>
                         </div>
 
@@ -309,7 +309,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Alat Yang Dibeli</h5>
+              <h5 class="modal-title">Pupuk Yang Dibeli</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               </button>
             </div>
@@ -394,7 +394,7 @@
   }
 
   // modal detail
-  $('#modal-detail-alat').on('show.bs.modal', function(event) {
+  $('#modal-detail-pupuk').on('show.bs.modal', function(event) {
     var a = $(event.relatedTarget)
     var jumlah = a.data('jumlah')
     var harga = a.data('harga')

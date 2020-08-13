@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
 use App\Barang;
+
 class BibitController extends Controller
 {
     public function __construct()
@@ -17,14 +18,14 @@ class BibitController extends Controller
     {
         //mengurutkan dari terbaru ke terlama (descending)
         $data = Barang::where('jenis', 'bibit')
-                ->with('admins:id,name')
-                ->orderBy('created_at', 'desc')
-                ->paginate(10);
+            ->with('admins:id,name')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
         $jml = Barang::where('jenis', 'bibit')
-                ->count();
+            ->count();
         // return $data; //uncomment ini untuk melihat api data
 
-        return view('', ['data' => $data, 'jml' => $jml]); //struktur folder di folder views
+        return view('admin.page.bibit', ['data' => $data, 'jml' => $jml]); //struktur folder di folder views
     }
 
     public function store(Request $request) //menambah data bibit
@@ -34,7 +35,7 @@ class BibitController extends Controller
             'harga'     => 'required|numeric',
             'min_beli'  => 'required|numeric',
             'stok'      => 'required|numeric',
-            'keterangan'=> 'required|string',
+            'keterangan' => 'required|string',
             'gambar'    => 'image|mimes:jpeg,png,jpg|max:3072'
         ]);
 
@@ -63,7 +64,7 @@ class BibitController extends Controller
             'harga'     => 'required|numeric',
             'min_beli'  => 'required|numeric',
             'stok'      => 'required|numeric',
-            'keterangan'=> 'required|string',
+            'keterangan' => 'required|string',
             'gambar'    => 'image|mimes:jpeg,png,jpg|max:3072'
         ]);
 

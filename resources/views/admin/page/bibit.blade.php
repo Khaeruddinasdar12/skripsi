@@ -12,11 +12,11 @@
         <a href="" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
         <span class="kt-subheader__breadcrumbs-separator"></span>
         <a href="#" class="kt-subheader__breadcrumbs-link">
-          Alat
+          Bibit
         </a>
         <span class="kt-subheader__breadcrumbs-separator"></span>
         <a href="#" class="kt-subheader__breadcrumbs-link">
-          Data Alat
+          Data Bibit
         </a>
       </div>
     </div>
@@ -65,7 +65,7 @@
           <div class="kt-portlet sticky" data-sticky="true" data-margin-top="100px" data-sticky-for="1023" data-sticky-class="kt-sticky">
             <div class="kt-portlet__body">
               <h5 style="color: #222;">
-                Jumlah Data Alat Tani Yang Tersedia
+                Jumlah Data Bibit Yang Tersedia
               </h5>
               <h4 class="mt-3 kt-font-success" style="font-weight: 800;">
                 {{$jml}} Data
@@ -83,12 +83,12 @@
                   <i class="flaticon-avatar"></i>
                 </span>
                 <h3 class="kt-portlet__head-title">
-                  Data Alat Tani
+                  Data Bibit
                 </h3>
               </div>
               <div class="kt-portlet__head-toolbar">
                 <div class="kt-portlet__head-actions">
-                  <a href="#" class="btn btn-clean btn-icon btn-icon-md btn-tambah-data" data-toggle="modal" data-target="#modal-tambah-alat">
+                  <a href="#" class="btn btn-clean btn-icon btn-icon-md btn-tambah-data" data-toggle="modal" data-target="#modal-tambah-bibit">
                     <i class="flaticon2-add"></i>
                   </a>
                 </div>
@@ -102,7 +102,7 @@
                       <thead>
                         <tr>
                           <th>#</th>
-                          <th>Nama Alat</th>
+                          <th>Nama Bibit</th>
                           <th>Harga</th>
                           <th>Stok</th>
                           <th>Action</th>
@@ -115,12 +115,12 @@
                       @else
                       <tbody>
                         @php $no = 1; @endphp
-                        @foreach ($data as $alat)
+                        @foreach ($data as $bibit)
                         <tr>
                           <th scope="row">{{$no++}}</th>
-                          <td>{{$alat -> nama}}</td>
-                          <td>Rp. {{format_uang($alat -> harga)}}</td>
-                          <td>{{$alat -> stok}}</td>
+                          <td>{{$bibit -> nama}}</td>
+                          <td>Rp. {{format_uang($bibit -> harga)}}</td>
+                          <td>{{$bibit -> stok}}</td>
                           <td>
                             <div class="dropdown dropdown-inline">
                               <a href="#" class="btn btn-default btn-icon btn-icon-md btn-sm btn-more-custom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -129,19 +129,19 @@
                               <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
                                 <ul class="kt-nav">
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-alat" data-id="{{$alat->id}}" data-nama="{{$alat->nama}}" data-harga="{{format_uang($alat -> harga)}}" data-stok="{{$alat->stok}}" data-keterangan="{{$alat->keterangan}}" data-image="{{asset('storage/'.$alat->gambar)}}" data-admin_name="{{$alat->admins->name}}" data-min_beli="{{$alat->min_beli}}">
+                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-bibit" data-id="{{$bibit->id}}" data-nama="{{$bibit->nama}}" data-harga="{{format_uang($bibit -> harga)}}" data-stok="{{$bibit->stok}}" data-keterangan="{{$bibit->keterangan}}" data-image="{{asset('storage/'.$bibit->gambar)}}" data-admin_name="{{$bibit->admins->name}}" data-min_beli="{{$bibit->min_beli}}">
                                       <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
                                       <span class="kt-nav__link-text">Detail</span>
                                     </a>
                                   </li>
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-data" data-id="{{$alat->id}}" data-nama="{{$alat->nama}}" data-harga="{{$alat->harga}}" data-stok="{{$alat->stok}}" data-keterangan="{{$alat->keterangan}}" data-image="{{asset('storage/'.$alat->gambar)}}" data-admin_name="{{$alat->admins->name}}" data-href="{{ route('update.alat', ['id' => $alat->id]) }}" data-min_beli="{{$alat->min_beli}}">
+                                    <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-data" data-id="{{$bibit->id}}" data-nama="{{$bibit->nama}}" data-harga="{{$bibit->harga}}" data-stok="{{$bibit->stok}}" data-keterangan="{{$bibit->keterangan}}" data-image="{{asset('storage/'.$bibit->gambar)}}" data-admin_name="{{$bibit->admins->name}}" data-href="{{ route('update.bibit', ['id' => $bibit->id]) }}" data-min_beli="{{$bibit->min_beli}}">
                                       <i class=" kt-nav__link-icon flaticon2-settings"></i>
                                       <span class="kt-nav__link-text">Edit Data</span>
                                     </a>
                                   </li>
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$alat->id}}" data-href="{{ route('delete.alat', ['id' => $alat->id]) }}">
+                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$bibit->id}}" data-href="{{ route('delete.bibit', ['id' => $bibit->id]) }}">
                                       <i class="kt-nav__link-icon fa fa-trash-alt"></i>
                                       <span class="kt-nav__link-text">Hapus data</span>
                                     </a>
@@ -165,27 +165,27 @@
       </div>
 
       <!-- modal tambah alat -->
-      <div class="modal modal-add fade" id="modal-tambah-alat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal modal-add fade" id="modal-tambah-bibit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
           <div class="modal-content">
             <span class="modal-icon">
               <i class="fa fa-user-plus"></i>
             </span>
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Tambah Data Alat Tani</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Tambah Data Bibit</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               </button>
             </div>
             <div class="modal-body">
-              <form action="{{ route('store.alat') }}" method="POST" enctype="multipart/form-data">
+              <form action="{{ route('store.bibit') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" value="POST" name="_method">
 
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group ">
-                      <label>Nama Alat Tani</label>
-                      <input type="text" class="form-control" placeholder="Masukkan nama alat" name="nama" required>
+                      <label>Nama bibit</label>
+                      <input type="text" class="form-control" placeholder="Masukkan nama bibit" name="nama" required>
                     </div>
                     <div class="row">
                       <div class="col-md-6">
@@ -253,7 +253,7 @@
       <!-- end modal tambah alat -->
 
       <!-- modal detail alat -->
-      <div class="modal fade" id="modal-detail-alat" tabindex="-1" role="dialog">
+      <div class="modal fade" id="modal-detail-bibit" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -318,7 +318,7 @@
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group ">
-                          <label>Nama Alat Tani</label>
+                          <label>Nama bibit</label>
                           <input type="text" class="form-control" name="nama" id="namas" required>
                         </div>
                       </div>
@@ -455,7 +455,7 @@
   }
 
   // modal detail
-  $('#modal-detail-alat').on('show.bs.modal', function(event) {
+  $('#modal-detail-bibit').on('show.bs.modal', function(event) {
     var a = $(event.relatedTarget)
     var nama = a.data('nama')
     var harga = a.data('harga')
@@ -466,8 +466,8 @@
     var admin_name = a.data('admin_name')
 
     var modal = $(this)
-    modal.find('.modal-title').text('Detail Alat ' + nama)
-    modal.find('.modal-body #nama').text('Alat ' + nama)
+    modal.find('.modal-title').text('Detail Bibit ' + nama)
+    modal.find('.modal-body #nama').text('Bibit ' + nama)
     modal.find('.modal-body #harga').text('Harga Rp. ' + harga)
     modal.find('.modal-body #stok').text(stok)
     modal.find('.modal-body #min_beli').text('Minimal Pembelian : ' + min_beli)
@@ -491,7 +491,7 @@
     var href = a.data('href')
 
     var modal = $(this)
-    modal.find('.modal-title').text('Edit Alat ' + nama)
+    modal.find('.modal-title').text('Edit Bibit ' + nama)
     modal.find('.modal-body #namas').val(nama)
     modal.find('.modal-body #hargas').val(harga)
     modal.find('.modal-body #stoks').val(stok)
