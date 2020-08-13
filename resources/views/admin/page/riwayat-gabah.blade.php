@@ -61,7 +61,7 @@
           <div class="kt-portlet sticky" data-sticky="true" data-margin-top="100px" data-sticky-for="1023" data-sticky-class="kt-sticky">
             <div class="kt-portlet__body">
               <h5 style="color: #222;">
-                Jumlah Data Riwayat Transaksi Beras Yang Tersedia
+                Jumlah Data Riwayat Transaksi Gabah Yang Tersedia
               </h5>
               <h4 class="mt-3 kt-font-success" style="font-weight: 800;">
                 {{$jml}} Data
@@ -79,7 +79,7 @@
                   <i class="flaticon-avatar"></i>
                 </span>
                 <h3 class="kt-portlet__head-title">
-                  Data Riwayat Transaksi Beras
+                  Data Riwayat Transaksi Gabah
                 </h3>
               </div>
             </div>

@@ -109,7 +109,7 @@ table .btn-more-custom {
 .galung-header .kt-header-menu .kt-menu__item a:hover .fa-angle-down, .galung-header .kt-header-menu .kt-menu__item a:focus .fa-angle-down {
   color: #fff !important;
   transition: 0.5s;
-  transform: translateY(3px);
+  margin-top: 3px !important;
 }
 .galung-header .kt-header-menu .kt-menu__item a:hover .icon-here {
   color: #591df1 !important;
@@ -122,12 +122,13 @@ table .btn-more-custom {
 .galung-header .kt-header-menu #manageuser {
   width: 135px;
 }
-.galung-header .kt-header-menu #modaltanam,
+.galung-header .kt-header-menu #modaltanam {
+  width: 138px;
+}
 .galung-header .kt-header-menu #bibitpupuk,
 .galung-header .kt-header-menu #manageadmin {
   width: 130px;
 }
-.galung-header .kt-header-menu #modaltanam .kt-menu__link-text,
 .galung-header .kt-header-menu #bibitpupuk .kt-menu__link-text,
 .galung-header .kt-header-menu #manageadmin .kt-menu__link-text {
   justify-content: center;
