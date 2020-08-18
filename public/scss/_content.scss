@@ -424,7 +424,15 @@ table {
         .kt-portlet {
             .kt-portlet__body {
                 border-left: 5px solid $galungcolor !important;
+
+                h4 {
+                    color: $galungcolor !important;
+                }
             }
+        }
+
+        .kt-iconbox--animate-faster {
+            background-color: rgba(0, 168, 90, 0.096) !important;
         }
     }
 }
