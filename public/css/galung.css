@@ -486,6 +486,12 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
 .row .col-md-2 .kt-portlet .kt-portlet__body {
   border-left: 5px solid #00A859 !important;
 }
+.row .col-md-2 .kt-portlet .kt-portlet__body h4 {
+  color: #00A859 !important;
+}
+.row .col-md-2 .kt-iconbox--animate-faster {
+  background-color: rgba(0, 168, 90, 0.096) !important;
+}
 
 .modal .detail-modal {
   padding-top: 50px;
