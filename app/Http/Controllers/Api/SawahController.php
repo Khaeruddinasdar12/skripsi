@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Sawah;
-use App\GadaiSawah;
+use App\TransaksiSawah;
 use Auth;
 use Illuminate\Support\Facades\Validator;
 class SawahController extends Controller
@@ -177,7 +177,7 @@ class SawahController extends Controller
                 ]);
         }
 
-        $cek_gadai = GadaiSawah::where('sawah_id', $id)->get();
+        $cek_gadai = TransaksiSawah::where('sawah_id', $id)->get();
         if($cek_gadai != null) {
             foreach ($$cek_gadai as $hps) {
                 if($hps->status == 'gadai') {
