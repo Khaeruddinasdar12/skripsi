@@ -36,38 +36,17 @@
 <div class="kt-container">
   <div class="row justify-content-center">
     <div class="col-md-12">
-      @if(session('success'))
-      <div data-notify="container" class="alert alert-success m-alert animated bounce alert-win" role="alert" data-notify-position="top-center" style="display: inline-block; margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 10000; top: 100px; left: 0px; right: 0px; animation-iteration-count: 1;">
-        <button type="button" aria-hidden="true" class="close" data-notify="dismiss" style="position: absolute; right: 10px; top: 5px; z-index: 100002;" data-notify="dismiss" data-dismiss="alert" aria-label="Close"></button>
-        <span data-notify="message">{{session('success')}}!</span>
-        <a href="#" target="_blank" data-notify="url"></a>
-      </div>
-      @elseif(session('error'))
-      <div data-notify="container" class="alert alert-success m-alert animated bounce alert-error" role="alert" data-notify-position="top-center" style="display: inline-block; margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 10000; top: 100px; left: 0px; right: 0px; animation-iteration-count: 1;">
-        <button type="button" aria-hidden="true" class="close" data-notify="dismiss" style="position: absolute; right: 10px; top: 5px; z-index: 100002;" data-notify="dismiss" data-dismiss="alert" aria-label="Close"></button>
-        <span data-notify="message">{{session('error')}}!</span>
-        <a href="#" target="_blank" data-notify="url"></a>
-      </div>
-      @endif
-      @if ($errors->any())
-      <div data-notify="container" class="alert alert-success m-alert animated bounce alert-error" role="alert" data-notify-position="top-center" style="display: inline-block; margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 10000; top: 100px; left: 0px; right: 0px; animation-iteration-count: 1;">
-        <button type="button" aria-hidden="true" class="close" data-notify="dismiss" style="position: absolute
-        ; right: 10px; top: 5px; z-index: 100002;" data-notify="dismiss" data-dismiss="alert" aria-label="Close"></button>
-        @foreach ($errors->all() as $error)
-        <span data-notify="message">{{ $error }} !</span>
-        @endforeach
-        <a href="#" target="_blank" data-notify="url"></a>
-      </div>
-      @endif
-
+      <!-- alert section -->
+      @include('admin.page.alert')
+      <!-- end alert section -->
       <div class="row">
         <div class="col-md-2">
-          <div class="kt-portlet sticky" data-sticky="true" data-margin-top="100px" data-sticky-for="1023" data-sticky-class="kt-sticky">
+          <div class="kt-portlet sticky kt-iconbox--animate-faster" data-sticky="true" data-margin-top="100px" data-sticky-for="1023" data-sticky-class="kt-sticky">
             <div class="kt-portlet__body">
               <h5 style="color: #222;">
                 Jumlah Data Transaksi Pupuk Yang Tersedia
               </h5>
-              <h4 class="mt-3 kt-font-success" style="font-weight: 800;">
+              <h4 class="mt-3" style="font-weight: 800;">
                 {{$jml}} Data
               </h4>
 
