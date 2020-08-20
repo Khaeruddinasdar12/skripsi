@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 // use App\ModalTanam;
 use App\TransaksiSawah;
 use Auth;
+
 class ModalTanamController extends Controller
 {
-     public function __construct()
+    public function __construct()
     {
         $this->middleware('auth:admin');
     }
@@ -19,7 +20,7 @@ class ModalTanamController extends Controller
         //mengurutkan dari terbaru ke terlama (descending)
         $data = TransaksiSawah::where('jenis', 'mt')
             ->where('status', null)
-            ->select('id','keterangan', 'sawah_id')
+            ->select('id', 'keterangan', 'sawah_id')
             ->with('admins:id,name')
             ->with('sawahs', 'sawahs.alamats:id,tipe,nama_kota', 'sawahs.users:id,name,email,nohp')
             ->orderBy('created_at', 'desc')
@@ -28,8 +29,7 @@ class ModalTanamController extends Controller
             ->where('status', null)->count();
 
         // return $data; // uncomment ini untuk melihat data 
-        return view('', ['data' => $data, 'jml' => $jml]);
-
+        return view('admin.page.modaltanam-unverif', ['data' => $data, 'jml' => $jml]);
     }
 
     public function sedanggadai() //menampilkan hal. data yang sedang menggadai sawahnya sebagai modal tanam
@@ -37,7 +37,7 @@ class ModalTanamController extends Controller
         //mengurutkan dari terbaru ke terlama (descending)
         $data = TransaksiSawah::where('jenis', 'mt')
             ->where('status', 'gadai')
-            ->select('id','keterangan', 'admin_id', 'sawah_id')
+            ->select('id', 'keterangan', 'admin_id', 'sawah_id')
             ->with('admins:id,name')
             ->with('sawahs', 'sawahs.alamats:id,tipe,nama_kota', 'sawahs.users:id,name,email,nohp')
             ->orderBy('status_at', 'desc')
@@ -46,9 +46,8 @@ class ModalTanamController extends Controller
             ->where('status', 'gadai')
             ->count();
 
-        return $data; // uncomment ini untuk melihat data 
-        return view('', ['data' => $data, 'jml' => $jml]); 
-
+        // return $data; // uncomment ini untuk melihat data 
+        return view('admin.page.modaltanam-verif', ['data' => $data, 'jml' => $jml]);
     }
 
     public function riwayatgadai() //menampilkan hal. data riwayat gadai sawah sebagai modal tanam
@@ -56,7 +55,7 @@ class ModalTanamController extends Controller
         //mengurutkan dari terbaru ke terlama (descending)
         $data = TransaksiSawah::where('jenis', 'mt')
             ->where('status', 'selesai')
-            ->select('id','keterangan', 'admin_id', 'sawah_id')
+            ->select('id', 'keterangan', 'admin_id', 'sawah_id')
             ->with('admins:id,name')
             ->with('sawahs', 'sawahs.alamats:id,tipe,nama_kota', 'sawahs.users:id,name,email,nohp')
             ->orderBy('status_at', 'desc')
@@ -66,8 +65,7 @@ class ModalTanamController extends Controller
             ->count();
 
         // return $data; // uncomment ini untuk melihat data 
-        return view('', ['data' => $data, 'jml' => $jml]);
-
+        return view('admin.page.riwayat-modaltanam', ['data' => $data, 'jml' => $jml]);
     }
 
     public function gadaistatus(Request $request, $id) // mengubah "daftar gadai" menjadi "sedang gadai" modal tanam
@@ -105,7 +103,7 @@ class ModalTanamController extends Controller
     public function delgadai($id) // menghapus modal tanam (sebelum verif) 
     {
         $data = TransaksiSawah::findOrFail($id);
-        if($data->status == 'gadai' || $data->status == 'selesai') {
+        if ($data->status == 'gadai' || $data->status == 'selesai') {
             return redirect()->back()->with('error', 'Data ingin dihapus dengan cara yang tidak semestinya, status in DB');
         }
         $data->delete();
