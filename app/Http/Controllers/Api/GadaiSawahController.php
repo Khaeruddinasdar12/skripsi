@@ -46,6 +46,13 @@ class GadaiSawahController extends Controller
         }
         $sawah_id = $request->get('sawah_id');
         $ceksawah = Sawah::find($sawah_id);
+        if ($sawah == null) {
+            return response()->json([
+                'status' => false, 
+                'message' => 'Id sawah tidak ditemukan'
+            ]);
+        }
+        
         if($ceksawah->created_by != $user->id) {
             return response()->json([
                 'status' => false, 
