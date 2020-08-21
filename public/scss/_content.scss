@@ -436,3 +436,22 @@ table {
         }
     }
 }
+
+// search form
+.search-form {
+    font-size: 20px;
+    color: $galungcolor;
+    font-weight: 700;
+    cursor: pointer;
+
+    i {
+        padding: 10px;
+    }
+
+    .border-right {
+        height: 50px;
+        background: $galungcolor;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
