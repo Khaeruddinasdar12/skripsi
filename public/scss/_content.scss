@@ -436,3 +436,43 @@ table {
         }
     }
 }
+
+// search form
+.kt-search-form {
+    .search-form {
+        font-size: 20px;
+        color: $galungcolor;
+        font-weight: 700;
+        cursor: pointer;
+
+        i {
+            padding: 10px;
+            transition: .5s;
+
+            &:hover {
+                color: #fff;
+                background-color: $galungcolor;
+                transition: .5s;
+                border-radius: 5px;
+            }
+        }
+
+        .border-right {
+            height: 50px;
+            background: $galungcolor;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    }
+
+    form {
+        display: flex !important;
+
+        button {
+            background-color: transparent;
+            border: 1px solid rgba(34, 34, 34, 0.212);
+            padding: 6px;
+            border-radius: 3px;
+        }
+    }
+}
