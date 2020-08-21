@@ -21,6 +21,7 @@
   <link href="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.css') }}" rel="stylesheet" type="text/css" />
   <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
   <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+  <link href="{{ asset('css/owl.carousel.min.css') }}" rel="stylesheet" type="text/css" />
   <!-- metronic -->
 </head>
 
@@ -73,6 +74,7 @@
   <!--begin::Global Theme Bundle(used by all pages) -->
   <script src=" {{ asset('assets/plugins/global/plugins.bundle.js') }}" type="text/javascript"></script>
   <script src="{{ asset('assets/js/scripts.bundle.js') }}" type="text/javascript"></script>
+  <script src="{{ asset('js/owl.carousel.min.js') }}" type="text/javascript"></script>
   <!--begin::Page Vendors(used by this page) -->
   <script src="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.js') }}" type="text/javascript"></script>
   <script src="//maps.google.com/maps/api/js?key=AIzaSyBTGnKT7dt597vo9QgeQ7BFhvSRP4eiMSM" type="text/javascript"></script>
