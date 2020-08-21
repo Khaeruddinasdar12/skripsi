@@ -26,6 +26,10 @@ $api->version('v1', function($api) {
 
         // GABAH
         Route::post('gabah-store/{id}', 'Api\GabahController@store');
+        
+        Route::get('transaksi-gabah', 'Api\GabahController@transaksi');
+        Route::get('riwayat-transaksi-gabah', 'Api\GabahController@riwayat');
+        Route::get('batal-transaksi-gabah', 'Api\GabahController@batal');
         // GABAH
 
         // SAWAHCONTROLLER 

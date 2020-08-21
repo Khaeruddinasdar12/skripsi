@@ -15,13 +15,28 @@ class TransaksiGabahController extends Controller
         $this->middleware('auth:admin');
     }
 
-    public function index() //menampilkan hal. data transaksi gabah
+    public function index(Request $request) //menampilkan hal. data transaksi gabah
     {
         //mengurutkan dari terbaru ke terlama (descending)
-        $data = TransaksiGabah::where('status', '0')
+        if($request->get('search') != '') {
+            $data = TransaksiGabah::where('status', '0')
+            ->where(function ($query) use ($request) {
+                            $query->whereHas('users', function ($query) use($request){
+                                $query->where('name', 'like', '%'.$request->get('search').'%');
+                            })->orWhereHas('gabahs', function ($query) use($request){
+                                $query->where('nama', 'like', '%'.$request->get('search').'%');
+                            });
+            })
             ->with('users:id,name,email,nohp', 'gabahs:id,nama')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
+        } else {
+            $data = TransaksiGabah::where('status', '0')
+            ->with('users:id,name,email,nohp', 'gabahs:id,nama')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        }
+        
         $jml = TransaksiGabah::where('status', '0')
             ->count();
 
@@ -30,13 +45,28 @@ class TransaksiGabahController extends Controller
         return view('admin.page.transaksigabah', ['data' => $data, 'jml' => $jml]);
     }
 
-    public function riwayat() //menampilkan hal. data riwayat transaksi gabah
+    public function riwayat(Request $request) //menampilkan hal. data riwayat transaksi gabah
     {
         //mengurutkan dari terbaru ke terlama (descending)
-        $data = TransaksiGabah::where('status', '1')
+        if($request->get('search') != '') {
+            $data = TransaksiGabah::where('status', '1')
+            ->where(function ($query) use ($request) {
+                            $query->whereHas('users', function ($query) use($request){
+                                $query->where('name', 'like', '%'.$request->get('search').'%');
+                            })->orWhereHas('gabahs', function ($query) use($request){
+                                $query->where('nama', 'like', '%'.$request->get('search').'%');
+                            });
+            })
+            ->with('users:id,name,email,nohp', 'gabahs:id,nama')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        } else {
+            $data = TransaksiGabah::where('status', '1')
             ->with('users:id,name,email,nohp', 'gabahs:id,nama', 'admins:id,name')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
+        }
+        
         $jml = TransaksiGabah::where('status', '1')
             ->count();
 

@@ -14,13 +14,22 @@ class BibitController extends Controller
         $this->middleware('auth:admin');
     }
 
-    public function index() //menampilkan hal. data bibit
+    public function index(Request $request) //menampilkan hal. data bibit
     {
         //mengurutkan dari terbaru ke terlama (descending)
-        $data = Barang::where('jenis', 'bibit')
+        if($request->get('search') != '') {
+            $data = Barang::where('jenis', 'bibit')
+            ->with('admins:id,name')
+            ->where('nama', 'like', '%'.$request->get('search').'%')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        } else {
+            $data = Barang::where('jenis', 'bibit')
             ->with('admins:id,name')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
+        }
+        
         $jml = Barang::where('jenis', 'bibit')
             ->count();
         // return $data; //uncomment ini untuk melihat api data

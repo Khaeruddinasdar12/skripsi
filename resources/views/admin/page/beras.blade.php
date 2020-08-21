@@ -74,8 +74,8 @@
                     </div>
                     <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-lg show search-form-dropdown" x-placement="bottom-end" style="position: absolute; will-change: transform; top: -10000px; left: -200px;">
                       <div class="kt-input-icon kt-input-icon--right">
-                        <form action="" method="get">
-                          <input type="text" class="form-control" placeholder="Cari" id="generalSearch">
+                        <form action="{{route('index.beras')}}" method="get">
+                          <input type="text" class="form-control" placeholder="Cari" id="generalSearch" name="search">
                           <span class="kt-input-icon__icon kt-input-icon__icon--right">
                             <button type="button">
                               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">

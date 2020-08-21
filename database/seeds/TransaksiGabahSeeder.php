@@ -51,5 +51,20 @@ class TransaksiGabahSeeder extends Seeder
 	        'gabah_id' => 1,
 	        'admin_id' => 1
 		]);
+
+		//batal transaksi Gabah
+		DB::table('transaksi_gabahs')->insert([
+        	'jumlah'	=> 200,
+	        'harga'  	=> 3500,
+	        'kecamatan' => 'Kec. Bulutempe',
+	        'kelurahan' 	=> 'Desa Sugiale',
+	        'alamat' => 'Sugiale, Desa Sugiale Kec. Bulutempe Kab. Pare-pare',
+	        'user_id'=> 2, //dari tabel user role petani (dari seeder)
+	        'keterangan' => 'batal bertransaksi gabah hmm',
+	        'jenis_bayar' => 'cod',
+	        'status' => 'batal',
+	        'gabah_id' => 1,
+	        'admin_id' => 1
+		]);
     }
 }
