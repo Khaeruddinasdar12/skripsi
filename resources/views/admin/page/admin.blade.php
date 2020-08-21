@@ -63,13 +63,13 @@
                 </h3>
               </div>
               <div class="kt-portlet__head-toolbar">
-                <div class="kt-portlet__head-actions">
+                <div class="kt-portlet__head-actions kt-search-form">
                   <div class="dropdown show" id="kt_quick_search_toggle">
-                    <div class="search-form" data-toggle="dropdown" data-offset="10px,0px" aria-expanded="true">
+                    <div class="search-form" data-toggle="dropdown" data-offset="-20px,0px" aria-expanded="true">
                       <i class="fa fa-search"></i>
                       <span class="border-right"></span>
                     </div>
-                    <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-lg show search-form-dropdown" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 1000px; transform: translate3d(-268px, 80px, 0px);">
+                    <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-lg show search-form-dropdown" x-placement="bottom-end" style="position: absolute; will-change: transform; top: -10000px; left: -200px;">
                       <div class="kt-input-icon kt-input-icon--right">
                         <form action="" method="get">
                           <input type="text" class="form-control" placeholder="Cari" id="generalSearch">

@@ -493,20 +493,36 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
   background-color: rgba(0, 168, 90, 0.096) !important;
 }
 
-.search-form {
+.kt-search-form .search-form {
   font-size: 20px;
   color: #00A859;
   font-weight: 700;
   cursor: pointer;
 }
-.search-form i {
+.kt-search-form .search-form i {
   padding: 10px;
+  transition: 0.5s;
 }
-.search-form .border-right {
+.kt-search-form .search-form i:hover {
+  color: #fff;
+  background-color: #00A859;
+  transition: 0.5s;
+  border-radius: 5px;
+}
+.kt-search-form .search-form .border-right {
   height: 50px;
   background: #00A859;
   margin-left: 10px;
   margin-right: 10px;
+}
+.kt-search-form form {
+  display: flex !important;
+}
+.kt-search-form form button {
+  background-color: transparent;
+  border: 1px solid rgba(34, 34, 34, 0.212);
+  padding: 6px;
+  border-radius: 3px;
 }
 
 .modal .detail-modal {
