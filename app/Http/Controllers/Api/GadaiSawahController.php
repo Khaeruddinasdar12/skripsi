@@ -12,7 +12,24 @@ class GadaiSawahController extends Controller
 {
     public function index()
     {
+        if(!$user = Auth::user()) {
+                return response()->json([
+                    'status'    => false,
+                    'message'   => 'Invalid Token'
+                ]);
+        }
 
+        if($user->petani_verified == '0') {
+            return response()->json([
+                'status' => false, 
+                'message' => 'Akun petani belum diverifikasi'
+            ]);
+        }
+
+        // $data = TransaksiSawah::
+        //         ->with('sawahs', 'sawahs.alamats:id,tipe,nama_kota', 'sawahs.users:id,name,email,nohp')
+        //         ->orderBy('created_at', 'desc')
+        //         ->get();
     }
 
     public function store(Request $request)

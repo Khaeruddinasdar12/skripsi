@@ -14,12 +14,21 @@ class GabahController extends Controller
         $this->middleware('auth:admin');
     }
 
-    public function index() //menampilkan hal. data gabah
+    public function index(Request $request) //menampilkan hal. data gabah
     {
         //mengurutkan dari terbaru ke terlama (descending)
-        $data = Gabah::with('admins:id,name')
+        if($request->get('search') != '') {
+            $data = Gabah::with('admins:id,name')
+            ->where('nama', 'like', '%'.$request->get('search').'%')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10); 
+        } else {
+            $data = Gabah::with('admins:id,name')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
+        }
+        
+        
         $jml = Gabah::count();
 
         // return $data; // uncomment ini untuk melihat data

@@ -38,6 +38,7 @@ class GabahController extends Controller
 
         $validator = Validator::make($request->all(), [
                 'jumlah' 		=> 'required|string',
+                'waktu_jemput'  => 'date_format:Y-m-d H:i:s',
                 'alamat_lengkap'=> 'required|string',
                 'kecamatan' 	=> 'required|string',
                 'kelurahan'		=> 'required|string',
@@ -66,6 +67,8 @@ class GabahController extends Controller
                 'alamat' 	=> $request->get('alamat_lengkap'),
                 'kecamatan' => $request->get('kecamatan'),
                 'kelurahan' => $request->get('kelurahan'),
+                'waktu_jemput'  => $request->get('waktu_jemput'),
+                'keterangan'=> $request->get('keterangan'),
                 'status'	=> '0',
                 'jenis_bayar' => 'cod',
                 'gabah_id'	=> $gabah->id,
@@ -76,6 +79,93 @@ class GabahController extends Controller
         return response()->json([
                     'status' => true,
                     'message' => 'Berhasil mengirim permintaan pembelian gabah ! segera diproses.'
+                ]);
+    }
+
+    public function transaksi() // sedang transaksi gabah user
+    {
+        if(!$user = Auth::user()) {
+                return response()->json([
+                    'status'    => false,
+                    'message'   => 'Invalid Token'
+                ]);
+        }
+
+        if($user->petani_verified == '0') {
+            return response()->json([
+                'status' => false, 
+                'message' => 'Akun petani belum diverifikasi'
+            ]);
+        }
+
+        $data = TransaksiGabah::select('id', 'jumlah', 'harga', 'alamat', 'kecamatan', 'kelurahan', 'keterangan', 'waktu_jemput','gabah_id')
+                ->where('status', '0')
+                ->with('gabahs:id,nama')
+                ->where('user_id', $user->id)
+                ->get();
+
+        return response()->json([
+                    'status'    => true,
+                    'message'   => 'Sedang transaksi gabah oleh user id '.$user->id,
+                    'data'      => $data
+                ]);
+    }
+
+    public function riwayat() // riwayat transaksi gabah user
+    {
+        if(!$user = Auth::user()) {
+                return response()->json([
+                    'status'    => false,
+                    'message'   => 'Invalid Token'
+                ]);
+        }
+
+        if($user->petani_verified == '0') {
+            return response()->json([
+                'status' => false, 
+                'message' => 'Akun petani belum diverifikasi'
+            ]);
+        }
+
+        $data = TransaksiGabah::select('id', 'jumlah', 'harga', 'alamat', 'kecamatan', 'kelurahan', 'keterangan', 'waktu_jemput','gabah_id')
+                ->where('status', '1')
+                ->with('gabahs:id,nama')
+                ->where('user_id', $user->id)
+                ->get();
+
+        return response()->json([
+                    'status'    => true,
+                    'message'   => 'Riwayat transaksi gabah oleh user id '.$user->id,
+                    'data'      => $data
+                ]);
+    }
+
+    public function batal() // riwayat transaksi gabah user
+    {
+        if(!$user = Auth::user()) {
+                return response()->json([
+                    'status'    => false,
+                    'message'   => 'Invalid Token'
+                ]);
+        }
+
+        if($user->petani_verified == '0') {
+            return response()->json([
+                'status' => false, 
+                'message' => 'Akun petani belum diverifikasi'
+            ]);
+        }
+
+        $data = TransaksiGabah::select('id', 'jumlah', 'harga', 'alamat', 'kecamatan', 'kelurahan', 'keterangan', 'waktu_jemput','gabah_id')
+                ->where('status', 'batal')
+                ->with('gabahs:id,nama')
+                ->where('user_id', $user->id)
+                ->get();
+
+        return response()->json([
+                    'status'    => true,
+                    'message'   => 'Transaksi gabah yang dibatalkan (user id '.$user->id.')',
+                    'data'      => $data
                 ]);
     }
 }

@@ -15,12 +15,20 @@ class UserController extends Controller
         $this->middleware('auth:admin');
     }
 
-    public function konsumen() //menampilkan hal. data user konsumen
+    public function konsumen(Request $request) //menampilkan hal. data user konsumen
     {
         //mengurutkan dari terbaru ke terlama (descending)
-        $data = User::where('role', 'konsumen')
+        if($request->get('search') != '') {
+            $data = User::where('role', 'konsumen')
+                ->where('name', 'like', '%'.$request->get('search').'%')
                 ->orderBy('created_at', 'desc')
-                ->paginate(10); //semua data konsumen
+                ->paginate(10);
+        } else {
+            $data = User::where('role', 'konsumen')
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+        }
+        
         $jml = User::where('role', 'konsumen')->count(); // menghitung jumlah konsumen
 
         $kota = Kota::select('id', 'tipe', 'nama_kota')->where('provinsi_id', 28)->get();
@@ -29,13 +37,22 @@ class UserController extends Controller
         return view('admin.page.user', ['data' => $data, 'kota' => $kota, 'jml' => $jml]);
     }
 
-    public function verified() //menampilkan hal. data user petani terverifikasi
+    public function verified(Request $request) //menampilkan hal. data user petani terverifikasi
     {
         //mengurutkan dari terbaru ke terlama (descending)
-        $data = User::where('role', 'petani')
+        if($request->get('search') != '') {
+            $data = User::where('role', 'petani')
+                ->where('name', 'like', '%'.$request->get('search').'%')
                 ->where('petani_verified', '1')
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
+        } else {
+            $data = User::where('role', 'petani')
+                ->where('petani_verified', '1')
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+        }
+        
 
         $jml = User::where('role', 'petani')
                 ->where('petani_verified', '1')
@@ -49,13 +66,22 @@ class UserController extends Controller
         return view('admin.page.petani-verif', ['data' => $data, 'kota' => $kota, 'jml' => $jml]);
     }
 
-    public function unverified() //menampilkan hal. data user petani belum terverifikasi
+    public function unverified(Request $request) //menampilkan hal. data user petani belum terverifikasi
     {   
         //mengurutkan dari terbaru ke terlama (descending)
-        $data = User::where('role', 'petani')
+        if($request->get('search') != '') {
+            $data = User::where('role', 'petani')
+                ->where('petani_verified', '0')
+                ->where('name', 'like', '%'.$request->get('search').'%')
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+        } else {
+            $data = User::where('role', 'petani')
                 ->where('petani_verified', '0')
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
+        }
+        
 
         $jml = User::where('role', 'petani')
                 ->where('petani_verified', '0')

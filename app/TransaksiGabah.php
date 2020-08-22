@@ -9,7 +9,7 @@ class TransaksiGabah extends Model
     protected $table = 'transaksi_gabahs';
 
     protected $fillable = [
-        'jumlah', 'harga', 'alamat', 'kecamatan', 'kelurahan', 'keterangan', 'jenis_bayar', 'bukti', 'status', 'gabah_id', 'user_id', 'admin_id',
+        'jumlah', 'harga', 'alamat', 'kecamatan', 'kelurahan', 'keterangan', 'jenis_bayar', 'bukti', 'status', 'waktu_jemput','gabah_id', 'user_id', 'admin_id',
     ];
 
     public function admins()

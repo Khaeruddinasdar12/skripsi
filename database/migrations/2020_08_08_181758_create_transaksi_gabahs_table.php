@@ -23,7 +23,8 @@ class CreateTransaksiGabahsTable extends Migration
             $table->string('keterangan')->nullable();
             $table->enum('jenis_bayar', ['tf', 'cod']);
             $table->string('bukti')->nullable();
-            $table->enum('status', ['0','1']);
+            $table->enum('status', ['0','1', 'batal']);
+            $table->datetime('waktu_jemput')->nullable();
             $table->integer('gabah_id');
             $table->integer('user_id');
             $table->integer('admin_id')->nullable();

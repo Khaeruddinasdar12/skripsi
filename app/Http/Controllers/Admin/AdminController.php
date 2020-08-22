@@ -13,10 +13,16 @@ class AdminController extends Controller
 		$this->middleware('auth:admin');
 	}
 
-	public function index() //menampilkan hal. data user
+	public function index(Request $request) //menampilkan hal. data user
 	{
 		//mengurutkan dari terbaru ke terlama (descending)
-		$admin = Admin::orderBy('created_at', 'desc')->paginate(10);
+		if($request->get('search') != '') {
+			$admin = Admin::where('name', 'like', '%'.$request->get('search').'%')
+					->orderBy('created_at', 'desc')
+					->paginate(10);
+		} else {
+			$admin = Admin::orderBy('created_at', 'desc')->paginate(10);
+		}
 		$jml = Admin::count();
 		// return $admin; // uncomment ini untuk melihat api data admin
 		return view('admin.page.admin', ['admin' => $admin, 'jml' => $jml]); //struktur folder di folder views
