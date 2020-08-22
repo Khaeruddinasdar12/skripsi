@@ -15,15 +15,31 @@ class TransaksiAlatController extends Controller
         $this->middleware('auth:admin');
     }
 
-    public function index() //menampilkan hal. data transaksi
+    public function index(Request $request) //menampilkan hal. data transaksi
     {
         //mengurutkan dari terbaru ke terlama (descending)
-        $data = TransaksiBarang::whereHas('barangs', function ($query) {
+        if($request->get('search') != '') {
+            $data = TransaksiBarang::
+            where(function ($query) use ($request) {
+                            $query->whereHas('barangs', function ($query) use($request){
+                                    $query->where('jenis', 'alat')
+                                ->where('status', '0');
+                            })->whereHas('users', function ($query) use($request){
+                                $query->where('name', 'like', '%'.$request->get('search').'%');
+                            });
+            })
+            ->with('users:id,name,email,nohp', 'barangs:id,nama,gambar')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        } else {
+            $data = TransaksiBarang::whereHas('barangs', function ($query) {
                     $query->where('jenis', 'alat')->where('status', '0');
                 })
             ->with('users:id,name,email,nohp', 'barangs:id,nama,gambar')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
+        }
+        
         $jml = TransaksiBarang::whereHas('barangs', function ($query) {
                     $query->where('jenis', 'alat')->where('status', '0');
                 })
@@ -34,15 +50,31 @@ class TransaksiAlatController extends Controller
         return view('admin.page.transaksialat', ['data' => $data, 'jml' => $jml]);
     }
 
-    public function riwayat() //menampilkan hal. data riwayat transaksi alat
+    public function riwayat(Request $request) //menampilkan hal. data riwayat transaksi alat
     {
         //mengurutkan dari terbaru ke terlama (descending)
-        $data = TransaksiBarang::whereHas('barangs', function ($query) {
+        if($request->get('search') != '') {
+            $data = TransaksiBarang::
+            where(function ($query) use ($request) {
+                            $query->whereHas('barangs', function ($query) use($request){
+                                    $query->where('jenis', 'alat')
+                                ->where('status', '1');
+                            })->whereHas('users', function ($query) use($request){
+                                $query->where('name', 'like', '%'.$request->get('search').'%');
+                            });
+            })
+            ->with('users:id,name,email,nohp', 'barangs:id,nama,gambar', 'admins:id,name')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        } else {
+            $data = TransaksiBarang::whereHas('barangs', function ($query) {
                     $query->where('jenis', 'alat')->where('status', '1');
                 })
             ->with('users:id,name,email,nohp', 'barangs:id,nama,gambar', 'admins:id,name')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
+        }
+        
         $jml = TransaksiBarang::whereHas('barangs', function ($query) {
                     $query->where('jenis', 'alat')->where('status', '1');
                 })
