@@ -19,6 +19,10 @@ Route::post('/logout', 'LoginController@logout')->name('admin.logout');
 Route::prefix('admin')->namespace('Admin')->group(function () {
 	Route::get('/', 'HomeController@index')->name('admin.home');
 
+	// MENU LAPORAN
+	Route::get('laporan', 'Laporan@index')->name('index.laporan');
+	// END MENU LAPORAN
+
 	// RUTE MENU BIBIT & TRANSAKSI BIBIT
 	// 1. Menu Bibit
 	Route::get('bibit', 'BibitController@index')->name('index.bibit'); //menampilkan hal. data bibit
