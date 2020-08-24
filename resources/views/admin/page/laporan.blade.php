@@ -47,11 +47,11 @@
 				                	<i class="fas fa-sync-alt"></i>Reload
 				                </button>
 				    			
-				    			<button type="submit" class="btn btn-outline-danger btn-sm">
+				    			<button class="btn btn-outline-danger btn-sm">
 				                   <i class="fas fa-file-pdf"></i> PDF
 				                </button>
 				                
-				                <button type="submit" class="btn btn-outline-success btn-sm">
+				                <button class="btn btn-outline-success btn-sm">
 				                    <i class="fas fa-file-excel"></i> Excel
 				                </button>
 				    </form>

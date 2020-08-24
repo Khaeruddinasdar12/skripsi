@@ -17,16 +17,16 @@ class Laporan extends Controller
 
     public function index()
     {
-    	$barang 	= TransaksiBarang::orderBy('updated_at', 'desc')->limit(25)->get();
-    	$gabah 		= TransaksiGabah::orderBy('updated_at', 'desc')->limit(25)->get();
-    	$sawah 		= TransaksiSawah::orderBy('updated_at', 'desc')->limit(25)->get();
+    	// $barang 	= TransaksiBarang::orderBy('updated_at', 'desc')->limit(25)->get();
+    	// $gabah 		= TransaksiGabah::orderBy('updated_at', 'desc')->limit(25)->get();
+    	// $sawah 		= TransaksiSawah::orderBy('updated_at', 'desc')->limit(25)->get();
 
-    	$data = $barang->union($gabah)->get();
+    	// $data = $barang->union($gabah)->get();
     	
-    	$union = DB::table('transaksi_gabahs')
-    				->union($barang)
-    				->get();
-    	return $union;
+    	// $union = DB::table('transaksi_gabahs')
+    	// 			->union($barang)
+    	// 			->get();
+    	// return $union;
     	return view('admin.page.laporan');
     }
 }
