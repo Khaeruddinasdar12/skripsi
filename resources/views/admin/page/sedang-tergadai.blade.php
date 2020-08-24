@@ -70,8 +70,8 @@
                     </div>
                     <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-lg show search-form-dropdown" x-placement="bottom-end" style="position: absolute; will-change: transform; top: -10000px; left: -200px;">
                       <div class="kt-input-icon kt-input-icon--right">
-                        <form action="" method="get">
-                          <input type="text" class="form-control" placeholder="Cari" id="generalSearch">
+                        <form action="{{route('sedang.gadaisawah')}}" method="get">
+                          <input type="text" class="form-control" placeholder="Cari" id="generalSearch" name="search">
                           <span class="kt-input-icon__icon kt-input-icon__icon--right">
                             <button type="button">
                               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
@@ -142,7 +142,7 @@
                               <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
                                 <ul class="kt-nav">
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$gadais->id}}" data-nama-sawah="{{$gadais -> sawahs -> nama}}" data-email="{{$gadais->sawahs->users->email}}" data-nohp="{{$gadais->sawahs->users->nohp}}" data-periode="{{$gadais->periode}}" data-harga="Rp.{{format_uang($gadais->harga)}}" data-keterangan="{{$gadais->keterangan}}" data-titik_koordinat="{{$gadais->sawahs->titik_koordinat}}" data-kecamatan="{{$gadais->sawahs->kecamatan}}" data-kelurahan="{{$gadais->sawahs->kelurahan}}" data-alamat="{{$gadais->sawahs->alamat}}" data-luas_sawah="{{$gadais->sawahs->luas_sawah}}" data-jenis_bibit="{{$gadais->sawahs->jenis_bibit}}" data-jenis_pupuk="{{$gadais->sawahs->jenis_pupuk}}" data-periode_tanam="{{$gadais->sawahs->periode_tanam}}" data-kota="{{$gadais->sawahs->alamats->tipe}} {{$gadais->sawahs->alamats->nama_kota}}" data-name="{{$gadais->sawahs->users->name}}" data-admin="{{$admin}}">
+                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$gadais->id}}" data-nama-sawah="{{$gadais -> sawahs -> nama}}" data-email="{{$gadais->sawahs->users->email}}" data-nohp="{{$gadais->sawahs->users->nohp}}" data-periode="{{$gadais->periode}}" data-harga="Rp.{{format_uang($gadais->harga)}}" data-keterangan="{{$gadais->keterangan}}" data-titik_koordinat="{{$gadais->sawahs->titik_koordinat}}" data-kecamatan="{{$gadais->sawahs->kecamatan}}" data-kelurahan="{{$gadais->sawahs->kelurahan}}" data-alamat="{{$gadais->sawahs->alamat}}" data-luas_sawah="{{$gadais->sawahs->luas_sawah}}" data-kota="{{$gadais->sawahs->alamats->tipe}} {{$gadais->sawahs->alamats->nama_kota}}" data-name="{{$gadais->sawahs->users->name}}" data-admin="{{$admin}}">
                                       <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
                                       <span class="kt-nav__link-text">Detail</span>
                                     </a>
@@ -222,18 +222,6 @@
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Luas Sawah :</span>
                           <span class="kt-widget__data" id="luas_sawah"></span>
-                        </div>
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Jenis Bibit :</span>
-                          <span class="kt-widget__data" id="jenis_bibit"></span>
-                        </div>
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Jenis Pupuk :</span>
-                          <span class="kt-widget__data" id="jenis_pupuk"></span>
-                        </div>
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Periode Tanam :</span>
-                          <span class="kt-widget__data" id="periode_tanam"></span>
                         </div>
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Titik Koordinat Sawah :</span>
@@ -376,9 +364,6 @@
     var kelurahan = a.data('kelurahan')
     var alamat = a.data('alamat')
     var luas_sawah = a.data('luas_sawah')
-    var jenis_bibit = a.data('jenis_bibit')
-    var jenis_pupuk = a.data('jenis_pupuk')
-    var periode_tanam = a.data('periode_tanam')
     var kota = a.data('kota')
     var name = a.data('name')
     var admin = a.data('admin')
@@ -392,9 +377,6 @@
     modal.find('.modal-body #periode').text(periode)
     modal.find('.modal-body #harga').text(harga)
     modal.find('.modal-body #luas_sawah').text(luas_sawah)
-    modal.find('.modal-body #jenis_bibit').text(jenis_bibit)
-    modal.find('.modal-body #jenis_pupuk').text(jenis_pupuk)
-    modal.find('.modal-body #periode_tanam').text(periode_tanam)
     modal.find('.modal-body #titik_koordinat').text(titik_koordinat)
     modal.find('.modal-body #kota').text(kota)
     modal.find('.modal-body #kecamatan').text(kecamatan)

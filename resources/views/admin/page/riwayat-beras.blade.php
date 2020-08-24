@@ -74,8 +74,8 @@
                     </div>
                     <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-lg show search-form-dropdown" x-placement="bottom-end" style="position: absolute; will-change: transform; top: -10000px; left: -200px;">
                       <div class="kt-input-icon kt-input-icon--right">
-                        <form action="" method="get">
-                          <input type="text" class="form-control" placeholder="Cari" id="generalSearch">
+                        <form action="{{route('riwayat.tberas')}}" method="get">
+                          <input type="text" class="form-control" placeholder="Cari" id="generalSearch" name="search">
                           <span class="kt-input-icon__icon kt-input-icon__icon--right">
                             <button type="button">
                               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
@@ -154,7 +154,8 @@
                               <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
                                 <ul class="kt-nav">
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-beras" data-id="{{$riwayat->id}}" data-jumlah="{{$riwayat->jumlah}}" data-harga="Rp.{{format_uang($riwayat->harga)}}" data-total="Rp.{{format_uang($total)}}" data-alamat="{{$riwayat->alamat}}" data-kecamatan="{{$riwayat->kecamatan}}" data-kelurahan="{{$riwayat->kelurahan}}" data-keterangan="{{$riwayat->keterangan}}" data-jenis_bayar="{{$pembayaran}}" data-users-name="{{$riwayat->users->name}}" data-beras-nama="{{$riwayat->barangs->nama}}">
+                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-beras" data-id="{{$riwayat->id}}" data-jumlah="{{$riwayat->jumlah}}" data-harga="Rp.{{format_uang($riwayat->harga)}}" data-total="Rp.{{format_uang($total)}}" data-alamat="{{$riwayat->alamat}}" data-kecamatan="{{$riwayat->kecamatan}}" data-kelurahan="{{$riwayat->kelurahan}}" data-keterangan="{{$riwayat->keterangan}}" data-jenis_bayar="{{$pembayaran}}" data-users-name="{{$riwayat->users->name}}"
+                                    data-users-email="{{$riwayat->users->email}}" data-users-nohp="{{$riwayat->users->nohp}}" data-beras-nama="{{$riwayat->barangs->nama}}">
                                       <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
                                       <span class="kt-nav__link-text">Detail</span>
                                     </a>
@@ -245,6 +246,10 @@
                       </div>
                       <div class="kt-widget__info">
                         <span class="kt-widget__username" id="usersnames">
+                        </span>
+                        <span class="kt-widget__desc" id="email">
+                        </span>
+                        <span class="kt-widget__desc" id="nohp">
                         </span>
                       </div>
                     </div>
@@ -407,12 +412,16 @@
     var keterangan = a.data('keterangan')
     var jenis_bayar = a.data('jenis_bayar')
     var usersname = a.data('users-name')
+    var usersemail = a.data('users-email')
+    var usersnohp = a.data('users-nohp')
     var berasnama = a.data('beras-nama')
     var total = a.data('total')
 
     var modal = $(this)
     modal.find('.modal-title').text('Detail Transaksi ' + usersname)
     modal.find('.modal-body #usersnames').text('Pembeli : ' + usersname)
+    modal.find('.modal-body #email').text(usersemail)
+    modal.find('.modal-body #nohp').text(usersnohp)
     modal.find('.modal-body #jumlahs').text(jumlah + ' Kg')
     modal.find('.modal-body #hargas').text(harga)
     modal.find('.modal-body #alamats').text(alamat)

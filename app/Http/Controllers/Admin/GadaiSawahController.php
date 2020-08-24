@@ -15,15 +15,28 @@ class GadaiSawahController extends Controller
         $this->middleware('auth:admin');
     }
 
-    public function daftargadai() //menampilkan hal. data mendaftarkan sawah untuk digadai 
+    public function daftargadai(Request $request) //menampilkan hal. data mendaftarkan sawah untuk digadai 
     {
         //mengurutkan dari terbaru ke terlama (descending)
-        $data = TransaksiSawah::where('jenis', 'gs')
+        if($request->get('search') != '') {
+            $data = TransaksiSawah::where('jenis', 'gs')
+            ->where('status', null)
+            ->with('admins:id,name')
+            ->whereHas('sawahs.users',function ($query) use ($request) {
+                $query->where('name', 'like', '%'.$request->get('search').'%');
+            })
+            ->with('sawahs', 'sawahs.alamats:id,tipe,nama_kota', 'sawahs.users:id,name,email,nohp')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        } else {
+            $data = TransaksiSawah::where('jenis', 'gs')
             ->where('status', null)
             ->with('admins:id,name')
             ->with('sawahs', 'sawahs.alamats:id,tipe,nama_kota', 'sawahs.users:id,name,email,nohp')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
+        }
+        
         $jml = TransaksiSawah::where('jenis', 'gs')
             ->where('status', null)->count();
 
@@ -32,15 +45,28 @@ class GadaiSawahController extends Controller
 
     }
 
-    public function sedanggadai() //menampilkan hal. data yang sedang menggadai sawahnya
+    public function sedanggadai(Request $request) //menampilkan hal. data yang sedang menggadai sawahnya
     {
         //mengurutkan dari terbaru ke terlama (descending)
-        $data = TransaksiSawah::where('jenis', 'gs')
+        if($request->get('search')) {
+            $data = TransaksiSawah::where('jenis', 'gs')
+            ->where('status', 'gadai')
+            ->with('admins:id,name')
+            ->whereHas('sawahs.users',function ($query) use ($request) {
+                $query->where('name', 'like', '%'.$request->get('search').'%');
+            })
+            ->with('sawahs', 'sawahs.alamats:id,tipe,nama_kota', 'sawahs.users:id,name,email,nohp')
+            ->orderBy('status_at', 'desc')
+            ->paginate(10);
+        } else {
+            $data = TransaksiSawah::where('jenis', 'gs')
             ->where('status', 'gadai')
             ->with('admins:id,name')
             ->with('sawahs', 'sawahs.alamats:id,tipe,nama_kota', 'sawahs.users:id,name,email,nohp')
             ->orderBy('status_at', 'desc')
             ->paginate(10);
+        }
+        
         $jml = TransaksiSawah::where('jenis', 'gs')
             ->where('status', 'gadai')
             ->count();
@@ -50,15 +76,28 @@ class GadaiSawahController extends Controller
 
     }
 
-    public function riwayatgadai() //menampilkan hal. data riwayat gadai sawah
+    public function riwayatgadai(Request $request) //menampilkan hal. data riwayat gadai sawah
     {
-        //mengurutkan dari terbaru ke terlama (descending)
-        $data = TransaksiSawah::where('jenis', 'gs')
+        if($request->get('search') != '') {
+            $data = TransaksiSawah::where('jenis', 'gs')
+            ->where('status', 'selesai')
+            ->with('admins:id,name')
+            ->whereHas('sawahs.users',function ($query) use ($request) {
+                $query->where('name', 'like', '%'.$request->get('search').'%');
+            })
+            ->with('sawahs', 'sawahs.alamats:id,tipe,nama_kota', 'sawahs.users:id,name,email,nohp')
+            ->orderBy('status_at', 'desc')
+            ->paginate(10);
+        } else {
+            $data = TransaksiSawah::where('jenis', 'gs')
             ->where('status', 'selesai')
             ->with('admins:id,name')
             ->with('sawahs', 'sawahs.alamats:id,tipe,nama_kota', 'sawahs.users:id,name,email,nohp')
             ->orderBy('status_at', 'desc')
             ->paginate(10);
+        }
+        //mengurutkan dari terbaru ke terlama (descending)
+        
         $jml = TransaksiSawah::where('jenis', 'gs')
             ->where('status', 'selesai')
             ->count();

@@ -150,7 +150,7 @@
                               <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
                                 <ul class="kt-nav">
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-beras" data-id="{{$transaksi->id}}" data-jumlah="{{$transaksi->jumlah}}" data-harga="Rp.{{format_uang($transaksi->harga)}}" data-total="Rp.{{format_uang($total)}}" data-alamat="{{$transaksi->alamat}}" data-kecamatan="{{$transaksi->kecamatan}}" data-kelurahan="{{$transaksi->kelurahan}}" data-keterangan="{{$transaksi->keterangan}}" data-jenis_bayar="{{$pembayaran}}" data-users-name="{{$transaksi->users->name}}" data-beras-nama="{{$transaksi->gabahs->nama}}">
+                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-beras" data-id="{{$transaksi->id}}" data-jumlah="{{$transaksi->jumlah}}" data-harga="Rp.{{format_uang($transaksi->harga)}}" data-total="Rp.{{format_uang($total)}}" data-alamat="{{$transaksi->alamat}}" data-kecamatan="{{$transaksi->kecamatan}}" data-kelurahan="{{$transaksi->kelurahan}}" data-keterangan="{{$transaksi->keterangan}}" data-jenis_bayar="{{$pembayaran}}" data-users-name="{{$transaksi->users->name}}" data-users-email="{{$transaksi->users->email}}"data-users-nohp="{{$transaksi->users->nohp}}" data-beras-nama="{{$transaksi->gabahs->nama}}" data-waktu-jemput="{{$transaksi->waktu_jemput}}">
                                       <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
                                       <span class="kt-nav__link-text">Detail</span>
                                     </a>
@@ -260,11 +260,18 @@
                       </div>
                       <div class="kt-widget__info">
                         <span class="kt-widget__username" id="usersnames">
-                        </span>
+                        </span><br>
+                        <span class="kt-widget__label" id="email"></span><br>
+                        <span class="kt-widget__label" id="nohp"></span>
                       </div>
                     </div>
                     <div class="kt-widget__body widget-detail">
                       <div class="kt-widget__item">
+                        <div class="kt-widget__contact">
+                          <span class="kt-widget__label"><b>Waktu Jemput</b></span>
+                          <span class="kt-widget__data" id="waktujemput"></span>
+                        </div>
+
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Nama Gabah Yang Dibeli :</span>
                           <span class="kt-widget__data" id="berasnamas"></span>
@@ -405,12 +412,18 @@
     var keterangan = a.data('keterangan')
     var jenis_bayar = a.data('jenis_bayar')
     var usersname = a.data('users-name')
+    var usersemail = a.data('users-email')
+    var usersnohp = a.data('users-nohp')
     var berasnama = a.data('beras-nama')
+    var waktujemput = a.data('waktu-jemput')
     var total = a.data('total')
 
     var modal = $(this)
     modal.find('.modal-title').text('Detail Transaksi ' + usersname)
     modal.find('.modal-body #usersnames').text('Pembeli : ' + usersname)
+    modal.find('.modal-body #email').text(usersemail)
+    modal.find('.modal-body #waktujemput').html('<b>'+waktujemput+'</b>')
+    modal.find('.modal-body #nohp').text(usersnohp)
     modal.find('.modal-body #jumlahs').text(jumlah + ' Kg')
     modal.find('.modal-body #hargas').text(harga)
     modal.find('.modal-body #alamats').text(alamat)

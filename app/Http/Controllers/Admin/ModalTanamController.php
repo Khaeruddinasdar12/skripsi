@@ -15,16 +15,30 @@ class ModalTanamController extends Controller
         $this->middleware('auth:admin');
     }
 
-    public function daftargadai() //menampilkan hal. data mendaftarkan sawah untuk digadai sebagai modal tanam
+    public function daftargadai(Request $request) //menampilkan hal. data mendaftarkan sawah untuk digadai sebagai modal tanam
     {
         //mengurutkan dari terbaru ke terlama (descending)
-        $data = TransaksiSawah::where('jenis', 'mt')
+        if($request->get('search') != '') {
+            $data = TransaksiSawah::where('jenis', 'mt')
+            ->where('status', null)
+            ->whereHas('sawahs.users',function ($query) use ($request) {
+                $query->where('name', 'like', '%'.$request->get('search').'%');
+            })
+            ->select('id', 'keterangan', 'sawah_id')
+            ->with('admins:id,name')
+            ->with('sawahs', 'sawahs.alamats:id,tipe,nama_kota', 'sawahs.users:id,name,email,nohp')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        } else {
+            $data = TransaksiSawah::where('jenis', 'mt')
             ->where('status', null)
             ->select('id', 'keterangan', 'sawah_id')
             ->with('admins:id,name')
             ->with('sawahs', 'sawahs.alamats:id,tipe,nama_kota', 'sawahs.users:id,name,email,nohp')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
+        }
+        
         $jml = TransaksiSawah::where('jenis', 'mt')
             ->where('status', null)->count();
 
@@ -32,16 +46,29 @@ class ModalTanamController extends Controller
         return view('admin.page.modaltanam-unverif', ['data' => $data, 'jml' => $jml]);
     }
 
-    public function sedanggadai() //menampilkan hal. data yang sedang menggadai sawahnya sebagai modal tanam
+    public function sedanggadai(Request $request) //menampilkan hal. data yang sedang menggadai sawahnya sebagai modal tanam
     {
         //mengurutkan dari terbaru ke terlama (descending)
-        $data = TransaksiSawah::where('jenis', 'mt')
-            ->where('status', 'gadai')
-            ->select('id', 'keterangan', 'admin_id', 'sawah_id')
-            ->with('admins:id,name')
-            ->with('sawahs', 'sawahs.alamats:id,tipe,nama_kota', 'sawahs.users:id,name,email,nohp')
-            ->orderBy('status_at', 'desc')
-            ->paginate(10);
+        if($request->get('search') != '') {
+            $data = TransaksiSawah::where('jenis', 'mt')
+                ->where('status', 'gadai')
+                ->whereHas('sawahs.users',function ($query) use ($request) {
+                    $query->where('name', 'like', '%'.$request->get('search').'%');
+                })
+                ->select('id', 'keterangan', 'sawah_id')
+                ->with('admins:id,name')
+                ->with('sawahs', 'sawahs.alamats:id,tipe,nama_kota', 'sawahs.users:id,name,email,nohp')
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+        } else {
+            $data = TransaksiSawah::where('jenis', 'mt')
+                ->where('status', 'gadai')
+                ->select('id', 'keterangan', 'admin_id', 'sawah_id')
+                ->with('admins:id,name')
+                ->with('sawahs', 'sawahs.alamats:id,tipe,nama_kota', 'sawahs.users:id,name,email,nohp')
+                ->orderBy('status_at', 'desc')
+                ->paginate(10);
+        }
         $jml = TransaksiSawah::where('jenis', 'mt')
             ->where('status', 'gadai')
             ->count();
@@ -50,16 +77,29 @@ class ModalTanamController extends Controller
         return view('admin.page.modaltanam-verif', ['data' => $data, 'jml' => $jml]);
     }
 
-    public function riwayatgadai() //menampilkan hal. data riwayat gadai sawah sebagai modal tanam
+    public function riwayatgadai(Request $request) //menampilkan hal. data riwayat gadai sawah sebagai modal tanam
     {
         //mengurutkan dari terbaru ke terlama (descending)
-        $data = TransaksiSawah::where('jenis', 'mt')
-            ->where('status', 'selesai')
-            ->select('id', 'keterangan', 'admin_id', 'sawah_id')
-            ->with('admins:id,name')
-            ->with('sawahs', 'sawahs.alamats:id,tipe,nama_kota', 'sawahs.users:id,name,email,nohp')
-            ->orderBy('status_at', 'desc')
-            ->paginate(10);
+        if($request->get('search') != '') {
+            $data = TransaksiSawah::where('jenis', 'mt')
+                ->where('status', 'selesai')
+                ->whereHas('sawahs.users',function ($query) use ($request) {
+                    $query->where('name', 'like', '%'.$request->get('search').'%');
+                })
+                ->select('id', 'keterangan', 'sawah_id')
+                ->with('admins:id,name')
+                ->with('sawahs', 'sawahs.alamats:id,tipe,nama_kota', 'sawahs.users:id,name,email,nohp')
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+        } else {
+            $data = TransaksiSawah::where('jenis', 'mt')
+                ->where('status', 'selesai')
+                ->select('id', 'keterangan', 'admin_id', 'sawah_id')
+                ->with('admins:id,name')
+                ->with('sawahs', 'sawahs.alamats:id,tipe,nama_kota', 'sawahs.users:id,name,email,nohp')
+                ->orderBy('status_at', 'desc')
+                ->paginate(10);
+        }
         $jml = TransaksiSawah::where('jenis', 'mt')
             ->where('status', 'selesai')
             ->count();
