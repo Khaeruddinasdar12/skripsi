@@ -28,7 +28,6 @@ class GabahController extends Controller
             ->paginate(10);
         }
         
-        
         $jml = Gabah::count();
 
         // return $data; // uncomment ini untuk melihat data
