@@ -20,7 +20,7 @@
                 <div class="card-body">
                   <div class="title">
                     <div class="card-title">
-                      <h2>75</h2>
+                      <h2>{{$jmlgabah}}</h2>
                     </div>
                     <p class="card-text">Transaksi Gabah</p>
                     <p>Lihat <i class="fa fa-arrow-right"></i> </p>
@@ -38,7 +38,7 @@
                 <div class="card-body">
                   <div class="title">
                     <div class="card-title">
-                      <h2>75</h2>
+                      <h2>{{$jmlalat}}</h2>
                     </div>
                     <p class="card-text">Transaksi Alat</p>
                     <p>Lihat <i class="fa fa-arrow-right"></i> </p>
@@ -55,7 +55,7 @@
                 <div class="card-body">
                   <div class="title">
                     <div class="card-title">
-                      <h2>75</h2>
+                      <h2>{{$jmlbibit}}</h2>
                     </div>
                     <p class="card-text">Transaksi Bibit</p>
                     <p>Lihat <i class="fa fa-arrow-right"></i> </p>
@@ -72,7 +72,7 @@
                 <div class="card-body">
                   <div class="title">
                     <div class="card-title">
-                      <h2>75</h2>
+                      <h2>{{$jmlpupuk}}</h2>
                     </div>
                     <p class="card-text">Transaksi Pupuk</p>
                     <p>Lihat <i class="fa fa-arrow-right"></i> </p>
@@ -89,7 +89,7 @@
                 <div class="card-body">
                   <div class="title">
                     <div class="card-title">
-                      <h2>75</h2>
+                      <h2>{{$jmlberas}}</h2>
                     </div>
                     <p class="card-text">Transaksi Beras</p>
                     <p>Lihat <i class="fa fa-arrow-right"></i> </p>
@@ -116,6 +116,7 @@
     $('.loop').owlCarousel({
       center: true,
       items: 2,
+      nav: true,
       loop: true,
       margin: 10,
       responsive: {
