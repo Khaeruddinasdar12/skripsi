@@ -17,7 +17,7 @@ Route::post('/logout', 'LoginController@logout')->name('admin.logout');
 
 
 Route::prefix('admin')->namespace('Admin')->group(function () {
-	Route::get('/', 'HomeController@index')->name('admin.home');
+	Route::get('/', 'DashboardController@index')->name('admin.home');
 
 	// MENU LAPORAN
 	Route::get('laporan', 'Laporan@index')->name('index.laporan');
