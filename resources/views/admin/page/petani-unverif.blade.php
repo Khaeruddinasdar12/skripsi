@@ -69,12 +69,14 @@
               </div>
               <div class="kt-portlet__head-toolbar">
                 <form action="{{route('unverified.manage-user')}}" method="get">
-                  <input type="text" class="form-control" placeholder="Cari" id="generalSearch" name="search">
-                  <span class="kt-input-icon__icon kt-input-icon__icon--right">
-                    <button type="submit">
-                      <i class="fa fa-search"></i>
-                    </button>
-                  </span>
+                  <div class="input-group">
+                    <input type="text" class="form-control" name="search" placeholder="cari">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-success" type="submit">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                  </div>
                 </form>
               </div>
             </div>
