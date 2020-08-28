@@ -546,7 +546,6 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
 }
 .card-menu .owl-carousel .card {
   border-radius: 15px !important;
-  padding: 5px;
   border: none;
   color: #fff;
   transition: 0.5s;
@@ -581,21 +580,23 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
   width: 100%;
 }
 .card-menu .owl-carousel .card .card-title h2 {
-  padding: 5px;
+  padding-bottom: 5px;
   text-align: right;
 }
 .card-menu .owl-carousel .card .card-body .image {
-  position: relative;
+  position: absolute;
   opacity: 0.08;
   left: -30px;
-  top: 20px;
+  top: 50px;
 }
 .card-menu .owl-carousel .card .card-body .image img {
   transition: 0.5s;
+  width: 170px;
 }
 .card-menu .owl-carousel .card .card-body .title {
-  position: absolute;
-  z-index: 1;
+  position: relative !important;
+  z-index: 1 !important;
+  width: 100% !important;
 }
 .card-menu .owl-carousel .card .card-body .title i {
   margin-left: 5px;
@@ -603,13 +604,14 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
 }
 .card-menu .owl-carousel .card .card-body .title p {
   font-weight: 600;
+  font-size: 16px;
 }
 .card-menu .owl-carousel .owl-nav {
   display: flex !important;
   justify-content: space-between !important;
 }
 .card-menu .owl-carousel .owl-nav .owl-next {
-  margin-right: 67px !important;
+  margin-right: 70px !important;
 }
 .card-menu .owl-carousel .owl-nav .owl-next span {
   padding-left: 50px;
@@ -642,7 +644,7 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
   }
 
   .owl-nav span {
-    line-height: 185px !important;
+    line-height: 160px;
   }
 }
 

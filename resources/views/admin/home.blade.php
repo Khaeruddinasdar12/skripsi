@@ -20,7 +20,7 @@
                 <div class="card-body">
                   <div class="title">
                     <div class="card-title">
-                      <h2>{{$jmlgabah}}</h2>
+                      <h2>{{$jmlgabah}} <small>Data</small></h2>
                     </div>
                     <p class="card-text">Transaksi Gabah</p>
                     <p>Lihat <i class="fa fa-arrow-right"></i> </p>
@@ -38,7 +38,7 @@
                 <div class="card-body">
                   <div class="title">
                     <div class="card-title">
-                      <h2>{{$jmlalat}}</h2>
+                      <h2>{{$jmlalat}} <small>Data</small></h2>
                     </div>
                     <p class="card-text">Transaksi Alat</p>
                     <p>Lihat <i class="fa fa-arrow-right"></i> </p>
@@ -55,7 +55,7 @@
                 <div class="card-body">
                   <div class="title">
                     <div class="card-title">
-                      <h2>{{$jmlbibit}}</h2>
+                      <h2>{{$jmlbibit}} <small>Data</small></h2>
                     </div>
                     <p class="card-text">Transaksi Bibit</p>
                     <p>Lihat <i class="fa fa-arrow-right"></i> </p>
@@ -72,7 +72,7 @@
                 <div class="card-body">
                   <div class="title">
                     <div class="card-title">
-                      <h2>{{$jmlpupuk}}</h2>
+                      <h2>{{$jmlpupuk}} <small>Data</small></h2>
                     </div>
                     <p class="card-text">Transaksi Pupuk</p>
                     <p>Lihat <i class="fa fa-arrow-right"></i> </p>
@@ -89,7 +89,7 @@
                 <div class="card-body">
                   <div class="title">
                     <div class="card-title">
-                      <h2>{{$jmlberas}}</h2>
+                      <h2>{{$jmlberas}} <small>Data</small></h2>
                     </div>
                     <p class="card-text">Transaksi Beras</p>
                     <p>Lihat <i class="fa fa-arrow-right"></i> </p>
