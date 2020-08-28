@@ -105,6 +105,44 @@
         </div>
       </div>
     </div>
+
+    <div class="col-md-5">
+      <div class="kt-portlet card-gadai">
+        <div class="kt-portlet__body">
+          <h3>Data Gadai</h3>
+          <div class="kt-widget4">
+            <a href="{{ route('sedang.gadaisawah') }}" class="kt-widget4__item">
+              <div class="kt-widget4__pic kt-widget4__pic--logo">
+                <img src="{{ asset('img/card/sawah.jpg') }}" alt="gadai-sawah">
+              </div>
+              <div class="kt-widget4__info">
+                <p class="kt-widget4__title">
+                  Sawah Sedang Tergadai
+                </p>
+                <p class="kt-widget4__text">
+                  Lihat Detail
+                </p>
+              </div>
+              <span class="kt-widget4__number kt-font-brand">{{ $jmlgs }} Data</span>
+            </a>
+            <a href="{{ route('sedang.modaltanam') }}" class="kt-widget4__item">
+              <div class="kt-widget4__pic kt-widget4__pic--logo">
+                <img src="{{ asset('img/card/tanam.jpg') }}" alt="modal-tanam">
+              </div>
+              <div class="kt-widget4__info">
+                <p class="kt-widget4__title">
+                  Modal Tanam Sedang Tergadai
+                </p>
+                <p class="kt-widget4__text">
+                  Lihat Detail
+                </p>
+              </div>
+              <span class="kt-widget4__number kt-font-brand">{{ $jmlmt }} Data</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

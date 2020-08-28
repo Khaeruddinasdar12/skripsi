@@ -1,11 +1,12 @@
 // card
-.card-menu {
+.card-menu,
+.card-gadai {
     padding: 10px 20px 10px 20px;
     border-radius: 15px !important;
-    box-shadow: 1px 1px 10px rgba(34, 34, 34, 0.102);
+    box-shadow: 1px 1px 10px rgba(34, 34, 34, 0.102) !important;
 
     h3 {
-        padding-bottom: 30px;
+        padding-bottom: 10px;
     }
 
     .owl-carousel {
@@ -62,7 +63,7 @@
                     position: absolute;
                     opacity: 0.08;
                     left: -30px;
-                    top: 50px;
+                    top: 30px;
 
                     img {
                         transition: 0.5s;
@@ -82,7 +83,7 @@
 
                     p {
                         font-weight: 600;
-                        font-size: 16px;
+                        font-size: 15px;
                     }
                 }
             }
@@ -93,7 +94,7 @@
             justify-content: space-between !important;
 
             .owl-next {
-                margin-right: 70px !important;
+                margin-right: 69px !important;
 
                 span {
                     padding-left: 50px;
@@ -119,13 +120,65 @@
                 color: #fff;
                 position: absolute !important;
                 top: 0 !important;
-                line-height: 165px;
+                line-height: 159px;
             }
         }
 
         .owl-dots {
             display: none !important;
             position: absolute !important;
+        }
+    }
+}
+
+.card-gadai {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    h3 {
+        padding-bottom: 20px;
+    }
+
+    .kt-widget4 {
+        .kt-widget4__item {
+            padding-top: 20px;
+            padding-bottom: 15px;
+            cursor: pointer;
+
+            &:hover .kt-widget4__title {
+                transform: translateY(-10px);
+                transition: .5s;
+            }
+
+            &:hover .kt-widget4__text {
+                opacity: 1;
+                transition: .5s;
+                transform: translateY(10px);
+                font-size: 14px;
+            }
+
+            .kt-widget4__pic--logo {
+                img {
+                    width: 60px !important;
+                }
+            }
+
+            .kt-widget4__title {
+                position: absolute;
+                font-size: 16px !important;
+                transition: .5s;
+            }
+
+            .kt-widget4__text {
+                opacity: 0;
+                transition: .5s;
+            }
+
+            .kt-widget4__number {
+                font-size: 16px !important;
+            }
         }
     }
 }
