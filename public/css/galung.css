@@ -536,101 +536,166 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
   width: 500px;
 }
 
-.card-menu {
+.card-menu,
+.card-gadai {
   padding: 10px 20px 10px 20px;
   border-radius: 15px !important;
-  box-shadow: 1px 1px 10px rgba(34, 34, 34, 0.102);
+  box-shadow: 1px 1px 10px rgba(34, 34, 34, 0.102) !important;
 }
-.card-menu h3 {
-  padding-bottom: 30px;
+.card-menu h3,
+.card-gadai h3 {
+  padding-bottom: 10px;
 }
-.card-menu .owl-carousel .card {
+.card-menu .owl-carousel .card,
+.card-gadai .owl-carousel .card {
   border-radius: 15px !important;
-  padding: 5px;
   border: none;
   color: #fff;
   transition: 0.5s;
   position: relative !important;
   overflow: hidden !important;
 }
-.card-menu .owl-carousel .card:hover .title p i {
+.card-menu .owl-carousel .card:hover .title p i,
+.card-gadai .owl-carousel .card:hover .title p i {
   transition: 0.5s;
   margin-left: 10px;
 }
-.card-menu .owl-carousel .card:hover .image img {
+.card-menu .owl-carousel .card:hover .image img,
+.card-gadai .owl-carousel .card:hover .image img {
   transform: scale(1.3) !important;
   transition: 0.5s;
 }
-.card-menu .owl-carousel .card.card-1 {
+.card-menu .owl-carousel .card.card-1,
+.card-gadai .owl-carousel .card.card-1 {
   background-color: #5cc28a;
 }
-.card-menu .owl-carousel .card.card-2 {
+.card-menu .owl-carousel .card.card-2,
+.card-gadai .owl-carousel .card.card-2 {
   background-color: #25a18e;
 }
-.card-menu .owl-carousel .card.card-3 {
+.card-menu .owl-carousel .card.card-3,
+.card-gadai .owl-carousel .card.card-3 {
   background-color: #6bca71;
 }
-.card-menu .owl-carousel .card.card-4 {
+.card-menu .owl-carousel .card.card-4,
+.card-gadai .owl-carousel .card.card-4 {
   background-color: #5a9ec0;
 }
-.card-menu .owl-carousel .card.card-5 {
+.card-menu .owl-carousel .card.card-5,
+.card-gadai .owl-carousel .card.card-5 {
   background-color: #00a5cf;
 }
-.card-menu .owl-carousel .card .card-title {
+.card-menu .owl-carousel .card .card-title,
+.card-gadai .owl-carousel .card .card-title {
   margin-bottom: 20px;
   width: 100%;
 }
-.card-menu .owl-carousel .card .card-title h2 {
-  padding: 5px;
+.card-menu .owl-carousel .card .card-title h2,
+.card-gadai .owl-carousel .card .card-title h2 {
+  padding-bottom: 5px;
   text-align: right;
 }
-.card-menu .owl-carousel .card .card-body .image {
-  position: relative;
+.card-menu .owl-carousel .card .card-body .image,
+.card-gadai .owl-carousel .card .card-body .image {
+  position: absolute;
   opacity: 0.08;
   left: -30px;
-  top: 20px;
+  top: 30px;
 }
-.card-menu .owl-carousel .card .card-body .image img {
+.card-menu .owl-carousel .card .card-body .image img,
+.card-gadai .owl-carousel .card .card-body .image img {
   transition: 0.5s;
+  width: 170px;
 }
-.card-menu .owl-carousel .card .card-body .title {
-  position: absolute;
-  z-index: 1;
+.card-menu .owl-carousel .card .card-body .title,
+.card-gadai .owl-carousel .card .card-body .title {
+  position: relative !important;
+  z-index: 1 !important;
+  width: 100% !important;
 }
-.card-menu .owl-carousel .card .card-body .title i {
+.card-menu .owl-carousel .card .card-body .title i,
+.card-gadai .owl-carousel .card .card-body .title i {
   margin-left: 5px;
   transition: 0.5s;
 }
-.card-menu .owl-carousel .card .card-body .title p {
+.card-menu .owl-carousel .card .card-body .title p,
+.card-gadai .owl-carousel .card .card-body .title p {
   font-weight: 600;
+  font-size: 15px;
 }
-.card-menu .owl-carousel .owl-nav {
+.card-menu .owl-carousel .owl-nav,
+.card-gadai .owl-carousel .owl-nav {
   display: flex !important;
   justify-content: space-between !important;
 }
-.card-menu .owl-carousel .owl-nav .owl-next {
-  margin-right: 67px !important;
+.card-menu .owl-carousel .owl-nav .owl-next,
+.card-gadai .owl-carousel .owl-nav .owl-next {
+  margin-right: 69px !important;
 }
-.card-menu .owl-carousel .owl-nav .owl-next span {
+.card-menu .owl-carousel .owl-nav .owl-next span,
+.card-gadai .owl-carousel .owl-nav .owl-next span {
   padding-left: 50px;
   padding-right: 5px;
   background-image: linear-gradient(to left, rgba(53, 53, 53, 0.527), rgba(34, 34, 34, 0));
 }
-.card-menu .owl-carousel .owl-nav .owl-prev span {
+.card-menu .owl-carousel .owl-nav .owl-prev span,
+.card-gadai .owl-carousel .owl-nav .owl-prev span {
   padding-right: 50px !important;
   padding-left: 5px;
   background-image: linear-gradient(to right, rgba(53, 53, 53, 0.527), rgba(34, 34, 34, 0));
 }
-.card-menu .owl-carousel .owl-nav span {
+.card-menu .owl-carousel .owl-nav span,
+.card-gadai .owl-carousel .owl-nav span {
   font-size: 50px;
   color: #fff;
   position: absolute !important;
   top: 0 !important;
-  line-height: 165px;
+  line-height: 159px;
 }
-.card-menu .owl-carousel .owl-dots {
+.card-menu .owl-carousel .owl-dots,
+.card-gadai .owl-carousel .owl-dots {
   display: none !important;
   position: absolute !important;
+}
+
+.card-gadai {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.card-gadai h3 {
+  padding-bottom: 20px;
+}
+.card-gadai .kt-widget4 .kt-widget4__item {
+  padding-top: 20px;
+  padding-bottom: 15px;
+  cursor: pointer;
+}
+.card-gadai .kt-widget4 .kt-widget4__item:hover .kt-widget4__title {
+  transform: translateY(-10px);
+  transition: 0.5s;
+}
+.card-gadai .kt-widget4 .kt-widget4__item:hover .kt-widget4__text {
+  opacity: 1;
+  transition: 0.5s;
+  transform: translateY(10px);
+  font-size: 14px;
+}
+.card-gadai .kt-widget4 .kt-widget4__item .kt-widget4__pic--logo img {
+  width: 60px !important;
+}
+.card-gadai .kt-widget4 .kt-widget4__item .kt-widget4__title {
+  position: absolute;
+  font-size: 16px !important;
+  transition: 0.5s;
+}
+.card-gadai .kt-widget4 .kt-widget4__item .kt-widget4__text {
+  opacity: 0;
+  transition: 0.5s;
+}
+.card-gadai .kt-widget4 .kt-widget4__item .kt-widget4__number {
+  font-size: 16px !important;
 }
 
 @media only screen and (max-width: 600px) {
@@ -642,7 +707,7 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
   }
 
   .owl-nav span {
-    line-height: 185px !important;
+    line-height: 160px;
   }
 }
 
