@@ -97,6 +97,15 @@ class TransaksiGabahController extends Controller
         return redirect()->back()->with('success', 'Pesanan gabah dihapus');
     }
 
+    public function batal(Request $request, $id) // menghapus data transaksi gabah
+    {
+        $data = TransaksiGabah::findOrFail($id);
+        $data->keterangan = $request->get('keterangan');
+        $data->status = 'batal';
+        $data->save();
+        return redirect()->back()->with('success', 'Pesanan gabah dihapus');
+    }
+
     public function deleteBySuperadmin($id) // menghapus data transaksi gabah (riwayat Transaksi by superadmin)
     {
         $data = TransaksiGabah::findOrFail($id);

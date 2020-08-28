@@ -19,6 +19,7 @@ $api->version('v1', function($api) {
     Route::post('login', 'Api\UserController@login');
     
     Route::get('gabah-all', 'Api\GabahController@index'); //semua data gabah (no header)
+    Route::get('tsawah', 'Api\SawahController@listsawah'); // data sawah berdasarkan id yang login
 
     Route::group(['middleware' => ['auth:api']], function() {
         Route::get('user', 'Api\UserController@detail');

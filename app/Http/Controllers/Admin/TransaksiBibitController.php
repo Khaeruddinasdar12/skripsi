@@ -112,10 +112,12 @@ class TransaksiBibitController extends Controller
         return redirect()->back()->with('success', 'Transaksi bibit ' . $bibit->nama . ' dengan jumlah ' . $jml . ' kg berhasil');
     }
 
-    public function delete($id) // menghapus data transaksi bibit
+    public function delete(Request $request, $id) // menghapus data transaksi bibit
     {
         $data = TransaksiBarang::findOrFail($id);
-        $data->delete();
+        $data->keterangan = $request->get('keterangan');
+        $data->status = 'batal';
+        $data->save();
         return redirect()->back()->with('success', 'Pesanan bibit dihapus');
     }
 

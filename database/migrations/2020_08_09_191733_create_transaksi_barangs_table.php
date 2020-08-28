@@ -23,7 +23,7 @@ class CreateTransaksiBarangsTable extends Migration
             $table->string('keterangan')->nullable();
             $table->enum('jenis_bayar', ['tf', 'cod']);
             $table->string('bukti')->nullable();
-            $table->enum('status', ['0','1']);
+            $table->enum('status', ['0','1', 'batal']);
             $table->integer('barang_id');
             $table->integer('user_id');
             $table->integer('admin_id')->nullable();
