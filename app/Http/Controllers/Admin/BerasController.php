@@ -62,7 +62,7 @@ class BerasController extends Controller
             $data->gambar = $gambar_path;
         }
         $data->save();
-        return redirect()->back()->with('success', 'Berhasil menghapus data beras');
+        return redirect()->back()->with('success', 'Berhasil menambah data beras');
     }
 
     public function update(Request $request, $id) //mengubah atau suplly data beras
