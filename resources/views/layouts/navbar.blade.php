@@ -343,6 +343,14 @@
           </li>
           <!-- end manage user -->
 
+          <!-- laporan menu -->
+          <li class="kt-menu__item kt-menu__item--rel {{ request()->is('admin/laporan') ? 'kt-menu__item--open kt-menu__item--here' : '' }}">
+            <a href="{{route('index.laporan')}}" class="kt-menu__link">
+              <span class="kt-menu__link-text {{ request()->is('admin/laporan') ? '' : 'top-text-nav' }}">Laporan</span>
+            </a>
+          </li>
+          <!-- end laporan menu -->
+          
         </ul>
       </div>
     </div>
