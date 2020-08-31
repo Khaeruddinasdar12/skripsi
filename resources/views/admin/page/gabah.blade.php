@@ -96,14 +96,17 @@
                       </thead>
                       @if ($jml == 0)
                       <tbody style="text-align: center;">
-                        <td colspan="7">Belum ada data</td>
+                        <td colspan="5">Belum ada data</td>
                       </tbody>
                       @else
-                       @if($data == '')
-                      <tbody>
-                        <tr>
-                          <td colspan="5" align="center">Tidak ada data untuk pencarian "{{ Request::get('search') }}"</td>
-                        </tr>
+                        <tbody>
+                        @if($data->isEmpty())
+                            <tr>
+                              <td colspan="5" align="center">
+                                Tidak ada data untuk pencarian "{{ Request::get('search') }}"
+                              </td>
+                            </tr>
+                          </tbody>
                         @else
                         @php $no = 1; @endphp
                         @foreach ($data as $gabah)

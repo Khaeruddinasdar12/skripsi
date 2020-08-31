@@ -21,4 +21,9 @@ class Sawah extends Model
     {
         return $this->belongsTo('App\User', 'created_by');
     }
+
+    public function tsawahs()
+    {
+        return $this->hasMany('App\TransaksiSawah', 'sawah_id');
+    }
 }

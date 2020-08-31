@@ -19,10 +19,20 @@ $api->version('v1', function($api) {
     Route::post('login', 'Api\UserController@login');
     
     Route::get('gabah-all', 'Api\GabahController@index'); //semua data gabah (no header)
+    Route::get('beras', 'Api\BerasController@index'); //semua data gabah (no header)
+    Route::get('tsawah', 'Api\SawahController@listsawah'); // data sawah berdasarkan id yang login
 
     Route::group(['middleware' => ['auth:api']], function() {
         Route::get('user', 'Api\UserController@detail');
         Route::post('edit-user', 'Api\UserController@update');
+
+        // BERAS
+        Route::post('beras-store/{id}', 'Api\BerasController@store');
+        
+        Route::get('transaksi-beras', 'Api\BerasController@transaksi');
+        Route::get('riwayat-transaksi-beras', 'Api\BerasController@riwayat');
+        Route::get('batal-transaksi-beras', 'Api\BerasController@batal');
+        // END BERAS
 
         // GABAH
         Route::post('gabah-store/{id}', 'Api\GabahController@store');
@@ -44,6 +54,8 @@ $api->version('v1', function($api) {
         Route::get('gadai-sawah', 'Api\GadaiSawahController@index');
         Route::post('gadai-sawah', 'Api\GadaiSawahController@store');
         // END GADAI SAWAH
+
+
 
 
 

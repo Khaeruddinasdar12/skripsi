@@ -10,6 +10,15 @@ use Auth;
 use Illuminate\Support\Facades\Validator;
 class SawahController extends Controller
 {
+    public function listsawah()
+    {
+        // $data = Sawah::select('sawahs.*')
+        //         ->join('transaksi_sawahs', 'sawahs.sawah_id')
+        //         ->where('sawahs.created_by', 2)
+        //         ->
+        $data = Sawah::where('created_by', 2)->with('tsawahs')->get();
+        return $data;
+    }
     public function index() // daftar sawah petani berdasarkan id yang login
     { 
         if(!$user = Auth::user()) {

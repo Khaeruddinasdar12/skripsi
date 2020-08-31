@@ -100,10 +100,11 @@ class GabahController extends Controller
         }
 
         $data = DB::table('transaksi_gabahs')
-                ->select('transaksi_gabahs.id', 'transaksi_gabahs.jumlah', 'transaksi_gabahs.harga', 'transaksi_gabahs.alamat', 'transaksi_gabahs.kecamatan', 'transaksi_gabahs.kelurahan', 'transaksi_gabahs.keterangan', 'transaksi_gabahs.waktu_jemput', 'gabahs.nama as nama_gabah' )
+                ->select('transaksi_gabahs.id', 'transaksi_gabahs.jumlah', 'transaksi_gabahs.harga', 'transaksi_gabahs.alamat', 'transaksi_gabahs.kecamatan', 'transaksi_gabahs.kelurahan', 'transaksi_gabahs.keterangan', 'transaksi_gabahs.waktu_jemput', 'gabahs.nama as nama_gabah', 'transaksi_gabahs.created_at' )
                 ->join('gabahs', 'transaksi_gabahs.gabah_id', '=', 'gabahs.id')
                 ->where('transaksi_gabahs.status', '0')
                 ->where('transaksi_gabahs.user_id', $user->id)
+                ->orderBy('transaksi_gabahs.created_at', 'desc')
                 ->get();
 
         return response()->json([
@@ -130,10 +131,11 @@ class GabahController extends Controller
         }
 
         $data = DB::table('transaksi_gabahs')
-                ->select('transaksi_gabahs.id', 'transaksi_gabahs.jumlah', 'transaksi_gabahs.harga', 'transaksi_gabahs.alamat', 'transaksi_gabahs.kecamatan', 'transaksi_gabahs.kelurahan', 'transaksi_gabahs.keterangan', 'transaksi_gabahs.waktu_jemput', 'gabahs.nama as nama_gabah' )
+                ->select('transaksi_gabahs.id', 'transaksi_gabahs.jumlah', 'transaksi_gabahs.harga', 'transaksi_gabahs.alamat', 'transaksi_gabahs.kecamatan', 'transaksi_gabahs.kelurahan', 'transaksi_gabahs.keterangan', 'transaksi_gabahs.waktu_jemput', 'gabahs.nama as nama_gabah', 'transaksi_gabahs.created_at' )
                 ->join('gabahs', 'transaksi_gabahs.gabah_id', '=', 'gabahs.id')
                 ->where('transaksi_gabahs.status', '1')
                 ->where('transaksi_gabahs.user_id', $user->id)
+                ->orderBy('transaksi_gabahs.created_at', 'desc')
                 ->get();
 
         return response()->json([
@@ -160,10 +162,11 @@ class GabahController extends Controller
         }
 
         $data = DB::table('transaksi_gabahs')
-                ->select('transaksi_gabahs.id', 'transaksi_gabahs.jumlah', 'transaksi_gabahs.harga', 'transaksi_gabahs.alamat', 'transaksi_gabahs.kecamatan', 'transaksi_gabahs.kelurahan', 'transaksi_gabahs.keterangan', 'transaksi_gabahs.waktu_jemput', 'gabahs.nama as nama_gabah' )
+                ->select('transaksi_gabahs.id', 'transaksi_gabahs.jumlah', 'transaksi_gabahs.harga', 'transaksi_gabahs.alamat', 'transaksi_gabahs.kecamatan', 'transaksi_gabahs.kelurahan', 'transaksi_gabahs.keterangan', 'transaksi_gabahs.waktu_jemput', 'gabahs.nama as nama_gabah', 'transaksi_gabahs.created_at')
                 ->join('gabahs', 'transaksi_gabahs.gabah_id', '=', 'gabahs.id')
                 ->where('transaksi_gabahs.status', 'batal')
                 ->where('transaksi_gabahs.user_id', $user->id)
+                ->orderBy('transaksi_gabahs.created_at', 'desc')
                 ->get();
 
         return response()->json([

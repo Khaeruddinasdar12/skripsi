@@ -115,10 +115,12 @@ class TransaksiAlatController extends Controller
         return redirect()->back()->with('success', 'Transaksi alat ' . $alat->nama . ' dengan jumlah ' . $jml . ' unit berhasil');
     }
 
-    public function delete($id) // menghapus data transaksi alat belum verif
+    public function delete(Request $request, $id) // menghapus data transaksi alat belum verif
     {
         $data = TransaksiBarang::findOrFail($id);
-        $data->delete();
+        $data->keterangan = $request->get('keterangan');
+        $data->status = 'batal';
+        $data->save();
         return redirect()->back()->with('success', 'Pesanan alat tani dihapus');
     }
 

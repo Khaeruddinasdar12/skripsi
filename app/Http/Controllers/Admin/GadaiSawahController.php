@@ -139,13 +139,16 @@ class GadaiSawahController extends Controller
         return redirect()->back()->with('success', 'Berhasil mengubah keterangan');
     }
 
-    public function delgadai($id) // menghapus gadai yang gagal di survey 
+    public function delgadai(Request $request, $id) // menghapus gadai yang gagal di survey 
     {
         $data = TransaksiSawah::findOrFail($id);
-        if ($data->status == 'gadai' || $data->status == 'selesai') {
-            return redirect()->back()->with('error', 'Data ingin dihapus dengan cara yang tidak semestinya, status in DB');
-        }
-        $data->delete();
+        // if ($data->status == 'gadai' || $data->status == 'selesai') {
+        //     return redirect()->back()->with('error', 'Data ingin dihapus dengan cara yang tidak semestinya, status in DB');
+        // }
+        // $data->delete();
+        $data->keterangan = $request->get('keterangan');
+        $data->status = 'batal';
+        $data->save();
         return redirect()->back()->with('success', 'Berhasil menghapus pendaftaran gadai sawah');
     }
 

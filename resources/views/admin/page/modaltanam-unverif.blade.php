@@ -64,12 +64,14 @@
               </div>
               <div class="kt-portlet__head-toolbar">
                 <form action="{{route('daftar.modaltanam')}}" method="get">
-                  <input type="text" class="form-control" placeholder="Cari" id="generalSearch" name="search">
-                  <span class="kt-input-icon__icon kt-input-icon__icon--right">
-                    <button type="submit">
-                      <i class="fa fa-search"></i>
-                    </button>
-                  </span>
+                  <div class="input-group">
+                    <input type="text" class="form-control" name="search" placeholder="cari">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-success" type="submit">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                  </div>
                 </form>
               </div>
             </div>
@@ -285,22 +287,22 @@
               <h3>Hapus Data?</h3>
               <p>Data yang telah di hapus tidak dapat</p>
               <p>dikembalikan lagi</p>
-
+              <form action="" method="POST" id="hapus-data">
+              <div class="form-group">
+                  <label for="exampleTextarea">Tambahkan keterangan :</label>
+                  <textarea class="form-control" name="keterangan" rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 97px; resize: none" required>Mohon maaf sawah Anda tidak memenuhi kriteria sistem.</textarea>
+                </div>
               <div class="row verif-form">
                 <div class="col-md-6">
                   <button type="button" class="btn close-modal" data-dismiss="modal" aria-label="Close">Cancel</button>
                 </div>
 
                 <div class="col-md-6">
-                  <form action="" method="POST" id="hapus-data">
                     @csrf
-                    <input type="hidden" value="delete" name="_method">
-
-                    <input type="submit" value="Hapus data" class="btn btn-verif btn-flat">
-
-                  </form>
+                    <input type="submit" value="Submit" class="btn btn-verif btn-flat">
                 </div>
               </div>
+              </form>
             </div>
           </div>
         </div>

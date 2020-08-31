@@ -8,7 +8,7 @@ class Barang extends Model
 {
     protected $table = 'barangs';
     protected $fillable = [
-        'nama', 'jenis', 'harga', 'min_beli', 'stok', 'deskripsi', 'gambar', 'admin_id',
+        'nama', 'jenis', 'harga', 'min_beli', 'stok', 'keterangan', 'gambar', 'admin_id',
     ];
 
     public function admins()
