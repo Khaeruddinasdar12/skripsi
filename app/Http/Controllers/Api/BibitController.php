@@ -9,21 +9,21 @@ use App\Barang;
 use App\TransaksiBarang;
 use Auth;
 use DB;
-class BerasController extends Controller
+class BibitController extends Controller
 {
-    public function index() //menampilkan daftar Beras (tanpa header)
+    public function index() //menampilkan daftar Bibit (tanpa header)
 	{
 		$data = Barang::select('id', 'nama', 'harga', 'min_beli', 'stok', 'keterangan', 'gambar')
-			->where('jenis', 'beras')
+			->where('jenis', 'bibit')
 			->paginate(8);
 		return response()->json([
                     'status' => true,
-                    'message' => 'Semua data beras (per 8 data)',
+                    'message' => 'Semua data bibit (per 8 data)',
                     'data'	=> $data
                 ]);
 	}
 
-	public function store(Request $request, $id) //proses pembelian beras
+	public function store(Request $request, $id) //proses pembelian bibit
 	{
 		if(!$user = Auth::user()) {
                 return response()->json([
@@ -55,31 +55,31 @@ class BerasController extends Controller
                 ]);
         }
 
-        $beras = Barang::find($id);
-        if ($beras == null) {
+        $bibit = Barang::find($id);
+        if ($bibit == null) {
             return response()->json([
                 'status' => false, 
-                'message' => 'Id beras tidak ditemukan'
+                'message' => 'Id bibit tidak ditemukan'
             ]);
         }
 
-        if($beras->min_beli > $request->get('jumlah')) { //cek minimal pembelian
+        if($bibit->min_beli > $request->get('jumlah')) { //cek minimal pembelian
         	return response()->json([
                 'status' => false, 
-                'message' => 'Minimal pembelian '.$beras->min_beli.' kg'
+                'message' => 'Minimal pembelian '.$bibit->min_beli.' kg'
             ]);
         }
 
-        if($beras->stok < $request->get('jumlah')) { //cek stok
+        if($bibit->stok < $request->get('jumlah')) { //cek stok
         	return response()->json([
                 'status' => false, 
-                'message' => 'Stok tidak cukup. stok tersedia '.$beras->stok.' kg'
+                'message' => 'Stok tidak cukup. stok tersedia '.$bibit->stok.' kg'
             ]);
         }
 
         $data = TransaksiBarang::create([
                 'jumlah' 	=> $request->get('jumlah'),
-                'harga' 	=> $beras->harga,
+                'harga' 	=> $bibit->harga,
                 'alamat' 	=> $request->get('alamat_lengkap'),
                 'kecamatan' => $request->get('kecamatan'),
                 'kelurahan' => $request->get('kelurahan'),
@@ -87,19 +87,19 @@ class BerasController extends Controller
                 'keterangan'=> $request->get('keterangan'),
                 'status'	=> '0',
                 'jenis_bayar' => 'cod',
-                'barang_id'	=> $beras->id,
+                'barang_id'	=> $bibit->id,
                 'user_id'	=> $user->id,
 
             ]);
 
         return response()->json([
                     'status' => true,
-                    'message' => 'Berhasil mengirim permintaan pembelian beras ! segera diproses.'
+                    'message' => 'Berhasil mengirim permintaan pembelian bibit ! segera diproses.'
                 ]);
 
 	}
 
-	public function transaksi() // sedang transaksi beras user
+	public function transaksi() // sedang transaksi bibit user
     {
         if(!$user = Auth::user()) {
                 return response()->json([
@@ -116,7 +116,7 @@ class BerasController extends Controller
         }
 
         $data = DB::table('transaksi_barangs')
-                ->select('transaksi_barangs.id', 'transaksi_barangs.jumlah', 'transaksi_barangs.harga', 'transaksi_barangs.alamat', 'transaksi_barangs.kecamatan', 'transaksi_barangs.kelurahan', 'transaksi_barangs.keterangan', 'barangs.nama as nama_beras', 'transaksi_barangs.created_at' )
+                ->select('transaksi_barangs.id', 'transaksi_barangs.jumlah', 'transaksi_barangs.harga', 'transaksi_barangs.alamat', 'transaksi_barangs.kecamatan', 'transaksi_barangs.kelurahan', 'transaksi_barangs.keterangan', 'barangs.nama as nama_bibit', 'transaksi_barangs.created_at' )
                 ->join('barangs', 'transaksi_barangs.barang_id', '=', 'barangs.id')
                 ->where('transaksi_barangs.status', '0')
                 ->where('transaksi_barangs.user_id', $user->id)
@@ -125,12 +125,12 @@ class BerasController extends Controller
 
         return response()->json([
                     'status'    => true,
-                    'message'   => 'Sedang transaksi beras oleh user id '.$user->name,
+                    'message'   => 'Sedang transaksi bibit oleh user id '.$user->name,
                     'data'      => $data
                 ]);
     }
 
-    public function riwayat() // riwayat transaksi beras user
+    public function riwayat() // riwayat transaksi bibit user
     {
         if(!$user = Auth::user()) {
                 return response()->json([
@@ -147,7 +147,7 @@ class BerasController extends Controller
         }
 
         $data = DB::table('transaksi_barangs')
-                ->select('transaksi_barangs.id', 'transaksi_barangs.jumlah', 'transaksi_barangs.harga', 'transaksi_barangs.alamat', 'transaksi_barangs.kecamatan', 'transaksi_barangs.kelurahan', 'transaksi_barangs.keterangan', 'barangs.nama as nama_beras', 'transaksi_barangs.created_at' )
+                ->select('transaksi_barangs.id', 'transaksi_barangs.jumlah', 'transaksi_barangs.harga', 'transaksi_barangs.alamat', 'transaksi_barangs.kecamatan', 'transaksi_barangs.kelurahan', 'transaksi_barangs.keterangan', 'barangs.nama as nama_bibit', 'transaksi_barangs.created_at' )
                 ->join('barangs', 'transaksi_barangs.barang_id', '=', 'barangs.id')
                 ->where('transaksi_barangs.status', '1')
                 ->where('transaksi_barangs.user_id', $user->id)
@@ -156,12 +156,12 @@ class BerasController extends Controller
 
         return response()->json([
                     'status'    => true,
-                    'message'   => 'Riwayat transaksi beras oleh user id '.$user->name,
+                    'message'   => 'Riwayat transaksi bibit oleh user id '.$user->name,
                     'data'      => $data
                 ]);
     }
 
-    public function batal() // transaksi beras user yang dibatalkan
+    public function batal() // transaksi bibit user yang dibatalkan
     {
         if(!$user = Auth::user()) {
                 return response()->json([
@@ -178,7 +178,7 @@ class BerasController extends Controller
         }
 
         $data = DB::table('transaksi_barangs')
-                ->select('transaksi_barangs.id', 'transaksi_barangs.jumlah', 'transaksi_barangs.harga', 'transaksi_barangs.alamat', 'transaksi_barangs.kecamatan', 'transaksi_barangs.kelurahan', 'transaksi_barangs.keterangan', 'barangs.nama as nama_beras', 'transaksi_barangs.created_at' )
+                ->select('transaksi_barangs.id', 'transaksi_barangs.jumlah', 'transaksi_barangs.harga', 'transaksi_barangs.alamat', 'transaksi_barangs.kecamatan', 'transaksi_barangs.kelurahan', 'transaksi_barangs.keterangan', 'barangs.nama as nama_bibit', 'transaksi_barangs.created_at' )
                 ->join('barangs', 'transaksi_barangs.barang_id', '=', 'barangs.id')
                 ->where('transaksi_barangs.status', 'batal')
                 ->where('transaksi_barangs.user_id', $user->id)
@@ -187,7 +187,7 @@ class BerasController extends Controller
 
         return response()->json([
                     'status'    => true,
-                    'message'   => 'Transaksi beras oleh user id '.$user->name. ' yang dibatalkan',
+                    'message'   => 'Transaksi bibit oleh user id '.$user->name. ' yang dibatalkan',
                     'data'      => $data
                 ]);
     }

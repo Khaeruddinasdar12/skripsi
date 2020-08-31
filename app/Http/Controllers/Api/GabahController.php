@@ -109,7 +109,7 @@ class GabahController extends Controller
 
         return response()->json([
                     'status'    => true,
-                    'message'   => 'Sedang transaksi gabah oleh user id '.$user->id,
+                    'message'   => 'Sedang transaksi gabah oleh user id '.$user->name,
                     'data'      => $data
                 ]);
     }
@@ -140,7 +140,7 @@ class GabahController extends Controller
 
         return response()->json([
                     'status'    => true,
-                    'message'   => 'Riwayat transaksi gabah oleh user id '.$user->id,
+                    'message'   => 'Riwayat transaksi gabah oleh user id '.$user->name,
                     'data'      => $data
                 ]);
     }
@@ -171,7 +171,7 @@ class GabahController extends Controller
 
         return response()->json([
                     'status'    => true,
-                    'message'   => 'Transaksi gabah yang dibatalkan (user id '.$user->id.')',
+                    'message'   => 'Transaksi gabah yang dibatalkan (user id '.$user->name.')',
                     'data'      => $data
                 ]);
     }
