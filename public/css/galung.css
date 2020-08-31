@@ -630,7 +630,7 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
 }
 .card-menu .owl-carousel .owl-nav .owl-next,
 .card-gadai .owl-carousel .owl-nav .owl-next {
-  margin-right: 69px !important;
+  margin-right: 70px !important;
 }
 .card-menu .owl-carousel .owl-nav .owl-next span,
 .card-gadai .owl-carousel .owl-nav .owl-next span {
@@ -709,6 +709,9 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
   .owl-nav span {
     line-height: 160px;
   }
+}
+.chart-card .charts {
+  width: 300px !important;
 }
 
 /*# sourceMappingURL=galung.css.map */
