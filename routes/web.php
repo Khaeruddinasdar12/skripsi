@@ -10,6 +10,7 @@ Auth::routes([
 	'register' => false,
 	'login' => false,
 ]);
+Route::get('/pdf', 'HomeController@pdf');
 
 Route::get('/admin/login', 'Admin\Auth\LoginController@showLoginForm')->name('admin.login');
 Route::post('/admin/login', 'Admin\Auth\LoginController@login')->name('admin.login');

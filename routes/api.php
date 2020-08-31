@@ -49,6 +49,13 @@ $api->version('v1', function($api) {
         Route::post('delete-sawah/{id}', 'Api\SawahController@delete'); //hapus sawah berdasarkan id sawah
         // END SAWAHCONTROLLER
 
+        // GADAISAWAHCONTROLLER
+        Route::get('list-sedang-gadai-sawah', 'Api\GadaiSawahController@gadai'); // list sawah yang sedang tergadai oleh user id
+        Route::get('list-daftar-gadai-sawah', 'Api\GadaiSawahController@daftargadai'); //list daftarkan sawah untuk digadai
+        Route::get('list-riwayat-gadai-sawah', 'Api\GadaiSawahController@riwayatgadai'); //list sawah yang pernah digadai
+        Route::get('list-batal-gadai-sawah', 'Api\GadaiSawahController@batalgadai'); //list sawah yang dibatalkan digadai
+        // END GADAISAWAHCONTROLLER 
+
 
         // GADAI SAWAH
         Route::get('gadai-sawah', 'Api\GadaiSawahController@index');
