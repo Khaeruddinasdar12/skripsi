@@ -88,6 +88,17 @@ class TransaksiSawahSeeder extends Seeder
 	        	'jenis_pupuk'	=> 'urea plus',
 	        	'periode_tanam'	=> '3 bulan'
 	        ]);
+
+	        DB::table('transaksi_sawahs')->insert([ //  tergadai modal tanam (id 6)
+	            'jenis'		=> 'mt',
+	            'admin_id'  => 1, //verified by role admin
+	            'sawah_id'  => 8,
+	            'status'    => 'batal',
+	            'keterangan'=> 'dibatalkan karena tidak memenuhi kriteria sistem',
+	            'jenis_bibit'	=> 'barelle',
+	        	'jenis_pupuk'	=> 'urea plus',
+	        	'periode_tanam'	=> '3 bulan'
+	        ]);
 	    // END MODAL TANAM
         
     }

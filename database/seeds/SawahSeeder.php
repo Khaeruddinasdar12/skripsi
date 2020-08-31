@@ -104,6 +104,19 @@ class SawahSeeder extends Seeder
 	        // 'jenis_pupuk'	=> 'phonska',
 	        // 'periode_tanam'		=> '3 bulan'
 		]);
+
+		DB::table('sawahs')->insert([ // id 7
+			'nama'	=> 'sawah 8',
+	        'alamat_id'  => 87, //id kabupaten bone dari tabel Kotas
+	        'kecamatan' => 'Kec. Ponre',
+	        'kelurahan' 	=> 'Desa Salebba',
+	        'alamat' => 'Salebba, Desa Lamuru Kec. Ponre Kab. Bone',
+	        'created_by'=> 2, //dari tabel user role petani (dari seeder)
+	        'luas_sawah'	=> '43 Ha'
+	        // 'jenis_bibit'	=> 'ciliwung',
+	        // 'jenis_pupuk'	=> 'phonska',
+	        // 'periode_tanam'		=> '3 bulan'
+		]);
 		// end untuk modal tanam
     }
 }

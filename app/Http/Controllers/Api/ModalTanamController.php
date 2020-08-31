@@ -9,9 +9,10 @@ use App\TransaksiSawah;
 use Auth;
 use Illuminate\Support\Facades\Validator;
 use DB;
-class GadaiSawahController extends Controller
+
+class ModalTanamController extends Controller
 {
-    public function gadai() //list sawah yang sedang tergadai oleh user id
+    public function gadai() //list sawah yang sedang tergadai modal tanam oleh user id
     {
         if(!$user = Auth::user()) {
                 return response()->json([
@@ -28,21 +29,21 @@ class GadaiSawahController extends Controller
         }
 
         $data = DB::table('transaksi_sawahs')
-                ->select('transaksi_sawahs.id', 'transaksi_sawahs.periode', 'transaksi_sawahs.harga', 'transaksi_sawahs.keterangan', 'transaksi_sawahs.created_at', 'sawahs.nama as nama_sawah')
+                ->select('transaksi_sawahs.id', 'transaksi_sawahs.periode_tanam', 'transaksi_sawahs.jenis_pupuk', 'transaksi_sawahs.jenis_bibit', 'transaksi_sawahs.keterangan', 'transaksi_sawahs.created_at', 'sawahs.nama as nama_sawah')
                 ->join('sawahs', 'transaksi_sawahs.sawah_id', '=', 'sawahs.id')
                 ->join('users', 'sawahs.created_by', '=', 'users.id')
-                ->where('transaksi_sawahs.jenis', 'gs')
+                ->where('transaksi_sawahs.jenis', 'mt')
                 ->where('transaksi_sawahs.status', 'gadai')
                 ->where('users.id', $user->id)
                 ->get();
         return response()->json([
                     'status'    => true,
-                    'message'   => 'list sawah yang sedang tergadai oleh user '. $user->name,
+                    'message'   => 'list sawah yang sedang tergadai modal tanam oleh user '. $user->name,
                     'data'      => $data
                 ]);
     }
 
-    public function daftargadai() //list daftarkan sawah untuk digadai
+    public function daftargadai() //list daftarkan sawah untuk modal tanam
     {
         if(!$user = Auth::user()) {
                 return response()->json([
@@ -59,21 +60,21 @@ class GadaiSawahController extends Controller
         }
 
         $data = DB::table('transaksi_sawahs')
-                ->select('transaksi_sawahs.id', 'transaksi_sawahs.periode', 'transaksi_sawahs.harga', 'transaksi_sawahs.keterangan', 'transaksi_sawahs.created_at', 'sawahs.nama as nama_sawah')
+                ->select('transaksi_sawahs.id', 'transaksi_sawahs.periode_tanam', 'transaksi_sawahs.jenis_pupuk', 'transaksi_sawahs.jenis_bibit', 'transaksi_sawahs.keterangan', 'transaksi_sawahs.created_at', 'sawahs.nama as nama_sawah')
                 ->join('sawahs', 'transaksi_sawahs.sawah_id', '=', 'sawahs.id')
                 ->join('users', 'sawahs.created_by', '=', 'users.id')
-                ->where('transaksi_sawahs.jenis', 'gs')
+                ->where('transaksi_sawahs.jenis', 'mt')
                 ->where('transaksi_sawahs.status', null)
                 ->where('users.id', $user->id)
                 ->get();
         return response()->json([
                     'status'    => true,
-                    'message'   => 'list sawah yang sedang didaftarkan untuk digadai oleh user '. $user->name,
+                    'message'   => 'list sawah yang sedang didaftarkan modal tanam oleh user '. $user->name,
                     'data'      => $data
                 ]);
     }
 
-    public function riwayatgadai() //list sawah yang pernah digadai
+    public function riwayatgadai() //list sawah yang pernah digadai modal tanam
     {
         if(!$user = Auth::user()) {
                 return response()->json([
@@ -90,21 +91,21 @@ class GadaiSawahController extends Controller
         }
 
         $data = DB::table('transaksi_sawahs')
-                ->select('transaksi_sawahs.id', 'transaksi_sawahs.periode', 'transaksi_sawahs.harga', 'transaksi_sawahs.keterangan', 'transaksi_sawahs.created_at', 'sawahs.nama as nama_sawah')
+                ->select('transaksi_sawahs.id', 'transaksi_sawahs.periode_tanam', 'transaksi_sawahs.jenis_pupuk', 'transaksi_sawahs.jenis_bibit', 'transaksi_sawahs.keterangan', 'transaksi_sawahs.created_at', 'sawahs.nama as nama_sawah')
                 ->join('sawahs', 'transaksi_sawahs.sawah_id', '=', 'sawahs.id')
                 ->join('users', 'sawahs.created_by', '=', 'users.id')
-                ->where('transaksi_sawahs.jenis', 'gs')
+                ->where('transaksi_sawahs.jenis', 'mt')
                 ->where('transaksi_sawahs.status', 'selesai')
                 ->where('users.id', $user->id)
                 ->get();
         return response()->json([
                     'status'    => true,
-                    'message'   => 'list riwayat sawah yang pernah digadai oleh user '. $user->name,
+                    'message'   => 'list riwayat sawah yang pernah digadai modal tanam oleh user '. $user->name,
                     'data'      => $data
                 ]);
     }
 
-    public function batalgadai() //list sawah yang dibatalkan digadai
+    public function batalgadai() //list sawah yang dibatalkan digadai modal tanam
     {
         if(!$user = Auth::user()) {
                 return response()->json([
@@ -121,21 +122,21 @@ class GadaiSawahController extends Controller
         }
 
         $data = DB::table('transaksi_sawahs')
-                ->select('transaksi_sawahs.id', 'transaksi_sawahs.periode', 'transaksi_sawahs.harga', 'transaksi_sawahs.keterangan', 'transaksi_sawahs.created_at', 'sawahs.nama as nama_sawah')
+                ->select('transaksi_sawahs.id', 'transaksi_sawahs.periode_tanam', 'transaksi_sawahs.jenis_pupuk', 'transaksi_sawahs.jenis_bibit', 'transaksi_sawahs.keterangan', 'transaksi_sawahs.created_at', 'sawahs.nama as nama_sawah')
                 ->join('sawahs', 'transaksi_sawahs.sawah_id', '=', 'sawahs.id')
                 ->join('users', 'sawahs.created_by', '=', 'users.id')
-                ->where('transaksi_sawahs.jenis', 'gs')
+                ->where('transaksi_sawahs.jenis', 'mt')
                 ->where('transaksi_sawahs.status', 'batal')
                 ->where('users.id', $user->id)
                 ->get();
         return response()->json([
                     'status'    => true,
-                    'message'   => 'list sawah yang dibatalkan untuk digadai oleh user '. $user->name,
+                    'message'   => 'list sawah yang dibatalkan untuk digadai modal tanam oleh user '. $user->name,
                     'data'      => $data
                 ]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request) // post mendaftarkan sawah untuk digadai modal tanam
     {
         if(!$user = Auth::user()) {
                 return response()->json([
@@ -152,9 +153,10 @@ class GadaiSawahController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-                'periode' 	=> 'required|string',
-                'harga'		=> 'required|numeric',
-                'sawah_id' 	=> 'required|numeric',
+                'periode_tanam' 	=> 'required|string',
+                'jenis_bibit'		=> 'required|string',
+                'jenis_pupuk'		=> 'required|string',
+                'sawah_id' 			=> 'required|numeric',
             ]);
 
         if($validator->fails()) {
@@ -209,15 +211,16 @@ class GadaiSawahController extends Controller
         }
 
         TransaksiSawah::create([
-                'jenis'     => 'gs',
-                'periode' 	=> $request->get('periode'),
-                'harga' 	=> $request->get('harga'),
-                'sawah_id' 	=> $request->get('sawah_id'),
+                'jenis'     => 'mt',
+                'periode_tanam' => $request->get('periode_tanam'),
+                'jenis_pupuk' 	=> $request->get('jenis_pupuk'),
+                'jenis_bibit'	=> $request->get('jenis_bibit'),
+                'sawah_id' 		=> $request->get('sawah_id'),
             ]);
 
         return response()->json([
                     'status' => true,
-                    'message' => 'Berhasil memohon permintaan gadai sawah, data segera diproses admin'
+                    'message' => 'Berhasil memohon permintaan modal tanam, data segera diproses admin'
                 ]);
     }
 }

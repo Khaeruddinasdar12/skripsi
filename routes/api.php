@@ -42,24 +42,34 @@ $api->version('v1', function($api) {
         Route::get('batal-transaksi-gabah', 'Api\GabahController@batal');
         // GABAH
 
-        // SAWAHCONTROLLER 
+        // SAWAH CONTROLLER 
         Route::get('sawah', 'Api\SawahController@index'); // data sawah berdasarkan id yang login
         Route::post('sawah', 'Api\SawahController@store'); // mendaftarkan sawah berdasarkan id yang login
         Route::post('edit-sawah/{id}', 'Api\SawahController@update'); //edit sawah berdasarkan id sawah (tidak bisa edit jika data terdapat di table lain)
         Route::post('delete-sawah/{id}', 'Api\SawahController@delete'); //hapus sawah berdasarkan id sawah
-        // END SAWAHCONTROLLER
+        // END SAWAH CONTROLLER
 
-        // GADAISAWAHCONTROLLER
+        // MODAL TANAM CONTROLLER
+        Route::post('modal-tanam', 'Api\ModalTanamController@store'); // post mendaftarkan sawah untuk digadai modal tanam
+
+        Route::get('list-sedang-gadai-modal-tanam', 'Api\ModalTanamController@gadai'); // list sawah yang sedang tergadai modal tanam oleh user id
+        Route::get('list-daftar-modal-tanam', 'Api\ModalTanamController@daftargadai'); //list daftarkan sawah untuk modal tanam
+        Route::get('list-riwayat-modal-tanam', 'Api\ModalTanamController@riwayatgadai'); //list sawah yang pernah digadai modal tanam
+        Route::get('list-batal-modal-tanam', 'Api\ModalTanamController@batalgadai'); //list sawah yang dibatalkan digadai modal tanam
+        // END MODAL TANAM CONTROLLER 
+
+        // GADAI SAWAH CONTROLLER
+        
+        // END GADAI SAWAH CONTROLLER 
+
+
+        // GADAI SAWAH
+        Route::post('gadai-sawah', 'Api\GadaiSawahController@store'); // post mendaftarkan sawah untuk digadai
+
         Route::get('list-sedang-gadai-sawah', 'Api\GadaiSawahController@gadai'); // list sawah yang sedang tergadai oleh user id
         Route::get('list-daftar-gadai-sawah', 'Api\GadaiSawahController@daftargadai'); //list daftarkan sawah untuk digadai
         Route::get('list-riwayat-gadai-sawah', 'Api\GadaiSawahController@riwayatgadai'); //list sawah yang pernah digadai
         Route::get('list-batal-gadai-sawah', 'Api\GadaiSawahController@batalgadai'); //list sawah yang dibatalkan digadai
-        // END GADAISAWAHCONTROLLER 
-
-
-        // GADAI SAWAH
-        Route::get('gadai-sawah', 'Api\GadaiSawahController@index');
-        Route::post('gadai-sawah', 'Api\GadaiSawahController@store');
         // END GADAI SAWAH
 
 
