@@ -34,6 +34,7 @@ class GadaiSawahController extends Controller
                 ->where('transaksi_sawahs.jenis', 'gs')
                 ->where('transaksi_sawahs.status', 'gadai')
                 ->where('users.id', $user->id)
+                ->orderBy('transaksi_sawahs.created_at', 'desc')
                 ->get();
         return response()->json([
                     'status'    => true,
@@ -65,6 +66,7 @@ class GadaiSawahController extends Controller
                 ->where('transaksi_sawahs.jenis', 'gs')
                 ->where('transaksi_sawahs.status', null)
                 ->where('users.id', $user->id)
+                ->orderBy('transaksi_sawahs.created_at', 'desc')
                 ->get();
         return response()->json([
                     'status'    => true,
@@ -96,6 +98,7 @@ class GadaiSawahController extends Controller
                 ->where('transaksi_sawahs.jenis', 'gs')
                 ->where('transaksi_sawahs.status', 'selesai')
                 ->where('users.id', $user->id)
+                ->orderBy('transaksi_sawahs.created_at', 'desc')
                 ->get();
         return response()->json([
                     'status'    => true,
@@ -127,6 +130,7 @@ class GadaiSawahController extends Controller
                 ->where('transaksi_sawahs.jenis', 'gs')
                 ->where('transaksi_sawahs.status', 'batal')
                 ->where('users.id', $user->id)
+                ->orderBy('transaksi_sawahs.created_at', 'desc')
                 ->get();
         return response()->json([
                     'status'    => true,
