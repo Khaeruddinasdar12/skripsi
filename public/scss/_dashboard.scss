@@ -10,6 +10,8 @@
     }
 
     .owl-carousel {
+
+        // card menu transaksi carousel
         .card {
             border-radius: 15px !important;
             border: none;
@@ -89,12 +91,15 @@
             }
         }
 
+        // end card menu transaksi carousel
+
+        // navigasu carousel
         .owl-nav {
             display: flex !important;
             justify-content: space-between !important;
 
             .owl-next {
-                margin-right: 69px !important;
+                margin-right: 70px !important;
 
                 span {
                     padding-left: 50px;
@@ -128,9 +133,12 @@
             display: none !important;
             position: absolute !important;
         }
+
+        // end navigasu carousel
     }
 }
 
+// card data gadai
 .card-gadai {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
@@ -183,6 +191,8 @@
     }
 }
 
+// end card data gadai
+
 @media only screen and (max-width: 600px) {
     .owl-carousel {
         .card {
@@ -210,3 +220,15 @@
 }
 
 // end card
+
+// chart
+
+.chart-card {
+
+    .charts {
+        width: 300px !important;
+    }
+
+}
+
+// end chart

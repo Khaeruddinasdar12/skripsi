@@ -4,6 +4,7 @@
 
 <div class="kt-container">
 
+  <!-- card data transaksi & gadai -->
   <div class="row">
     <div class="col-md-7">
       <div class="card card-menu">
@@ -144,6 +145,64 @@
       </div>
     </div>
   </div>
+  <!-- end card data transaksi & gadai -->
+
+  <!-- chart -->
+  <div class="row">
+
+    <div class="col-md-6">
+
+      <!--begin:: Widgets/Revenue Change-->
+      <div class="kt-portlet kt-portlet--height-fluid chart-card">
+        <div class="kt-widget14">
+          <div class="kt-widget14__header">
+            <h3 class="kt-widget14__title">
+              Revenue Change
+            </h3>
+            <span class="kt-widget14__desc">
+              Revenue change breakdown by cities
+            </span>
+          </div>
+          <div class="kt-widget14__content">
+            <div class="kt-widget14__chart">
+              <div id="penjualan" class="charts" style="height:500px;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative; left: -0.714286px; top: -0.5px;">
+                  <desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.3.0</desc>
+                  <defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></defs>
+                  <path fill="none" stroke="#593ae1" d="M635,410A160,160,0,0,0,785.752398153737,303.60703732624245" stroke-width="2" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></path>
+                  <path fill="#593ae1" stroke="#ffffff" d="M635,413A163,163,0,0,0,788.5790056191196,304.6121692761095L856.4175847883013,328.73533607291864A235,235,0,0,1,635,485Z" stroke-width="3" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+                  <path fill="none" stroke="#6e4ff5" d="M785.752398153737,303.60703732624245A160,160,0,0,0,491.4374077979751,179.361610152587" stroke-width="2" opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 1;"></path>
+                  <path fill="#6e4ff5" stroke="#ffffff" d="M788.5790056191196,304.6121692761095A163,163,0,0,0,488.7456091941871,178.03714034294802L419.6561116969626,144.0424152288805A240,240,0,0,1,861.1285972306055,330.41055598936373Z" stroke-width="3" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+                  <path fill="none" stroke="#9077fb" d="M491.4374077979751,179.361610152587A160,160,0,0,0,634.9497345183696,409.99999210431656" stroke-width="2" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></path>
+                  <path fill="#9077fb" stroke="#ffffff" d="M488.7456091941871,178.03714034294802A163,163,0,0,0,634.948792040589,412.9999919562725L634.9261725738553,484.99998840321496A235,235,0,0,1,424.14244270327595,146.24986491161218Z" stroke-width="3" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="635" y="240" text-anchor="middle" font-family="&quot;Arial&quot;" font-size="15px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: Arial; font-size: 15px; font-weight: 800;" font-weight="800" transform="matrix(2.8266,0,0,2.8266,-1159.5661,-454.0429)" stroke-width="0.3537868923611111">
+                    <tspan dy="5.140625" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">In-Store Sales</tspan>
+                  </text><text x="635" y="260" text-anchor="middle" font-family="&quot;Arial&quot;" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: Arial; font-size: 14px;" transform="matrix(3.3301,0,0,3.3301,-1479.8565,-587.1441)" stroke-width="0.30029296875">
+                    <tspan dy="4.5703125" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">30</tspan>
+                  </text>
+                </svg>
+              </div>
+            </div>
+            <div class="kt-widget14__legends">
+              <div class="kt-widget14__legend">
+                <span class="kt-widget14__bullet kt-bg-success"></span>
+                <span class="kt-widget14__stats">+10% New York</span>
+              </div>
+              <div class="kt-widget14__legend">
+                <span class="kt-widget14__bullet kt-bg-warning"></span>
+                <span class="kt-widget14__stats">-7% London</span>
+              </div>
+              <div class="kt-widget14__legend">
+                <span class="kt-widget14__bullet kt-bg-brand"></span>
+                <span class="kt-widget14__stats">+20% California</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--end:: Widgets/Revenue Change-->
+    </div>
+  </div>
+  <!-- end chart -->
 </div>
 
 
@@ -166,7 +225,45 @@
         }
       }
     });
-  })
+  });
+
+  "use strict";
+  // Class definition
+  var chart = function() {
+
+    var datapenjualan = function() {
+      // PIE CHART
+      new Morris.Donut({
+        element: 'penjualan',
+        data: [{
+            label: "Download Sales",
+            value: 12
+          },
+          {
+            label: "In-Store Sales",
+            value: 30
+          },
+          {
+            label: "Mail-Order Sales",
+            value: 20
+
+          }
+        ],
+        colors: ['#593ae1', '#6e4ff5', '#9077fb']
+      });
+    }
+
+    return {
+      // public functions
+      init: function() {
+        datapenjualan();
+      }
+    };
+  }();
+
+  jQuery(document).ready(function() {
+    chart.init();
+  });
 </script>
 
 @endsection
