@@ -73,15 +73,21 @@
                           <input type="hidden" name="bulan" value="{{Request::get('bulan')}}">
                           <input type="hidden" name="transaksi" value="{{Request::get('transaksi')}}">
                           <input type="hidden" name="tahun" value="{{Request::get('tahun')}}">
+                          <input type="hidden" name="jenis" value="pdf">
   				    			      <button type="submit" class="btn btn-outline-danger btn-sm">
   				                   <i class="fas fa-file-pdf"></i> PDF
   				                </button>
                         </form>
                         &nbsp;
-				                
-				                <button class="btn btn-outline-success btn-sm">
-				                    <i class="fas fa-file-excel"></i> Excel
-				                </button>
+				                <form>
+                          <input type="hidden" name="bulan" value="{{Request::get('bulan')}}">
+                          <input type="hidden" name="transaksi" value="{{Request::get('transaksi')}}">
+                          <input type="hidden" name="tahun" value="{{Request::get('tahun')}}">
+                          <input type="hidden" name="jenis" value="excel">
+  				                <button class="btn btn-outline-success btn-sm">
+  				                    <i class="fas fa-file-excel"></i> Excel
+  				                </button>
+                        </form>
 				        
 
 	              </div>

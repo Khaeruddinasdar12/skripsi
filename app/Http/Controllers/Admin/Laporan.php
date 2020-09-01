@@ -9,6 +9,9 @@ use App\TransaksiGabah;
 use App\TransaksiSawah;
 use DB;
 use PDF;
+use App\Exports\ExcelExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 class Laporan extends Controller
 {
     public function __construct()
@@ -233,6 +236,8 @@ class Laporan extends Controller
 
             $data = $barang->union($sawah)->union($gabah)->get();   
         }
+        // return $data;
+        return Excel::download(new ExcelExport($data), 'siswa.xlsx');
         // return $data;
         $pdf = PDF::loadView('pdf', [
             'data' => $data,
