@@ -38,7 +38,7 @@ class SawahController extends Controller
         $data = \App\User::find($user->id)->sawahs()->get();
         return response()->json([
                 'status'    => true, 
-                'message'   => 'Daftar sawah yang dimiliki User yang sedang login',
+                'message'   => 'Daftar sawah yang dimiliki '.$user->name ,
                 'data'      => $data
             ]);
     }
