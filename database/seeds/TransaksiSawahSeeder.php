@@ -23,13 +23,13 @@ class TransaksiSawahSeeder extends Seeder
 	        	'keterangan'=> ''
 			]);
 
-			DB::table('transaksi_sawahs')->insert([ // mendaftarkan sawahnya untuk di gadai (id 2)
+			DB::table('transaksi_sawahs')->insert([ // batal sawahnya untuk di gadai (id 2)
 				'jenis'		=> 'gs',
 	            'periode'   => '1 tahun',
 	            'harga'     => '38000000',
-	            'admin_id'  => null, //verified by role admin
+	            'admin_id'  => 1, //batal by role admin
 	            'sawah_id'  => 2,
-	            'status'    => null,
+	            'status'    => 'batal',
 	            'keterangan'=> ''
 	        ]);
 

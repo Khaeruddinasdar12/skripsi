@@ -101,6 +101,7 @@ class TransaksiGabahController extends Controller
     {
         $data = TransaksiGabah::findOrFail($id);
         $data->keterangan = $request->get('keterangan');
+        $data->admin_id = Auth::guard('admin')->user()->id;
         $data->status = 'batal';
         $data->save();
         return redirect()->back()->with('success', 'Pesanan gabah dihapus');

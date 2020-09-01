@@ -117,6 +117,7 @@ class TransaksiBerasController extends Controller
     public function delete(Request $request, $id) // menghapus data transaksi beras
     {
         $data = TransaksiBarang::findOrFail($id);
+        $data->admin_id = Auth::guard('admin')->user()->id;
         $data->keterangan = $request->get('keterangan');
         $data->status = 'batal';
         $data->save();

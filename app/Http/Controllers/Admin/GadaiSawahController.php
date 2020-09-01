@@ -146,6 +146,7 @@ class GadaiSawahController extends Controller
         //     return redirect()->back()->with('error', 'Data ingin dihapus dengan cara yang tidak semestinya, status in DB');
         // }
         // $data->delete();
+        $data->admin_id = Auth::guard('admin')->user()->id;
         $data->keterangan = $request->get('keterangan');
         $data->status = 'batal';
         $data->save();
