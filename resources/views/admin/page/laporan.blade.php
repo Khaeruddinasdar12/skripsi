@@ -79,7 +79,7 @@
   				                </button>
                         </form>
                         &nbsp;
-				                <form>
+				                <form action="{{route('pdf.laporan')}}" method="get">
                           <input type="hidden" name="bulan" value="{{Request::get('bulan')}}">
                           <input type="hidden" name="transaksi" value="{{Request::get('transaksi')}}">
                           <input type="hidden" name="tahun" value="{{Request::get('tahun')}}">
@@ -107,6 +107,7 @@
                           <th>Nama Barang</th>
                           <th>Jumlah</th>
                           <th>Harga Satuan</th>
+                          <th>Tanggal</th>
                           <th>Subtotal</th>
                         </tr>
                       </thead>
@@ -114,12 +115,13 @@
                         @php $no = 1; $alltotal = 0; @endphp
                         @foreach($data as $datas)
                         <tr>
-                          <th scope="row">{{ $no++ }}</th>
+                          <td scope="row">{{ $no++ }}</td>
                           <td>{{ $datas->pembeli }}</td>
                           <td>{{ $datas->jenis }}</td>
                           <td>{{ $datas->nama }}</td>
                           <td>{{ $datas->jumlah }}</td>
                           <td>Rp. {{ format_uang($datas->harga) }}</td>
+                          <td>{{$datas->created_at}}</td>
                           <td>@if($datas->jenis == 'gadai sawah')
                                 @php $total = $datas->harga; @endphp 
                                 Rp. {{ format_uang($total) }} 

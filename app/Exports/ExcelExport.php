@@ -2,13 +2,14 @@
 
 namespace App\Exports;
 
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\FromView;
+use Illuminate\Contracts\View\View;
 use App\TransaksiBarang;
 use App\TransaksiGabah;
 use App\TransaksiSawah;
 use DB;
 
-class ExcelExport implements FromCollection
+class ExcelExport implements FromView
 {
 	public $convert;
 	public function __construct($data)
@@ -16,9 +17,14 @@ class ExcelExport implements FromCollection
     	$this->convert = $data; 
     }
 
-
-    public function collection()
+    public function view(): View
     {
-        return $this->convert;
+        return view('excel', [
+            'data' => $this->convert
+        ]);
     }
+    // public function collection()
+    // {
+    //     return $this->convert;
+    // }
 }

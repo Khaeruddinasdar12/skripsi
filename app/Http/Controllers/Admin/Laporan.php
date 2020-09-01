@@ -236,21 +236,23 @@ class Laporan extends Controller
 
             $data = $barang->union($sawah)->union($gabah)->get();   
         }
-        // return $data;
-        return Excel::download(new ExcelExport($data), 'siswa.xlsx');
-        // return $data;
-        $pdf = PDF::loadView('pdf', [
-            'data' => $data,
-            'thn'   => $thn,
-            'bln'   => $blnstr
-        ]);  
-        return $pdf->download('galung-app.pdf');
+        
+        if($request->get('jenis') == 'excel') {
+            return Excel::download(new ExcelExport($data), 'galung-app.xlsx');
+        } else if ($request->get('jenis') == 'pdf') {
+            $pdf = PDF::loadView('pdf', [
+                'data' => $data,
+                'thn'   => $thn,
+                'bln'   => $blnstr
+            ]);  
+            return $pdf->download('galung-app.pdf');
+        } else {
+            return redirect()->back()->with('error', 'jenisnya jangan di custom bruh');
+        }
+        
+        
 
-        return view('pdf', [
-            'data' => $data,
-            'thn'  => $thn,
-            'bln'  => $blnstr
-        ]);
+        
     }
 
     public function index(Request $request) // menampilkan halaman
@@ -289,7 +291,7 @@ class Laporan extends Controller
 
             if($trs == 'gs' || $trs == 'gabah' || $trs == 'alat' || $trs == 'beras' || $trs == 'bibit' || $trs == 'pupuk') {
                 $data = DB::table('transaksi_barangs')
-                            ->select('users.name as pembeli', 'transaksi_barangs.jumlah', 'transaksi_barangs.harga', 'barangs.nama', 'barangs.jenis')
+                            ->select('users.name as pembeli', 'transaksi_barangs.jumlah', 'transaksi_barangs.harga', 'transaksi_barangs.created_at', 'barangs.nama', 'barangs.jenis')
                             ->join('barangs', 'transaksi_barangs.barang_id', '=', 'barangs.id')
                             ->join('users', 'transaksi_barangs.user_id', '=', 'users.id')
                             ->where('transaksi_barangs.status', '1')
@@ -298,7 +300,7 @@ class Laporan extends Controller
             } else {
                 if($trs == 'gs') {
                     $data = DB::table('transaksi_sawahs')
-                        ->select('users.name as pembeli', 'transaksi_sawahs.periode as jumlah', 'transaksi_sawahs.harga', 'sawahs.nama', DB::raw('("gadai sawah") as jenis'))
+                        ->select('users.name as pembeli', 'transaksi_sawahs.periode as jumlah', 'transaksi_sawahs.harga', 'transaksi_sawahs.created_at', 'sawahs.nama', DB::raw('("gadai sawah") as jenis'))
                         ->where('jenis', 'gs')
                         ->where('transaksi_sawahs.status', 'selesai')
                         ->join('sawahs', 'transaksi_sawahs.sawah_id', '=', 'sawahs.id')
@@ -306,7 +308,7 @@ class Laporan extends Controller
                         ->paginate($jml);
                 } else if($trs == 'gabah'){
                     $data = DB::table('transaksi_gabahs')
-                        ->select('users.name as pembeli', 'transaksi_gabahs.jumlah', 'transaksi_gabahs.harga', 'gabahs.nama', DB::raw('("gabah") as jenis'))
+                        ->select('users.name as pembeli', 'transaksi_gabahs.jumlah', 'transaksi_gabahs.harga', 'transaksi_gabahs.created_at', 'gabahs.nama', DB::raw('("gabah") as jenis'))
                         ->join('gabahs', 'transaksi_gabahs.gabah_id', '=', 'gabahs.id')
                         ->join('users', 'transaksi_gabahs.user_id', '=', 'users.id')
                         ->where('transaksi_gabahs.status', '1')
@@ -318,7 +320,7 @@ class Laporan extends Controller
         } else if (!empty($thn) && empty($trs)) {
             if(!empty($bln)) {
                 $barang = DB::table('transaksi_barangs')
-                        ->select('users.name as pembeli', 'transaksi_barangs.jumlah', 'transaksi_barangs.harga', 'barangs.nama', 'barangs.jenis')
+                        ->select('users.name as pembeli', 'transaksi_barangs.jumlah', 'transaksi_barangs.harga', 'transaksi_barangs.created_at', 'barangs.nama', 'barangs.jenis')
                         ->join('barangs', 'transaksi_barangs.barang_id', '=', 'barangs.id')
                         ->join('users', 'transaksi_barangs.user_id', '=', 'users.id')
                         ->where('transaksi_barangs.status', '1')
@@ -326,7 +328,7 @@ class Laporan extends Controller
                         ->whereYear('transaksi_barangs.created_at', $thn)
                         ;
                 $sawah = DB::table('transaksi_sawahs')
-                        ->select('users.name as pembeli', 'transaksi_sawahs.periode as jumlah', 'transaksi_sawahs.harga', 'sawahs.nama', DB::raw('("gadai sawah") as jenis'))
+                        ->select('users.name as pembeli', 'transaksi_sawahs.periode as jumlah', 'transaksi_sawahs.harga', 'transaksi_sawahs.created_at', 'sawahs.nama', DB::raw('("gadai sawah") as jenis'))
                         ->where('jenis', 'gs')
                         ->where('transaksi_sawahs.status', 'selesai')
                         ->join('sawahs', 'transaksi_sawahs.sawah_id', '=', 'sawahs.id')
@@ -335,7 +337,7 @@ class Laporan extends Controller
                         ->whereYear('transaksi_sawahs.created_at', $thn)
                         ;
                 $gabah = DB::table('transaksi_gabahs')
-                        ->select('users.name as pembeli', 'transaksi_gabahs.jumlah', 'transaksi_gabahs.harga', 'gabahs.nama', DB::raw('("gabah") as jenis'))
+                        ->select('users.name as pembeli', 'transaksi_gabahs.jumlah', 'transaksi_gabahs.harga', 'transaksi_gabahs.created_at', 'gabahs.nama', DB::raw('("gabah") as jenis'))
                         ->join('gabahs', 'transaksi_gabahs.gabah_id', '=', 'gabahs.id')
                         ->join('users', 'transaksi_gabahs.user_id', '=', 'users.id')
                         ->where('transaksi_gabahs.status', '1')
@@ -344,14 +346,14 @@ class Laporan extends Controller
                         ;
             } else {
                 $barang = DB::table('transaksi_barangs')
-                        ->select('users.name as pembeli', 'transaksi_barangs.jumlah', 'transaksi_barangs.harga', 'barangs.nama', 'barangs.jenis')
+                        ->select('users.name as pembeli', 'transaksi_barangs.jumlah', 'transaksi_barangs.harga', 'transaksi_barangs.created_at', 'barangs.nama', 'barangs.jenis')
                         ->join('barangs', 'transaksi_barangs.barang_id', '=', 'barangs.id')
                         ->join('users', 'transaksi_barangs.user_id', '=', 'users.id')
                         ->where('transaksi_barangs.status', '1')
                         ->whereYear('transaksi_barangs.created_at', $thn)
                         ;
                 $sawah = DB::table('transaksi_sawahs')
-                        ->select('users.name as pembeli', 'transaksi_sawahs.periode as jumlah', 'transaksi_sawahs.harga', 'sawahs.nama', DB::raw('("gadai sawah") as jenis'))
+                        ->select('users.name as pembeli', 'transaksi_sawahs.periode as jumlah', 'transaksi_sawahs.harga', 'transaksi_sawahs.created_at', 'sawahs.nama', DB::raw('("gadai sawah") as jenis'))
                         ->where('jenis', 'gs')
                         ->where('transaksi_sawahs.status', 'selesai')
                         ->join('sawahs', 'transaksi_sawahs.sawah_id', '=', 'sawahs.id')
@@ -359,7 +361,7 @@ class Laporan extends Controller
                         ->whereYear('transaksi_sawahs.created_at', $thn)
                         ;
                 $gabah = DB::table('transaksi_gabahs')
-                        ->select('users.name as pembeli', 'transaksi_gabahs.jumlah', 'transaksi_gabahs.harga', 'gabahs.nama', DB::raw('("gabah") as jenis'))
+                        ->select('users.name as pembeli', 'transaksi_gabahs.jumlah', 'transaksi_gabahs.harga', 'transaksi_gabahs.created_at', 'gabahs.nama', DB::raw('("gabah") as jenis'))
                         ->join('gabahs', 'transaksi_gabahs.gabah_id', '=', 'gabahs.id')
                         ->join('users', 'transaksi_gabahs.user_id', '=', 'users.id')
                         ->where('transaksi_gabahs.status', '1')
@@ -393,12 +395,11 @@ class Laporan extends Controller
             if($trs == 'gs' || $trs == 'gabah' || $trs == 'alat' || $trs == 'beras' || $trs == 'bibit' || $trs == 'pupuk') {
                     if(!empty($bln)) {
                         $arraybln = array("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12");
-                        // if($bln == '1' || $bln == '2' || $bln == '3' || $bln == '4' || $bln == '5' || $bln == '6' || $bln == '7' || $bln == '8' || $bln == '9' || $bln == '10' || $bln == '11' || $bln == '12') 
                         if(in_array($bln, $arraybln)){
                             // return $bln;
                             if($trs == 'gs') {
                             $data = DB::table('transaksi_sawahs')
-                            ->select('users.name as pembeli', 'transaksi_sawahs.periode as jumlah', 'transaksi_sawahs.harga', 'sawahs.nama', DB::raw('("gadai sawah") as jenis'))
+                            ->select('users.name as pembeli', 'transaksi_sawahs.periode as jumlah', 'transaksi_sawahs.harga', 'transaksi_sawahs.created_at', 'sawahs.nama', DB::raw('("gadai sawah") as jenis'))
                             ->where('jenis', 'gs')
                             ->where('transaksi_sawahs.status', 'selesai')
                             ->join('sawahs', 'transaksi_sawahs.sawah_id', '=', 'sawahs.id')
@@ -408,7 +409,7 @@ class Laporan extends Controller
                             ->paginate($jml);
                         } else if($trs == 'gabah') {
                             $data = DB::table('transaksi_gabahs')
-                            ->select('users.name as pembeli', 'transaksi_gabahs.jumlah', 'transaksi_gabahs.harga', 'gabahs.nama', DB::raw('("gabah") as jenis'))
+                            ->select('users.name as pembeli', 'transaksi_gabahs.jumlah', 'transaksi_gabahs.harga', 'transaksi_gabahs.created_at', 'gabahs.nama', DB::raw('("gabah") as jenis'))
                             ->join('gabahs', 'transaksi_gabahs.gabah_id', '=', 'gabahs.id')
                             ->join('users', 'transaksi_gabahs.user_id', '=', 'users.id')
                             ->where('transaksi_gabahs.status', '1')
@@ -417,7 +418,7 @@ class Laporan extends Controller
                             ->paginate($jml);
                         } else {
                             $data = DB::table('transaksi_barangs')
-                            ->select('users.name as pembeli', 'transaksi_barangs.jumlah', 'transaksi_barangs.harga', 'barangs.nama', 'barangs.jenis')
+                            ->select('users.name as pembeli', 'transaksi_barangs.jumlah', 'transaksi_barangs.harga', 'transaksi_barangs.created_at', 'barangs.nama', 'barangs.jenis')
                             ->join('barangs', 'transaksi_barangs.barang_id', '=', 'barangs.id')
                             ->join('users', 'transaksi_barangs.user_id', '=', 'users.id')
                             ->where('transaksi_barangs.status', '1')
@@ -435,7 +436,7 @@ class Laporan extends Controller
                     } else {
                         if($trs == 'gs') {
                             $data = DB::table('transaksi_sawahs')
-                            ->select('users.name as pembeli', 'transaksi_sawahs.periode as jumlah', 'transaksi_sawahs.harga', 'sawahs.nama', DB::raw('("gadai sawah") as jenis'))
+                            ->select('users.name as pembeli', 'transaksi_sawahs.periode as jumlah', 'transaksi_sawahs.harga', 'transaksi_sawahs.created_at', 'sawahs.nama', DB::raw('("gadai sawah") as jenis'))
                             ->where('jenis', 'gs')
                             ->where('transaksi_sawahs.status', 'selesai')
                             ->join('sawahs', 'transaksi_sawahs.sawah_id', '=', 'sawahs.id')
@@ -444,7 +445,7 @@ class Laporan extends Controller
                             ->paginate($jml);
                         } else if($trs == 'gabah'){
                             $data = DB::table('transaksi_gabahs')
-                            ->select('users.name as pembeli', 'transaksi_gabahs.jumlah', 'transaksi_gabahs.harga', 'gabahs.nama', DB::raw('("gabah") as jenis'))
+                            ->select('users.name as pembeli', 'transaksi_gabahs.jumlah', 'transaksi_gabahs.harga', 'transaksi_gabahs.created_at', 'gabahs.nama', DB::raw('("gabah") as jenis'))
                             ->join('gabahs', 'transaksi_gabahs.gabah_id', '=', 'gabahs.id')
                             ->join('users', 'transaksi_gabahs.user_id', '=', 'users.id')
                             ->where('transaksi_gabahs.status', '1')
@@ -452,7 +453,7 @@ class Laporan extends Controller
                             ->paginate($jml);
                         } else {
                             $data = DB::table('transaksi_barangs')
-                            ->select('users.name as pembeli', 'transaksi_barangs.jumlah', 'transaksi_barangs.harga', 'barangs.nama', 'barangs.jenis')
+                            ->select('users.name as pembeli', 'transaksi_barangs.jumlah', 'transaksi_barangs.harga', 'transaksi_barangs.created_at', 'barangs.nama', 'barangs.jenis')
                             ->join('barangs', 'transaksi_barangs.barang_id', '=', 'barangs.id')
                             ->join('users', 'transaksi_barangs.user_id', '=', 'users.id')
                             ->where('transaksi_barangs.status', '1')
@@ -466,20 +467,20 @@ class Laporan extends Controller
             }
         } else {
             $barang     = DB::table('transaksi_barangs')
-                        ->select('users.name as pembeli', 'transaksi_barangs.jumlah', 'transaksi_barangs.harga', 'barangs.nama', 'barangs.jenis')
+                        ->select('users.name as pembeli', 'transaksi_barangs.jumlah', 'transaksi_barangs.harga', 'transaksi_barangs.created_at', 'barangs.nama', 'barangs.jenis')
                         ->join('barangs', 'transaksi_barangs.barang_id', '=', 'barangs.id')
                         ->join('users', 'transaksi_barangs.user_id', '=', 'users.id')
                         ->where('transaksi_barangs.status', '1');
 
             $sawah     = DB::table('transaksi_sawahs')
-                        ->select('users.name as pembeli', 'transaksi_sawahs.periode as jumlah', 'transaksi_sawahs.harga', 'sawahs.nama', DB::raw('("gadai sawah") as jenis'))
+                        ->select('users.name as pembeli', 'transaksi_sawahs.periode as jumlah', 'transaksi_sawahs.harga', 'transaksi_sawahs.created_at', 'sawahs.nama', DB::raw('("gadai sawah") as jenis'))
                         ->where('jenis', 'gs')
                         ->where('transaksi_sawahs.status', 'selesai')
                         ->join('sawahs', 'transaksi_sawahs.sawah_id', '=', 'sawahs.id')
                         ->join('users', 'sawahs.created_by', '=', 'users.id');
 
             $gabah     = DB::table('transaksi_gabahs')
-                        ->select('users.name as pembeli', 'transaksi_gabahs.jumlah', 'transaksi_gabahs.harga', 'gabahs.nama', DB::raw('("gabah") as jenis'))
+                        ->select('users.name as pembeli', 'transaksi_gabahs.jumlah', 'transaksi_gabahs.harga', 'transaksi_gabahs.created_at', 'gabahs.nama', DB::raw('("gabah") as jenis'))
                         ->join('gabahs', 'transaksi_gabahs.gabah_id', '=', 'gabahs.id')
                         ->join('users', 'transaksi_gabahs.user_id', '=', 'users.id')
                         ->where('transaksi_gabahs.status', '1');
