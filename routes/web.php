@@ -22,6 +22,7 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 
 	// MENU LAPORAN
 	Route::get('laporan', 'Laporan@index')->name('index.laporan');
+	Route::get('laporan-pdf', 'Laporan@pdf')->name('pdf.laporan');
 	// END MENU LAPORAN
 
 	// RUTE MENU BIBIT & TRANSAKSI BIBIT

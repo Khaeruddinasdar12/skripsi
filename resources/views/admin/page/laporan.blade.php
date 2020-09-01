@@ -7,6 +7,16 @@
       @include('admin.page.alert')
       <!-- end alert section -->
 <div class="col-md-12">
+
+<div class="alert alert-custom alert-outline-dark fade show mb-2" role="alert">
+    <div class="alert-icon"><i class="flaticon-info"></i></div>
+    <div class="alert-text">Tekan tombol Reload terlebih dahulu sebelum convert PDF atau Excel</div>
+    <div class="alert-close">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true"><i class="flaticon-close"></i></span>
+        </button>
+    </div>
+</div>
           <div class="kt-portlet admin-portlet">
             <div class="kt-portlet__head">
               <div class="kt-portlet__head-label">
@@ -57,15 +67,22 @@
 				                <button type="submit" class="btn btn-outline-primary btn-sm mr-2"> 
 				                	<i class="fas fa-sync-alt"></i>Reload
 				                </button>
-				    			
-				    			      <button class="btn btn-outline-danger btn-sm">
-				                   <i class="fas fa-file-pdf"></i> PDF
-				                </button>
+				    			</form>
+
+                        <form action="{{route('pdf.laporan')}}" method="get">
+                          <input type="hidden" name="bulan" value="{{Request::get('bulan')}}">
+                          <input type="hidden" name="transaksi" value="{{Request::get('transaksi')}}">
+                          <input type="hidden" name="tahun" value="{{Request::get('tahun')}}">
+  				    			      <button type="submit" class="btn btn-outline-danger btn-sm">
+  				                   <i class="fas fa-file-pdf"></i> PDF
+  				                </button>
+                        </form>
+                        &nbsp;
 				                
 				                <button class="btn btn-outline-success btn-sm">
 				                    <i class="fas fa-file-excel"></i> Excel
 				                </button>
-				        </form>
+				        
 
 	              </div>
 	              

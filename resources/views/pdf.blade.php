@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Membuat Laporan PDF Dengan DOMPDF Laravel</title>
+	<title>Galung App</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
@@ -12,7 +12,7 @@
 		}
 	</style>
 	<center>
-		<h5>Laporan Keuangan</h5>
+		<h5>Laporan Keuangan {{$bln .' '. $thn}} </h5>
 	</center>
  
 	<table class='table table-bordered'>
@@ -24,6 +24,7 @@
 				<th>Nama Barang</th>
 				<th>Jumlah</th>
 				<th>Harga Satuan</th>
+				<th>Tanggal</th>
 				<th>Subtotal</th>
 			</tr>
 		</thead>
@@ -37,6 +38,7 @@
                           <td>{{ $datas->nama }}</td>
                           <td>{{ $datas->jumlah }}</td>
                           <td>Rp. {{ format_uang($datas->harga) }}</td>
+                          <td>{{$datas->created_at}}</td>
                           <td>@if($datas->jenis == 'gadai sawah')
                                 @php $total = $datas->harga; @endphp 
                                 Rp. {{ format_uang($total) }} 
@@ -49,7 +51,7 @@
                         @php $alltotal = $alltotal + $total; @endphp
                         @endforeach
                         <tr>
-                          <td colspan="6" align="center"><b>Total</b></td>
+                          <td colspan="7" align="center"><b>Total</b></td>
                           <td><b>Rp. {{ format_uang($alltotal) }}</b></td>
                         </tr>
                       </tbody>
