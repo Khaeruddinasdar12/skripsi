@@ -714,4 +714,70 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
   width: 300px !important;
 }
 
+.action select {
+  margin-top: 10px !important;
+  margin-left: 5px;
+}
+.action .reload-laporan {
+  margin-right: -20px !important;
+  margin-left: -10px !important;
+  border: none !important;
+}
+.action .reload-laporan:hover {
+  background-color: transparent !important;
+}
+.action .reload-laporan:hover i {
+  background-color: #00A859;
+  color: #fff !important;
+  transition: 0.5s;
+}
+.action .reload-laporan i {
+  font-size: 20px !important;
+  color: #00A859 !important;
+  border-radius: 5px;
+  transition: 0.5s;
+  padding: 11px !important;
+}
+.action .download-btn i {
+  font-size: 20px !important;
+  color: #00A859 !important;
+  padding: 11px !important;
+  border-radius: 5px;
+  transition: 0.5s;
+}
+.action .download-btn i:hover {
+  background-color: #00A859;
+  color: #fff !important;
+  transition: 0.5s;
+}
+.action .dropdown-menu .kt-nav__item div form {
+  width: 100% !important;
+}
+.action .dropdown-menu .kt-nav__item div form button {
+  width: 100% !important;
+  border: none !important;
+  margin-bottom: 10px !important;
+  text-align: left !important;
+  padding-left: 30px;
+}
+.action .dropdown-menu .kt-nav__item div form button:hover {
+  background-color: #f3f3f3 !important;
+}
+.action .dropdown-menu .kt-nav__item div form button:hover .fa-file-pdf {
+  color: #ff3863;
+  transition: 0.5s;
+}
+.action .dropdown-menu .kt-nav__item div form button:hover .fa-file-excel {
+  color: #00A859;
+  transition: 0.5s;
+}
+.action .dropdown-menu .kt-nav__item div form button i,
+.action .dropdown-menu .kt-nav__item div form button span {
+  color: #888888;
+  font-size: 15px !important;
+}
+.action .dropdown-menu .kt-nav__item div form button i {
+  transition: 0.5s;
+}
+
 /*# sourceMappingURL=galung.css.map */
