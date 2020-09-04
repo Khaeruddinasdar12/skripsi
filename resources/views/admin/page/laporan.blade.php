@@ -1,6 +1,34 @@
 @extends('layouts.galungtemplate')
 
 @section('content')
+
+<div class="kt-subheader subheader-custom kt-grid__item" id="kt_subheader">
+  <div class="kt-container ">
+    <div class="kt-subheader__main">
+      <h3 class="kt-subheader__title">
+        Laporan </h3>
+      <span class="kt-subheader__separator kt-hidden"></span>
+      <div class="kt-subheader__breadcrumbs">
+        <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+        <span class="kt-subheader__breadcrumbs-separator"></span>
+        <a href="{{route('index.laporan')}}" class="kt-subheader__breadcrumbs-link">
+          Laporan
+        </a>
+      </div>
+    </div>
+    <div class="kt-subheader__toolbar">
+      <div class="kt-subheader__wrapper">
+        <a href="#" class="btn kt-subheader__btn-daterange" id="kt_dashboard_daterangepicker">
+          <span class="kt-subheader__btn-daterange-title" id="kt_dashboard_daterangepicker_title">Today</span>&nbsp;
+          <span class="kt-subheader__btn-daterange-date" id="kt_dashboard_daterangepicker_date">Aug
+            16
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="kt-container">
   <div class="row justify-content-center">
     <!-- alert section -->
@@ -8,15 +36,12 @@
     <!-- end alert section -->
     <div class="col-md-12">
 
-      <div class="alert alert-custom alert-outline-dark fade show mb-2" role="alert">
-        <div class="alert-icon"><i class="flaticon-info"></i></div>
-        <div class="alert-text">Tekan tombol Reload terlebih dahulu sebelum convert PDF atau Excel</div>
-        <div class="alert-close">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true"><i class="flaticon-close"></i></span>
-          </button>
-        </div>
+      <div data-notify="container" class="alert alert-success m-alert animated bounce alert-win" role="alert" data-notify-position="top-center" style="display: inline-block; margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 10000; top: 100px; left: 0px; right: 0px; animation-iteration-count: 1;">
+        <button type="button" aria-hidden="true" class="close" data-notify="dismiss" style="position: absolute; right: 10px; top: 5px; z-index: 100002;" data-notify="dismiss" data-dismiss="alert" aria-label="Close"></button>
+        <span data-notify="message">Tekan tombol Reload terlebih dahulu sebelum convert PDF atau Excel !!</span>
+        <a href="#" target="_blank" data-notify="url"></a>
       </div>
+
       <div class="kt-portlet admin-portlet">
         <div class="kt-portlet__head">
           <div class="kt-portlet__head-label">
