@@ -22,7 +22,7 @@ class GadaiSawahController extends Controller
             $data = TransaksiSawah::where('jenis', 'gs')
             ->where('status', null)
             ->with('admins:id,name')
-            ->whereHas('sawahs.users',function ($query) use ($request) {
+            ->whereHas('sawahs.users', function ($query) use ($request) {
                 $query->where('name', 'like', '%'.$request->get('search').'%');
             })
             ->with('sawahs', 'sawahs.alamats:id,tipe,nama_kota', 'sawahs.users:id,name,email,nohp')
