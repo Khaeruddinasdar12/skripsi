@@ -289,6 +289,14 @@
           </li>
           <!-- end penjualan -->
 
+          <!-- dashboard menu -->
+          <li class="kt-menu__item kt-menu__item--rel {{ request()->is('admin/transaksi-barang') ? 'kt-menu__item--open kt-menu__item--here' : '' }}">
+            <a href="{{ route('index.transaksi') }}" class="kt-menu__link">
+              <span class="kt-menu__link-text {{ request()->is('admin/transaksi-barang') ? '' : 'top-text-nav' }}">Transaksi</span>
+            </a>
+          </li>
+          <!-- end dashboard menu -->
+
           <!-- manage admin menu -->
           <li class="kt-menu__item kt-menu__item--rel {{ request()->is('admin/manage-admin') ? 'kt-menu__item--open kt-menu__item--here' : '' }}">
             <a href="{{ route('index.manage-admin') }}" class="kt-menu__link" id="manageadmin">

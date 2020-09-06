@@ -28,7 +28,7 @@ class GadaiSawahController extends Controller
         }
 
         $data = DB::table('transaksi_sawahs')
-                ->select('transaksi_sawahs.id', 'transaksi_sawahs.periode', 'transaksi_sawahs.harga', 'transaksi_sawahs.keterangan', 'transaksi_sawahs.created_at', 'sawahs.nama as nama_sawah')
+                ->select('transaksi_sawahs.id', 'transaksi_sawahs.periode', 'transaksi_sawahs.harga', 'transaksi_sawahs.keterangan', 'transaksi_sawahs.created_at', 'transaksi_sawahs.status_at as updated_at', 'sawahs.nama as nama_sawah', 'sawahs.alamat', 'sawahs.titik_koordinat')
                 ->join('sawahs', 'transaksi_sawahs.sawah_id', '=', 'sawahs.id')
                 ->join('users', 'sawahs.created_by', '=', 'users.id')
                 ->where('transaksi_sawahs.jenis', 'gs')
@@ -60,7 +60,7 @@ class GadaiSawahController extends Controller
         }
 
         $data = DB::table('transaksi_sawahs')
-                ->select('transaksi_sawahs.id', 'transaksi_sawahs.periode', 'transaksi_sawahs.harga', 'transaksi_sawahs.keterangan', 'transaksi_sawahs.created_at', 'sawahs.nama as nama_sawah')
+                ->select('transaksi_sawahs.id', 'transaksi_sawahs.periode', 'transaksi_sawahs.harga', 'transaksi_sawahs.keterangan', 'transaksi_sawahs.created_at', 'transaksi_sawahs.status_at as updated_at', 'sawahs.nama as nama_sawah', 'sawahs.alamat', 'sawahs.titik_koordinat')
                 ->join('sawahs', 'transaksi_sawahs.sawah_id', '=', 'sawahs.id')
                 ->join('users', 'sawahs.created_by', '=', 'users.id')
                 ->where('transaksi_sawahs.jenis', 'gs')
@@ -92,7 +92,7 @@ class GadaiSawahController extends Controller
         }
 
         $data = DB::table('transaksi_sawahs')
-                ->select('transaksi_sawahs.id', 'transaksi_sawahs.periode', 'transaksi_sawahs.harga', 'transaksi_sawahs.keterangan', 'transaksi_sawahs.created_at', 'sawahs.nama as nama_sawah')
+                ->select('transaksi_sawahs.id', 'transaksi_sawahs.periode', 'transaksi_sawahs.harga', 'transaksi_sawahs.keterangan', 'transaksi_sawahs.created_at', 'transaksi_sawahs.status_at as updated_at', 'sawahs.nama as nama_sawah', 'sawahs.alamat', 'sawahs.titik_koordinat')
                 ->join('sawahs', 'transaksi_sawahs.sawah_id', '=', 'sawahs.id')
                 ->join('users', 'sawahs.created_by', '=', 'users.id')
                 ->where('transaksi_sawahs.jenis', 'gs')
@@ -124,7 +124,7 @@ class GadaiSawahController extends Controller
         }
 
         $data = DB::table('transaksi_sawahs')
-                ->select('transaksi_sawahs.id', 'transaksi_sawahs.periode', 'transaksi_sawahs.harga', 'transaksi_sawahs.keterangan', 'transaksi_sawahs.created_at', 'sawahs.nama as nama_sawah')
+                ->select('transaksi_sawahs.id', 'transaksi_sawahs.periode', 'transaksi_sawahs.harga', 'transaksi_sawahs.keterangan', 'transaksi_sawahs.created_at', 'transaksi_sawahs.status_at as updated_at', 'sawahs.nama as nama_sawah', 'sawahs.alamat', 'sawahs.titik_koordinat')
                 ->join('sawahs', 'transaksi_sawahs.sawah_id', '=', 'sawahs.id')
                 ->join('users', 'sawahs.created_by', '=', 'users.id')
                 ->where('transaksi_sawahs.jenis', 'gs')

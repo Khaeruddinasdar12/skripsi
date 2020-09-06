@@ -21,7 +21,8 @@ class TransaksiGabahSeeder extends Seeder
 	        'keterangan' => 'saya mau cepat gabah saya kak oke ?',
 	        'jenis_bayar' => 'cod',
 	        'status' => '0',
-	        'gabah_id' => 1
+	        'gabah_id' => 1,
+	        'created_at'      => \Carbon\Carbon::now()
 		]);
 
 		DB::table('transaksi_gabahs')->insert([
@@ -34,7 +35,8 @@ class TransaksiGabahSeeder extends Seeder
 	        'keterangan' => 'saya punya gabah untuk di jual kak',
 	        'jenis_bayar' => 'cod',
 	        'status' => '0',
-	        'gabah_id' => 1
+	        'gabah_id' => 1,
+	        'created_at'      => \Carbon\Carbon::now()
 		]);
 
 		//riwayat transaksi Gabah
@@ -49,7 +51,8 @@ class TransaksiGabahSeeder extends Seeder
 	        'jenis_bayar' => 'cod',
 	        'status' => '1',
 	        'gabah_id' => 1,
-	        'admin_id' => 1
+	        'admin_id' => 1,
+	        'created_at'      => \Carbon\Carbon::now()
 		]);
 
 		//batal transaksi Gabah
@@ -64,7 +67,8 @@ class TransaksiGabahSeeder extends Seeder
 	        'jenis_bayar' => 'cod',
 	        'status' => 'batal',
 	        'gabah_id' => 1,
-	        'admin_id' => 1
+	        'admin_id' => 1,
+	        'created_at'      => \Carbon\Carbon::now()
 		]);
     }
 }

@@ -15,17 +15,11 @@ class DatabaseSeeder extends Seeder
         $this->call(ProvinsiSeeder::class);
         $this->call(KotaSeeder::class);
         $this->call(SawahSeeder::class);
-        // $this->call(GadaiSawahSeeder::class);
         $this->call(GabahSeeder::class);
-        // $this->call(BerasSeeder::class);
-        
-        // $this->call(TransaksiBerasSeeder::class);
-        // $this->call(AlatSeeder::class);
-        // $this->call(TransaksiAlatSeeder::class);
-
         $this->call(TransaksiGabahSeeder::class);
         $this->call(BarangSeeder::class);
         $this->call(TransaksiBarangSeeder::class);
         $this->call(TransaksiSawahSeeder::class);
+        $this->call(CartTransaksiSeeder::class);
     }
 }
