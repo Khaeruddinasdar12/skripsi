@@ -222,17 +222,35 @@ class SawahController extends Controller
                 ]);
         }
 
-        $cek_gadai = TransaksiSawah::where('sawah_id', $id)->get();
-        if($cek_gadai != null) {
-            foreach ($$cek_gadai as $hps) {
-                if($hps->status == 'gadai') {
+        $cek_gadai = TransaksiSawah::where('sawah_id', $id);
+        $dt = $cek_gadai->get();
+        // return $dt;
+        if(count($dt) == null) { 
+            return response()->json([
+                        'status'  => false,
+                        'message' => 'data sawah tidak ditemukan'
+                    ]);
+        }
+
+        if($dt != null) { //cek semua transaksi
+            foreach ($dt as $hps) {
+                if($hps->status == 'gadai' || $hps->status == null || $hps->status == 'selesai') {
+                    if($hps->status == null) {
+                        $msg = 'sedang daftar gadai';
+                    } else if ($hps->status == 'selesai'){
+                        $msg = 'pernah ditransaksikan (tab selesai)';    
+                    } else {
+                        $msg = '';
+                    }
+                    
                     return response()->json([
-                        'status' => false,
-                        'message' => 'Tidak dapat menghapus, Sawah ini sedang digadai'
+                        'status'  => false,
+                        'message' => 'Tidak dapat menghapus, Sawah ini '.$msg
                     ]);
                 }
-            }
 
+
+            }
             $cek_gadai->delete(); //delete data di tabel gadai_sawahs
         }
 
@@ -240,7 +258,7 @@ class SawahController extends Controller
         if ($sawah == null) {
             return response()->json([
                 'status' => false, 
-                'message' => 'Id sawah tidak ditemukan'
+                'message' => 'Sawah tidak ditemukan'
             ]);
         }
 

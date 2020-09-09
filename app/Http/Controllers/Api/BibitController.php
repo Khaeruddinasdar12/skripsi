@@ -11,17 +11,6 @@ use Auth;
 use DB;
 class BibitController extends Controller
 {
-    public function index() //menampilkan daftar Bibit (tanpa header)
-	{
-		$data = Barang::select('id', 'nama', 'harga', 'min_beli', 'stok', 'keterangan', 'gambar')
-			->where('jenis', 'bibit')
-			->paginate(8);
-		return response()->json([
-                    'status' => true,
-                    'message' => 'Semua data bibit (per 8 data)',
-                    'data'	=> $data
-                ]);
-	}
 
 	public function store(Request $request, $id) //proses pembelian bibit
 	{

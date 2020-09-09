@@ -324,6 +324,28 @@ class TransaksiBarangController extends Controller
                 'message' => 'Id barang tidak ditemukan'
             ]);
         }
+
+        //cek Cart jika barang yang di input sudah dalam keranjang
+        $cekCart = CartTransaksi::where('barang_id', $id)
+                ->whereHas('tbarangs', function($query) {
+                    $query->where('status', null);
+                })
+                ->first();
+        if(!empty($cekCart)) {
+
+                $jml = $cekCart->jumlah + $request->get('jumlah'); //jumlah barang keseluruhan
+                $subtotal = $jml * $barang->harga;
+            if($barang->stok < $jml) {
+                return response()->json([
+                    'status' => false, 
+                    'message' => 'Barang ini telah ada dikeranjang, jumlah yang Anda inginkan melebihi stok yang tersedia'
+                ]);
+            }
+            $cekCart->jumlah = $jml;
+            $cekCart->subtotal = $subtotal;
+            $cekCart->save();
+        }
+
         	//cek satuan barang
         	if($barang->jenis == 'alat') {
         		$satuan = 'unit';
