@@ -58,7 +58,7 @@
                   <i class="flaticon-avatar"></i>
                 </span>
                 <h3 class="kt-portlet__head-title">
-                  Data Transaksi Barang 
+                  Data Transaksi Barang
                 </h3>
               </div>
               <div class="kt-portlet__head-toolbar">
@@ -90,11 +90,17 @@
                           <th>Action</th>
                         </tr>
                       </thead>
-                      
+
                       <tbody>
+                        @php $no = 0 @enphp
                         @foreach($data as $datas)
                         <tr>
-                          <td scope="row"></td>
+
+                          <td>
+                            <div class="btn btn-default btn-icon btn-icon-md btn-sm" onclick="det({$no++})">
+                              <i class="fa fa-angle-right"></i>
+                            </div>
+                          </td>
                           <td>{{$datas->transaksi_code}}</td>
                           <td>{{$datas->penerima}}</td>
                           <td>{{$datas->nohp}}</td>
@@ -109,7 +115,7 @@
                               <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
                                 <ul class="kt-nav">
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-beras" >
+                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-beras">
                                       <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
                                       <span class="kt-nav__link-text">Detail</span>
                                     </a>
@@ -119,26 +125,26 @@
                             </div>
                           </td>
                         </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td>nama barang</td>
-                            <td>Jenis barang</td>
-                            <td>harga</td>
-                            <td>jumlah</td>
-                            <td>subtotal</td>
-                          </tr>
-                          @foreach($datas->items as $items)
-                          <tr>
-                            <td></td>
-                            <td></td>
-                            <td>{{$items->nama}}</td>
-                            <td>{{$items->jenis}}</td>
-                            <td>Rp. {{format_uang($items->harga)}}</td>
-                            <td>{{$items->jumlah}}</td>
-                            <td>Rp. {{format_uang($items->subtotal)}}</td>
-                          </tr>
-                          @endforeach
+                        <tr class="detail-keranjang{$no++}">
+                          <td></td>
+                          <td></td>
+                          <td>nama barang</td>
+                          <td>Jenis barang</td>
+                          <td>harga</td>
+                          <td>jumlah</td>
+                          <td>subtotal</td>
+                        </tr>
+                        @foreach($datas->items as $items)
+                        <tr class="detail-keranjang{$no++}">
+                          <td></td>
+                          <td></td>
+                          <td>{{$items->nama}}</td>
+                          <td>{{$items->jenis}}</td>
+                          <td>Rp. {{format_uang($items->harga)}}</td>
+                          <td>{{$items->jumlah}}</td>
+                          <td>Rp. {{format_uang($items->subtotal)}}</td>
+                        </tr>
+                        @endforeach
                         @endforeach
                       </tbody>
                     </table>
@@ -320,6 +326,11 @@
     modal.find('.modal-body #hapus-data').attr('action', href)
   })
   //End Modal hapus
+  function det(no) {
+    $(".btn-detail" + no).click(function() {
+      $(".detail-keranjang" + no).toggleClass("detail-keranjang-active");
+    });
+  }
 </script>
 
 @endsection

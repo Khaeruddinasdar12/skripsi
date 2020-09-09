@@ -32,7 +32,6 @@ table {
     .dropdown-table-custom {
         ul {
             .edit-data {
-
                 &:hover .kt-nav__link-icon,
                 &:hover .kt-nav__link-text {
                     color: $biru !important;
@@ -40,7 +39,6 @@ table {
             }
 
             .hapus-data {
-
                 &:hover .kt-nav__link-icon,
                 &:hover .kt-nav__link-text {
                     color: $merah !important;
@@ -59,11 +57,10 @@ table {
                 border-color: $galungcolor !important;
                 transition: 0.5s !important;
             }
-
         }
 
         i {
-            color: $galungcolor !important
+            color: $galungcolor !important;
         }
     }
 }
@@ -208,7 +205,7 @@ table {
                 border-radius: 100px;
                 font-size: 22px;
                 color: #fff;
-                background-color: $galungcolor
+                background-color: $galungcolor;
             }
         }
 
@@ -399,13 +396,13 @@ table {
     color: $galungcolor !important;
     border: 1px solid $galungcolor !important;
     font-size: 15px !important;
-    transition: .5s !important;
+    transition: 0.5s !important;
 
     &:hover {
         background-color: $galungcolor !important;
         color: #fff !important;
         border: 1px solid $galungcolor !important;
-        transition: .5s !important;
+        transition: 0.5s !important;
     }
 }
 
@@ -414,7 +411,7 @@ table {
     color: $merah !important;
     border: 1px solid $merah !important;
     font-size: 15px !important;
-    transition: .5s !important;
+    transition: 0.5s !important;
     cursor: not-allowed !important;
 }
 
@@ -439,7 +436,6 @@ table {
 
 // search form
 .kt-portlet__head-toolbar {
-
     .border-right {
         height: 50px;
         background: $galungcolor;
@@ -466,11 +462,11 @@ table {
             border: 1px solid rgba(34, 34, 34, 0.212);
             padding: 6px;
             border-radius: 3px;
-            transition: .5s;
+            transition: 0.5s;
 
             &:hover {
                 background-color: $galungcolor;
-                transition: .5s;
+                transition: 0.5s;
             }
 
             &:hover i {
@@ -479,3 +475,23 @@ table {
         }
     }
 }
+
+// detail keranjang transaksi
+
+.btn-detail {
+    cursor: pointer;
+}
+
+.detail-keranjang {
+    opacity: 0;
+    position: absolute !important;
+    transition: 0.5s;
+}
+
+.detail-keranjang-active {
+    opacity: 1;
+    position: relative !important;
+    transition: 0.5s;
+}
+
+// end detail keranjang transaksi
