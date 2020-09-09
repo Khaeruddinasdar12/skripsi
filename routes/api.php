@@ -24,9 +24,21 @@ $api->version('v1', function($api) {
     Route::get('bibit', 'Api\BibitController@index'); //semua data bibit (no header)
     Route::get('tsawah', 'Api\SawahController@listsawah'); // data sawah berdasarkan id yang login (tes)
 
+    // Route::get('add-cart/{id}', 'Api\TransaksiBarangController@addcart');
+
     Route::group(['middleware' => ['auth:api']], function() {
         Route::get('user', 'Api\UserController@detail');
         Route::post('edit-user', 'Api\UserController@update');
+
+        Route::post('add-cart/{id}', 'Api\TransaksiBarangController@addcart');
+        Route::post('checkout/{id}', 'Api\TransaksiBarangController@checkout');
+        Route::get('cart', 'Api\TransaksiBarangController@cart');
+        Route::post('edit-cart/{id}', 'Api\TransaksiBarangController@edit');
+        Route::post('delete-cart/{id}', 'Api\TransaksiBarangController@delete');
+
+        Route::get('proses-belanja', 'Api\TransaksiBarangController@proses');
+        Route::get('riwayat-belanja', 'Api\TransaksiBarangController@riwayat');
+        Route::get('batal-belanja', 'Api\TransaksiBarangController@batal');
 
 
         // BERAS

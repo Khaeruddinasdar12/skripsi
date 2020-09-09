@@ -25,4 +25,9 @@ class TransaksiBarang extends Model
     {
         return $this->belongsTo('App\Barang', 'barang_id');
     }
+
+    public function items()
+    {
+        return $this->hasMany('App\CartTransaksi', 'transaksi_id', 'id')->orderBy('created_at', 'desc');
+    }
 }

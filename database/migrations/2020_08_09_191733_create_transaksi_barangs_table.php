@@ -15,16 +15,20 @@ class CreateTransaksiBarangsTable extends Migration
     {
         Schema::create('transaksi_barangs', function (Blueprint $table) {
             $table->id();
-            $table->integer('jumlah');
-            $table->integer('harga');
-            $table->string('alamat');
-            $table->string('kecamatan');
-            $table->string('kelurahan');
+            $table->string('transaksi_code')->unique()->nullable();
+            $table->string('penerima')->nullable();
+            $table->string('nohp')->nullable();
+            $table->string('alamat')->nullable();
+            $table->string('alamat_id')->nullable();
+            $table->string('kecamatan')->nullable();
+            $table->string('kelurahan')->nullable();
+            $table->string('rt')->nullable();
+            $table->string('rw')->nullable();
+            $table->string('total')->nullable();
             $table->string('keterangan')->nullable();
             $table->enum('jenis_bayar', ['tf', 'cod']);
             $table->string('bukti')->nullable();
-            $table->enum('status', ['0','1', 'batal']);
-            $table->integer('barang_id');
+            $table->enum('status', ['0','1', 'batal'])->nullable();
             $table->integer('user_id');
             $table->integer('admin_id')->nullable();
             $table->timestamps();

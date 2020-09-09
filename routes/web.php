@@ -25,6 +25,12 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 	Route::get('laporan-pdf', 'Laporan@pdf')->name('pdf.laporan');
 	// END MENU LAPORAN
 
+
+	//TRANSAKSI
+	Route::get('transaksi-barang', 'TransaksiBarangController@index')->name('index.transaksi');
+	//END TRANSAKSI
+
+
 	// RUTE MENU BIBIT & TRANSAKSI BIBIT
 	// 1. Menu Bibit
 	Route::get('bibit', 'BibitController@index')->name('index.bibit'); //menampilkan hal. data bibit

@@ -1284,6 +1284,7 @@
         },
         {
             "name": "laravel/framework",
+<<<<<<< HEAD
             "version": "v7.27.0",
             "source": {
                 "type": "git",
@@ -1294,6 +1295,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/17777a92da9b3cf0026f26462d289d596420e6d0",
                 "reference": "17777a92da9b3cf0026f26462d289d596420e6d0",
+=======
+            "version": "v7.26.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/framework.git",
+                "reference": "fad3e5f03b9ae89853c8a0925231d2b3ce07a9c3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/fad3e5f03b9ae89853c8a0925231d2b3ce07a9c3",
+                "reference": "fad3e5f03b9ae89853c8a0925231d2b3ce07a9c3",
+>>>>>>> 38ffcc6804e5c9114cfe33e4d673af2084d0c032
                 "shasum": ""
             },
             "require": {
@@ -1438,7 +1451,11 @@
                 "framework",
                 "laravel"
             ],
+<<<<<<< HEAD
             "time": "2020-09-01T13:41:48+00:00"
+=======
+            "time": "2020-08-27T14:22:46+00:00"
+>>>>>>> 38ffcc6804e5c9114cfe33e4d673af2084d0c032
         },
         {
             "name": "laravel/passport",
