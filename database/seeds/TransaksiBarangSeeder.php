@@ -22,7 +22,8 @@ class TransaksiBarangSeeder extends Seeder
 	        'keterangan' => 'proses secepatnya dong',
 	        'jenis_bayar' => 'cod',
 	        'status' => '0',
-	        'barang_id' => 1
+	        'barang_id' => 1,
+	        'created_at'      => \Carbon\Carbon::now()
 		]);
 
 		DB::table('transaksi_barangs')->insert([
@@ -35,7 +36,8 @@ class TransaksiBarangSeeder extends Seeder
 	        'keterangan' => 'proses cepat please ya kaka',
 	        'jenis_bayar' => 'cod',
 	        'status' => '0',
-	        'barang_id' => 1
+	        'barang_id' => 1,
+	        'created_at'      => \Carbon\Carbon::now()
 		]);
 
 		//riwayat transaksi Beras
@@ -50,7 +52,8 @@ class TransaksiBarangSeeder extends Seeder
 	        'jenis_bayar' => 'cod',
 	        'status' => '1',
 	        'barang_id' => 1,
-	        'admin_id' => 1
+	        'admin_id' => 1,
+	        'created_at'      => \Carbon\Carbon::now()
 		]);
 		// END TRANSAKSI BERAS
 
@@ -66,7 +69,8 @@ class TransaksiBarangSeeder extends Seeder
 		        'keterangan' => 'semoga barangnya bagus',
 		        'jenis_bayar' => 'cod',
 		        'status' => '0',
-		        'barang_id' => 3
+		        'barang_id' => 3,
+		        'created_at'      => \Carbon\Carbon::now()
 			]);
 
 			DB::table('transaksi_barangs')->insert([
@@ -79,7 +83,8 @@ class TransaksiBarangSeeder extends Seeder
 		        'keterangan' => 'selesaikan pesanan alat saya kak secepatnya',
 		        'jenis_bayar' => 'cod',
 		        'status' => '0',
-		        'barang_id' => 3
+		        'barang_id' => 3,
+		        'created_at'      => \Carbon\Carbon::now()
 			]);
 
 
@@ -95,7 +100,8 @@ class TransaksiBarangSeeder extends Seeder
 		        'jenis_bayar' => 'cod',
 		        'status' => '1',
 		        'barang_id' => 3,
-		        'admin_id' => 1
+		        'admin_id' => 1,
+		        'created_at'      => \Carbon\Carbon::now()
 			]);
 		// END TRANSAKSI ALAT
 
@@ -111,7 +117,8 @@ class TransaksiBarangSeeder extends Seeder
 	        'keterangan' => 'proses secepatnya dong',
 	        'jenis_bayar' => 'cod',
 	        'status' => '0',
-	        'barang_id' => 5
+	        'barang_id' => 5,
+	        'created_at'      => \Carbon\Carbon::now()
 		]);
 
 		DB::table('transaksi_barangs')->insert([
@@ -124,7 +131,8 @@ class TransaksiBarangSeeder extends Seeder
 	        'keterangan' => 'proses cepat please ya kaka',
 	        'jenis_bayar' => 'cod',
 	        'status' => '0',
-	        'barang_id' => 5
+	        'barang_id' => 5,
+	        'created_at'      => \Carbon\Carbon::now()
 		]);
 
 		//riwayat transaksi bibit
@@ -139,7 +147,8 @@ class TransaksiBarangSeeder extends Seeder
 	        'jenis_bayar' => 'cod',
 	        'status' => '1',
 	        'barang_id' => 5,
-	        'admin_id' => 1
+	        'admin_id' => 1,
+	        'created_at'      => \Carbon\Carbon::now()
 		]);
 		// END TRANSAKSI BIBIT
 
@@ -155,7 +164,8 @@ class TransaksiBarangSeeder extends Seeder
 	        'keterangan' => 'saya harap pupuk ini cocok',
 	        'jenis_bayar' => 'cod',
 	        'status' => '0',
-	        'barang_id' => 7
+	        'barang_id' => 7,
+	        'created_at'      => \Carbon\Carbon::now()
 		]);
 
 		DB::table('transaksi_barangs')->insert([
@@ -168,7 +178,8 @@ class TransaksiBarangSeeder extends Seeder
 	        'keterangan' => 'semoga benar-benar berkualitas',
 	        'jenis_bayar' => 'cod',
 	        'status' => '0',
-	        'barang_id' => 7
+	        'barang_id' => 7,
+	        'created_at'      => \Carbon\Carbon::now()
 		]);
 
 		//riwayat transaksi pupuk
@@ -183,7 +194,8 @@ class TransaksiBarangSeeder extends Seeder
 	        'jenis_bayar' => 'cod',
 	        'status' => '1',
 	        'barang_id' => 7,
-	        'admin_id' => 1
+	        'admin_id' => 1,
+	        'created_at'      => \Carbon\Carbon::now()
 		]);
 		// END TRANSAKSI BIBIT
 

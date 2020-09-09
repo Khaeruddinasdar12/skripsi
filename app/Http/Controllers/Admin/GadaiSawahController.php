@@ -148,6 +148,7 @@ class GadaiSawahController extends Controller
         // $data->delete();
         $data->admin_id = Auth::guard('admin')->user()->id;
         $data->keterangan = $request->get('keterangan');
+        $data->status_at = \Carbon\Carbon::now();
         $data->status = 'batal';
         $data->save();
         return redirect()->back()->with('success', 'Berhasil menghapus pendaftaran gadai sawah');

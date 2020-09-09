@@ -20,7 +20,8 @@ class TransaksiSawahSeeder extends Seeder
 	        	'admin_id'  => null,
 	        	'sawah_id'  => 1,
 	        	'status' 	=> null,
-	        	'keterangan'=> ''
+	        	'keterangan'=> '',
+	        	'created_at'      => \Carbon\Carbon::now()
 			]);
 
 			DB::table('transaksi_sawahs')->insert([ // batal sawahnya untuk di gadai (id 2)
@@ -30,7 +31,8 @@ class TransaksiSawahSeeder extends Seeder
 	            'admin_id'  => 1, //batal by role admin
 	            'sawah_id'  => 2,
 	            'status'    => 'batal',
-	            'keterangan'=> ''
+	            'keterangan'=> '',
+	            'created_at'      => \Carbon\Carbon::now()
 	        ]);
 
 	        DB::table('transaksi_sawahs')->insert([ // Sedang gadai (id 3)
@@ -40,7 +42,8 @@ class TransaksiSawahSeeder extends Seeder
 	        	'admin_id'  => 1, //verified by role admin
 	        	'sawah_id'  => 3,
 	        	'status' 	=> 'gadai',
-	        	'keterangan'=> 'Surat pajak telah diterima oleh pihak Galung App'
+	        	'keterangan'=> 'Surat pajak telah diterima oleh pihak Galung App',
+	        	'created_at'      => \Carbon\Carbon::now()
 			]);
 
 	        DB::table('transaksi_sawahs')->insert([ // riwayat gadai (id 4)
@@ -50,7 +53,8 @@ class TransaksiSawahSeeder extends Seeder
 	            'admin_id'  => 1, //verified by role admin
 	            'sawah_id'  => 4,
 	            'status'    => 'selesai',
-	            'keterangan'=> 'Tergadai tanpa masalah'
+	            'keterangan'=> 'Tergadai tanpa masalah',
+	            'created_at'      => \Carbon\Carbon::now()
 	        ]);
         // END GADAI SAWAH
 
@@ -64,7 +68,8 @@ class TransaksiSawahSeeder extends Seeder
 	            'keterangan'=> 'daftar modal tanam',
 	            'jenis_bibit'	=> 'ciliwung',
 		        'jenis_pupuk'	=> 'phonska',
-		        'periode_tanam'	=> '3 bulan'
+		        'periode_tanam'	=> '3 bulan',
+		        'created_at'      => \Carbon\Carbon::now()
 	        ]);
 
 	        DB::table('transaksi_sawahs')->insert([ //  tergadai modal tanam (id 6)
@@ -75,7 +80,8 @@ class TransaksiSawahSeeder extends Seeder
 	            'keterangan'=> 'sedang modal tanam',
 	            'jenis_bibit'	=> 'situ bagendit',
 		        'jenis_pupuk'	=> 'urea',
-		        'periode_tanam'	=> '3 bulan'
+		        'periode_tanam'	=> '3 bulan',
+		        'created_at'      => \Carbon\Carbon::now()
 	        ]);
 
 	        DB::table('transaksi_sawahs')->insert([ //  tergadai modal tanam (id 6)
@@ -86,7 +92,8 @@ class TransaksiSawahSeeder extends Seeder
 	            'keterangan'=> 'selesai/keterangan modal tanam',
 	            'jenis_bibit'	=> 'barelle',
 	        	'jenis_pupuk'	=> 'urea plus',
-	        	'periode_tanam'	=> '3 bulan'
+	        	'periode_tanam'	=> '3 bulan',
+	        	'created_at'      => \Carbon\Carbon::now()
 	        ]);
 
 	        DB::table('transaksi_sawahs')->insert([ //  tergadai modal tanam (id 6)
@@ -97,7 +104,8 @@ class TransaksiSawahSeeder extends Seeder
 	            'keterangan'=> 'dibatalkan karena tidak memenuhi kriteria sistem',
 	            'jenis_bibit'	=> 'barelle',
 	        	'jenis_pupuk'	=> 'urea plus',
-	        	'periode_tanam'	=> '3 bulan'
+	        	'periode_tanam'	=> '3 bulan',
+	        	'created_at'      => \Carbon\Carbon::now()
 	        ]);
 	    // END MODAL TANAM
         

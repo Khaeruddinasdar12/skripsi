@@ -20,7 +20,8 @@ class BarangSeeder extends Seeder
 	        'stok' 		=> 25,
 	        'keterangan'=> 'Beras berkualitas serius ini cika',
 	        'gambar' 	=> null,
-	        'admin_id' 	=> 1 //admin
+	        'admin_id' 	=> 1, //admin
+	        'created_at'      => \Carbon\Carbon::now()
 		]);
 
 		DB::table('barangs')->insert([ // id 2
@@ -31,7 +32,8 @@ class BarangSeeder extends Seeder
 	        'stok' 		=> 75,  
 	        'keterangan'=> 'Beras berkualitas serius ini cika',
 	        'gambar' 	=> null,
-	        'admin_id' 	=> 1 //admin
+	        'admin_id' 	=> 1, //admin
+	        'created_at'      => \Carbon\Carbon::now()
 		]);
 		// END BERAS
 
@@ -45,7 +47,8 @@ class BarangSeeder extends Seeder
 	        'stok' 		=> 3,
 	        'keterangan'=> 'warna ungu',
 	        'gambar' 	=> null,
-	        'admin_id' 	=> 1 //admin
+	        'admin_id' 	=> 1, //admin
+	        'created_at'      => \Carbon\Carbon::now()
 		]);
 
 		DB::table('barangs')->insert([ // id 5
@@ -56,7 +59,8 @@ class BarangSeeder extends Seeder
 	        'stok' 		=> 3,
 	        'keterangan'=> '15 meter',
 	        'gambar' 	=> null,
-	        'admin_id' 	=> 1 //admin
+	        'admin_id' 	=> 1, //admin
+	        'created_at'      => \Carbon\Carbon::now()
 		]);
 		// END ALAT
 
@@ -70,7 +74,8 @@ class BarangSeeder extends Seeder
 	        'stok' 		=> 100,
 	        'keterangan'=> 'bibit berkualitas',
 	        'gambar' 	=> null,
-	        'admin_id' 	=> 1 //admin
+	        'admin_id' 	=> 1, //admin
+	        'created_at'      => \Carbon\Carbon::now()
 		]);
 
 		DB::table('barangs')->insert([ // id 6
@@ -81,7 +86,8 @@ class BarangSeeder extends Seeder
 	        'stok' 		=> 200,
 	        'keterangan'=> 'bibit unggul',
 	        'gambar' 	=> null,
-	        'admin_id' 	=> 1 //admin
+	        'admin_id' 	=> 1, //admin
+	        'created_at'      => \Carbon\Carbon::now()
 		]);
 		// END BIBIT
 
@@ -95,7 +101,8 @@ class BarangSeeder extends Seeder
 	        'stok' 		=> 500,
 	        'keterangan'=>'untuk pertumbahan padi',
 	        'gambar' 	=> null,
-	        'admin_id' 	=> 1 //admin
+	        'admin_id' 	=> 1, //admin
+	        'created_at'      => \Carbon\Carbon::now()
 		]);
 
 		DB::table('barangs')->insert([ // id 8
@@ -106,7 +113,8 @@ class BarangSeeder extends Seeder
 	        'stok' 		=> 800,
 	        'keterangan'=> 'pupuk yang paling sering digunakan',
 	        'gambar' 	=> null,
-	        'admin_id' 	=> 1 //admin
+	        'admin_id' 	=> 1, //admin
+	        'created_at'      => \Carbon\Carbon::now()
 		]);
 		// END PUPUK
     }
