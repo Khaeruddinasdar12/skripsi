@@ -12,7 +12,7 @@
 </div>
 <!-- end:: Header Mobile -->
 
-<div id="kt_header" class="kt-header  kt-header--fixed galung-header" data-ktheader-minimize="on">
+<div id="kt_header" class="kt-header  kt-header--fixed galung-header">
   <div class="kt-container  kt-container--fluid ">
 
     <!-- begin: Header Menu -->

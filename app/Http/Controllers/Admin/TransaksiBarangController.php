@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\TransaksiBarang;
+
 use App\CartTransaksi;
+
 class TransaksiBarangController extends Controller
 {
     public function __construct()
@@ -15,18 +17,18 @@ class TransaksiBarangController extends Controller
 
     public function index()
     {
-    	$data = CartTransaksi::select('id', 'jumlah', 'barang_id')
-    				->where('transaksi_id', 1)
-    				->get();
-    	return $data;
-    	$data = TransaksiBarang::where('status', '0')
+        $data = CartTransaksi::select('id', 'jumlah', 'barang_id')
+            ->where('transaksi_id', 1)
+            ->get();
+        return $data;
+        $data = TransaksiBarang::where('status', '0')
             ->select('id', 'transaksi_code', 'penerima', 'nohp', 'alamat', 'kecamatan', 'kelurahan', 'rt', 'rw', 'total', 'keterangan', 'user_id')
             ->with('users:id,name,nohp')
             ->with('items:id,nama,jenis,harga,jumlah,subtotal,transaksi_id')
             ->orderBy('created_at', 'desc')
             ->get();
-            // return $data;
-    	return view('admin.page.transaksi', ['data' => $data]);
+        // return $data;
+        return view('admin.page.transaksi', ['data' => $data]);
     }
 
     public function status($id) // mengubah status pembelian menjadi riwayat
