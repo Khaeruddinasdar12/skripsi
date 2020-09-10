@@ -14,9 +14,27 @@ class DataBibitPupukController extends Controller
 			->orWhere('jenis', 'bibit')
 			->paginate(8);
 		return response()->json([
-                    'status' => true,
-                    'message' => 'Semua data bibit-pupuk (per 8 data)',
-                    'data'	=> $data
-                ]);
+            'status' => true,
+            'message' => 'data bibit & pupuk (per 8 data)',
+            'data'  => $data->items(),
+            'current_page' => $data->currentPage(),
+            'first_page_url' => $data->url(1),
+            'from' => $data->firstItem(),
+            'last_page' => $data->lastPage(),
+
+            'last_page_url' => $data->url($data->lastPage()) ,
+            'next_page_url' => $data->nextPageUrl(),
+            'path'  => $data->path(),
+            'per_page' => $data->perPage(),
+            'prev_page_url' => $data->previousPageUrl(),
+            'to' => $data->count(),
+            'total' => $data->total()
+        ]);
+
+		// return response()->json([
+  //                   'status' => true,
+  //                   'message' => 'Semua data bibit-pupuk (per 8 data)',
+  //                   'data'	=> $data
+  //               ]);
 	}
 }

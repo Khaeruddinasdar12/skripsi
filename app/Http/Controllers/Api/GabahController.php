@@ -14,11 +14,24 @@ class GabahController extends Controller
 	public function index()
 	{
 		$data = Gabah::select('id', 'nama', 'harga')->paginate(8);
+        // return $data;
 		return response()->json([
-                    'status' => true,
-                    'message' => 'Data gabah (per 8 data)',
-                    'data'	=> $data
-                ]);
+            'status' => true,
+            'message' => 'data gabah (per 8 data)',
+            'data'  => $data->items(),
+            'current_page' => $data->currentPage(),
+            'first_page_url' => $data->url(1),
+            'from' => $data->firstItem(),
+            'last_page' => $data->lastPage(),
+
+            'last_page_url' => $data->url($data->lastPage()) ,
+            'next_page_url' => $data->nextPageUrl(),
+            'path'  => $data->path(),
+            'per_page' => $data->perPage(),
+            'prev_page_url' => $data->previousPageUrl(),
+            'to' => $data->count(),
+            'total' => $data->total()
+        ]);
 	}
 
     // public function store(Request $request, $id)

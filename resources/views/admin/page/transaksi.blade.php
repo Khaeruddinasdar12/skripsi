@@ -92,12 +92,12 @@
                       </thead>
 
                       <tbody>
-                        @php $no = 0 @enphp
+                        @php $no = 0; @endphp
                         @foreach($data as $datas)
                         <tr>
 
                           <td>
-                            <div class="btn btn-default btn-icon btn-icon-md btn-sm" onclick="det({$no++})">
+                            <div class="btn btn-default btn-icon btn-icon-md btn-sm" onclick="det({! $no++ !})">
                               <i class="fa fa-angle-right"></i>
                             </div>
                           </td>
