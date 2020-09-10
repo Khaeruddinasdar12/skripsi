@@ -11,18 +11,7 @@ use Auth;
 use DB;
 class PupukController extends Controller
 {
-    public function index() //menampilkan daftar Pupuk (tanpa header)
-	{
-		$data = Barang::select('id', 'nama', 'harga', 'min_beli', 'stok', 'keterangan', 'gambar')
-			->where('jenis', 'pupuk')
-			->paginate(8);
-		return response()->json([
-                    'status' => true,
-                    'message' => 'Semua data pupuk (per 8 data)',
-                    'data'	=> $data
-                ]);
-	}
-
+    
 	public function store(Request $request, $id) //proses pembelian pupuk
 	{
 		if(!$user = Auth::user()) {
