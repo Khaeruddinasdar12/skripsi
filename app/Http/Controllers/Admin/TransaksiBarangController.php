@@ -16,9 +16,9 @@ class TransaksiBarangController extends Controller
 
     public function index() //list sedang transaksi
     {
-        $data = CartTransaksi::select('id', 'jumlah', 'barang_id')
-            ->where('transaksi_id', 1)
-            ->get();
+        // $data = CartTransaksi::select('id', 'jumlah', 'barang_id')
+        //     ->where('transaksi_id', 1)
+        //     ->get();
         // return $data;
         $data = TransaksiBarang::where('status', '0')
             ->select('id', 'transaksi_code', 'penerima', 'nohp', 'alamat', 'kecamatan', 'kelurahan', 'rt', 'rw', 'total', 'keterangan', 'user_id')

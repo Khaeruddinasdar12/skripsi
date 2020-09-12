@@ -15,47 +15,60 @@
 		<h5>Laporan Keuangan {{$bln .' '. $thn}} </h5>
 	</center>
  
-	<table class='table table-bordered'>
-		<thead>
-			<tr>
-				<th>No</th>
-				<th>Pembeli</th>
-				<th>Jenis Barang</th>
-				<th>Nama Barang</th>
-				<th>Jumlah</th>
-				<th>Harga Satuan</th>
-				<th>Tanggal</th>
-				<th>Subtotal</th>
-			</tr>
-		</thead>
-		<tbody>
-                        @php $no = 1; $alltotal = 0; @endphp
+	<table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Kode Transaksi</th>
+                          <th>Nama Penerima</th>
+                          <th>No. Hp</th>
+                          <th>Total Harga</th>
+                          <th>Jenis Pembayaran</th>
+                          <th>Akun</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        @php $no = 1; @endphp
                         @foreach($data as $datas)
                         <tr>
-                          <th scope="row">{{ $no++ }}</th>
-                          <td>{{ $datas->pembeli }}</td>
-                          <td>{{ $datas->jenis }}</td>
-                          <td>{{ $datas->nama }}</td>
-                          <td>{{ $datas->jumlah }}</td>
-                          <td>Rp. {{ format_uang($datas->harga) }}</td>
-                          <td>{{$datas->created_at}}</td>
-                          <td>@if($datas->jenis == 'gadai sawah')
-                                @php $total = $datas->harga; @endphp 
-                                Rp. {{ format_uang($total) }} 
-                              @else 
-                                @php $total = $datas->harga * $datas->jumlah; @endphp 
-                                Rp. {{ format_uang($total) }}
-                              @endif
+                          <td scope="row">{{$no++}}</td>
+                          <td>{{$datas->transaksi_code}}</td>
+                          <td>{{$datas->penerima}}</td>
+                          <td>{{$datas->nohp}}</td>
+                          <td>Rp. {{format_uang($datas->total)}}</td>
+                          <td>Cash On Delivery
                           </td>
+                          <td>{{$datas->users->name}}</td>
                         </tr>
-                        @php $alltotal = $alltotal + $total; @endphp
+                        <thead>
+                        <tr>
+                          <td></td>
+                          <td rowspan="{{ $datas->items->count() + 1}}"></td>
+                          <th>nama barang</th>
+                          <th>Jenis barang</th>
+                          <th>harga</th>
+                          <th>jumlah</th>
+                          <th>subtotal</th>
+                        </tr>
+                        </thead>
+                        @foreach($datas->items as $items)
+                        <tr>
+                          <td></td>
+                          <td>{{$items->nama}}</td>
+                          <td>{{$items->jenis}}</td>
+                          <td>Rp. {{format_uang($items->harga)}}</td>
+                          <td>{{$items->jumlah}}</td>
+                          <td>Rp. {{format_uang($items->subtotal)}}</td>
+                        </tr>
                         @endforeach
                         <tr>
-                          <td colspan="7" align="center"><b>Total</b></td>
-                          <td><b>Rp. {{ format_uang($alltotal) }}</b></td>
+                          <th colspan="4">Total</th>
+                          <th>Rp. {{format_uang($datas->total)}}</th>
                         </tr>
+                        @endforeach
                       </tbody>
-	</table>
+                    </table>
  
 </body>
 </html>

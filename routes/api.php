@@ -30,6 +30,8 @@ $api->version('v1', function($api) {
         Route::get('user', 'Api\UserController@detail');
         Route::post('edit-user', 'Api\UserController@update');
 
+
+        // TRANSAKSI
         Route::post('add-cart/{id}', 'Api\TransaksiBarangController@addcart');
         Route::post('checkout/{id}', 'Api\TransaksiBarangController@checkout');
         Route::get('cart', 'Api\TransaksiBarangController@cart');
@@ -39,7 +41,7 @@ $api->version('v1', function($api) {
         Route::get('proses-belanja', 'Api\TransaksiBarangController@proses');
         Route::get('riwayat-belanja', 'Api\TransaksiBarangController@riwayat');
         Route::get('batal-belanja', 'Api\TransaksiBarangController@batal');
-
+        // END TRANSAKSI
 
         // BERAS
         Route::post('beras-store/{id}', 'Api\BerasController@store'); // post beli beras
