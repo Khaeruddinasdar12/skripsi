@@ -6,8 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Barang;
 use Auth;
-
-class BerasController extends Controller
+class BarangController extends Controller
 {
     public function __construct()
     {
@@ -18,28 +17,30 @@ class BerasController extends Controller
     {
         //mengurutkan dari terbaru ke terlama (descending)
         if($request->get('search') != '') {
-            $data = Barang::where('jenis', 'beras')
-                    ->with('admins:id,name')
+            $data = Barang::with('admins:id,name')
                     ->where('nama', 'like', '%'.$request->get('search').'%')
+                    ->orWhere('jenis', 'like', '%'.$request->get('search').'%')
                     ->orderBy('created_at', 'desc')
                     ->paginate(10);
         } else {
-            $data = Barang::where('jenis', 'beras')
-                    ->with('admins:id,name')
+            $data = Barang::with('admins:id,name')
                     ->orderBy('created_at', 'desc')
                     ->paginate(10);
         }
         $jml = Barang::where('jenis', 'beras')
                 ->count();
+        // $jml = Barang::where('jenis', 'beras')
+        //         ->count();
         // return $data; //uncomment ini untuk melihat api data
 
-        return view('admin.page.beras', ['data' => $data, 'jml' => $jml]); //struktur folder di folder views
+        return view('admin.page.barang', ['data' => $data, 'jml' => $jml]); //struktur folder di folder views
     }
 
     public function store(Request $request) //menambah data beras
     {
         $validasi = $this->validate($request, [
             'nama'      => 'required|string',
+            'jenis'		=> 'required|string',
             'harga'     => 'required|numeric',
             'min_beli'  => 'required|numeric',
             'stok'      => 'required|numeric',
@@ -47,9 +48,13 @@ class BerasController extends Controller
             'gambar'    => 'image|mimes:jpeg,png,jpg|max:3072'
         ]);
 
+        $arrjenis = array('alat', 'beras', 'bibit', 'pupuk'); 
+        if(!in_array($request->get('jenis'), $arrjenis)) {
+        	return redirect()->back()->with('error', 'Lu ngapain sih ?');
+        }
         $data = new Barang;
         $data->nama         = $request->get('nama');
-        $data->jenis        = 'beras';
+        $data->jenis        = $request->get('jenis');
         $data->harga        = $request->get('harga');
         $data->min_beli     = $request->get('min_beli');
         $data->stok         = $request->get('stok');
@@ -62,14 +67,14 @@ class BerasController extends Controller
             $data->gambar = $gambar_path;
         }
         $data->save();
-        return redirect()->back()->with('success', 'Berhasil menambah data beras');
+        return redirect()->back()->with('success', 'Berhasil menambah data barang');
     }
 
-    public function update(Request $request, $id) //mengubah atau suplly data beras
+     public function update(Request $request, $id) //mengubah atau suplly data beras
     {
         $validasi = $this->validate($request, [
             'nama'      => 'required|string',
-            'jenis'     => 'required|string',
+            'jenis'		=> 'required|string',
             'harga'     => 'required|numeric',
             'min_beli'  => 'required|numeric',
             'stok'      => 'required|numeric',
@@ -77,8 +82,14 @@ class BerasController extends Controller
             'gambar'    => 'image|mimes:jpeg,png,jpg|max:3072'
         ]);
 
+        $arrjenis = array('alat', 'beras', 'bibit', 'pupuk'); 
+	        if(!in_array($request->get('jenis'), $arrjenis)) {
+	        	return redirect()->back()->with('error', 'Lu ngapain sih ?');
+        }
+
         $data = Barang::findOrFail($id);
         $data->nama         = $request->get('nama');
+        $data->jenis        = $request->get('jenis');
         $data->harga        = $request->get('harga');
         $data->min_beli     = $request->get('min_beli');
         $data->stok         = $request->get('stok');
@@ -94,14 +105,17 @@ class BerasController extends Controller
             $data->gambar = $gambar_path;
         }
         $data->save();
-        return redirect()->back()->with('success', 'Berhasil mengubah data beras');
+        return redirect()->back()->with('success', 'Berhasil mengubah data barang');
     }
 
     public function delete($id)
     {
         $data = Barang::findOrFail($id);
+        if ($data->gambar && file_exists(storage_path('app/public/' . $data->gambar))) {
+                \Storage::delete('public/' . $data->gambar);
+            }
         $data->delete();
 
-        return redirect()->back()->with('success', 'Berhasil menghapus data beras');
+        return redirect()->back()->with('success', 'Berhasil menghapus data barang');
     }
 }

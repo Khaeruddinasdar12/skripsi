@@ -41,6 +41,14 @@
           </li>
           <!-- end dashboard menu -->
 
+          <!-- manage data barang -->
+          <li class="kt-menu__item kt-menu__item--rel {{ request()->is('admin/data-barang') ? 'kt-menu__item--open kt-menu__item--here' : '' }}">
+            <a href="{{ route('index.barang') }}" class="kt-menu__link">
+              <span class="kt-menu__link-text kt-menu__link-text {{ request()->is('admin/data-barang') ? '' : 'top-text-nav' }}">Barang</span>
+            </a>
+          </li>
+          <!-- end manage barang -->
+
           <!-- gabah menu -->
           <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel {{ request()->is('admin/gabah') || request()->is('admin/transaksi-gabah') || request()->is('admin/riwayat-transaksi-gabah') ? 'kt-menu__item--open kt-menu__item--here' : '' }}" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
             <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
@@ -126,15 +134,15 @@
           <!-- end sawah -->
 
           <!-- penjualan menu -->
-          <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel {{ request()->is('admin/alat') || request()->is('admin/transaksi-alat') || request()->is('admin/riwayat-transaksi-alat') || request()->is('admin/beras') || request()->is('admin/transaksi-beras') || request()->is('admin/riwayat-transaksi-beras') || request()->is('admin/bibit') || request()->is('admin/transaksi-bibit') || request()->is('admin/riwayat-transaksi-bibit') || request()->is('admin/pupuk') || request()->is('admin/transaksi-pupuk') || request()->is('admin/riwayat-transaksi-pupuk')  ? 'kt-menu__item--open kt-menu__item--here' : '' }}" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
+         <!--  <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel {{ request()->is('admin/alat') || request()->is('admin/transaksi-alat') || request()->is('admin/riwayat-transaksi-alat') || request()->is('admin/beras') || request()->is('admin/transaksi-beras') || request()->is('admin/riwayat-transaksi-beras') || request()->is('admin/bibit') || request()->is('admin/transaksi-bibit') || request()->is('admin/riwayat-transaksi-bibit') || request()->is('admin/pupuk') || request()->is('admin/transaksi-pupuk') || request()->is('admin/riwayat-transaksi-pupuk')  ? 'kt-menu__item--open kt-menu__item--here' : '' }}" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
             <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
               <span class="kt-menu__link-text {{ request()->is('admin/alat') || request()->is('admin/transaksi-alat') || request()->is('admin/riwayat-transaksi-alat') || request()->is('admin/beras') || request()->is('admin/transaksi-beras') || request()->is('admin/riwayat-transaksi-beras') || request()->is('admin/bibit') || request()->is('admin/transaksi-bibit') || request()->is('admin/riwayat-transaksi-bibit') || request()->is('admin/pupuk') || request()->is('admin/transaksi-pupuk') || request()->is('admin/riwayat-transaksi-pupuk')  ? '' : 'top-text-nav' }}">Penjualan</span>
               <i class="fa fa-angle-down {{ request()->is('admin/alat') || request()->is('admin/transaksi-alat') || request()->is('admin/riwayat-transaksi-alat') || request()->is('admin/beras') || request()->is('admin/transaksi-beras') || request()->is('admin/riwayat-transaksi-beras') || request()->is('admin/bibit') || request()->is('admin/transaksi-bibit') || request()->is('admin/riwayat-transaksi-bibit') || request()->is('admin/pupuk') || request()->is('admin/transaksi-pupuk') || request()->is('admin/riwayat-transaksi-pupuk') ? 'icon-here' : '' }}"></i>
             </a>
             <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
-              <ul class="kt-menu__subnav">
+              <ul class="kt-menu__subnav"> -->
                 <!-- alat -->
-                <li class="kt-menu__item kt-menu__item--submenu" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
+               <!--  <li class="kt-menu__item kt-menu__item--submenu" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
                   <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
                     <span class="kt-menu__link-text">Alat</span>
                     <i class="kt-menu__hor-arrow la la-angle-right"></i>
@@ -168,11 +176,11 @@
                       </li>
                     </ul>
                   </div>
-                </li>
+                </li> -->
                 <!-- end alat -->
 
                 <!-- bibit -->
-                <li class="kt-menu__item kt-menu__item--submenu" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
+               <!--  <li class="kt-menu__item kt-menu__item--submenu" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
                   <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
                     <span class="kt-menu__link-text">Bibit</span>
                     <i class="kt-menu__hor-arrow la la-angle-right"></i>
@@ -206,11 +214,11 @@
                       </li>
                     </ul>
                   </div>
-                </li>
+                </li> -->
                 <!-- end bibit -->
 
                 <!-- pupuk -->
-                <li class="kt-menu__item kt-menu__item--submenu" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
+               <!--  <li class="kt-menu__item kt-menu__item--submenu" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
                   <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
                     <span class="kt-menu__link-text">Pupuk</span>
                     <i class="kt-menu__hor-arrow la la-angle-right"></i>
@@ -244,11 +252,11 @@
                       </li>
                     </ul>
                   </div>
-                </li>
+                </li> -->
                 <!-- end pupuk -->
 
                 <!-- beras -->
-                <li class="kt-menu__item kt-menu__item--submenu" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
+             <!--    <li class="kt-menu__item kt-menu__item--submenu" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
                   <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
                     <span class="kt-menu__link-text">Beras</span>
                     <i class="kt-menu__hor-arrow la la-angle-right"></i>
@@ -282,11 +290,11 @@
                       </li>
                     </ul>
                   </div>
-                </li>
+                </li> -->
                 <!-- end beras -->
-              </ul>
+             <!--  </ul>
             </div>
-          </li>
+          </li> -->
           <!-- end penjualan -->
 
           <!-- dashboard menu -->
