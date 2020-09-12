@@ -28,6 +28,8 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 
 	//TRANSAKSI
 	Route::get('transaksi-barang', 'TransaksiBarangController@index')->name('index.transaksi');
+	Route::get('transaksi-barang-status/{id}', 'TransaksiBarangController@status')->name('status.transaksi');
+	Route::get('transaksi-barang-delete/{id}', 'TransaksiBarangController@delete')->name('delete.transaksi'); // mengahapus transaksi (membatalkan)
 	//END TRANSAKSI
 
 
