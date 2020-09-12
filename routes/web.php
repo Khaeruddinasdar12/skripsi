@@ -28,8 +28,8 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 
 	//TRANSAKSI
 	Route::get('transaksi-barang', 'TransaksiBarangController@index')->name('index.transaksi');//list sedang transaksi
-	Route::get('transaksi-barang-status/{id}', 'TransaksiBarangController@status')->name('status.transaksi'); // mengubah status transaksi menjadi terproses(verif->keriwayat)
-	Route::get('transaksi-barang-delete/{id}', 'TransaksiBarangController@delete')->name('delete.transaksi'); // mengahapus transaksi (membatalkan)
+	Route::put('transaksi-barang-status/{id}', 'TransaksiBarangController@status')->name('status.transaksi'); // mengubah status transaksi menjadi terproses(verif->keriwayat)
+	Route::delete('transaksi-barang-delete/{id}', 'TransaksiBarangController@delete')->name('delete.transaksi'); // mengahapus transaksi (membatalkan)
 	//END TRANSAKSI
 
 

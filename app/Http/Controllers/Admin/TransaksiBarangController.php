@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\TransaksiBarang;
 use App\CartTransaksi;
 use App\Barang;
+use Auth;
 class TransaksiBarangController extends Controller
 {
     public function __construct()
@@ -26,8 +27,10 @@ class TransaksiBarangController extends Controller
             ->with('items:id,nama,jenis,harga,jumlah,subtotal,transaksi_id')
             ->orderBy('created_at', 'desc')
             ->get();
+        $jml = TransaksiBarang::where('status', '0')
+            ->count();
         // return $data;
-        return view('admin.page.transaksi', ['data' => $data]);
+        return view('admin.page.transaksi', ['data' => $data, 'jml' => $jml]);
     }
 
     public function status($id) // mengubah status transaksi menjadi terproses(verif->keriwayat)
@@ -53,7 +56,7 @@ class TransaksiBarangController extends Controller
         $data->status = '1';
         $data->admin_id = Auth::guard('admin')->user()->id;
         $data->save();
-        return redirect()->back()->with('success', 'Transaksi dengan kode' . $data->transaksi_code . ' berhasil');
+        return redirect()->back()->with('success', 'Transaksi dengan kode ' . $data->transaksi_code . ' berhasil');
     }
 
     public function delete(Request $request, $id) // mengahapus transaksi (membatalkan)

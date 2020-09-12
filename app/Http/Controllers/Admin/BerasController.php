@@ -69,7 +69,6 @@ class BerasController extends Controller
     {
         $validasi = $this->validate($request, [
             'nama'      => 'required|string',
-            'jenis'     => 'required|string',
             'harga'     => 'required|numeric',
             'min_beli'  => 'required|numeric',
             'stok'      => 'required|numeric',
