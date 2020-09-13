@@ -19,6 +19,97 @@ class Laporan extends Controller
         $this->middleware('auth:admin');
     }
 
+    public function laporan(Request $request)
+    {   
+        $jml = $request->get('jumlah');
+        $thn = $request->get('tahun');
+        $bln = $request->get('bulan');
+        if(empty($jml)) {
+            $jml = $jml;
+        } else {
+            $jml = 100;
+        }
+
+        $tahun = DB::table('transaksi_barangs')
+                ->where('status', '1')
+                ->selectRaw('YEAR(created_at) as year')
+                ->distinct()
+                ->get();
+
+        $blnstr = '';
+
+        if(!empty($thn)) {
+            if(!empty($bln)) {
+                $arraybln = array("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"); 
+                if(in_array($bln, $arraybln)) {
+                    switch ($bln) {
+                        case '1': $blnstr = 'Januari'; break;
+                        case '2': $blnstr = 'Februari'; break;
+                        case '3': $blnstr = 'Maret'; break;
+                        case '4': $blnstr = 'April'; break;
+                        case '5': $blnstr = 'Mei'; break;
+                        case '6': $blnstr = 'Juni'; break;
+                        case '7': $blnstr = 'Juli'; break;
+                        case '8': $blnstr = 'Agustus'; break;
+                        case '9': $blnstr = 'September'; break;
+                        case '10': $blnstr = 'Oktober'; break;
+                        case '11': $blnstr = 'November'; break;
+                        case '12': $blnstr = 'Desember'; break;
+                        default: $blnstr = ''; break;
+                    } 
+                } else {
+                        return redirect()->back()->with('error', 'Masukkan bulan yang valid (angka 1-12)');
+                }
+                $data = TransaksiBarang::where('status', '1')
+                    ->select('id', 'transaksi_code', 'penerima', 'nohp', 'alamat', 'kecamatan', 'kelurahan', 'rt', 'rw', 'total', 'keterangan', 'user_id')
+                    ->with('users:id,name,nohp')
+                    ->with('items:id,nama,jenis,harga,jumlah,subtotal,transaksi_id')
+                    ->whereMonth('created_at', $bln)
+                    ->whereYear('created_at', $thn)
+                    ->orderBy('created_at', 'desc')
+                    ->paginate($jml);
+            } else {
+                $data = TransaksiBarang::where('status', '1')
+                    ->select('id', 'transaksi_code', 'penerima', 'nohp', 'alamat', 'kecamatan', 'kelurahan', 'rt', 'rw', 'total', 'keterangan', 'user_id')
+                    ->with('users:id,name,nohp')
+                    ->with('items:id,nama,jenis,harga,jumlah,subtotal,transaksi_id')
+                    ->whereYear('created_at', $thn)
+                    ->orderBy('created_at', 'desc')
+                    ->paginate($jml);
+            }
+        } else {
+            $data = TransaksiBarang::where('status', '1')
+                ->select('id', 'transaksi_code', 'penerima', 'nohp', 'alamat', 'kecamatan', 'kelurahan', 'rt', 'rw', 'total', 'keterangan', 'user_id')
+                ->with('users:id,name,nohp')
+                ->with('items:id,nama,jenis,harga,jumlah,subtotal,transaksi_id')
+                ->orderBy('created_at', 'desc')
+                ->paginate($jml);
+        }
+
+        // return $data;
+        // foreach ($data as $datas) {
+        //     return $datas->id;
+        // }
+        // return $data->count();
+        
+        if($request->get('jenis') == 'excel') {
+            return Excel::download(new ExcelExport($data), 'galung-app.xlsx');
+        } else if ($request->get('jenis') == 'pdf') {
+            $pdf = PDF::loadView('pdf', [
+                'data' => $data,
+                'thn'   => $thn,
+                'bln'   => $blnstr
+            ]);  
+            return $pdf->download('galung-app.pdf');
+        } 
+
+        return view('admin.page.laporan', [
+            'data' => $data,
+            'tahun' => $tahun,
+            'bulan' => $blnstr
+        ]);
+    }
+
     public function pdf(Request $request)
     {
         // return $request;

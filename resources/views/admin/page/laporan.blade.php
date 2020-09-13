@@ -49,7 +49,7 @@
               <i class="fa fa-file-signature"></i>
             </span>
             <h3 class="kt-portlet__head-title">
-              Laporan Keuangan
+              Laporan Keuangan {{$bulan}} {{Request::get('tahun')}}
             </h3>
           </div>
 
@@ -59,17 +59,6 @@
                 <option value="100" @if(Request::get('jumlah')=='100' ) {{"selected"}} @endif>100</option>
                 <option value="50" @if(Request::get('jumlah')=='50' ) {{"selected"}} @endif>50</option>
                 <option value="10" @if(Request::get('jumlah')=='10' ) {{"selected"}} @endif>10</option>
-              </select>
-
-              <select class="form-control-sm" name="transaksi">
-                <option value="">pilih transaksi</option>
-                <option value="alat" @if(Request::get('transaksi')=='alat' ) {{"selected"}} @endif>Transaksi Alat</option>
-                <option value="beras" @if(Request::get('transaksi')=='beras' ) {{"selected"}} @endif>Transaksi Beras</option>
-                <option value="bibit" @if(Request::get('transaksi')=='bibit' ) {{"selected"}} @endif>Transaksi Bibit</option>
-                <option value="pupuk" @if(Request::get('transaksi')=='pupuk' ) {{"selected"}} @endif>Transaksi Pupuk</option>
-                <option value="gabah" @if(Request::get('transaksi')=='gabah' ) {{"selected"}} @endif>Transaksi Gabah</option>
-                <option value="gs" @if(Request::get('transaksi')=='gs' ) {{"selected"}} @endif>Transaksi Gadai Sawah</option>
-
               </select>
               <select class="form-control-sm" name="tahun">
                 <option value="">pilih tahun</option>
@@ -111,7 +100,7 @@
                 <ul class="kt-nav">
                   <li class="kt-nav__item">
                     <div>
-                      <form class="kt-nav__link" action="{{route('pdf.laporan')}}" method="get">
+                      <form class="kt-nav__link" action="{{route('index.laporan')}}" method="get">
                         <input type="hidden" name="bulan" value="{{Request::get('bulan')}}">
                         <input type="hidden" name="transaksi" value="{{Request::get('transaksi')}}">
                         <input type="hidden" name="tahun" value="{{Request::get('tahun')}}">
@@ -125,7 +114,7 @@
                   </li>
                   <li class="kt-nav__item">
                     <div>
-                      <form class="kt-nav__link" action="{{route('pdf.laporan')}}" method="get">
+                      <form class="kt-nav__link" action="{{route('index.laporan')}}" method="get">
                         <input type="hidden" name="bulan" value="{{Request::get('bulan')}}">
                         <input type="hidden" name="transaksi" value="{{Request::get('transaksi')}}">
                         <input type="hidden" name="tahun" value="{{Request::get('tahun')}}">
@@ -144,55 +133,75 @@
 
         </div>
         <div class="kt-portlet__body">
-          <div class="kt-section">
-            <div class="kt-section__content">
-              <div class="table-responsive">
-                <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Pembeli</th>
-                      <th>Jenis Barang</th>
-                      <th>Nama Barang</th>
-                      <th>Jumlah</th>
-                      <th>Harga Satuan</th>
-                      <th>Tanggal</th>
-                      <th>Subtotal</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @php $no = 1; $alltotal = 0; @endphp
-                    @foreach($data as $datas)
-                    <tr>
-                      <td scope="row">{{ $no++ }}</td>
-                      <td>{{ $datas->pembeli }}</td>
-                      <td>{{ $datas->jenis }}</td>
-                      <td>{{ $datas->nama }}</td>
-                      <td>{{ $datas->jumlah }}</td>
-                      <td>Rp. {{ format_uang($datas->harga) }}</td>
-                      <td>{{$datas->created_at}}</td>
-                      <td>@if($datas->jenis == 'gadai sawah')
-                        @php $total = $datas->harga; @endphp
-                        Rp. {{ format_uang($total) }}
-                        @else
-                        @php $total = $datas->harga * $datas->jumlah; @endphp
-                        Rp. {{ format_uang($total) }}
-                        @endif
-                      </td>
-                    </tr>
-                    @php $alltotal = $alltotal + $total; @endphp
-                    @endforeach
-                    <tr>
-                      <td colspan="7" align="center"><b>Total</b></td>
-                      <td><b>Rp. {{ format_uang($alltotal) }}</b></td>
-                    </tr>
-                  </tbody>
-                </table>
-                {{$data->links()}}
+              <div class="kt-section">
+                <div class="kt-section__content">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Kode Transaksi</th>
+                          <th>Nama Penerima</th>
+                          <th>No. Hp</th>
+                          <th>Total Harga</th>
+                          <th>Jenis Pembayaran</th>
+                          <th>Akun</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        @php $no = 0; @endphp
+                        @foreach($data as $datas)
+                        <tr class="table-secondary">
+
+                          <td>
+                            <div class="btn btn-default btn-icon btn-icon-md btn-sm" onclick="det({! $no++ !})">
+                              <i class="fa fa-angle-right"></i>
+                            </div>
+                          </td>
+                          <td>{{$datas->transaksi_code}}</td>
+                          <td>{{$datas->penerima}}</td>
+                          <td>{{$datas->nohp}}</td>
+                          <td>Rp. {{format_uang($datas->total)}}</td>
+                          <td>Cash On Delivery
+                          </td>
+                          <td>{{$datas->users->name}}</td>
+                        </tr>
+                        <thead>
+                        <tr class="">
+                          <td></td>
+                          <td></td>
+                          <th>nama barang</th>
+                          <th>Jenis barang</th>
+                          <th>harga</th>
+                          <th>jumlah</th>
+                          <th>subtotal</th>
+                        </tr>
+                        </thead>
+                        @foreach($datas->items as $items)
+                        <tr class="detail-keranjang{$no++}">
+                          <td></td>
+                          <td></td>
+                          <td>{{$items->nama}}</td>
+                          <td>{{$items->jenis}}</td>
+                          <td>Rp. {{format_uang($items->harga)}}</td>
+                          <td>{{$items->jumlah}}</td>
+                          <td>Rp. {{format_uang($items->subtotal)}}</td>
+                        </tr>
+                        @endforeach
+                        <tr>
+                          <th></th>
+                          <th></th>
+                          <th colspan="4">Total</th>
+                          <th>Rp. {{format_uang($datas->total)}}</th>
+                        </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
 
       </div>
     </div>
