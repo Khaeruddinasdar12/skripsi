@@ -32,6 +32,7 @@ table {
     .dropdown-table-custom {
         ul {
             .edit-data {
+
                 &:hover .kt-nav__link-icon,
                 &:hover .kt-nav__link-text {
                     color: $biru !important;
@@ -39,6 +40,7 @@ table {
             }
 
             .hapus-data {
+
                 &:hover .kt-nav__link-icon,
                 &:hover .kt-nav__link-text {
                     color: $merah !important;
@@ -483,15 +485,21 @@ table {
 }
 
 .detail-keranjang {
-    opacity: 0;
-    position: absolute !important;
-    transition: 0.5s;
+    transform: translateY(-10000px) !important;
+    transition: .5s;
+    padding: 0 !important;
+    line-height: 0 !important;
+    margin: 0 !important;
+    position: absolute;
 }
 
 .detail-keranjang-active {
-    opacity: 1;
-    position: relative !important;
-    transition: 0.5s;
+    transform: translateY(0) !important;
+    transition: .5s;
+    padding: 15px !important;
+    line-height: 15px !important;
+    margin: 15px !important;
+    position: relative;
 }
 
 // end detail keranjang transaksi

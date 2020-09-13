@@ -531,15 +531,21 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
 }
 
 .detail-keranjang {
-  opacity: 0;
-  position: absolute !important;
+  transform: translateY(-10000px) !important;
   transition: 0.5s;
+  padding: 0 !important;
+  line-height: 0 !important;
+  margin: 0 !important;
+  position: absolute;
 }
 
 .detail-keranjang-active {
-  opacity: 1;
-  position: relative !important;
+  transform: translateY(0) !important;
   transition: 0.5s;
+  padding: 15px !important;
+  line-height: 15px !important;
+  margin: 15px !important;
+  position: relative;
 }
 
 .modal .detail-modal {

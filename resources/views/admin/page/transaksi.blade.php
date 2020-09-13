@@ -78,7 +78,7 @@
               <div class="kt-section">
                 <div class="kt-section__content">
                   <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table">
                       <thead>
                         <tr>
                           <th>#</th>
@@ -97,7 +97,7 @@
                         <tr>
 
                           <td>
-                            <div class="btn btn-default btn-icon btn-icon-md btn-sm" onclick="det({! $no++ !})">
+                            <div class="btn btn-default btn-icon btn-icon-md btn-sm btn-detail" onclick="det({$no})">
                               <i class="fa fa-angle-right"></i>
                             </div>
                           </td>
@@ -125,8 +125,7 @@
                             </div>
                           </td>
                         </tr>
-                        <tr class="detail-keranjang{$no++}">
-                          <td></td>
+                        <tr class="detail-keranjang">
                           <td></td>
                           <td>nama barang</td>
                           <td>Jenis barang</td>
@@ -135,8 +134,7 @@
                           <td>subtotal</td>
                         </tr>
                         @foreach($datas->items as $items)
-                        <tr class="detail-keranjang{$no++}">
-                          <td></td>
+                        <tr class="detail-keranjang">
                           <td></td>
                           <td>{{$items->nama}}</td>
                           <td>{{$items->jenis}}</td>
@@ -328,7 +326,7 @@
   //End Modal hapus
   function det(no) {
     $(".btn-detail" + no).click(function() {
-      $(".detail-keranjang" + no).toggleClass("detail-keranjang-active");
+      $(".detail-keranjang").toggleClass("detail-keranjang-active");
     });
   }
 </script>
