@@ -97,7 +97,7 @@
                         <tr>
 
                           <td>
-                            <div class="btn btn-default btn-icon btn-icon-md btn-sm btn-detail" onclick="det({$no})">
+                            <div class="btn btn-default btn-icon btn-icon-md btn-sm btn-detail{{$no++}}">
                               <i class="fa fa-angle-right"></i>
                             </div>
                           </td>
@@ -324,11 +324,9 @@
     modal.find('.modal-body #hapus-data').attr('action', href)
   })
   //End Modal hapus
-  function det(no) {
-    $(".btn-detail" + no).click(function() {
-      $(".detail-keranjang").toggleClass("detail-keranjang-active");
-    });
-  }
+  $(".btn-detail" + $no).click(function() {
+    $(".detail-keranjang").toggleClass("detail-keranjang-active");
+  });
 </script>
 
 @endsection
