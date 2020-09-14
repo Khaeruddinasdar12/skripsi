@@ -106,6 +106,28 @@ class TransaksiBarangController extends Controller
                     'message'   => 'Invalid Token'
                 ]);
         }
+
+        $validator = Validator::make($request->all(), [
+            'nama_penerima' => 'required|string',
+            'nohp'          => 'required|string',
+            'alamat'        => 'required|string',
+            'alamat_id'     => 'required|numeric',
+            'kecamatan'     => 'required|string',
+            'kelurahan'     => 'required|string',
+            'rt' => 'required|string',
+            'rw' => 'required|string',
+            'keterangan'    => 'string'
+
+        ]);
+
+        if($validator->fails()) {
+                $message = $validator->messages()->first();
+                return response()->json([
+                    'status' => false,
+                    'messsage' => $message
+                ]);
+        }
+
         $time = Carbon::now();
     	$transaksi_code = 'INV-GLG'.$time->format('Y').$time->format('m').$time->format('d').$time->format('H').$time->format('i').$time->format('s').$user->id;
 
@@ -139,7 +161,7 @@ class TransaksiBarangController extends Controller
 
         return response()->json([
                 'status' => true, 
-                'message' => 'Berhasil mengirim permintaan pembelian barang ! Segera diproses.'
+                'message' => 'Berhasil mengirim permintaan pembelian barang dengan kode transaksi '.$data->transaksi_code.'. Segera diproses. '
             ]);
 	}
 
@@ -163,7 +185,7 @@ class TransaksiBarangController extends Controller
         	}
 
         $data = DB::table('cart_transaksis')
-        		->select('cart_transaksis.id', 'cart_transaksis.jumlah', 'cart_transaksis.harga as harga_satuan', 'cart_transaksis.nama', 'cart_transaksis.jenis', 'cart_transaksis.subtotal')
+        		->select('cart_transaksis.id as id_item', 'cart_transaksis.jumlah', 'cart_transaksis.harga as harga_satuan', 'cart_transaksis.nama', 'cart_transaksis.jenis', 'cart_transaksis.subtotal')
         		->join('transaksi_barangs', 'cart_transaksis.transaksi_id', '=', 'transaksi_barangs.id')
         		->where('transaksi_barangs.user_id', $user->id)
         		->where('transaksi_barangs.status', null)
@@ -174,7 +196,7 @@ class TransaksiBarangController extends Controller
         return response()->json([
                 'status' 	=> true, 
                 'message' 	=> 'keranjang dan items nya.',
-                'id'		=> $transaksi->id,
+                'id_transaski'		=> $transaksi->id,
                 'total'		=> $transaksi->total,
                 'data'		=> $data,
                 
