@@ -46,6 +46,14 @@ table {
                     color: $merah !important;
                 }
             }
+
+            .verif-data {
+
+                &:hover .kt-nav__link-icon,
+                &:hover .kt-nav__link-text {
+                    color: $galungcolor !important;
+                }
+            }
         }
     }
 }
@@ -482,10 +490,6 @@ table {
 
 .btn-detail {
     cursor: pointer;
-}
-
-.animation {
-    transition: .5s !important;
 }
 
 // end detail keranjang transaksi

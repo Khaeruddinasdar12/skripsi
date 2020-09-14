@@ -131,7 +131,7 @@
                                   </a>
                                 </li>
                                 <li class="kt-nav__item">
-                                  <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-verif-gadai" data-id="{{$datas->id}}" data-name="{{$datas->sawahs->users->name}}" data-keterangan="{{$datas->keterangan}}" data-href="{{ route('gadaistatus.modaltanam', ['id' => $datas->id]) }}">
+                                  <a href="#" class="kt-nav__link verif-data" data-toggle="modal" data-target="#modal-verif-gadai" data-id="{{$datas->id}}" data-name="{{$datas->sawahs->users->name}}" data-keterangan="{{$datas->keterangan}}" data-href="{{ route('gadaistatus.modaltanam', ['id' => $datas->id]) }}">
                                     <i class="kt-nav__link-icon flaticon2-check-mark"></i>
                                     <span class="kt-nav__link-text">Verifikasi</span>
                                   </a>

@@ -148,14 +148,14 @@
                                 </li>
                                 @if($user->petani_verified == '0')
                                 <li class="kt-nav__item">
-                                  <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-verif-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-role="{{$user->role}}" data-href="{{ route('buttonverified.manage-user', ['id' => $user->id]) }}">
+                                  <a href="#" class="kt-nav__link verif-data" data-toggle="modal" data-target="#modal-verif-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-role="{{$user->role}}" data-href="{{ route('buttonverified.manage-user', ['id' => $user->id]) }}">
                                     <i class="kt-nav__link-icon flaticon2-check-mark"></i>
                                     <span class="kt-nav__link-text">Verifikasi</span>
                                   </a>
                                 </li>
                                 @else
                                 <li class="kt-nav__item">
-                                  <a href="#" class="kt-nav__link hapus-data disabled" data-toggle="modal" data-target="#" data-id="{{$user->id}}" data-name="{{$user->name}}" data-role="{{$user->role}}" data-href="#" style="cursor: not-allowed !important;">
+                                  <a href="#" class="kt-nav__link verif-data disabled" data-toggle="modal" data-target="#" data-id="{{$user->id}}" data-name="{{$user->name}}" data-role="{{$user->role}}" data-href="#" style="cursor: not-allowed !important;">
                                     <i class="kt-nav__link-icon flaticon2-check-mark"></i>
                                     <span class="kt-nav__link-text">Terverifikasi</span>
                                   </a>

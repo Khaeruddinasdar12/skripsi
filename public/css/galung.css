@@ -208,6 +208,9 @@ table .dropdown-table-custom ul .edit-data:hover .kt-nav__link-icon, table .drop
 table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-text {
   color: #ff3863 !important;
 }
+table .dropdown-table-custom ul .verif-data:hover .kt-nav__link-icon, table .dropdown-table-custom ul .verif-data:hover .kt-nav__link-text {
+  color: #00A859 !important;
+}
 
 .form-group .input-group input {
   transition: 0.5s !important;
@@ -543,10 +546,6 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
 
 .btn-detail {
   cursor: pointer;
-}
-
-.animation {
-  transition: 0.5s !important;
 }
 
 .modal .detail-modal {

@@ -144,7 +144,7 @@
                                   </a>
                                 </li>
                                 <li class="kt-nav__item">
-                                  <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-pembelian" data-href="{{route('status.transaksi', ['id' => $datas->id])}}">
+                                  <a href="#" class="kt-nav__link verif-data" data-toggle="modal" data-target="#modal-pembelian" data-href="{{route('status.transaksi', ['id' => $datas->id])}}">
                                     <i class="kt-nav__link-icon flaticon2-check-mark"></i>
                                     <span class="kt-nav__link-text">Verifikasi Pembelian</span>
                                   </a>
