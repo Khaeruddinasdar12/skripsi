@@ -75,6 +75,9 @@ table .btn-more-custom {
 
 .galung-header {
   background-color: #00A859 !important;
+  box-shadow: 0 0 40px rgba(34, 34, 34, 0.801) !important;
+  -webkit-box-shadow: 0 0 10px rgba(34, 34, 34, 0.801) !important;
+  -moz-box-shadow: 0 0 10px rgba(34, 34, 34, 0.801) !important;
 }
 .galung-header .kt-header__brand {
   justify-content: flex-start;
