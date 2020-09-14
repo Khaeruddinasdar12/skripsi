@@ -75,6 +75,9 @@ table .btn-more-custom {
 
 .galung-header {
   background-color: #00A859 !important;
+  box-shadow: 0 0 40px rgba(34, 34, 34, 0.801) !important;
+  -webkit-box-shadow: 0 0 10px rgba(34, 34, 34, 0.801) !important;
+  -moz-box-shadow: 0 0 10px rgba(34, 34, 34, 0.801) !important;
 }
 .galung-header .kt-header__brand {
   justify-content: flex-start;
@@ -95,8 +98,8 @@ table .btn-more-custom {
   margin-left: 5px !important;
 }
 .galung-header li .kt-nav__link-badge span {
-  color: #3498db !important;
-  background-color: rgba(255, 255, 255, 0.924) !important;
+  color: #fff !important;
+  background-color: rgba(255, 255, 255, 0.376) !important;
 }
 .galung-header li .kt-nav__link-badge .active-badge {
   color: #fff !important;
@@ -556,6 +559,25 @@ table .dropdown-table-custom ul .verif-data:hover .kt-nav__link-icon, table .dro
 }
 .modal .modal-edit-user {
   width: 500px;
+}
+
+.jumbotron {
+  background-image: url("../img/galung-dashboard.jpg");
+  background-size: cover;
+  height: 400px;
+  background-position-y: -200px;
+  margin-top: -150px;
+}
+.jumbotron .kt-subheader {
+  margin-top: 100px;
+}
+.jumbotron .kt-subheader h1 {
+  color: #fff;
+  font-weight: 600;
+}
+
+.content-dashboard {
+  margin-top: -100px;
 }
 
 .card-menu,
