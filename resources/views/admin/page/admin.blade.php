@@ -42,7 +42,7 @@
           <div class="kt-portlet sticky kt-iconbox--animate-faster" data-sticky="true" data-margin-top="100px" data-sticky-for="1023" data-sticky-class="kt-sticky">
             <div class="kt-portlet__body">
               <h5 style="color: #222;">
-                Jumlah Data Beras Yang Tersedia
+                Jumlah Admin Keseluruhan
               </h5>
               <h4 class="mt-3" style="font-weight: 800;">
                 {{$jml}} Data
@@ -65,7 +65,7 @@
               <div class="kt-portlet__head-toolbar">
                 <form action="{{route('index.manage-admin')}}" method="get">
                   <div class="input-group">
-                    <input type="text" class="form-control" name="search" placeholder="cari">
+                    <input type="text" class="form-control" name="search" @if(Request::get('search') == '') placeholder="cari" @else value="{{Request::get('search')}}" @endif>
                     <div class="input-group-append">
                       <button class="btn btn-outline-success" type="submit">
                         <i class="fas fa-search"></i>
@@ -95,7 +95,21 @@
                           <th>Action</th>
                         </tr>
                       </thead>
+                      @if ($jml == 0)
+                      <tbody style="text-align: center;">
+                        <td colspan="5">Belum ada data</td>
+                      </tbody>
+                      @else
                       <tbody>
+                        @if($admin->isEmpty())
+                            <tr>
+                              <td colspan="5" align="center">
+                                Tidak ada data untuk pencarian "{{ Request::get('search') }}"
+                              </td>
+                            </tr>
+                          </tbody>
+                        @else
+
                         @php $no = 1; @endphp
                         @foreach ($admin as $datas)
                         <tr>
@@ -138,6 +152,8 @@
                         </tr>
                         @endforeach
                       </tbody>
+                      @endif
+                      @endif
                     </table>
                     {{$admin->links()}}
                   </div>

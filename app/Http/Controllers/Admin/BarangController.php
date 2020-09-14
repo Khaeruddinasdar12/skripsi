@@ -13,30 +13,60 @@ class BarangController extends Controller
         $this->middleware('auth:admin');
     }
 
-    public function index(Request $request) //menampilkan hal. data beras
+    public function index(Request $request) //menampilkan hal. data barang
     {
-        //mengurutkan dari terbaru ke terlama (descending)
-        if($request->get('search') != '') {
-            $data = Barang::with('admins:id,name')
-                    ->where('nama', 'like', '%'.$request->get('search').'%')
-                    ->orWhere('jenis', 'like', '%'.$request->get('search').'%')
+        // dd($request->all());
+        $search = $request->get('search');
+        // if($request->get('btnfilter') != '') {
+        //     $search = '';
+        //     unset($request['search']);
+        //     unset($request['btnfilter']);
+        // }
+        if($request->get('filter') == '') { //filter kosong
+            if($search != '') { //namun search tidak kosong
+                $data = Barang::with('admins:id,name')
+                        ->where('nama', 'like', '%'.$search.'%')
+                        ->orderBy('created_at', 'desc')
+                        ->paginate(10);
+            } else {
+                $data = Barang::with('admins:id,name')
                     ->orderBy('created_at', 'desc')
                     ->paginate(10);
-        } else {
-            $data = Barang::with('admins:id,name')
+            }
+        } else { //filter tidak kosong
+            if($request->get('filter') == 'alat') {
+                $filter = 'alat';
+            } else if ($request->get('filter') == 'beras') {
+                $filter = 'beras';
+            } else if ($request->get('filter') == 'bibit') {
+                $filter = 'bibit';
+            } else if ($request->get('filter') == 'pupuk') {
+                $filter = 'pupuk';
+            } else {
+                return redirect()->back()->with('error', 'Pilih filter yang sesuai');
+            }
+
+            if($search != '') {
+                $data = Barang::with('admins:id,name')
+                        ->where('nama', 'like', '%'.$search.'%')
+                        ->where('jenis', $filter)
+                        ->orderBy('created_at', 'desc')
+                        ->paginate(10);
+            } else {
+                $data = Barang::with('admins:id,name')
                     ->orderBy('created_at', 'desc')
+                    ->where('jenis', $filter)
                     ->paginate(10);
+            }     
         }
-        $jml = Barang::where('jenis', 'beras')
-                ->count();
-        // $jml = Barang::where('jenis', 'beras')
-        //         ->count();
-        // return $data; //uncomment ini untuk melihat api data
+
+
+        $jml = Barang::count();
 
         return view('admin.page.barang', ['data' => $data, 'jml' => $jml]); //struktur folder di folder views
     }
 
-    public function store(Request $request) //menambah data beras
+    public function store(Request $request) //menambah data barang
     {
         $validasi = $this->validate($request, [
             'nama'      => 'required|string',
@@ -70,7 +100,7 @@ class BarangController extends Controller
         return redirect()->back()->with('success', 'Berhasil menambah data barang');
     }
 
-     public function update(Request $request, $id) //mengubah atau suplly data beras
+     public function update(Request $request, $id) //mengubah atau suplly data barang
     {
         $validasi = $this->validate($request, [
             'nama'      => 'required|string',

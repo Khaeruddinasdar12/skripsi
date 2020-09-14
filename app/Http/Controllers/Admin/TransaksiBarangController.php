@@ -15,22 +15,52 @@ class TransaksiBarangController extends Controller
         $this->middleware('auth:admin');
     }
 
-    public function index() //list sedang transaksi
+    public function index(Request $request) //list sedang transaksi
     {
-        // $data = CartTransaksi::select('id', 'jumlah', 'barang_id')
-        //     ->where('transaksi_id', 1)
-        //     ->get();
-        // return $data;
-        $data = TransaksiBarang::where('status', '0')
+        if($request->get('search') != '') {
+            $data = TransaksiBarang::where('status', '0')
+            ->select('id', 'transaksi_code', 'penerima', 'nohp', 'alamat', 'kecamatan', 'kelurahan', 'rt', 'rw', 'total', 'keterangan', 'user_id')
+            ->with('users:id,name,nohp')
+            ->with('items:id,nama,jenis,harga,jumlah,subtotal,transaksi_id')
+            ->where('transaksi_code', 'like', '%'.$request->get('search').'%')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        } else {
+            $data = TransaksiBarang::where('status', '0')
             ->select('id', 'transaksi_code', 'penerima', 'nohp', 'alamat', 'kecamatan', 'kelurahan', 'rt', 'rw', 'total', 'keterangan', 'user_id')
             ->with('users:id,name,nohp')
             ->with('items:id,nama,jenis,harga,jumlah,subtotal,transaksi_id')
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->paginate(10);
+        }
         $jml = TransaksiBarang::where('status', '0')
             ->count();
         // return $data;
         return view('admin.page.transaksi', ['data' => $data, 'jml' => $jml]);
+    }
+
+    public function riwayat(Request $request) //list sedang transaksi
+    {
+        if($request->get('search') != '') {
+            $data = TransaksiBarang::where('status', '1')
+            ->select('id', 'transaksi_code', 'penerima', 'nohp', 'alamat', 'kecamatan', 'kelurahan', 'rt', 'rw', 'total', 'keterangan', 'user_id')
+            ->with('users:id,name,nohp')
+            ->with('items:id,nama,jenis,harga,jumlah,subtotal,transaksi_id')
+            ->where('transaksi_code', 'like', '%'.$request->get('search').'%')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        } else {
+            $data = TransaksiBarang::where('status', '1')
+            ->select('id', 'transaksi_code', 'penerima', 'nohp', 'alamat', 'kecamatan', 'kelurahan', 'rt', 'rw', 'total', 'keterangan', 'user_id')
+            ->with('users:id,name,nohp')
+            ->with('items:id,nama,jenis,harga,jumlah,subtotal,transaksi_id')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        }
+        $jml = TransaksiBarang::where('status', '1')
+            ->count();
+        // return $data;
+        return view('admin.page.riwayat-transaksi', ['data' => $data, 'jml' => $jml]);
     }
 
     public function status($id) // mengubah status transaksi menjadi terproses(verif->keriwayat)

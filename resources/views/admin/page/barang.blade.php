@@ -60,9 +60,25 @@
                 <h3 class="kt-portlet__head-title">
                   Data Barang
                 </h3>
-              </div>
-              <div class="kt-portlet__head-toolbar">
+                &nbsp;&nbsp;&nbsp;
                 <form action="{{route('index.barang')}}" method="get">
+                  <div class="input-group input-group-sm">
+                    <select class="form-control" name="filter">
+                      <option value="">semua</option>
+                      <option value="alat" @if(Request::get('filter') == 'alat') selected @endif>Alat</option>
+                      <option value="beras" @if(Request::get('filter') == 'beras') selected @endif>Beras</option>
+                      <option value="bibit" @if(Request::get('filter') == 'bibit') selected @endif>Bibit</option>
+                      <option value="pupuk" @if(Request::get('filter') == 'pupuk') selected @endif>Pupuk</option>
+                    </select>
+                    <div class="input-group-append">
+                      <input class="btn btn-outline-secondary" type="submit" value="filter" name="btnfilter">
+                    </div>
+                  </div>
+              </div>
+
+                
+
+              <div class="kt-portlet__head-toolbar">
                   <div class="input-group">
                     <input type="text" class="form-control" name="search" @if(Request::get('search') == '') placeholder="cari" @else value="{{Request::get('search')}}" @endif>
                     <div class="input-group-append">
@@ -97,10 +113,19 @@
                       </thead>
                       @if ($jml == 0)
                       <tbody style="text-align: center;">
-                        <td colspan="7">Belum ada data</td>
+                        <td colspan="6">Belum ada data</td>
                       </tbody>
                       @else
                       <tbody>
+                        @if($data->isEmpty())
+                            <tr>
+                              <td colspan="6" align="center">
+                                Tidak ada data untuk pencarian "{{ Request::get('search') }}" 
+                              </td>
+                            </tr>
+                          </tbody>
+                        @else
+
                         @php $no = 1; @endphp
                         @foreach ($data as $alat)
                         <tr>
@@ -141,6 +166,7 @@
                         </tr>
                         @endforeach
                       </tbody>
+                      @endif
                       @endif
                     </table>
                     {{$data->links()}}
