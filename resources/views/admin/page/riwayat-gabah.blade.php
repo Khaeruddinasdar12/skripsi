@@ -37,7 +37,7 @@
       <!-- end alert section -->
       <div class="row">
         <div class="col-md-2">
-          <div class="kt-portlet sticky kt-iconbox--animate-faster" data-sticky="true" data-margin-top="100px" data-sticky-for="1023" data-sticky-class="kt-sticky">
+          <div class="kt-portlet kt-iconbox--animate-faster" data-margin-top="100px">
             <div class="kt-portlet__body">
               <h5 style="color: #222;">
                 Jumlah Data Riwayat Transaksi Gabah Yang Tersedia
@@ -64,7 +64,7 @@
               <div class="kt-portlet__head-toolbar">
                 <form action="{{route('riwayat.tgabah')}}" method="get">
                   <div class="input-group">
-                    <input type="text" class="form-control" name="search" @if(Request::get('search') == '') placeholder="cari" @else value="{{Request::get('search')}}" @endif>
+                    <input type="text" class="form-control" name="search" @if(Request::get('search')=='' ) placeholder="cari" @else value="{{Request::get('search')}}" @endif>
                     <div class="input-group-append">
                       <button class="btn btn-outline-success" type="submit">
                         <i class="fas fa-search"></i>
@@ -97,72 +97,72 @@
                       @else
                       <tbody>
                         @if($data->isEmpty())
-                            <tr>
-                              <td colspan="7" align="center">
-                                Tidak ada data untuk pencarian "{{ Request::get('search') }}"
-                              </td>
-                            </tr>
-                          </tbody>
-                        @else
-
-                        @php $no = 1; @endphp
-                        @foreach ($data as $riwayat)
-                        @php
-                        $total = (($riwayat -> jumlah)*($riwayat -> harga));
-                        @endphp
-
-                        <!-- Mengganti nama jenis bayar untuk detail -->
-                        @if($riwayat->jenis_bayar == 'cod')
-                        @php $pembayaran = 'Cash On Delivery (cod)'; @endphp
-                        @else
-                        @php $pembayaran = 'Transfer Bank'; @endphp
-                        @endif
-                        <!-- End Mengganti nama jenis bayar untuk detail -->
                         <tr>
-                          <th scope="row">{{$no++}}</th>
-                          <td>{{$riwayat -> users -> name}}</td>
-                          <td>{{$riwayat -> gabahs -> nama}}</td>
-                          <td>{{$riwayat -> jumlah}} Kg</td>
-                          <td>Rp.{{format_uang($total)}}</td>
-                          <td>
-                            @if($riwayat->jenis_bayar == 'cod')
-                            Cash On Delivery
-                            @endif
-                          </td>
-                          <td>
-                            <div class="dropdown dropdown-inline">
-                              <a href="#" class="btn btn-default btn-icon btn-icon-md btn-sm btn-more-custom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="flaticon-more-1"></i>
-                              </a>
-                              <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
-                                <ul class="kt-nav">
-                                  <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-beras" data-id="{{$riwayat->id}}" data-jumlah="{{$riwayat->jumlah}}" data-harga="Rp.{{format_uang($riwayat->harga)}}" data-total="Rp.{{format_uang($total)}}" data-alamat="{{$riwayat->alamat}}" data-kecamatan="{{$riwayat->kecamatan}}" data-kelurahan="{{$riwayat->kelurahan}}" data-keterangan="{{$riwayat->keterangan}}" data-jenis_bayar="{{$pembayaran}}" data-users-name="{{$riwayat->users->name}}" data-users-email="{{$riwayat->users->email}}" data-users-nohp="{{$riwayat->users->nohp}}" data-beras-nama="{{$riwayat->gabahs->nama}}">
-                                      <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
-                                      <span class="kt-nav__link-text">Detail</span>
-                                    </a>
-                                  </li>
-                                  @if(Auth::guard('admin')->user()->role != 'superadmin')
-                                  <li class="kt-nav__item" style="display: none !important;">
-                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$riwayat->id}}" data-href="{{ route('deleteriwayat.tgabah', ['id' => $riwayat->id]) }}">
-                                      <i class="kt-nav__link-icon fa fa-trash-alt"></i>
-                                      <span class="kt-nav__link-text">Hapus Data</span>
-                                    </a>
-                                  </li>
-                                  @else
-                                  <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$riwayat->id}}" data-href="{{ route('deleteriwayat.tgabah', ['id' => $riwayat->id]) }}">
-                                      <i class="kt-nav__link-icon fa fa-trash-alt"></i>
-                                      <span class="kt-nav__link-text">Hapus Data</span>
-                                    </a>
-                                  </li>
-                                  @endif
-                                </ul>
-                              </div>
-                            </div>
+                          <td colspan="7" align="center">
+                            Tidak ada data untuk pencarian "{{ Request::get('search') }}"
                           </td>
                         </tr>
-                        @endforeach
+                      </tbody>
+                      @else
+
+                      @php $no = 1; @endphp
+                      @foreach ($data as $riwayat)
+                      @php
+                      $total = (($riwayat -> jumlah)*($riwayat -> harga));
+                      @endphp
+
+                      <!-- Mengganti nama jenis bayar untuk detail -->
+                      @if($riwayat->jenis_bayar == 'cod')
+                      @php $pembayaran = 'Cash On Delivery (cod)'; @endphp
+                      @else
+                      @php $pembayaran = 'Transfer Bank'; @endphp
+                      @endif
+                      <!-- End Mengganti nama jenis bayar untuk detail -->
+                      <tr>
+                        <th scope="row">{{$no++}}</th>
+                        <td>{{$riwayat -> users -> name}}</td>
+                        <td>{{$riwayat -> gabahs -> nama}}</td>
+                        <td>{{$riwayat -> jumlah}} Kg</td>
+                        <td>Rp.{{format_uang($total)}}</td>
+                        <td>
+                          @if($riwayat->jenis_bayar == 'cod')
+                          Cash On Delivery
+                          @endif
+                        </td>
+                        <td>
+                          <div class="dropdown dropdown-inline">
+                            <a href="#" class="btn btn-default btn-icon btn-icon-md btn-sm btn-more-custom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <i class="flaticon-more-1"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
+                              <ul class="kt-nav">
+                                <li class="kt-nav__item">
+                                  <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-beras" data-id="{{$riwayat->id}}" data-jumlah="{{$riwayat->jumlah}}" data-harga="Rp.{{format_uang($riwayat->harga)}}" data-total="Rp.{{format_uang($total)}}" data-alamat="{{$riwayat->alamat}}" data-kecamatan="{{$riwayat->kecamatan}}" data-kelurahan="{{$riwayat->kelurahan}}" data-keterangan="{{$riwayat->keterangan}}" data-jenis_bayar="{{$pembayaran}}" data-users-name="{{$riwayat->users->name}}" data-users-email="{{$riwayat->users->email}}" data-users-nohp="{{$riwayat->users->nohp}}" data-beras-nama="{{$riwayat->gabahs->nama}}">
+                                    <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
+                                    <span class="kt-nav__link-text">Detail</span>
+                                  </a>
+                                </li>
+                                @if(Auth::guard('admin')->user()->role != 'superadmin')
+                                <li class="kt-nav__item" style="display: none !important;">
+                                  <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$riwayat->id}}" data-href="{{ route('deleteriwayat.tgabah', ['id' => $riwayat->id]) }}">
+                                    <i class="kt-nav__link-icon fa fa-trash-alt"></i>
+                                    <span class="kt-nav__link-text">Hapus Data</span>
+                                  </a>
+                                </li>
+                                @else
+                                <li class="kt-nav__item">
+                                  <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$riwayat->id}}" data-href="{{ route('deleteriwayat.tgabah', ['id' => $riwayat->id]) }}">
+                                    <i class="kt-nav__link-icon fa fa-trash-alt"></i>
+                                    <span class="kt-nav__link-text">Hapus Data</span>
+                                  </a>
+                                </li>
+                                @endif
+                              </ul>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      @endforeach
                       </tbody>
                       @endif
                       @endif

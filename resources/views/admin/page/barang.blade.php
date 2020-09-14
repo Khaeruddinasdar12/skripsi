@@ -37,7 +37,7 @@
       <!-- end alert section -->
       <div class="row">
         <div class="col-md-2">
-          <div class="kt-portlet sticky kt-iconbox--animate-faster" data-sticky="true" data-margin-top="100px" data-sticky-for="1023" data-sticky-class="kt-sticky">
+          <div class="kt-portlet kt-iconbox--animate-faster" data-margin-top="100px">
             <div class="kt-portlet__body">
               <h5 style="color: #222;">
                 Jumlah Data Alat Tani Yang Tersedia
@@ -65,10 +65,10 @@
                   <div class="input-group input-group-sm">
                     <select class="form-control" name="filter">
                       <option value="">semua</option>
-                      <option value="alat" @if(Request::get('filter') == 'alat') selected @endif>Alat</option>
-                      <option value="beras" @if(Request::get('filter') == 'beras') selected @endif>Beras</option>
-                      <option value="bibit" @if(Request::get('filter') == 'bibit') selected @endif>Bibit</option>
-                      <option value="pupuk" @if(Request::get('filter') == 'pupuk') selected @endif>Pupuk</option>
+                      <option value="alat" @if(Request::get('filter')=='alat' ) selected @endif>Alat</option>
+                      <option value="beras" @if(Request::get('filter')=='beras' ) selected @endif>Beras</option>
+                      <option value="bibit" @if(Request::get('filter')=='bibit' ) selected @endif>Bibit</option>
+                      <option value="pupuk" @if(Request::get('filter')=='pupuk' ) selected @endif>Pupuk</option>
                     </select>
                     <div class="input-group-append">
                       <input class="btn btn-outline-secondary" type="submit" value="filter" name="btnfilter">
@@ -76,17 +76,17 @@
                   </div>
               </div>
 
-                
+
 
               <div class="kt-portlet__head-toolbar">
-                  <div class="input-group">
-                    <input type="text" class="form-control" name="search" @if(Request::get('search') == '') placeholder="cari" @else value="{{Request::get('search')}}" @endif>
-                    <div class="input-group-append">
-                      <button class="btn btn-outline-success" type="submit">
-                        <i class="fas fa-search"></i>
-                      </button>
-                    </div>
+                <div class="input-group">
+                  <input type="text" class="form-control" name="search" @if(Request::get('search')=='' ) placeholder="cari" @else value="{{Request::get('search')}}" @endif>
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-success" type="submit">
+                      <i class="fas fa-search"></i>
+                    </button>
                   </div>
+                </div>
                 </form>
                 <span class="border-right"></span>
                 <div class="kt-portlet__head-actions">
@@ -118,53 +118,53 @@
                       @else
                       <tbody>
                         @if($data->isEmpty())
-                            <tr>
-                              <td colspan="6" align="center">
-                                Tidak ada data untuk pencarian "{{ Request::get('search') }}" 
-                              </td>
-                            </tr>
-                          </tbody>
-                        @else
-
-                        @php $no = 1; @endphp
-                        @foreach ($data as $alat)
                         <tr>
-                          <th scope="row">{{$no++}}</th>
-                          <td>{{$alat -> nama}}</td>
-                          <td>{{$alat->jenis}}</td>
-                          <td>Rp. {{format_uang($alat -> harga)}}</td>
-                          <td>{{$alat -> stok}} Kg</td>
-                          <td>
-                            <div class="dropdown dropdown-inline">
-                              <a href="#" class="btn btn-default btn-icon btn-icon-md btn-sm btn-more-custom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="flaticon-more-1"></i>
-                              </a>
-                              <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
-                                <ul class="kt-nav">
-                                  <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-alat" data-id="{{$alat->id}}" data-nama="{{$alat->nama}}" data-harga="{{format_uang($alat -> harga)}}" data-stok="{{$alat->stok}}" data-keterangan="{{$alat->keterangan}}" data-image="{{asset('storage/'.$alat->gambar)}}" data-admin_name="{{$alat->admins->name}}" data-min_beli="{{$alat->min_beli}}" data-jenis="{{$alat->jenis}}">
-                                      <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
-                                      <span class="kt-nav__link-text">Detail</span>
-                                    </a>
-                                  </li>
-                                  <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-data" data-id="{{$alat->id}}" data-nama="{{$alat->nama}}" data-harga="{{$alat->harga}}" data-stok="{{$alat->stok}}" data-keterangan="{{$alat->keterangan}}" data-image="{{asset('storage/'.$alat->gambar)}}" data-admin_name="{{$alat->admins->name}}" data-href="{{ route('update.barang', ['id' => $alat->id]) }}" data-min_beli="{{$alat->min_beli}}" data-jenis="{{$alat->jenis}}">
-                                      <i class=" kt-nav__link-icon flaticon2-settings"></i>
-                                      <span class="kt-nav__link-text">Edit Data</span>
-                                    </a>
-                                  </li>
-                                  <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$alat->id}}" data-href="{{ route('delete.barang', ['id' => $alat->id]) }}">
-                                      <i class="kt-nav__link-icon fa fa-trash-alt"></i>
-                                      <span class="kt-nav__link-text">Hapus data</span>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
+                          <td colspan="6" align="center">
+                            Tidak ada data untuk pencarian "{{ Request::get('search') }}"
                           </td>
                         </tr>
-                        @endforeach
+                      </tbody>
+                      @else
+
+                      @php $no = 1; @endphp
+                      @foreach ($data as $alat)
+                      <tr>
+                        <th scope="row">{{$no++}}</th>
+                        <td>{{$alat -> nama}}</td>
+                        <td>{{$alat->jenis}}</td>
+                        <td>Rp. {{format_uang($alat -> harga)}}</td>
+                        <td>{{$alat -> stok}} Kg</td>
+                        <td>
+                          <div class="dropdown dropdown-inline">
+                            <a href="#" class="btn btn-default btn-icon btn-icon-md btn-sm btn-more-custom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <i class="flaticon-more-1"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
+                              <ul class="kt-nav">
+                                <li class="kt-nav__item">
+                                  <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-alat" data-id="{{$alat->id}}" data-nama="{{$alat->nama}}" data-harga="{{format_uang($alat -> harga)}}" data-stok="{{$alat->stok}}" data-keterangan="{{$alat->keterangan}}" data-image="{{asset('storage/'.$alat->gambar)}}" data-admin_name="{{$alat->admins->name}}" data-min_beli="{{$alat->min_beli}}" data-jenis="{{$alat->jenis}}">
+                                    <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
+                                    <span class="kt-nav__link-text">Detail</span>
+                                  </a>
+                                </li>
+                                <li class="kt-nav__item">
+                                  <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-data" data-id="{{$alat->id}}" data-nama="{{$alat->nama}}" data-harga="{{$alat->harga}}" data-stok="{{$alat->stok}}" data-keterangan="{{$alat->keterangan}}" data-image="{{asset('storage/'.$alat->gambar)}}" data-admin_name="{{$alat->admins->name}}" data-href="{{ route('update.barang', ['id' => $alat->id]) }}" data-min_beli="{{$alat->min_beli}}" data-jenis="{{$alat->jenis}}">
+                                    <i class=" kt-nav__link-icon flaticon2-settings"></i>
+                                    <span class="kt-nav__link-text">Edit Data</span>
+                                  </a>
+                                </li>
+                                <li class="kt-nav__item">
+                                  <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$alat->id}}" data-href="{{ route('delete.barang', ['id' => $alat->id]) }}">
+                                    <i class="kt-nav__link-icon fa fa-trash-alt"></i>
+                                    <span class="kt-nav__link-text">Hapus data</span>
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      @endforeach
                       </tbody>
                       @endif
                       @endif
@@ -228,7 +228,7 @@
                   </div>
 
                   <div class="col-md-6">
-                    <div class="form-group"> 
+                    <div class="form-group">
                       <label>Jenis Barang</label>
                       <select class="form-control" name="jenis">
                         <option value="alat">Alat</option>
@@ -375,7 +375,7 @@
                   </div>
 
                   <div class="col-md-6">
-                    <div class="form-group"> 
+                    <div class="form-group">
                       <label>Jenis Barang</label>
                       <select class="form-control" name="jenis" id="jeniss">
                         <option value="alat">Alat</option>

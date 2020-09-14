@@ -41,7 +41,7 @@
       <!-- end alert section -->
       <div class="row">
         <div class="col-md-2">
-          <div class="kt-portlet sticky kt-iconbox--animate-faster" data-sticky="true" data-margin-top="100px" data-sticky-for="1023" data-sticky-class="kt-sticky">
+          <div class="kt-portlet kt-iconbox--animate-faster" data-margin-top="100px">
             <div class="kt-portlet__body">
               <h5 style="color: #222;">
                 Jumlah Data Transaksi Beras Yang Tersedia
@@ -151,7 +151,7 @@
                                   </li>
                                   @if($transaksi->jenis_bayar == 'cod')
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-pembelian-user" data-id="{{$transaksi->id}}" data-href="{{ route('status.tberas', ['id' => $transaksi->id]) }}">
+                                    <a href="#" class="kt-nav__link verif-data" data-toggle="modal" data-target="#modal-pembelian-user" data-id="{{$transaksi->id}}" data-href="{{ route('status.tberas', ['id' => $transaksi->id]) }}">
                                       <i class="kt-nav__link-icon flaticon2-check-mark"></i>
                                       <span class="kt-nav__link-text">Verifikasi Pembelian</span>
                                     </a>
@@ -159,14 +159,14 @@
                                   @else
                                   @if($transaksi->bukti == null )
                                   <li class="kt-nav__item" style="display: none !important;">
-                                    <a href="#" class="kt-nav__link hapus-data">
+                                    <a href="#" class="kt-nav__link verif-data">
                                       <i class="kt-nav__link-icon flaticon2-check-mark"></i>
                                       <span class="kt-nav__link-text">Verifikasi Pembelian</span>
                                     </a>
                                   </li>
                                   @else
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-pembelian-user" data-id="{{$transaksi->id}}" data-href="{{ route('status.tberas', ['id' => $transaksi->id]) }}">
+                                    <a href="#" class="kt-nav__link verif-data" data-toggle="modal" data-target="#modal-pembelian-user" data-id="{{$transaksi->id}}" data-href="{{ route('status.tberas', ['id' => $transaksi->id]) }}">
                                       <i class="kt-nav__link-icon flaticon2-check-mark"></i>
                                       <span class="kt-nav__link-text">Verifikasi Pembelian</span>
                                     </a>
@@ -393,20 +393,20 @@
               <p>Data yang telah di hapus tidak dapat</p>
               <p>dikembalikan lagi</p>
               <form action="" method="POST" id="hapus-data">
-              <div class="form-group">
+                <div class="form-group">
                   <label for="exampleTextarea">Tambahkan keterangan :</label>
                   <textarea class="form-control" name="keterangan" rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 97px; resize: none" required>Mohon maaf transaksi beras tidak dapat kami proses.</textarea>
                 </div>
-              <div class="row verif-form">
-                <div class="col-md-6">
-                  <button type="button" class="btn close-modal" data-dismiss="modal" aria-label="Close">Cancel</button>
-                </div>
+                <div class="row verif-form">
+                  <div class="col-md-6">
+                    <button type="button" class="btn close-modal" data-dismiss="modal" aria-label="Close">Cancel</button>
+                  </div>
 
-                <div class="col-md-6">
+                  <div class="col-md-6">
                     @csrf
                     <input type="submit" value="Submit" class="btn btn-verif btn-flat">
+                  </div>
                 </div>
-              </div>
               </form>
             </div>
           </div>

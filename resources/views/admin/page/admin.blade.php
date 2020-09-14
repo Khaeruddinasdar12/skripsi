@@ -39,7 +39,7 @@
 
       <div class="row">
         <div class="col-md-2">
-          <div class="kt-portlet sticky kt-iconbox--animate-faster" data-sticky="true" data-margin-top="100px" data-sticky-for="1023" data-sticky-class="kt-sticky">
+          <div class="kt-portlet kt-iconbox--animate-faster" data-margin-top="100px">
             <div class="kt-portlet__body">
               <h5 style="color: #222;">
                 Jumlah Admin Keseluruhan
@@ -65,7 +65,7 @@
               <div class="kt-portlet__head-toolbar">
                 <form action="{{route('index.manage-admin')}}" method="get">
                   <div class="input-group">
-                    <input type="text" class="form-control" name="search" @if(Request::get('search') == '') placeholder="cari" @else value="{{Request::get('search')}}" @endif>
+                    <input type="text" class="form-control" name="search" @if(Request::get('search')=='' ) placeholder="cari" @else value="{{Request::get('search')}}" @endif>
                     <div class="input-group-append">
                       <button class="btn btn-outline-success" type="submit">
                         <i class="fas fa-search"></i>
@@ -102,55 +102,55 @@
                       @else
                       <tbody>
                         @if($admin->isEmpty())
-                            <tr>
-                              <td colspan="5" align="center">
-                                Tidak ada data untuk pencarian "{{ Request::get('search') }}"
-                              </td>
-                            </tr>
-                          </tbody>
-                        @else
-
-                        @php $no = 1; @endphp
-                        @foreach ($admin as $datas)
                         <tr>
-                          <th scope="row">{{$no++}}</th>
-                          <td>{{$datas -> name}}</td>
-                          <td>{{$datas -> email}}</td>
-                          <td>{{$datas -> role}}</td>
-                          <td>
-                            <div class="dropdown dropdown-inline">
-                              <a href="#" class="btn btn-default btn-icon btn-icon-md btn-sm btn-more-custom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="flaticon-more-1"></i>
-                              </a>
-                              <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
-                                <ul class="kt-nav">
-                                  <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-admin">
-                                      <i class="kt-nav__link-icon flaticon2-settings"></i>
-                                      <span class="kt-nav__link-text">Edit</span>
-                                    </a>
-                                  </li>
-                                  @if(Auth::guard('admin')->user()->role != 'superadmin')
-                                  <li class="kt-nav__item">
-                                    <a href="#" style="display: none !important;" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$datas->id}}" data-href="{{ route('delete.manage-admin', ['id' => $datas->id]) }}">
-                                      <i class="kt-nav__link-icon flaticon2-rubbish-bin-delete-button"></i>
-                                      <span class="kt-nav__link-text">Hapus</span>
-                                    </a>
-                                  </li>
-                                  @else
-                                  <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$datas->id}}" data-href="{{ route('delete.manage-admin', ['id' => $datas->id]) }}">
-                                      <i class="kt-nav__link-icon flaticon2-rubbish-bin-delete-button"></i>
-                                      <span class="kt-nav__link-text">Hapus</span>
-                                    </a>
-                                  </li>
-                                  @endif
-                                </ul>
-                              </div>
-                            </div>
+                          <td colspan="5" align="center">
+                            Tidak ada data untuk pencarian "{{ Request::get('search') }}"
                           </td>
                         </tr>
-                        @endforeach
+                      </tbody>
+                      @else
+
+                      @php $no = 1; @endphp
+                      @foreach ($admin as $datas)
+                      <tr>
+                        <th scope="row">{{$no++}}</th>
+                        <td>{{$datas -> name}}</td>
+                        <td>{{$datas -> email}}</td>
+                        <td>{{$datas -> role}}</td>
+                        <td>
+                          <div class="dropdown dropdown-inline">
+                            <a href="#" class="btn btn-default btn-icon btn-icon-md btn-sm btn-more-custom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <i class="flaticon-more-1"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
+                              <ul class="kt-nav">
+                                <li class="kt-nav__item">
+                                  <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-admin">
+                                    <i class="kt-nav__link-icon flaticon2-settings"></i>
+                                    <span class="kt-nav__link-text">Edit</span>
+                                  </a>
+                                </li>
+                                @if(Auth::guard('admin')->user()->role != 'superadmin')
+                                <li class="kt-nav__item">
+                                  <a href="#" style="display: none !important;" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$datas->id}}" data-href="{{ route('delete.manage-admin', ['id' => $datas->id]) }}">
+                                    <i class="kt-nav__link-icon flaticon2-rubbish-bin-delete-button"></i>
+                                    <span class="kt-nav__link-text">Hapus</span>
+                                  </a>
+                                </li>
+                                @else
+                                <li class="kt-nav__item">
+                                  <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$datas->id}}" data-href="{{ route('delete.manage-admin', ['id' => $datas->id]) }}">
+                                    <i class="kt-nav__link-icon flaticon2-rubbish-bin-delete-button"></i>
+                                    <span class="kt-nav__link-text">Hapus</span>
+                                  </a>
+                                </li>
+                                @endif
+                              </ul>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      @endforeach
                       </tbody>
                       @endif
                       @endif
