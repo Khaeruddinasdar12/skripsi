@@ -52,7 +52,7 @@
           <!-- gabah menu -->
           <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel {{ request()->is('admin/gabah') || request()->is('admin/transaksi-gabah') || request()->is('admin/riwayat-transaksi-gabah') ? 'kt-menu__item--open kt-menu__item--here' : '' }}" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
             <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
-              <span class="kt-menu__link-text {{ request()->is('admin/gabah') || request()->is('admin/transaksi-gabah') || request()->is('admin/riwayat-transaksi-gabah') ? '' : 'top-text-nav' }}">Gabah</span>
+              <span class="kt-menu__link-text {{ request()->is('admin/gabah') || request()->is('admin/transaksi-gabah') || request()->is('admin/riwayat-transaksi-gabah') ? '' : 'top-text-nav' }}">Gabah ({{$gbh}})</span>
               <i class=" fa fa-angle-down {{ request()->is('admin/gabah') || request()->is('admin/transaksi-gabah') || request()->is('admin/riwayat-transaksi-gabah') ? 'icon-here' : '' }}"></i>
             </a>
             <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
@@ -64,7 +64,7 @@
                 </li>
                 <li class="kt-menu__item  kt-menu__item--submenu">
                   <a href="{{ route('index.tgabah') }}" class="kt-menu__link">
-                    <span class="kt-menu__link-text">Transaksi Gabah</span>
+                    <span class="kt-menu__link-text">Transaksi Gabah ({{$gbh}})</span>
                   </a>
                 </li>
                 <li class="kt-menu__item  kt-menu__item--submenu">
@@ -80,14 +80,14 @@
           <!-- modal tanam menu -->
           <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel {{ request()->is('admin/modal-tanam-daftar-gadai') || request()->is('admin/modal-tanam-sedang-gadai') || request()->is('admin/modal-tanam-riwayat-gadai') ? 'kt-menu__item--open kt-menu__item--here' : '' }}" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
             <a href="javascript:;" class="kt-menu__link kt-menu__toggle" id="modaltanam">
-              <span class="kt-menu__link-text {{ request()->is('admin/modal-tanam-daftar-gadai') || request()->is('admin/modal-tanam-sedang-gadai') || request()->is('admin/modal-tanam-riwayat-gadai') ? '' : 'top-text-nav' }}">Modal Tanam</span>
+              <span class="kt-menu__link-text {{ request()->is('admin/modal-tanam-daftar-gadai') || request()->is('admin/modal-tanam-sedang-gadai') || request()->is('admin/modal-tanam-riwayat-gadai') ? '' : 'top-text-nav' }}">Modal Tanam ({{$mt}})</span>
               <i class="fa fa-angle-down {{ request()->is('admin/modal-tanam-daftar-gadai') || request()->is('admin/modal-tanam-sedang-gadai') || request()->is('admin/mdoal-tanam-riwayat-gadai') ? 'icon-here' : '' }} "></i>
             </a>
             <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
               <ul class="kt-menu__subnav">
                 <li class="kt-menu__item  kt-menu__item--submenu">
                   <a href="{{ route('daftar.modaltanam') }}" class="kt-menu__link">
-                    <span class="kt-menu__link-text">Belum Diverifikasi</span>
+                    <span class="kt-menu__link-text">Belum Diverifikasi ({{$mt}})</span>
                   </a>
                 </li>
                 <li class="kt-menu__item  kt-menu__item--submenu">
@@ -108,14 +108,14 @@
           <!-- sawah menu -->
           <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel {{ request()->is('admin/gadai-sawah-daftar-gadai') || request()->is('admin/gadai-sawah-sedang-gadai') || request()->is('admin/gadai-sawah-riwayat-gadai') ? 'kt-menu__item--open kt-menu__item--here' : '' }}" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
             <a href="javascript:;" class="kt-menu__link kt-menu__toggle" id="gadaisawah">
-              <span class="kt-menu__link-text {{ request()->is('admin/gadai-sawah-daftar-gadai') || request()->is('admin/gadai-sawah-sedang-gadai') || request()->is('admin/gadai-sawah-riwayat-gadai') ? '' : 'top-text-nav' }}">Gadai Sawah</span>
+              <span class="kt-menu__link-text {{ request()->is('admin/gadai-sawah-daftar-gadai') || request()->is('admin/gadai-sawah-sedang-gadai') || request()->is('admin/gadai-sawah-riwayat-gadai') ? '' : 'top-text-nav' }}">Gadai Sawah ({{$gs}})</span>
               <i class="fa fa-angle-down {{ request()->is('admin/gadai-sawah-daftar-gadai') || request()->is('admin/gadai-sawah-sedang-gadai') || request()->is('admin/gadai-sawah-riwayat-gadai') ? 'icon-here' : '' }} "></i>
             </a>
             <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
               <ul class="kt-menu__subnav">
                 <li class="kt-menu__item  kt-menu__item--submenu">
                   <a href="{{ route('daftar.gadaisawah') }}" class="kt-menu__link">
-                    <span class="kt-menu__link-text">Belum Diverifikasi</span>
+                    <span class="kt-menu__link-text">Belum Diverifikasi ({{$gs}})</span>
                   </a>
                 </li>
                 <li class="kt-menu__item  kt-menu__item--submenu">
@@ -300,14 +300,14 @@
           <!-- transaksi menu -->
           <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel {{ request()->is('admin/transaksi-barang') || request()->is('admin/riwayat-transaksi-barang') ? 'kt-menu__item--open kt-menu__item--here' : '' }}" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
             <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
-              <span class="kt-menu__link-text {{ request()->is('admin/transaksi-barang') || request()->is('admin/riwayat-transaksi-barang') ? '' : 'top-text-nav' }}">Transaksi</span>
+              <span class="kt-menu__link-text {{ request()->is('admin/transaksi-barang') || request()->is('admin/riwayat-transaksi-barang') ? '' : 'top-text-nav' }}">Transaksi ({{$brg}})</span>
               <i class="fa fa-angle-down {{ request()->is('admin/transaksi-barang') || request()->is('admin/riwayat-transaksi-barang') ? 'icon-here' : '' }}"></i>
             </a>
             <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
               <ul class="kt-menu__subnav">
                 <li class="kt-menu__item  kt-menu__item--submenu">
                   <a href="{{ route('index.transaksi') }}" class="kt-menu__link">
-                    <span class="kt-menu__link-text">Sedang Transaksi</span>
+                    <span class="kt-menu__link-text">Transaksi ({{$brg}})</span>
                   </a>
                 </li>
                 <li class="kt-menu__item  kt-menu__item--submenu">
