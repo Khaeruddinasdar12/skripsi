@@ -37,7 +37,7 @@
       <!-- end alert section -->
       <div class="row">
         <div class="col-md-2">
-          <div class="kt-portlet sticky kt-iconbox--animate-faster" data-sticky="true" data-margin-top="100px" data-sticky-for="1023" data-sticky-class="kt-sticky">
+          <div class="kt-portlet kt-iconbox--animate-faster" data-margin-top="100px">
             <div class="kt-portlet__body">
               <h5 style="color: #222;">
                 Jumlah Data Modal Tanam Yang Belum Terverifikasi
@@ -65,7 +65,7 @@
               <div class="kt-portlet__head-toolbar">
                 <form action="{{route('daftar.modaltanam')}}" method="get">
                   <div class="input-group">
-                    <input type="text" class="form-control" name="search" @if(Request::get('search') == '') placeholder="cari" @else value="{{Request::get('search')}}" @endif>
+                    <input type="text" class="form-control" name="search" @if(Request::get('search')=='' ) placeholder="cari" @else value="{{Request::get('search')}}" @endif>
                     <div class="input-group-append">
                       <button class="btn btn-outline-success" type="submit">
                         <i class="fas fa-search"></i>
@@ -97,57 +97,57 @@
                       @else
                       <tbody>
                         @if($data->isEmpty())
-                            <tr>
-                              <td colspan="6" align="center">
-                                Tidak ada data untuk pencarian "{{ Request::get('search') }}"
-                              </td>
-                            </tr>
-                          </tbody>
-                        @else
-
-                        @php $no = 1; @endphp
-                        @foreach ($data as $datas)
                         <tr>
-                          <th scope="row">{{$no++}}</th>
-                          <td>{{$datas -> sawahs -> users -> name}}</td>
-                          <td>{{$datas -> sawahs -> nama}}</td>
-                          <td>{{$datas -> sawahs -> luas_sawah}}</td>
-                          <td>
-                            <div class="btn btn-bold btn-sm btn-font-sm  btn-label-danger" style="font-size: 14px;">
-                              Belum Terverifikasi
-                            </div>
-                          </td>
-                          <td>
-                            <div class="dropdown dropdown-inline">
-                              <a href="#" class="btn btn-default btn-icon btn-icon-md btn-sm btn-more-custom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="flaticon-more-1"></i>
-                              </a>
-                              <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
-                                <ul class="kt-nav">
-                                  <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$datas->id}}" data-email="{{$datas->sawahs->users->email}}" data-nama-sawah="{{$datas -> sawahs -> nama}}" data-nohp="{{$datas->sawahs->users->nohp}}" data-keterangan="{{$datas->keterangan}}" data-titik_koordinat="{{$datas->sawahs->titik_koordinat}}" data-kecamatan="{{$datas->sawahs->kecamatan}}" data-kelurahan="{{$datas->sawahs->kelurahan}}" data-alamat="{{$datas->sawahs->alamat}}" data-luas_sawah="{{$datas->sawahs->luas_sawah}}" data-kota="{{$datas->sawahs->alamats->tipe}} {{$datas->sawahs->alamats->nama_kota}}" data-name="{{$datas->sawahs->users->name}}">
-                                      <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
-                                      <span class="kt-nav__link-text">Detail</span>
-                                    </a>
-                                  </li>
-                                  <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-verif-gadai" data-id="{{$datas->id}}" data-name="{{$datas->sawahs->users->name}}" data-keterangan="{{$datas->keterangan}}" data-href="{{ route('gadaistatus.modaltanam', ['id' => $datas->id]) }}">
-                                      <i class="kt-nav__link-icon flaticon2-check-mark"></i>
-                                      <span class="kt-nav__link-text">Verifikasi</span>
-                                    </a>
-                                  </li>
-                                  <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$datas->id}}" data-href="{{ route('delgadai.modaltanam', ['id' => $datas->id]) }}">
-                                      <i class="kt-nav__link-icon fa fa-trash-alt"></i>
-                                      <span class="kt-nav__link-text">Hapus Data</span>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
+                          <td colspan="6" align="center">
+                            Tidak ada data untuk pencarian "{{ Request::get('search') }}"
                           </td>
                         </tr>
-                        @endforeach
+                      </tbody>
+                      @else
+
+                      @php $no = 1; @endphp
+                      @foreach ($data as $datas)
+                      <tr>
+                        <th scope="row">{{$no++}}</th>
+                        <td>{{$datas -> sawahs -> users -> name}}</td>
+                        <td>{{$datas -> sawahs -> nama}}</td>
+                        <td>{{$datas -> sawahs -> luas_sawah}}</td>
+                        <td>
+                          <div class="btn btn-bold btn-sm btn-font-sm  btn-label-danger" style="font-size: 14px;">
+                            Belum Terverifikasi
+                          </div>
+                        </td>
+                        <td>
+                          <div class="dropdown dropdown-inline">
+                            <a href="#" class="btn btn-default btn-icon btn-icon-md btn-sm btn-more-custom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <i class="flaticon-more-1"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
+                              <ul class="kt-nav">
+                                <li class="kt-nav__item">
+                                  <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$datas->id}}" data-email="{{$datas->sawahs->users->email}}" data-nama-sawah="{{$datas -> sawahs -> nama}}" data-nohp="{{$datas->sawahs->users->nohp}}" data-keterangan="{{$datas->keterangan}}" data-titik_koordinat="{{$datas->sawahs->titik_koordinat}}" data-kecamatan="{{$datas->sawahs->kecamatan}}" data-kelurahan="{{$datas->sawahs->kelurahan}}" data-alamat="{{$datas->sawahs->alamat}}" data-luas_sawah="{{$datas->sawahs->luas_sawah}}" data-kota="{{$datas->sawahs->alamats->tipe}} {{$datas->sawahs->alamats->nama_kota}}" data-name="{{$datas->sawahs->users->name}}">
+                                    <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
+                                    <span class="kt-nav__link-text">Detail</span>
+                                  </a>
+                                </li>
+                                <li class="kt-nav__item">
+                                  <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-verif-gadai" data-id="{{$datas->id}}" data-name="{{$datas->sawahs->users->name}}" data-keterangan="{{$datas->keterangan}}" data-href="{{ route('gadaistatus.modaltanam', ['id' => $datas->id]) }}">
+                                    <i class="kt-nav__link-icon flaticon2-check-mark"></i>
+                                    <span class="kt-nav__link-text">Verifikasi</span>
+                                  </a>
+                                </li>
+                                <li class="kt-nav__item">
+                                  <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$datas->id}}" data-href="{{ route('delgadai.modaltanam', ['id' => $datas->id]) }}">
+                                    <i class="kt-nav__link-icon fa fa-trash-alt"></i>
+                                    <span class="kt-nav__link-text">Hapus Data</span>
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      @endforeach
                       </tbody>
                       @endif
                       @endif
@@ -299,20 +299,20 @@
               <p>Data yang telah di hapus tidak dapat</p>
               <p>dikembalikan lagi</p>
               <form action="" method="POST" id="hapus-data">
-              <div class="form-group">
+                <div class="form-group">
                   <label for="exampleTextarea">Tambahkan keterangan :</label>
                   <textarea class="form-control" name="keterangan" rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 97px; resize: none" required>Mohon maaf sawah Anda tidak memenuhi kriteria sistem.</textarea>
                 </div>
-              <div class="row verif-form">
-                <div class="col-md-6">
-                  <button type="button" class="btn close-modal" data-dismiss="modal" aria-label="Close">Cancel</button>
-                </div>
+                <div class="row verif-form">
+                  <div class="col-md-6">
+                    <button type="button" class="btn close-modal" data-dismiss="modal" aria-label="Close">Cancel</button>
+                  </div>
 
-                <div class="col-md-6">
+                  <div class="col-md-6">
                     @csrf
                     <input type="submit" value="Submit" class="btn btn-verif btn-flat">
+                  </div>
                 </div>
-              </div>
               </form>
             </div>
           </div>

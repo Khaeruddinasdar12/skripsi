@@ -41,7 +41,7 @@
       <!-- end alert section -->
       <div class="row">
         <div class="col-md-2">
-          <div class="kt-portlet sticky kt-iconbox--animate-faster" data-sticky="true" data-margin-top="100px" data-sticky-for="1023" data-sticky-class="kt-sticky">
+          <div class="kt-portlet kt-iconbox--animate-faster" data-margin-top="100px">
             <div class="kt-portlet__body">
               <h5 style="color: #222;">
                 Jumlah Data Alat Tani Yang Tersedia
