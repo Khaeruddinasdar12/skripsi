@@ -530,7 +530,7 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
   cursor: pointer;
 }
 
-.detail-keranjang {
+tr tr {
   transform: translateY(-10000px) !important;
   transition: 0.5s;
   padding: 0 !important;

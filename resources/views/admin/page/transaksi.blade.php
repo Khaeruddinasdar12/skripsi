@@ -78,7 +78,7 @@
               <div class="kt-section">
                 <div class="kt-section__content">
                   <div class="table-responsive">
-                    <table class="table">
+                    <table class="table" id="transaksi-table">
                       <thead>
                         <tr>
                           <th>#</th>
@@ -92,12 +92,11 @@
                       </thead>
 
                       <tbody>
-                        @php $no = 0; @endphp
                         @foreach($data as $datas)
                         <tr>
 
                           <td>
-                            <div class="btn btn-default btn-icon btn-icon-md btn-sm btn-detail{{$no++}}">
+                            <div class="btn btn-default btn-icon btn-icon-md btn-sm btn-detail">
                               <i class="fa fa-angle-right"></i>
                             </div>
                           </td>
@@ -109,10 +108,10 @@
                           </td>
                           <td>
                             <div class="dropdown dropdown-inline">
-                              <a href="#" class="btn btn-default btn-icon btn-icon-md btn-sm btn-more-custom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <a href="#" class="btn btn-default btn-icon btn-icon-md btn-sm btn-more-custom" data-toggle="dropdown">
                                 <i class="flaticon-more-1"></i>
                               </a>
-                              <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
+                              <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade">
                                 <ul class="kt-nav">
                                   <li class="kt-nav__item">
                                     <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-beras">
@@ -125,7 +124,7 @@
                             </div>
                           </td>
                         </tr>
-                        <tr class="detail-keranjang">
+                        <tr>
                           <td></td>
                           <td>nama barang</td>
                           <td>Jenis barang</td>
@@ -134,7 +133,7 @@
                           <td>subtotal</td>
                         </tr>
                         @foreach($datas->items as $items)
-                        <tr class="detail-keranjang">
+                        <tr>
                           <td></td>
                           <td>{{$items->nama}}</td>
                           <td>{{$items->jenis}}</td>
@@ -324,9 +323,6 @@
     modal.find('.modal-body #hapus-data').attr('action', href)
   })
   //End Modal hapus
-  $(".btn-detail" + $no).click(function() {
-    $(".detail-keranjang").toggleClass("detail-keranjang-active");
-  });
 </script>
 
 @endsection
