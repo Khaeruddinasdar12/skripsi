@@ -6,13 +6,13 @@
   <div class="kt-container ">
     <div class="kt-subheader__main">
       <h3 class="kt-subheader__title">
-        Gabah </h3>
+        Barang </h3>
       <span class="kt-subheader__separator kt-hidden"></span>
       <div class="kt-subheader__breadcrumbs">
         <a href="" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
         <span class="kt-subheader__breadcrumbs-separator"></span>
         <a href="#" class="kt-subheader__breadcrumbs-link">
-          Riwayat Transaksi Gabah
+          Riwayat Transaksi Barang
         </a>
       </div>
     </div>
@@ -40,7 +40,7 @@
           <div class="kt-portlet sticky kt-iconbox--animate-faster" data-sticky="true" data-margin-top="100px" data-sticky-for="1023" data-sticky-class="kt-sticky">
             <div class="kt-portlet__body">
               <h5 style="color: #222;">
-                Jumlah Data Riwayat Transaksi Gabah Yang Tersedia
+                Jumlah Riwayat Transaksi Barang
               </h5>
               <h4 class="mt-3" style="font-weight: 800;">
                 {{$jml}} Data
@@ -58,11 +58,11 @@
                   <i class="flaticon-avatar"></i>
                 </span>
                 <h3 class="kt-portlet__head-title">
-                  Data Riwayat Transaksi Gabah
+                  Data Riwayat Transaksi Barang
                 </h3>
               </div>
               <div class="kt-portlet__head-toolbar">
-                <form action="{{route('riwayat.tgabah')}}" method="get">
+                <form action="{{route('riwayat.transaksi')}}" method="get">
                   <div class="input-group">
                     <input type="text" class="form-control" name="search" @if(Request::get('search') == '') placeholder="cari" @else value="{{Request::get('search')}}" @endif>
                     <div class="input-group-append">
@@ -82,9 +82,9 @@
                       <thead>
                         <tr>
                           <th>#</th>
+                          <th>Kode Transaksi</th>
                           <th>Nama Pembeli</th>
-                          <th>Nama Gabah</th>
-                          <th>Jumlah Gabah</th>
+                          <th>No. Hp</th>
                           <th>Total Harga</th>
                           <th>Jenis Pembayaran</th>
                           <th>Action</th>
@@ -105,29 +105,20 @@
                           </tbody>
                         @else
 
-                        @php $no = 1; @endphp
-                        @foreach ($data as $riwayat)
-                        @php
-                        $total = (($riwayat -> jumlah)*($riwayat -> harga));
-                        @endphp
-
-                        <!-- Mengganti nama jenis bayar untuk detail -->
-                        @if($riwayat->jenis_bayar == 'cod')
-                        @php $pembayaran = 'Cash On Delivery (cod)'; @endphp
-                        @else
-                        @php $pembayaran = 'Transfer Bank'; @endphp
-                        @endif
-                        <!-- End Mengganti nama jenis bayar untuk detail -->
+                        @php $no = 0; @endphp
+                        @foreach($data as $datas)
                         <tr>
-                          <th scope="row">{{$no++}}</th>
-                          <td>{{$riwayat -> users -> name}}</td>
-                          <td>{{$riwayat -> gabahs -> nama}}</td>
-                          <td>{{$riwayat -> jumlah}} Kg</td>
-                          <td>Rp.{{format_uang($total)}}</td>
+
                           <td>
-                            @if($riwayat->jenis_bayar == 'cod')
-                            Cash On Delivery
-                            @endif
+                            <div class="btn btn-default btn-icon btn-icon-md btn-sm" onclick="det({! $no++ !})">
+                              <i class="fa fa-angle-right"></i>
+                            </div>
+                          </td>
+                          <td>{{$datas->transaksi_code}}</td>
+                          <td>{{$datas->penerima}}</td>
+                          <td>{{$datas->nohp}}</td>
+                          <td>Rp. {{format_uang($datas->total)}}</td>
+                          <td>Cash On Delivery
                           </td>
                           <td>
                             <div class="dropdown dropdown-inline">
@@ -137,31 +128,48 @@
                               <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
                                 <ul class="kt-nav">
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-beras" data-id="{{$riwayat->id}}" data-jumlah="{{$riwayat->jumlah}}" data-harga="Rp.{{format_uang($riwayat->harga)}}" data-total="Rp.{{format_uang($total)}}" data-alamat="{{$riwayat->alamat}}" data-kecamatan="{{$riwayat->kecamatan}}" data-kelurahan="{{$riwayat->kelurahan}}" data-keterangan="{{$riwayat->keterangan}}" data-jenis_bayar="{{$pembayaran}}" data-users-name="{{$riwayat->users->name}}" data-users-email="{{$riwayat->users->email}}" data-users-nohp="{{$riwayat->users->nohp}}" data-beras-nama="{{$riwayat->gabahs->nama}}">
+                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-beras">
                                       <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
                                       <span class="kt-nav__link-text">Detail</span>
                                     </a>
                                   </li>
-                                  @if(Auth::guard('admin')->user()->role != 'superadmin')
-                                  <li class="kt-nav__item" style="display: none !important;">
-                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$riwayat->id}}" data-href="{{ route('deleteriwayat.tgabah', ['id' => $riwayat->id]) }}">
-                                      <i class="kt-nav__link-icon fa fa-trash-alt"></i>
-                                      <span class="kt-nav__link-text">Hapus Data</span>
-                                    </a>
-                                  </li>
-                                  @else
                                   <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$riwayat->id}}" data-href="{{ route('deleteriwayat.tgabah', ['id' => $riwayat->id]) }}">
-                                      <i class="kt-nav__link-icon fa fa-trash-alt"></i>
-                                      <span class="kt-nav__link-text">Hapus Data</span>
+                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-pembelian" data-href="{{route('status.transaksi', ['id' => $datas->id])}}">
+                                      <i class="kt-nav__link-icon flaticon2-check-mark"></i>
+                                      <span class="kt-nav__link-text">Verifikasi Pembelian</span>
                                     </a>
                                   </li>
-                                  @endif
+                                  <li class="kt-nav__item">
+                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-href="{{route('delete.transaksi', ['id' => $datas->id])}}">
+                                      <i class="kt-nav__link-icon fa fa-trash-alt"></i>
+                                      <span class="kt-nav__link-text">Batalkan</span>
+                                    </a>
+                                  </li>
                                 </ul>
                               </div>
                             </div>
                           </td>
                         </tr>
+                        <tr class="detail-keranjang{$no++}">
+                          <td></td>
+                          <td></td>
+                          <td>nama barang</td>
+                          <td>Jenis barang</td>
+                          <td>harga</td>
+                          <td>jumlah</td>
+                          <td>subtotal</td>
+                        </tr>
+                        @foreach($datas->items as $items)
+                        <tr class="detail-keranjang{$no++}">
+                          <td></td>
+                          <td></td>
+                          <td>{{$items->nama}}</td>
+                          <td>{{$items->jenis}}</td>
+                          <td>Rp. {{format_uang($items->harga)}}</td>
+                          <td>{{$items->jumlah}}</td>
+                          <td>Rp. {{format_uang($items->subtotal)}}</td>
+                        </tr>
+                        @endforeach
                         @endforeach
                       </tbody>
                       @endif
@@ -265,6 +273,39 @@
       </div>
       <!-- modal detail user -->
 
+      <!-- modal verifikasi -->
+      <div class="modal modal-verif fade" id="modal-pembelian" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <span class="modal-icon">
+              <i class="fa fa-info"></i>
+            </span>
+            <div class="modal-body">
+              <h3>Verifikasi Pembelian?</h3>
+              <p>Verifikasi pembelian hanya dapat di lakukan satu kali</p>
+              <p>dan tidak dapat di batalkan</p>
+
+              <div class="row verif-form">
+                <div class="col-md-6">
+                  <button type="button" class="btn close-modal" data-dismiss="modal" aria-label="Close">Cancel</button>
+                </div>
+
+                <div class="col-md-6">
+                  <form action="" method="POST" id="verif-pembelian">
+                    @csrf
+                    <input type="hidden" value="PUT" name="_method">
+
+                    <input type="submit" value="Verifikasi" class="btn btn-verif btn-flat">
+
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end modal verifikasi -->
+
       <!-- modal hapus -->
       <div class="modal modal-hapus fade" id="modal-hapus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -276,7 +317,11 @@
               <h3>Hapus Data?</h3>
               <p>Data yang telah di hapus tidak dapat</p>
               <p>dikembalikan lagi</p>
-
+              <form action="" method="POST" id="hapus-data">
+              <div class="form-group">
+                  <label for="exampleTextarea">Tambahkan keterangan :</label>
+                  <textarea class="form-control" name="keterangan" rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 97px; resize: none" required>Mohon maaf pembelian alat tidak dapat kami proses.</textarea>
+                </div>
               <div class="row verif-form">
                 <div class="col-md-6">
                   <button type="button" class="btn close-modal" data-dismiss="modal" aria-label="Close">Cancel</button>
@@ -288,10 +333,9 @@
                     <input type="hidden" value="delete" name="_method">
 
                     <input type="submit" value="Hapus data" class="btn btn-verif btn-flat">
-
-                  </form>
                 </div>
               </div>
+            </form>
             </div>
           </div>
         </div>
@@ -337,6 +381,16 @@
   })
   // modal detail
 
+  //Modal Verifikasi
+  $('#modal-pembelian').on('show.bs.modal', function(event) {
+    var a = $(event.relatedTarget)
+    var href = a.data('href')
+
+    var modal = $(this)
+    modal.find('.modal-body #verif-pembelian').attr('action', href)
+  })
+  //End Modal Verifikasi
+
   //Modal hapus
   $('#modal-hapus').on('show.bs.modal', function(event) {
     var a = $(event.relatedTarget)
@@ -346,6 +400,11 @@
     modal.find('.modal-body #hapus-data').attr('action', href)
   })
   //End Modal hapus
+  function det(no) {
+    $(".btn-detail" + no).click(function() {
+      $(".detail-keranjang" + no).toggleClass("detail-keranjang-active");
+    });
+  }
 </script>
 
 @endsection

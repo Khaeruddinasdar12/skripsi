@@ -50,6 +50,29 @@
         }
     }
 
+    li {
+        .kt-nav__link-badge {
+            margin-left: 5px !important;
+
+            span {
+                color: $biru !important;
+                background-color: rgba(255, 255, 255, 0.924) !important;
+            }
+
+            .active-badge {
+                color: #fff !important;
+                background-color: rgba(0, 168, 90, 0.452) !important;
+            }
+        }
+
+        .badge-submenu {
+            span {
+                color: $galungcolor !important;
+                background-color: rgba(0, 168, 90, 0.102) !important;
+            }
+        }
+    }
+
     .kt-header-menu {
         .kt-menu__item {
             a {
@@ -90,13 +113,13 @@
             }
         }
 
-        #gadaisawah,
         #manageuser {
             width: 135px;
         }
 
+        #gadaisawah,
         #modaltanam {
-            width: 138px;
+            width: 167px;
         }
 
         #bibitpupuk,

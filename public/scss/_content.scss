@@ -484,22 +484,8 @@ table {
     cursor: pointer;
 }
 
-tr tr {
-    transform: translateY(-10000px) !important;
-    transition: .5s;
-    padding: 0 !important;
-    line-height: 0 !important;
-    margin: 0 !important;
-    position: absolute;
-}
-
-.detail-keranjang-active {
-    transform: translateY(0) !important;
-    transition: .5s;
-    padding: 15px !important;
-    line-height: 15px !important;
-    margin: 15px !important;
-    position: relative;
+.animation {
+    transition: .5s !important;
 }
 
 // end detail keranjang transaksi

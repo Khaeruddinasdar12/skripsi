@@ -91,6 +91,21 @@ table .btn-more-custom {
   background: #fff;
   margin-right: 30px;
 }
+.galung-header li .kt-nav__link-badge {
+  margin-left: 5px !important;
+}
+.galung-header li .kt-nav__link-badge span {
+  color: #3498db !important;
+  background-color: rgba(255, 255, 255, 0.924) !important;
+}
+.galung-header li .kt-nav__link-badge .active-badge {
+  color: #fff !important;
+  background-color: rgba(0, 168, 90, 0.452) !important;
+}
+.galung-header li .badge-submenu span {
+  color: #00A859 !important;
+  background-color: rgba(0, 168, 90, 0.102) !important;
+}
 .galung-header .kt-header-menu .kt-menu__item a .kt-menu__link-text {
   color: #00A859 !important;
 }
@@ -118,12 +133,12 @@ table .btn-more-custom {
 .galung-header .kt-header-menu .kt-menu__item .kt-menu__submenu {
   width: 200px !important;
 }
-.galung-header .kt-header-menu #gadaisawah,
 .galung-header .kt-header-menu #manageuser {
   width: 135px;
 }
+.galung-header .kt-header-menu #gadaisawah,
 .galung-header .kt-header-menu #modaltanam {
-  width: 138px;
+  width: 167px;
 }
 .galung-header .kt-header-menu #bibitpupuk,
 .galung-header .kt-header-menu #manageadmin {
@@ -530,22 +545,8 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
   cursor: pointer;
 }
 
-tr tr {
-  transform: translateY(-10000px) !important;
-  transition: 0.5s;
-  padding: 0 !important;
-  line-height: 0 !important;
-  margin: 0 !important;
-  position: absolute;
-}
-
-.detail-keranjang-active {
-  transform: translateY(0) !important;
-  transition: 0.5s;
-  padding: 15px !important;
-  line-height: 15px !important;
-  margin: 15px !important;
-  position: relative;
+.animation {
+  transition: 0.5s !important;
 }
 
 .modal .detail-modal {

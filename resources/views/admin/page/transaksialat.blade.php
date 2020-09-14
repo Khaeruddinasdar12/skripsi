@@ -397,7 +397,7 @@
               <form action="" method="POST" id="hapus-data">
               <div class="form-group">
                   <label for="exampleTextarea">Tambahkan keterangan :</label>
-                  <textarea class="form-control" name="keterangan" rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 97px; resize: none" required>Mohon maaf pembelian alat tidak dapat kami proses.</textarea>
+                  <textarea class="form-control" name="keterangan" rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 97px; resize: none" required>Mohon maaf transaksi ini tidak dapat kami proses.</textarea>
                 </div>
               <div class="row verif-form">
                 <div class="col-md-6">

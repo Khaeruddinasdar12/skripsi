@@ -64,7 +64,7 @@
               <div class="kt-portlet__head-toolbar">
                 <form action="{{route('index.gabah')}}" method="get">
                   <div class="input-group">
-                    <input type="text" class="form-control" name="search" placeholder="cari">
+                    <input type="text" class="form-control" name="search" @if(Request::get('search') == '') placeholder="cari" @else value="{{Request::get('search')}}" @endif>
                     <div class="input-group-append">
                       <button class="btn btn-outline-success" type="submit">
                         <i class="fas fa-search"></i>

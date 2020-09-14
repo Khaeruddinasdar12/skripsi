@@ -34,158 +34,158 @@ class GabahController extends Controller
         ]);
 	}
 
-    // public function store(Request $request, $id)
-    // {
-    // 	if(!$user = Auth::user()) {
-    //             return response()->json([
-    //                 'status'    => false,
-    //                 'message'   => 'Invalid Token'
-    //             ]);
-    //     }
+    public function store(Request $request, $id)
+    {
+    	if(!$user = Auth::user()) {
+                return response()->json([
+                    'status'    => false,
+                    'message'   => 'Invalid Token'
+                ]);
+        }
 
-    //     if($user->petani_verified == '0') {
-    //         return response()->json([
-    //             'status' => false, 
-    //             'message' => 'Akun petani belum diverifikasi'
-    //         ]);
-    //     }
+        if($user->petani_verified == '0') {
+            return response()->json([
+                'status' => false, 
+                'message' => 'Akun petani belum diverifikasi'
+            ]);
+        }
 
-    //     $validator = Validator::make($request->all(), [
-    //             'jumlah' 		=> 'required|string',
-    //             'waktu_jemput'  => 'date_format:Y-m-d H:i:s',
-    //             'alamat_lengkap'=> 'required|string',
-    //             'kecamatan' 	=> 'required|string',
-    //             'kelurahan'		=> 'required|string',
-    //         ]);
+        $validator = Validator::make($request->all(), [
+                'jumlah' 		=> 'required|string',
+                'waktu_jemput'  => 'date_format:Y-m-d H:i:s',
+                'alamat_lengkap'=> 'required|string',
+                'kecamatan' 	=> 'required|string',
+                'kelurahan'		=> 'required|string',
+            ]);
 
-    //     if($validator->fails()) {
-    //             $message = $validator->messages()->first();
-    //             return response()->json([
-    //                 'status' => false,
-    //                 'messsage' => $message
-    //             ]);
-    //     }
+        if($validator->fails()) {
+                $message = $validator->messages()->first();
+                return response()->json([
+                    'status' => false,
+                    'messsage' => $message
+                ]);
+        }
 
-    //     $gabah = Gabah::find($id);
-    //     if ($gabah == null) {
-    //         return response()->json([
-    //             'status' => false, 
-    //             'message' => 'Id gabah tidak ditemukan'
-    //         ]);
-    //     }
+        $gabah = Gabah::find($id);
+        if ($gabah == null) {
+            return response()->json([
+                'status' => false, 
+                'message' => 'Id gabah tidak ditemukan'
+            ]);
+        }
 
 
-    //     $sawah = TransaksiGabah::create([
-    //             'jumlah' 	=> $request->get('jumlah'),
-    //             'harga' 	=> $gabah->harga,
-    //             'alamat' 	=> $request->get('alamat_lengkap'),
-    //             'kecamatan' => $request->get('kecamatan'),
-    //             'kelurahan' => $request->get('kelurahan'),
-    //             'waktu_jemput'  => $request->get('waktu_jemput'),
-    //             'keterangan'=> $request->get('keterangan'),
-    //             'status'	=> '0',
-    //             'jenis_bayar' => 'cod',
-    //             'gabah_id'	=> $gabah->id,
-    //             'user_id'	=> $user->id,
+        $sawah = TransaksiGabah::create([
+                'jumlah' 	=> $request->get('jumlah'),
+                'harga' 	=> $gabah->harga,
+                'alamat' 	=> $request->get('alamat_lengkap'),
+                'kecamatan' => $request->get('kecamatan'),
+                'kelurahan' => $request->get('kelurahan'),
+                'waktu_jemput'  => $request->get('waktu_jemput'),
+                'keterangan'=> $request->get('keterangan'),
+                'status'	=> '0',
+                'jenis_bayar' => 'cod',
+                'gabah_id'	=> $gabah->id,
+                'user_id'	=> $user->id,
 
-    //         ]);
+            ]);
 
-    //     return response()->json([
-    //                 'status' => true,
-    //                 'message' => 'Berhasil mengirim permintaan pembelian gabah ! segera diproses.'
-    //             ]);
-    // }
+        return response()->json([
+                    'status' => true,
+                    'message' => 'Berhasil mengirim permintaan pembelian gabah ! segera diproses.'
+                ]);
+    }
 
-    // public function transaksi() // sedang transaksi gabah user
-    // {
-    //     if(!$user = Auth::user()) {
-    //             return response()->json([
-    //                 'status'    => false,
-    //                 'message'   => 'Invalid Token'
-    //             ]);
-    //     }
+    public function transaksi() // sedang transaksi gabah user
+    {
+        if(!$user = Auth::user()) {
+                return response()->json([
+                    'status'    => false,
+                    'message'   => 'Invalid Token'
+                ]);
+        }
 
-    //     if($user->petani_verified == '0') {
-    //         return response()->json([
-    //             'status' => false, 
-    //             'message' => 'Akun petani belum diverifikasi'
-    //         ]);
-    //     }
+        if($user->petani_verified == '0') {
+            return response()->json([
+                'status' => false, 
+                'message' => 'Akun petani belum diverifikasi'
+            ]);
+        }
 
-    //     $data = DB::table('transaksi_gabahs')
-    //             ->select('transaksi_gabahs.id', 'transaksi_gabahs.jumlah', 'transaksi_gabahs.harga', 'transaksi_gabahs.alamat', 'transaksi_gabahs.kecamatan', 'transaksi_gabahs.kelurahan', 'transaksi_gabahs.keterangan', 'transaksi_gabahs.waktu_jemput', 'gabahs.nama as nama_gabah', 'transaksi_gabahs.created_at', 'transaksi_gabahs.updated_at')
-    //             ->join('gabahs', 'transaksi_gabahs.gabah_id', '=', 'gabahs.id')
-    //             ->where('transaksi_gabahs.status', '0')
-    //             ->where('transaksi_gabahs.user_id', $user->id)
-    //             ->orderBy('transaksi_gabahs.created_at', 'desc')
-    //             ->get();
+        $data = DB::table('transaksi_gabahs')
+                ->select('transaksi_gabahs.id', 'transaksi_gabahs.jumlah', 'transaksi_gabahs.harga', 'transaksi_gabahs.alamat', 'transaksi_gabahs.kecamatan', 'transaksi_gabahs.kelurahan', 'transaksi_gabahs.keterangan', 'transaksi_gabahs.waktu_jemput', 'gabahs.nama as nama_gabah', 'transaksi_gabahs.created_at', 'transaksi_gabahs.updated_at')
+                ->join('gabahs', 'transaksi_gabahs.gabah_id', '=', 'gabahs.id')
+                ->where('transaksi_gabahs.status', '0')
+                ->where('transaksi_gabahs.user_id', $user->id)
+                ->orderBy('transaksi_gabahs.created_at', 'desc')
+                ->get();
 
-    //     return response()->json([
-    //                 'status'    => true,
-    //                 'message'   => 'Sedang transaksi gabah oleh user id '.$user->name,
-    //                 'data'      => $data
-    //             ]);
-    // }
+        return response()->json([
+                    'status'    => true,
+                    'message'   => 'Sedang transaksi gabah oleh user id '.$user->name,
+                    'data'      => $data
+                ]);
+    }
 
-    // public function riwayat() // riwayat transaksi gabah user
-    // {
-    //     if(!$user = Auth::user()) {
-    //             return response()->json([
-    //                 'status'    => false,
-    //                 'message'   => 'Invalid Token'
-    //             ]);
-    //     }
+    public function riwayat() // riwayat transaksi gabah user
+    {
+        if(!$user = Auth::user()) {
+                return response()->json([
+                    'status'    => false,
+                    'message'   => 'Invalid Token'
+                ]);
+        }
 
-    //     if($user->petani_verified == '0') {
-    //         return response()->json([
-    //             'status' => false, 
-    //             'message' => 'Akun petani belum diverifikasi'
-    //         ]);
-    //     }
+        if($user->petani_verified == '0') {
+            return response()->json([
+                'status' => false, 
+                'message' => 'Akun petani belum diverifikasi'
+            ]);
+        }
 
-    //     $data = DB::table('transaksi_gabahs')
-    //             ->select('transaksi_gabahs.id', 'transaksi_gabahs.jumlah', 'transaksi_gabahs.harga', 'transaksi_gabahs.alamat', 'transaksi_gabahs.kecamatan', 'transaksi_gabahs.kelurahan', 'transaksi_gabahs.keterangan', 'transaksi_gabahs.waktu_jemput', 'gabahs.nama as nama_gabah', 'transaksi_gabahs.created_at', 'transaksi_gabahs.updated_at' )
-    //             ->join('gabahs', 'transaksi_gabahs.gabah_id', '=', 'gabahs.id')
-    //             ->where('transaksi_gabahs.status', '1')
-    //             ->where('transaksi_gabahs.user_id', $user->id)
-    //             ->orderBy('transaksi_gabahs.created_at', 'desc')
-    //             ->get();
+        $data = DB::table('transaksi_gabahs')
+                ->select('transaksi_gabahs.id', 'transaksi_gabahs.jumlah', 'transaksi_gabahs.harga', 'transaksi_gabahs.alamat', 'transaksi_gabahs.kecamatan', 'transaksi_gabahs.kelurahan', 'transaksi_gabahs.keterangan', 'transaksi_gabahs.waktu_jemput', 'gabahs.nama as nama_gabah', 'transaksi_gabahs.created_at', 'transaksi_gabahs.updated_at' )
+                ->join('gabahs', 'transaksi_gabahs.gabah_id', '=', 'gabahs.id')
+                ->where('transaksi_gabahs.status', '1')
+                ->where('transaksi_gabahs.user_id', $user->id)
+                ->orderBy('transaksi_gabahs.created_at', 'desc')
+                ->get();
 
-    //     return response()->json([
-    //                 'status'    => true,
-    //                 'message'   => 'Riwayat transaksi gabah oleh user id '.$user->name,
-    //                 'data'      => $data
-    //             ]);
-    // }
+        return response()->json([
+                    'status'    => true,
+                    'message'   => 'Riwayat transaksi gabah oleh user id '.$user->name,
+                    'data'      => $data
+                ]);
+    }
 
-    // public function batal() // riwayat transaksi gabah user
-    // {
-    //     if(!$user = Auth::user()) {
-    //             return response()->json([
-    //                 'status'    => false,
-    //                 'message'   => 'Invalid Token'
-    //             ]);
-    //     }
+    public function batal() // riwayat transaksi gabah user
+    {
+        if(!$user = Auth::user()) {
+                return response()->json([
+                    'status'    => false,
+                    'message'   => 'Invalid Token'
+                ]);
+        }
 
-    //     if($user->petani_verified == '0') {
-    //         return response()->json([
-    //             'status' => false, 
-    //             'message' => 'Akun petani belum diverifikasi'
-    //         ]);
-    //     }
+        if($user->petani_verified == '0') {
+            return response()->json([
+                'status' => false, 
+                'message' => 'Akun petani belum diverifikasi'
+            ]);
+        }
 
-    //     $data = DB::table('transaksi_gabahs')
-    //             ->select('transaksi_gabahs.id', 'transaksi_gabahs.jumlah', 'transaksi_gabahs.harga', 'transaksi_gabahs.alamat', 'transaksi_gabahs.kecamatan', 'transaksi_gabahs.kelurahan', 'transaksi_gabahs.keterangan', 'transaksi_gabahs.waktu_jemput', 'gabahs.nama as nama_gabah', 'transaksi_gabahs.created_at', 'transaksi_gabahs.updated_at')
-    //             ->join('gabahs', 'transaksi_gabahs.gabah_id', '=', 'gabahs.id')
-    //             ->where('transaksi_gabahs.status', 'batal')
-    //             ->where('transaksi_gabahs.user_id', $user->id)
-    //             ->orderBy('transaksi_gabahs.created_at', 'desc')
-    //             ->get();
+        $data = DB::table('transaksi_gabahs')
+                ->select('transaksi_gabahs.id', 'transaksi_gabahs.jumlah', 'transaksi_gabahs.harga', 'transaksi_gabahs.alamat', 'transaksi_gabahs.kecamatan', 'transaksi_gabahs.kelurahan', 'transaksi_gabahs.keterangan', 'transaksi_gabahs.waktu_jemput', 'gabahs.nama as nama_gabah', 'transaksi_gabahs.created_at', 'transaksi_gabahs.updated_at')
+                ->join('gabahs', 'transaksi_gabahs.gabah_id', '=', 'gabahs.id')
+                ->where('transaksi_gabahs.status', 'batal')
+                ->where('transaksi_gabahs.user_id', $user->id)
+                ->orderBy('transaksi_gabahs.created_at', 'desc')
+                ->get();
 
-    //     return response()->json([
-    //                 'status'    => true,
-    //                 'message'   => 'Transaksi gabah yang dibatalkan (user id '.$user->name.')',
-    //                 'data'      => $data
-    //             ]);
-    // }
+        return response()->json([
+                    'status'    => true,
+                    'message'   => 'Transaksi gabah yang dibatalkan (user id '.$user->name.')',
+                    'data'      => $data
+                ]);
+    }
 }
