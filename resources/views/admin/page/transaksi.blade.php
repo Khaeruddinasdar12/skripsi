@@ -1,7 +1,16 @@
 @extends('layouts.galungtemplate')
 
 @section('content')
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".tutupi").hide();
+  });
 
+  function det(no) {
+    $(".detail-keranjang"+no).toggle();
+    // }
+  }
+</script>
 <div class="kt-subheader subheader-custom kt-grid__item" id="kt_subheader">
   <div class="kt-container ">
     <div class="kt-subheader__main">
@@ -110,7 +119,7 @@
                         <tr>
 
                           <td>
-                            <div class="btn btn-default btn-icon btn-icon-md btn-sm" onclick="det({! $no++ !})">
+                            <div class="btn btn-default btn-icon btn-icon-md btn-sm" onclick="det({{$no}})">
                               <i class="fa fa-angle-right"></i>
                             </div>
                           </td>
@@ -150,7 +159,7 @@
                             </div>
                           </td>
                         </tr>
-                        <tr class="detail-keranjang{$no++}">
+                        <tr class="detail-keranjang{{$no}} tutupi">
                           <td></td>
                           <td></td>
                           <td>nama barang</td>
@@ -160,7 +169,7 @@
                           <td>subtotal</td>
                         </tr>
                         @foreach($datas->items as $items)
-                        <tr class="detail-keranjang{$no++}">
+                        <tr class="detail-keranjang{{$no}} tutupi">
                           <td></td>
                           <td></td>
                           <td>{{$items->nama}}</td>
@@ -170,6 +179,7 @@
                           <td>Rp. {{format_uang($items->subtotal)}}</td>
                         </tr>
                         @endforeach
+                        @php $no++ @endphp
                         @endforeach
                       </tbody>
                       @endif
@@ -400,11 +410,6 @@
     modal.find('.modal-body #hapus-data').attr('action', href)
   })
   //End Modal hapus
-  function det(no) {
-    $(".btn-detail" + no).click(function() {
-      $(".detail-keranjang" + no).toggleClass("detail-keranjang-active");
-    });
-  }
 </script>
 
 @endsection
