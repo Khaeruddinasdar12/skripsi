@@ -297,13 +297,28 @@
           </li> -->
           <!-- end penjualan -->
 
-          <!-- dashboard menu -->
-          <li class="kt-menu__item kt-menu__item--rel {{ request()->is('admin/transaksi-barang') ? 'kt-menu__item--open kt-menu__item--here' : '' }}">
-            <a href="{{ route('index.transaksi') }}" class="kt-menu__link">
-              <span class="kt-menu__link-text {{ request()->is('admin/transaksi-barang') ? '' : 'top-text-nav' }}">Transaksi</span>
+          <!-- transaksi menu -->
+          <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel {{ request()->is('admin/transaksi-barang') || request()->is('admin/riwayat-transaksi-barang') ? 'kt-menu__item--open kt-menu__item--here' : '' }}" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
+            <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+              <span class="kt-menu__link-text {{ request()->is('admin/transaksi-barang') || request()->is('admin/riwayat-transaksi-barang') ? '' : 'top-text-nav' }}">Transaksi</span>
+              <i class="fa fa-angle-down {{ request()->is('admin/transaksi-barang') || request()->is('admin/riwayat-transaksi-barang') ? 'icon-here' : '' }}"></i>
             </a>
+            <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
+              <ul class="kt-menu__subnav">
+                <li class="kt-menu__item  kt-menu__item--submenu">
+                  <a href="{{ route('index.transaksi') }}" class="kt-menu__link">
+                    <span class="kt-menu__link-text">Sedang Transaksi</span>
+                  </a>
+                </li>
+                <li class="kt-menu__item  kt-menu__item--submenu">
+                  <a href="{{ route('riwayat.transaksi') }}" class="kt-menu__link">
+                    <span class="kt-menu__link-text">Riwayat Transaksi</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </li>
-          <!-- end dashboard menu -->
+          <!-- end transaksi menu -->
 
           <!-- manage admin menu -->
           <li class="kt-menu__item kt-menu__item--rel {{ request()->is('admin/manage-admin') ? 'kt-menu__item--open kt-menu__item--here' : '' }}">

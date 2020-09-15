@@ -40,10 +40,10 @@
           <div class="kt-portlet sticky kt-iconbox--animate-faster" data-sticky="true" data-margin-top="100px" data-sticky-for="1023" data-sticky-class="kt-sticky">
             <div class="kt-portlet__body">
               <h5 style="color: #222;">
-                Jumlah Data Transaksi Barang
+                Jumlah Transaksi Barang
               </h5>
               <h4 class="mt-3" style="font-weight: 800;">
-                ex. Data
+                {{$jml}} Data
               </h4>
 
             </div>
@@ -64,7 +64,7 @@
               <div class="kt-portlet__head-toolbar">
                 <form action="{{route('index.transaksi')}}" method="get">
                   <div class="input-group">
-                    <input type="text" class="form-control" name="search" placeholder="cari">
+                    <input type="text" class="form-control" name="search" @if(Request::get('search') == '') placeholder="cari" @else value="{{Request::get('search')}}" @endif>
                     <div class="input-group-append">
                       <button class="btn btn-outline-success" type="submit">
                         <i class="fas fa-search"></i>
@@ -90,8 +90,21 @@
                           <th>Action</th>
                         </tr>
                       </thead>
-
+                      @if ($jml == 0)
+                      <tbody style="text-align: center;">
+                        <td colspan="7">Belum ada data</td>
+                      </tbody>
+                      @else
                       <tbody>
+                        @if($data->isEmpty())
+                            <tr>
+                              <td colspan="7" align="center">
+                                Tidak ada data untuk pencarian "{{ Request::get('search') }}"
+                              </td>
+                            </tr>
+                          </tbody>
+                        @else
+
                         @php $no = 0; @endphp
                         @foreach($data as $datas)
                         <tr>
@@ -118,6 +131,18 @@
                                     <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-beras">
                                       <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
                                       <span class="kt-nav__link-text">Detail</span>
+                                    </a>
+                                  </li>
+                                  <li class="kt-nav__item">
+                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-pembelian" data-href="{{route('status.transaksi', ['id' => $datas->id])}}">
+                                      <i class="kt-nav__link-icon flaticon2-check-mark"></i>
+                                      <span class="kt-nav__link-text">Verifikasi Pembelian</span>
+                                    </a>
+                                  </li>
+                                  <li class="kt-nav__item">
+                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-href="{{route('delete.transaksi', ['id' => $datas->id])}}">
+                                      <i class="kt-nav__link-icon fa fa-trash-alt"></i>
+                                      <span class="kt-nav__link-text">Batalkan</span>
                                     </a>
                                   </li>
                                 </ul>
@@ -147,7 +172,10 @@
                         @endforeach
                         @endforeach
                       </tbody>
+                      @endif
+                      @endif
                     </table>
+                    {{$data->links()}}
                   </div>
                 </div>
               </div>
@@ -245,6 +273,39 @@
       </div>
       <!-- modal detail user -->
 
+      <!-- modal verifikasi -->
+      <div class="modal modal-verif fade" id="modal-pembelian" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <span class="modal-icon">
+              <i class="fa fa-info"></i>
+            </span>
+            <div class="modal-body">
+              <h3>Verifikasi Pembelian?</h3>
+              <p>Verifikasi pembelian hanya dapat di lakukan satu kali</p>
+              <p>dan tidak dapat di batalkan</p>
+
+              <div class="row verif-form">
+                <div class="col-md-6">
+                  <button type="button" class="btn close-modal" data-dismiss="modal" aria-label="Close">Cancel</button>
+                </div>
+
+                <div class="col-md-6">
+                  <form action="" method="POST" id="verif-pembelian">
+                    @csrf
+                    <input type="hidden" value="PUT" name="_method">
+
+                    <input type="submit" value="Verifikasi" class="btn btn-verif btn-flat">
+
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end modal verifikasi -->
+
       <!-- modal hapus -->
       <div class="modal modal-hapus fade" id="modal-hapus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -256,7 +317,11 @@
               <h3>Hapus Data?</h3>
               <p>Data yang telah di hapus tidak dapat</p>
               <p>dikembalikan lagi</p>
-
+              <form action="" method="POST" id="hapus-data">
+              <div class="form-group">
+                  <label for="exampleTextarea">Tambahkan keterangan :</label>
+                  <textarea class="form-control" name="keterangan" rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 97px; resize: none" required>Mohon maaf pembelian alat tidak dapat kami proses.</textarea>
+                </div>
               <div class="row verif-form">
                 <div class="col-md-6">
                   <button type="button" class="btn close-modal" data-dismiss="modal" aria-label="Close">Cancel</button>
@@ -268,10 +333,9 @@
                     <input type="hidden" value="delete" name="_method">
 
                     <input type="submit" value="Hapus data" class="btn btn-verif btn-flat">
-
-                  </form>
                 </div>
               </div>
+            </form>
             </div>
           </div>
         </div>
@@ -316,6 +380,16 @@
 
   })
   // modal detail
+
+  //Modal Verifikasi
+  $('#modal-pembelian').on('show.bs.modal', function(event) {
+    var a = $(event.relatedTarget)
+    var href = a.data('href')
+
+    var modal = $(this)
+    modal.find('.modal-body #verif-pembelian').attr('action', href)
+  })
+  //End Modal Verifikasi
 
   //Modal hapus
   $('#modal-hapus').on('show.bs.modal', function(event) {

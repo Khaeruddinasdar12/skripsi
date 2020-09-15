@@ -70,7 +70,7 @@
               <div class="kt-portlet__head-toolbar">
                 <form action="{{route('unverified.manage-user')}}" method="get">
                   <div class="input-group">
-                    <input type="text" class="form-control" name="search" placeholder="cari">
+                    <input type="text" class="form-control" name="search" @if(Request::get('search') == '') placeholder="cari" @else value="{{Request::get('search')}}" @endif>
                     <div class="input-group-append">
                       <button class="btn btn-outline-success" type="submit">
                         <i class="fas fa-search"></i>
@@ -100,8 +100,17 @@
                       <tbody style="text-align: center;">
                         <td colspan="7">Belum ada data</td>
                       </tbody>
-                      @endif
+                      @else
                       <tbody>
+                        @if($data->isEmpty())
+                            <tr>
+                              <td colspan="7" align="center">
+                                Tidak ada data untuk pencarian "{{ Request::get('search') }}"
+                              </td>
+                            </tr>
+                          </tbody>
+                        @else
+
                         @php $no = 1; @endphp
                         @foreach ($data as $user)
                         <tr>
@@ -165,6 +174,8 @@
                         </tr>
                         @endforeach
                       </tbody>
+                      @endif
+                      @endif
                     </table>
                     {{$data->links()}}
                   </div>
