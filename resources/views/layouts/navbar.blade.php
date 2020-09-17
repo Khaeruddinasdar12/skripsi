@@ -168,170 +168,7 @@
             </div>
           </li>
           <!-- end sawah -->
-
-          <!-- penjualan menu -->
-          <!--  <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel {{ request()->is('admin/alat') || request()->is('admin/transaksi-alat') || request()->is('admin/riwayat-transaksi-alat') || request()->is('admin/beras') || request()->is('admin/transaksi-beras') || request()->is('admin/riwayat-transaksi-beras') || request()->is('admin/bibit') || request()->is('admin/transaksi-bibit') || request()->is('admin/riwayat-transaksi-bibit') || request()->is('admin/pupuk') || request()->is('admin/transaksi-pupuk') || request()->is('admin/riwayat-transaksi-pupuk')  ? 'kt-menu__item--open kt-menu__item--here' : '' }}" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
-            <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
-              <span class="kt-menu__link-text {{ request()->is('admin/alat') || request()->is('admin/transaksi-alat') || request()->is('admin/riwayat-transaksi-alat') || request()->is('admin/beras') || request()->is('admin/transaksi-beras') || request()->is('admin/riwayat-transaksi-beras') || request()->is('admin/bibit') || request()->is('admin/transaksi-bibit') || request()->is('admin/riwayat-transaksi-bibit') || request()->is('admin/pupuk') || request()->is('admin/transaksi-pupuk') || request()->is('admin/riwayat-transaksi-pupuk')  ? '' : 'top-text-nav' }}">Penjualan</span>
-              <i class="fa fa-angle-down {{ request()->is('admin/alat') || request()->is('admin/transaksi-alat') || request()->is('admin/riwayat-transaksi-alat') || request()->is('admin/beras') || request()->is('admin/transaksi-beras') || request()->is('admin/riwayat-transaksi-beras') || request()->is('admin/bibit') || request()->is('admin/transaksi-bibit') || request()->is('admin/riwayat-transaksi-bibit') || request()->is('admin/pupuk') || request()->is('admin/transaksi-pupuk') || request()->is('admin/riwayat-transaksi-pupuk') ? 'icon-here' : '' }}"></i>
-            </a>
-            <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
-              <ul class="kt-menu__subnav"> -->
-          <!-- alat -->
-          <!--  <li class="kt-menu__item kt-menu__item--submenu" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
-                  <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
-                    <span class="kt-menu__link-text">Alat</span>
-                    <i class="kt-menu__hor-arrow la la-angle-right"></i>
-                    <i class="kt-menu__ver-arrow la la-angle-right"></i>
-                  </a>
-                  <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--right">
-                    <ul class="kt-menu__subnav">
-                      <li class="kt-menu__item " aria-haspopup="true">
-                        <a href="{{ route('index.alat') }}" class="kt-menu__link ">
-                          <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
-                            <span></span>
-                          </i>
-                          <span class="kt-menu__link-text">Data Alat</span>
-                        </a>
-                      </li>
-                      <li class="kt-menu__item " aria-haspopup="true">
-                        <a href="{{ route('index.talat') }}" class="kt-menu__link ">
-                          <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
-                            <span></span>
-                          </i>
-                          <span class="kt-menu__link-text">Transaksi Alat</span>
-                        </a>
-                      </li>
-                      <li class="kt-menu__item " aria-haspopup="true">
-                        <a href="{{ route('riwayat.talat') }}" class="kt-menu__link ">
-                          <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
-                            <span></span>
-                          </i>
-                          <span class="kt-menu__link-text">Riwayat Transaksi</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li> -->
-          <!-- end alat -->
-
-          <!-- bibit -->
-          <!--  <li class="kt-menu__item kt-menu__item--submenu" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
-                  <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
-                    <span class="kt-menu__link-text">Bibit</span>
-                    <i class="kt-menu__hor-arrow la la-angle-right"></i>
-                    <i class="kt-menu__ver-arrow la la-angle-right"></i>
-                  </a>
-                  <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--right">
-                    <ul class="kt-menu__subnav">
-                      <li class="kt-menu__item " aria-haspopup="true">
-                        <a href="{{ route('index.bibit') }}" class="kt-menu__link ">
-                          <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
-                            <span></span>
-                          </i>
-                          <span class="kt-menu__link-text">Data Bibit</span>
-                        </a>
-                      </li>
-                      <li class="kt-menu__item " aria-haspopup="true">
-                        <a href="{{ route('index.tbibit') }}" class="kt-menu__link ">
-                          <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
-                            <span></span>
-                          </i>
-                          <span class="kt-menu__link-text">Transaksi Bibit</span>
-                        </a>
-                      </li>
-                      <li class="kt-menu__item " aria-haspopup="true">
-                        <a href="{{ route('riwayat.tbibit') }}" class="kt-menu__link ">
-                          <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
-                            <span></span>
-                          </i>
-                          <span class="kt-menu__link-text">Riwayat Transaksi</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li> -->
-          <!-- end bibit -->
-
-          <!-- pupuk -->
-          <!--  <li class="kt-menu__item kt-menu__item--submenu" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
-                  <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
-                    <span class="kt-menu__link-text">Pupuk</span>
-                    <i class="kt-menu__hor-arrow la la-angle-right"></i>
-                    <i class="kt-menu__ver-arrow la la-angle-right"></i>
-                  </a>
-                  <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--right">
-                    <ul class="kt-menu__subnav">
-                      <li class="kt-menu__item " aria-haspopup="true">
-                        <a href="{{ route('index.pupuk') }}" class="kt-menu__link ">
-                          <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
-                            <span></span>
-                          </i>
-                          <span class="kt-menu__link-text">Data Pupuk</span>
-                        </a>
-                      </li>
-                      <li class="kt-menu__item " aria-haspopup="true">
-                        <a href="{{ route('index.tpupuk') }}" class="kt-menu__link ">
-                          <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
-                            <span></span>
-                          </i>
-                          <span class="kt-menu__link-text">Transaksi Pupuk</span>
-                        </a>
-                      </li>
-                      <li class="kt-menu__item " aria-haspopup="true">
-                        <a href="{{ route('riwayat.tpupuk') }}" class="kt-menu__link ">
-                          <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
-                            <span></span>
-                          </i>
-                          <span class="kt-menu__link-text">Riwayat Transaksi</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li> -->
-          <!-- end pupuk -->
-
-          <!-- beras -->
-          <!--    <li class="kt-menu__item kt-menu__item--submenu" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
-                  <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
-                    <span class="kt-menu__link-text">Beras</span>
-                    <i class="kt-menu__hor-arrow la la-angle-right"></i>
-                    <i class="kt-menu__ver-arrow la la-angle-right"></i>
-                  </a>
-                  <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--right">
-                    <ul class="kt-menu__subnav">
-                      <li class="kt-menu__item " aria-haspopup="true">
-                        <a href="{{ route('index.beras') }}" class="kt-menu__link ">
-                          <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
-                            <span></span>
-                          </i>
-                          <span class="kt-menu__link-text">Data Beras</span>
-                        </a>
-                      </li>
-                      <li class="kt-menu__item " aria-haspopup="true">
-                        <a href="{{ route('index.tberas') }}" class="kt-menu__link ">
-                          <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
-                            <span></span>
-                          </i>
-                          <span class="kt-menu__link-text">Transaksi Beras</span>
-                        </a>
-                      </li>
-                      <li class="kt-menu__item " aria-haspopup="true">
-                        <a href="{{ route('riwayat.tberas') }}" class="kt-menu__link ">
-                          <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
-                            <span></span>
-                          </i>
-                          <span class="kt-menu__link-text">Riwayat Transaksi</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li> -->
-          <!-- end beras -->
-          <!--  </ul>
-            </div>
-          </li> -->
-          <!-- end penjualan -->
+          
 
           <!-- transaksi menu -->
           <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel {{ request()->is('admin/transaksi-barang') || request()->is('admin/riwayat-transaksi-barang') ? 'kt-menu__item--open kt-menu__item--here' : '' }}" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
@@ -367,14 +204,6 @@
             </div>
           </li>
           <!-- end transaksi menu -->
-
-          <!-- manage admin menu -->
-          <li class="kt-menu__item kt-menu__item--rel {{ request()->is('admin/manage-admin') ? 'kt-menu__item--open kt-menu__item--here' : '' }}">
-            <a href="{{ route('index.manage-admin') }}" class="kt-menu__link" id="manageadmin">
-              <span class="kt-menu__link-text kt-menu__link-text {{ request()->is('admin/manage-admin') ? '' : 'top-text-nav' }}">Manage Admin</span>
-            </a>
-          </li>
-          <!-- end manage admin -->
 
 
           <!-- manage user menu -->
@@ -421,6 +250,16 @@
             </div>
           </li>
           <!-- end manage user -->
+
+
+          <!-- manage admin menu -->
+          <li class="kt-menu__item kt-menu__item--rel {{ request()->is('admin/manage-admin') ? 'kt-menu__item--open kt-menu__item--here' : '' }}">
+            <a href="{{ route('index.manage-admin') }}" class="kt-menu__link" id="manageadmin">
+              <span class="kt-menu__link-text kt-menu__link-text {{ request()->is('admin/manage-admin') ? '' : 'top-text-nav' }}">Manage Admin</span>
+            </a>
+          </li>
+          <!-- end manage admin -->
+
 
           <!-- laporan menu -->
           <li class="kt-menu__item kt-menu__item--rel {{ request()->is('admin/laporan') ? 'kt-menu__item--open kt-menu__item--here' : '' }}">

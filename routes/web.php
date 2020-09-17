@@ -23,6 +23,7 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 	// MENU LAPORAN
 	Route::get('laporan', 'Laporan@laporan')->name('index.laporan');
 	Route::get('laporan-pdf', 'Laporan@pdf')->name('pdf.laporan');
+	Route::get('laporan-sawah-gabah', 'Laporan@laporan2')->name('index.laporan2');
 	// END MENU LAPORAN
 
 

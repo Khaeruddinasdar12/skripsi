@@ -19,27 +19,30 @@ class Laporan extends Controller
         $this->middleware('auth:admin');
     }
 
-    public function laporan(Request $request)
+    public function laporan2(Request $request)
     {   
         $jml = $request->get('jumlah');
         $thn = $request->get('tahun');
         $bln = $request->get('bulan');
-        if(empty($jml)) {
+        if(!empty($jml)) {
             $jml = $jml;
         } else {
             $jml = 100;
         }
 
-        $tahun = DB::table('transaksi_barangs')
-                ->where('status', '1')
-                ->selectRaw('YEAR(created_at) as year')
-                ->distinct()
-                ->get();
-
+        $tahungabah = DB::table('transaksi_gabahs')
+                    ->where('status', '1')
+                    ->selectRaw('YEAR(created_at) as year')
+                    ->distinct();
+        $tahunsawah = DB::table('transaksi_sawahs')
+                    ->where('status', 'selesai')
+                    ->selectRaw('YEAR(created_at) as year')
+                    ->distinct();
+        $tahun = $tahungabah->union($tahunsawah)->distinct()->get();
         $blnstr = '';
 
-        if(!empty($thn)) {
-            if(!empty($bln)) {
+        if(!empty($thn)) { //tahun tidak kosong
+            if(!empty($bln)) { //jika bulan juga tidak kosong
                 $arraybln = array("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"); 
                 if(in_array($bln, $arraybln)) {
                     switch ($bln) {
@@ -57,7 +60,130 @@ class Laporan extends Controller
                         case '12': $blnstr = 'Desember'; break;
                         default: $blnstr = ''; break;
                     } 
-                } else {
+                } else { // jika inputan bulan tidak valid
+                        return redirect()->back()->with('error', 'Masukkan bulan yang valid (angka 1-12)');
+                }
+                $sawah = DB::table('transaksi_sawahs')
+                        ->select('users.name as pembeli', 'transaksi_sawahs.periode as jumlah', 'transaksi_sawahs.harga', 'transaksi_sawahs.created_at', 'sawahs.nama', DB::raw('("gadai sawah") as jenis'))    
+                        ->where('jenis', 'gs')
+                        ->where('transaksi_sawahs.status', 'selesai')
+                        ->join('sawahs', 'transaksi_sawahs.sawah_id', '=', 'sawahs.id')
+                        ->join('users', 'sawahs.created_by', '=', 'users.id')
+                        ->orderBy('transaksi_sawahs.created_at', 'desc')
+                        ->whereMonth('transaksi_sawahs.created_at', $bln)
+                        ->whereYear('transaksi_sawahs.created_at', $thn)
+                        ;
+                $gabah = DB::table('transaksi_gabahs')
+                        ->select('users.name as pembeli', 'transaksi_gabahs.jumlah', 'transaksi_gabahs.harga', 'transaksi_gabahs.created_at', 'gabahs.nama', DB::raw('("gabah") as jenis'))
+                        ->join('gabahs', 'transaksi_gabahs.gabah_id', '=', 'gabahs.id')
+                        ->join('users', 'transaksi_gabahs.user_id', '=', 'users.id')
+                        ->where('transaksi_gabahs.status', '1')
+                        ->orderBy('transaksi_gabahs.created_at', 'desc')
+                        ->whereMonth('transaksi_gabahs.created_at', $bln)
+                        ->whereYear('transaksi_gabahs.created_at', $thn)
+                        ;
+            } else { // tahun tidak kosong namun bulan kosong
+                $sawah = DB::table('transaksi_sawahs')  
+                        ->select('users.name as pembeli', 'transaksi_sawahs.periode as jumlah', 'transaksi_sawahs.harga', 'transaksi_sawahs.created_at', 'sawahs.nama', DB::raw('("gadai sawah") as jenis'))
+                        ->where('jenis', 'gs')
+                        ->where('transaksi_sawahs.status', 'selesai')
+                        ->join('sawahs', 'transaksi_sawahs.sawah_id', '=', 'sawahs.id')
+                        ->join('users', 'sawahs.created_by', '=', 'users.id')
+                        ->orderBy('transaksi_sawahs.created_at', 'desc')
+                        ->whereYear('transaksi_sawahs.created_at', $thn)
+                        ;
+                $gabah = DB::table('transaksi_gabahs')
+                        ->select('users.name as pembeli', 'transaksi_gabahs.jumlah', 'transaksi_gabahs.harga', 'transaksi_gabahs.created_at', 'gabahs.nama', DB::raw('("gabah") as jenis'))
+                        ->join('gabahs', 'transaksi_gabahs.gabah_id', '=', 'gabahs.id')
+                        ->join('users', 'transaksi_gabahs.user_id', '=', 'users.id')
+                        ->where('transaksi_gabahs.status', '1')
+                        ->orderBy('transaksi_gabahs.created_at', 'desc')
+                        ->whereYear('transaksi_gabahs.created_at', $thn)
+                        ;
+            }
+        } else { //jika tahun kosong
+
+                $sawah = DB::table('transaksi_sawahs')
+                        ->select('users.name as pembeli', 'transaksi_sawahs.periode as jumlah', 'transaksi_sawahs.harga', 'transaksi_sawahs.created_at', 'sawahs.nama', DB::raw('("gadai sawah") as jenis'))    
+                        ->where('transaksi_sawahs.jenis', 'gs')
+                        ->where('transaksi_sawahs.status', 'selesai')
+                        ->join('sawahs', 'transaksi_sawahs.sawah_id', '=', 'sawahs.id')
+                        ->join('users', 'sawahs.created_by', '=', 'users.id')
+                        ->orderBy('transaksi_sawahs.created_at', 'desc');
+                $gabah = DB::table('transaksi_gabahs')
+                        ->select('users.name as pembeli', 'transaksi_gabahs.jumlah', 'transaksi_gabahs.harga', 'transaksi_gabahs.created_at', 'gabahs.nama', DB::raw('("gabah") as jenis'))
+                        ->join('gabahs', 'transaksi_gabahs.gabah_id', '=', 'gabahs.id')
+                        ->join('users', 'transaksi_gabahs.user_id', '=', 'users.id')
+                        ->where('transaksi_gabahs.status', '1')
+                        ->orderBy('transaksi_gabahs.created_at', 'desc');
+        }
+        // return 'haha';
+        // return $jml;
+        $data = $sawah->union($gabah)->paginate($jml);
+        // $data = $barang->union($sawah)->union($gabah)->paginate($jml);   
+            // return $data;
+        if($request->get('jenis') == 'excel') {
+            return Excel::download(new ExcelExport($data), 'galung-app.xlsx');
+        } else if ($request->get('jenis') == 'pdf') {
+            $pdf = PDF::loadView('pdf', [
+                'data' => $data,
+                'thn'   => $thn,
+                'bln'   => $blnstr
+            ]);  
+            return $pdf->download('galung-app.pdf');
+        } 
+
+        return view('admin.page.laporan-gbh-swh', [
+            'data' => $data,
+            'tahun' => $tahun,
+            'bulan' => $blnstr
+        ]);
+        return view('admin.page.laporan-gbh-swh', [
+            'data' => $data, 
+            'tahun' => $tahun,
+            'bulan' => $blnstr
+        ]);
+    }
+
+    public function laporan(Request $request)
+    {   
+        $jml = $request->get('jumlah');
+        $thn = $request->get('tahun');
+        $bln = $request->get('bulan');
+        if(!empty($jml)) {
+            $jml = $jml;
+        } else {
+            $jml = 100;
+        }
+
+        $tahun = DB::table('transaksi_barangs')
+                ->where('status', '1')
+                ->selectRaw('YEAR(created_at) as year')
+                ->distinct()
+                ->get();
+
+        $blnstr = '';
+
+        if(!empty($thn)) { //tahun tidak kosong
+            if(!empty($bln)) { //jika bulan juga tidak kosong
+                $arraybln = array("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"); 
+                if(in_array($bln, $arraybln)) {
+                    switch ($bln) {
+                        case '1': $blnstr = 'Januari'; break;
+                        case '2': $blnstr = 'Februari'; break;
+                        case '3': $blnstr = 'Maret'; break;
+                        case '4': $blnstr = 'April'; break;
+                        case '5': $blnstr = 'Mei'; break;
+                        case '6': $blnstr = 'Juni'; break;
+                        case '7': $blnstr = 'Juli'; break;
+                        case '8': $blnstr = 'Agustus'; break;
+                        case '9': $blnstr = 'September'; break;
+                        case '10': $blnstr = 'Oktober'; break;
+                        case '11': $blnstr = 'November'; break;
+                        case '12': $blnstr = 'Desember'; break;
+                        default: $blnstr = ''; break;
+                    } 
+                } else { // jika inputan bulan tidak valid
                         return redirect()->back()->with('error', 'Masukkan bulan yang valid (angka 1-12)');
                 }
                 $data = TransaksiBarang::where('status', '1')
@@ -68,7 +194,7 @@ class Laporan extends Controller
                     ->whereYear('created_at', $thn)
                     ->orderBy('created_at', 'desc')
                     ->paginate($jml);
-            } else {
+            } else { // tahun tidak kosong namun bulan kosong
                 $data = TransaksiBarang::where('status', '1')
                     ->select('id', 'transaksi_code', 'penerima', 'nohp', 'alamat', 'kecamatan', 'kelurahan', 'rt', 'rw', 'total', 'keterangan', 'user_id')
                     ->with('users:id,name,nohp')
@@ -77,7 +203,7 @@ class Laporan extends Controller
                     ->orderBy('created_at', 'desc')
                     ->paginate($jml);
             }
-        } else {
+        } else { //jika tahun kosong
             $data = TransaksiBarang::where('status', '1')
                 ->select('id', 'transaksi_code', 'penerima', 'nohp', 'alamat', 'kecamatan', 'kelurahan', 'rt', 'rw', 'total', 'keterangan', 'user_id')
                 ->with('users:id,name,nohp')
@@ -85,12 +211,6 @@ class Laporan extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate($jml);
         }
-
-        // return $data;
-        // foreach ($data as $datas) {
-        //     return $datas->id;
-        // }
-        // return $data->count();
         
         if($request->get('jenis') == 'excel') {
             return Excel::download(new ExcelExport($data), 'galung-app.xlsx');

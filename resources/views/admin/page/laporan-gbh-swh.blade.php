@@ -49,12 +49,12 @@
               <i class="fa fa-file-signature"></i>
             </span>
             <h3 class="kt-portlet__head-title">
-              Laporan Keuangan Barang {{$bulan}} {{Request::get('tahun')}}
+              Laporan Keuangan Transaksi Gabah & Sawah {{$bulan}} {{Request::get('tahun')}}
             </h3>
           </div>
 
           <div class="kt-portlet__head-toolbar action">
-            <form accept="{{route('index.laporan')}}" method="get">
+            <form accept="{{route('index.laporan2')}}" method="get">
               <select class="form-control-sm" name="jumlah">
                 <option value="100" @if(Request::get('jumlah')=='100' ) {{"selected"}} @endif>100</option>
                 <option value="50" @if(Request::get('jumlah')=='50' ) {{"selected"}} @endif>50</option>
@@ -140,60 +140,34 @@
                       <thead>
                         <tr>
                           <th>#</th>
-                          <th>Kode Transaksi</th>
-                          <th>Nama Penerima</th>
-                          <th>No. Hp</th>
-                          <th>Total Harga</th>
-                          <th>Jenis Pembayaran</th>
-                          <th>Akun</th>
+                          <th>Nama pembeli</th>
+                          <th>Jenis</th>
+                          <th>Nama barang</th>
+                          <th>Jumlah</th>
+                          <th>Harga</th>
+                          <th>Subtotal</th>
                         </tr>
                       </thead>
 
                       <tbody>
-                        @php $no = 0; @endphp
+                        @php $no = 1; @endphp
                         @foreach($data as $datas)
                         <tr class="table-secondary">
-
-                          <td>
-                            <div class="btn btn-default btn-icon btn-icon-md btn-sm" onclick="det({! $no++ !})">
-                              <i class="fa fa-angle-right"></i>
-                            </div>
-                          </td>
-                          <td>{{$datas->transaksi_code}}</td>
-                          <td>{{$datas->penerima}}</td>
-                          <td>{{$datas->nohp}}</td>
-                          <td>Rp. {{format_uang($datas->total)}}</td>
-                          <td>Cash On Delivery
-                          </td>
-                          <td>{{$datas->users->name}}</td>
-                        </tr>
-                        <thead>
-                        <tr class="">
-                          <td></td>
-                          <td></td>
-                          <th>nama barang</th>
-                          <th>Jenis barang</th>
-                          <th>harga</th>
-                          <th>jumlah</th>
-                          <th>subtotal</th>
-                        </tr>
-                        </thead>
-                        @foreach($datas->items as $items)
-                        <tr class="detail-keranjang{$no++}">
-                          <td></td>
-                          <td></td>
-                          <td>{{$items->nama}}</td>
-                          <td>{{$items->jenis}}</td>
-                          <td>Rp. {{format_uang($items->harga)}}</td>
-                          <td>{{$items->jumlah}}</td>
-                          <td>Rp. {{format_uang($items->subtotal)}}</td>
-                        </tr>
-                        @endforeach
-                        <tr>
-                          <th></th>
-                          <th></th>
-                          <th colspan="4">Total</th>
-                          <th>Rp. {{format_uang($datas->total)}}</th>
+                          <td>{{$no++}}</td>
+                          <td>{{$datas->pembeli}}</td>
+                          <td>{{$datas->jenis}}</td>
+                          <td>{{$datas->nama}}</td>
+                          @if($datas->jenis == 'gadai sawah')
+                            <td>{{$datas->jumlah}}</td>
+                            <td>Rp. {{format_uang($datas->harga)}}</td>
+                            <td>Rp. {{format_uang($datas->harga)}}</td>
+                          @else
+                            <td>{{$datas->jumlah}} Kg</td>
+                            <td>Rp. {{format_uang($datas->harga)}}</td>
+                            <td>Rp. {{format_uang($datas->harga * $datas->jumlah)}}</td>
+                          @endif
+                          
+                          
                         </tr>
                         @endforeach
                       </tbody>
