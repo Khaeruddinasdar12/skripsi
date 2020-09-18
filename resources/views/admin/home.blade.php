@@ -31,101 +31,32 @@
   <!-- card data transaksi & gadai -->
   <div class="row content-dashboard">
     <div class="col-md-7">
-      <div class="card card-menu">
-        <div class="card-body">
-
-          <h3>Data Transaksi</h3>
-
-
-          <div class="owl-carousel loop">
-
-            <!-- gabah -->
-            <div class="item">
-              <a href="{{ route('index.tgabah') }}" class="card card-1">
-                <div class="card-body">
-                  <div class="title">
-                    <div class="card-title">
-                      <h2>{{$jmlgabah}} <small>Data</small></h2>
-                    </div>
-                    <p class="card-text">Transaksi Gabah</p>
-                    <p>Lihat <i class="fa fa-arrow-right"></i> </p>
-                  </div>
-                  <div class="image">
-                    <img src="{{ asset('img/card/wheat.png') }}" alt="">
-                  </div>
+      <div class="kt-portlet card-transaksi">
+        <div class="kt-portlet__body">
+          <h3>Data Transaksi Barang</h3>
+          <div class="kt-widget5">
+            <div class="kt-widget5__item">
+              <div class="kt-widget5__content">
+                <div class="kt-widget5__pic">
+                  <img class="kt-widget7__img" src="{{ asset('img/card/transaksi.jpg') }}" alt="transaksi">
                 </div>
-              </a>
-            </div>
-            <!-- end gabah -->
-
-            <div class="item">
-              <a href="{{ route('index.talat') }}" class="card card-2">
-                <div class="card-body">
-                  <div class="title">
-                    <div class="card-title">
-                      <h2>{{$jmlalat}} <small>Data</small></h2>
-                    </div>
-                    <p class="card-text">Transaksi Alat</p>
-                    <p>Lihat <i class="fa fa-arrow-right"></i> </p>
-                  </div>
-                  <div class="image">
-                    <img src="{{ asset('img/card/tractor.png') }}" alt="">
-                  </div>
+                <div class="kt-widget5__section">
+                  <p class="kt-widget5__title">
+                    Jumlah Transaksi Barang <br> Yang Belum Di Verifikasi
+                  </p>
                 </div>
-              </a>
-            </div>
-
-            <div class="item">
-              <a href="{{ route('index.tbibit') }}" class="card card-3">
-                <div class="card-body">
-                  <div class="title">
-                    <div class="card-title">
-                      <h2>{{$jmlbibit}} <small>Data</small></h2>
-                    </div>
-                    <p class="card-text">Transaksi Bibit</p>
-                    <p>Lihat <i class="fa fa-arrow-right"></i> </p>
-                  </div>
-                  <div class="image">
-                    <img src="{{ asset('img/card/green.png') }}" alt="">
-                  </div>
+              </div>
+              <div class="kt-widget5__content">
+                <div class="kt-widget5__stats">
+                  <span class="kt-widget5__number">{{ $jmltr }} Data</span>
                 </div>
-              </a>
-            </div>
-
-            <div class="item">
-              <a href="{{ route('index.tpupuk') }}" class="card card-4">
-                <div class="card-body">
-                  <div class="title">
-                    <div class="card-title">
-                      <h2>{{$jmlpupuk}} <small>Data</small></h2>
-                    </div>
-                    <p class="card-text">Transaksi Pupuk</p>
-                    <p>Lihat <i class="fa fa-arrow-right"></i> </p>
-                  </div>
-                  <div class="image">
-                    <img src="{{ asset('img/card/fertilizer.png') }}" alt="">
-                  </div>
+                <div class="kt-widget5__stats">
+                  <span class="kt-widget5__number">
+                    <a href="{{ route('index.transaksi') }}" class="btn-label-brand btn btn-sm btn-bold">Lihat Transaksi</a>
+                  </span>
                 </div>
-              </a>
+              </div>
             </div>
-
-            <div class="item">
-              <a href="{{ route('index.tberas') }}" class="card card-5">
-                <div class="card-body">
-                  <div class="title">
-                    <div class="card-title">
-                      <h2>{{$jmlberas}} <small>Data</small></h2>
-                    </div>
-                    <p class="card-text">Transaksi Beras</p>
-                    <p>Lihat <i class="fa fa-arrow-right"></i> </p>
-                  </div>
-                  <div class="image">
-                    <img src="{{ asset('img/card/rice.png') }}" alt="">
-                  </div>
-                </div>
-              </a>
-            </div>
-
           </div>
         </div>
       </div>
