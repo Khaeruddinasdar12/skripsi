@@ -1,57 +1,40 @@
 <table>
                       <thead>
                         <tr>
-                          <th>#</th>
-                          <th>Kode Transaksi</th>
-                          <th>Nama Penerima</th>
-                          <th>No. Hp</th>
-                          <th>Total Harga</th>
-                          <th>Jenis Pembayaran</th>
-                          <th>Akun</th>
+                          <th>No</th>
+                          <th>Nama pembeli</th>
+                          <th>Jenis</th>
+                          <th>Nama barang</th>
+                          <th>Jumlah</th>
+                          <th>Harga</th>
+                          <th>Subtotal</th>
                         </tr>
                       </thead>
 
                       <tbody>
-                        @php $no = 1; @endphp
+                        @php $no = 1; $total = 0;@endphp
                         @foreach($data as $datas)
-                        <tr>
+                        <tr class="table">
                           <td>{{$no++}}</td>
-                          <td>{{$datas->transaksi_code}}</td>
-                          <td>{{$datas->penerima}}</td>
-                          <td>{{$datas->nohp}}</td>
-                          <td>Rp. {{format_uang($datas->total)}}</td>
-                          <td>Cash On Delivery
-                          </td>
-                          <td>{{$datas->users->name}}</td>
-                        </tr>
-                        <thead>
-                        <tr>
-                          <td></td>
-                          <td></td>
-                          <th>nama barang</th>
-                          <th>Jenis barang</th>
-                          <th>harga</th>
-                          <th>jumlah</th>
-                          <th>subtotal</th>
-                        </tr>
-                        </thead>
-                        @foreach($datas->items as $items)
-                        <tr>
-                          <td></td>
-                          <td></td>
-                          <td>{{$items->nama}}</td>
-                          <td>{{$items->jenis}}</td>
-                          <td>Rp. {{format_uang($items->harga)}}</td>
-                          <td>{{$items->jumlah}}</td>
-                          <td>Rp. {{format_uang($items->subtotal)}}</td>
+                          <td>{{$datas->pembeli}}</td>
+                          <td>{{$datas->jenis}}</td>
+                          <td>{{$datas->nama}}</td>
+                          @if($datas->jenis == 'gadai sawah')
+                            @php $total = $total + $datas->harga; @endphp
+                            <td>{{$datas->jumlah}}</td>
+                            <td>Rp. {{format_uang($datas->harga)}}</td>
+                            <td>Rp. {{format_uang($datas->harga)}}</td>
+                          @else
+                            @php $total = $total + ($datas->harga * $datas->jumlah); @endphp
+                            <td>{{$datas->jumlah}} Kg</td>
+                            <td>Rp. {{format_uang($datas->harga)}}</td>
+                            <td>Rp. {{format_uang($datas->harga * $datas->jumlah)}}</td>
+                          @endif
                         </tr>
                         @endforeach
                         <tr>
-                          <th></th>
-                          <th></th>
-                          <th>Total</th>
-                          <th>Rp. {{format_uang($datas->total)}}</th>
+                          <td colspan="6">Total</td>
+                          <td>Rp. {{format_uang($total)}}</td>
                         </tr>
-                        @endforeach
                       </tbody>
                     </table>

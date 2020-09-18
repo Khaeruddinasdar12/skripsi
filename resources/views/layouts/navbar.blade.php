@@ -262,12 +262,39 @@
 
 
           <!-- laporan menu -->
-          <li class="kt-menu__item kt-menu__item--rel {{ request()->is('admin/laporan') ? 'kt-menu__item--open kt-menu__item--here' : '' }}">
+          <!-- <li class="kt-menu__item kt-menu__item--rel {{ request()->is('admin/laporan') ? 'kt-menu__item--open kt-menu__item--here' : '' }}">
             <a href="{{route('index.laporan')}}" class="kt-menu__link">
               <span class="kt-menu__link-text {{ request()->is('admin/laporan') ? '' : 'top-text-nav' }}">Laporan</span>
             </a>
           </li>
-          <!-- end laporan menu -->
+ -->          <!-- end laporan menu -->
+
+          <!-- transaksi menu -->
+          <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel {{ request()->is('admin/laporan') || request()->is('admin/laporan-sawah-gabah') ? 'kt-menu__item--open kt-menu__item--here' : '' }}" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
+            <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+              <span class="kt-menu__link-text {{ request()->is('admin/laporan') || request()->is('admin/laporan-sawah-gabah') ? '' : 'top-text-nav' }}">
+                Laporan
+              </span>
+              <i class=" fa fa-angle-down {{ request()->is('admin/laporan') || request()->is('admin/laporan-sawah-gabah') ? 'icon-here' : '' }}"></i>
+            </a>
+            <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
+              <ul class="kt-menu__subnav">
+                <li class="kt-menu__item  kt-menu__item--submenu">
+                  <a href="{{ route('index.laporan') }}" class="kt-menu__link">
+                    <span class="kt-menu__link-text">
+                      Laporan Transaksi
+                    </span>
+                  </a>
+                </li>
+                <li class="kt-menu__item  kt-menu__item--submenu">
+                  <a href="{{ route('index.laporan2') }}" class="kt-menu__link">
+                    <span class="kt-menu__link-text">Laporan Gabah & Sawah</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <!-- end transaksi menu -->
 
         </ul>
       </div>
@@ -281,7 +308,7 @@
       <!--begin: User bar -->
       <div class="kt-header__topbar-item kt-header__topbar-item--user user-topbar">
         <div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="10px,0px">
-          <span class="kt-header__topbar-username kt-visible-desktop"><i class="fa fa-angle-down"></i></span>
+          <!-- <span class="kt-header__topbar-username kt-visible-desktop"><i class="fa fa-angle-down"></i></span> -->
           <img alt="Pic" src="{{ asset('img/user.png') }}">
         </div>
         <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-xl">
@@ -293,6 +320,7 @@
             </div>
             <div class="kt-user-card__badge">
               <span>
+                <a href="{{ route('index.profile') }}" target="_blank" class="btn btn-label btn-label-brand btn-sm btn-bold">Edit Profile</a>
                 <a href="{{ route('admin.logout') }}" target="_blank" class="btn btn-label btn-label-brand btn-sm btn-bold btn-logout-user" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log Out</a>
                 <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
                   @csrf

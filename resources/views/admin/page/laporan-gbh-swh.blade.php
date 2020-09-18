@@ -150,26 +150,30 @@
                       </thead>
 
                       <tbody>
-                        @php $no = 1; @endphp
+                        @php $no = 1; $total = 0;@endphp
                         @foreach($data as $datas)
-                        <tr class="table-secondary">
+                        <tr class="table">
                           <td>{{$no++}}</td>
                           <td>{{$datas->pembeli}}</td>
                           <td>{{$datas->jenis}}</td>
                           <td>{{$datas->nama}}</td>
                           @if($datas->jenis == 'gadai sawah')
+                            @php $total = $total + $datas->harga; @endphp
                             <td>{{$datas->jumlah}}</td>
                             <td>Rp. {{format_uang($datas->harga)}}</td>
                             <td>Rp. {{format_uang($datas->harga)}}</td>
                           @else
+                            @php $total = $total + ($datas->harga * $datas->jumlah); @endphp
                             <td>{{$datas->jumlah}} Kg</td>
                             <td>Rp. {{format_uang($datas->harga)}}</td>
                             <td>Rp. {{format_uang($datas->harga * $datas->jumlah)}}</td>
                           @endif
-                          
-                          
                         </tr>
                         @endforeach
+                        <tr>
+                          <th colspan="6" align="center">Total</th>
+                          <th>Rp. {{format_uang($total)}}</th>
+                        </tr>
                       </tbody>
                     </table>
                   </div>

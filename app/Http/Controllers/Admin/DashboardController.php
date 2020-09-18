@@ -8,11 +8,43 @@ use App\TransaksiSawah;
 use App\TransaksiBarang;
 use App\TransaksiGabah;
 use App\CartTransaksi;
+use App\Admin;
+use Auth;
 class DashboardController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth:admin');
+    }
+
+    public function indexprofile()
+    {
+        return view('admin.page.edit-profile');
+    }
+
+    public function updateprofile(Request $request)
+    {
+        if(empty($request->password)) {
+            $validate = [
+                'name'      => 'required|string'
+            ];
+        } else {
+            $validate = [
+                'name'      => 'required|string',
+                'password'  => 'string|min:8|confirmed'
+            ];
+        }
+
+        $validasi = $this->validate($request, $validate);
+
+        $admin = Auth::guard('admin')->user()->id;
+        $data = Admin::findOrFail($admin);
+        $data->name = $request->get('name');
+            if(!empty($request->password)) {
+                $data->password = bcrypt($request->get('password'));
+            }   
+        $data->save();
+        return redirect()->back()->with('success', 'Berhasil mengubah data');
     }
     
     public function index()
