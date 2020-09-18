@@ -123,14 +123,14 @@ class Laporan extends Controller
         // $data = $barang->union($sawah)->union($gabah)->paginate($jml);   
             // return $data;
         if($request->get('jenis') == 'excel') {
-            return Excel::download(new ExcelExport($data), 'galung-app.xlsx');
+            return Excel::download(new ExcelExport($data), 'galung-app-sawah-gabah.xlsx');
         } else if ($request->get('jenis') == 'pdf') {
-            $pdf = PDF::loadView('pdf', [
+            $pdf = PDF::loadView('pdf-laporan2', [
                 'data' => $data,
                 'thn'   => $thn,
                 'bln'   => $blnstr
             ]);  
-            return $pdf->download('galung-app.pdf');
+            return $pdf->download('galung-app-sawah-gabah.pdf');
         } 
 
         return view('admin.page.laporan-gbh-swh', [

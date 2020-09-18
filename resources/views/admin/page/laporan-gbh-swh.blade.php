@@ -100,7 +100,7 @@
                 <ul class="kt-nav">
                   <li class="kt-nav__item">
                     <div>
-                      <form class="kt-nav__link" action="{{route('index.laporan')}}" method="get">
+                      <form class="kt-nav__link" action="{{route('index.laporan2')}}" method="get">
                         <input type="hidden" name="bulan" value="{{Request::get('bulan')}}">
                         <input type="hidden" name="transaksi" value="{{Request::get('transaksi')}}">
                         <input type="hidden" name="tahun" value="{{Request::get('tahun')}}">
@@ -114,7 +114,7 @@
                   </li>
                   <li class="kt-nav__item">
                     <div>
-                      <form class="kt-nav__link" action="{{route('index.laporan')}}" method="get">
+                      <form class="kt-nav__link" action="{{route('index.laporan2')}}" method="get">
                         <input type="hidden" name="bulan" value="{{Request::get('bulan')}}">
                         <input type="hidden" name="transaksi" value="{{Request::get('transaksi')}}">
                         <input type="hidden" name="tahun" value="{{Request::get('tahun')}}">
