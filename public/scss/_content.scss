@@ -32,6 +32,7 @@ table {
     .dropdown-table-custom {
         ul {
             .edit-data {
+
                 &:hover .kt-nav__link-icon,
                 &:hover .kt-nav__link-text {
                     color: $biru !important;
@@ -39,9 +40,18 @@ table {
             }
 
             .hapus-data {
+
                 &:hover .kt-nav__link-icon,
                 &:hover .kt-nav__link-text {
                     color: $merah !important;
+                }
+            }
+
+            .verif-data {
+
+                &:hover .kt-nav__link-icon,
+                &:hover .kt-nav__link-text {
+                    color: $galungcolor !important;
                 }
             }
         }
@@ -480,18 +490,6 @@ table {
 
 .btn-detail {
     cursor: pointer;
-}
-
-.detail-keranjang {
-    opacity: 0;
-    position: absolute !important;
-    transition: 0.5s;
-}
-
-.detail-keranjang-active {
-    opacity: 1;
-    position: relative !important;
-    transition: 0.5s;
 }
 
 // end detail keranjang transaksi

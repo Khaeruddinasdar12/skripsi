@@ -37,7 +37,7 @@
       <!-- end alert section -->
       <div class="row">
         <div class="col-md-2">
-          <div class="kt-portlet sticky kt-iconbox--animate-faster" data-sticky="true" data-margin-top="100px" data-sticky-for="1023" data-sticky-class="kt-sticky">
+          <div class="kt-portlet kt-iconbox--animate-faster" data-margin-top="100px">
             <div class="kt-portlet__body">
               <h5 style="color: #222;">
                 Jumlah Data Sawah Yang Pernah Tergadai
@@ -64,7 +64,7 @@
               <div class="kt-portlet__head-toolbar">
                 <form action="{{route('riwayat.gadaisawah')}}" method="get">
                   <div class="input-group">
-                    <input type="text" class="form-control" name="search" @if(Request::get('search') == '') placeholder="cari" @else value="{{Request::get('search')}}" @endif>
+                    <input type="text" class="form-control" name="search" @if(Request::get('search')=='' ) placeholder="cari" @else value="{{Request::get('search')}}" @endif>
                     <div class="input-group-append">
                       <button class="btn btn-outline-success" type="submit">
                         <i class="fas fa-search"></i>
@@ -99,69 +99,69 @@
                       @else
                       <tbody>
                         @if($data->isEmpty())
-                            <tr>
-                              <td colspan="8" align="center">
-                                Tidak ada data untuk pencarian "{{ Request::get('search') }}"
-                              </td>
-                            </tr>
-                          </tbody>
-                        @else
-
-                        @php $no = 1; @endphp
-                        @foreach ($data as $gadais)
-                        <!-- jika admin tersedia atau tidak -->
-                        @if($gadais->admins == null)
-                        @php $admin = 'Admin Telah di hapus'; @endphp
-                        @else
-                        @php $admin = $gadais->admins->name; @endphp
-                        @endif
-                        <!-- End jika admin tersedia atau tidak -->
                         <tr>
-                          <th scope="row">{{$no++}}</th>
-                          <td>{{$gadais -> sawahs -> users -> name}}</td>
-                          <td>{{$gadais -> sawahs -> nama}}</td>
-                          <td>{{$gadais -> periode}}</td>
-                          <td>Rp.{{format_uang($gadais -> harga)}}</td>
-                          <td>
-                            <div class="btn btn-bold btn-sm btn-font-sm  btn-label-success" style="font-size: 14px;">
-                              Riwayat Gadai
-                            </div>
-                          </td>
-                          <td>{{$admin}}</td>
-                          <td>
-                            <div class="dropdown dropdown-inline">
-                              <a href="#" class="btn btn-default btn-icon btn-icon-md btn-sm btn-more-custom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="flaticon-more-1"></i>
-                              </a>
-                              <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
-                                <ul class="kt-nav">
-                                  <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$gadais->id}}" data-email="{{$gadais->sawahs->users->email}}" data-nama-sawah="{{$gadais -> sawahs -> nama}}" data-nohp="{{$gadais->sawahs->users->nohp}}" data-periode="{{$gadais->periode}}" data-harga="Rp.{{format_uang($gadais->harga)}}" data-keterangan="{{$gadais->keterangan}}" data-titik_koordinat="{{$gadais->sawahs->titik_koordinat}}" data-kecamatan="{{$gadais->sawahs->kecamatan}}" data-kelurahan="{{$gadais->sawahs->kelurahan}}" data-alamat="{{$gadais->sawahs->alamat}}" data-luas_sawah="{{$gadais->sawahs->luas_sawah}}" data-kota="{{$gadais->sawahs->alamats->tipe}} {{$gadais->sawahs->alamats->nama_kota}}" data-name="{{$gadais->sawahs->users->name}}" data-admin="{{$admin}}">
-                                      <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
-                                      <span class="kt-nav__link-text">Detail</span>
-                                    </a>
-                                  </li>
-                                  @if(Auth::guard('admin')->user()->role != 'superadmin')
-                                  <li class="kt-nav__item" style="display: none !important;">
-                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$gadais->id}}" data-href="{{ route('delriwayat.gadaisawah', ['id' => $gadais->id]) }}">
-                                      <i class="kt-nav__link-icon fa fa-trash-alt"></i>
-                                      <span class="kt-nav__link-text">Hapus Data</span>
-                                    </a>
-                                  </li>
-                                  @else
-                                  <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$gadais->id}}" data-href="{{ route('delriwayat.gadaisawah', ['id' => $gadais->id]) }}">
-                                      <i class="kt-nav__link-icon fa fa-trash-alt"></i>
-                                      <span class="kt-nav__link-text">Hapus Data</span>
-                                    </a>
-                                  </li>
-                                  @endif
-                                </ul>
-                              </div>
-                            </div>
+                          <td colspan="8" align="center">
+                            Tidak ada data untuk pencarian "{{ Request::get('search') }}"
                           </td>
                         </tr>
-                        @endforeach
+                      </tbody>
+                      @else
+
+                      @php $no = 1; @endphp
+                      @foreach ($data as $gadais)
+                      <!-- jika admin tersedia atau tidak -->
+                      @if($gadais->admins == null)
+                      @php $admin = 'Admin Telah di hapus'; @endphp
+                      @else
+                      @php $admin = $gadais->admins->name; @endphp
+                      @endif
+                      <!-- End jika admin tersedia atau tidak -->
+                      <tr>
+                        <th scope="row">{{$no++}}</th>
+                        <td>{{$gadais -> sawahs -> users -> name}}</td>
+                        <td>{{$gadais -> sawahs -> nama}}</td>
+                        <td>{{$gadais -> periode}}</td>
+                        <td>Rp.{{format_uang($gadais -> harga)}}</td>
+                        <td>
+                          <div class="btn btn-bold btn-sm btn-font-sm  btn-label-success" style="font-size: 14px;">
+                            Riwayat Gadai
+                          </div>
+                        </td>
+                        <td>{{$admin}}</td>
+                        <td>
+                          <div class="dropdown dropdown-inline">
+                            <a href="#" class="btn btn-default btn-icon btn-icon-md btn-sm btn-more-custom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <i class="flaticon-more-1"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
+                              <ul class="kt-nav">
+                                <li class="kt-nav__item">
+                                  <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$gadais->id}}" data-email="{{$gadais->sawahs->users->email}}" data-nama-sawah="{{$gadais -> sawahs -> nama}}" data-nohp="{{$gadais->sawahs->users->nohp}}" data-periode="{{$gadais->periode}}" data-harga="Rp.{{format_uang($gadais->harga)}}" data-keterangan="{{$gadais->keterangan}}" data-titik_koordinat="{{$gadais->sawahs->titik_koordinat}}" data-kecamatan="{{$gadais->sawahs->kecamatan}}" data-kelurahan="{{$gadais->sawahs->kelurahan}}" data-alamat="{{$gadais->sawahs->alamat}}" data-luas_sawah="{{$gadais->sawahs->luas_sawah}}" data-kota="{{$gadais->sawahs->alamats->tipe}} {{$gadais->sawahs->alamats->nama_kota}}" data-name="{{$gadais->sawahs->users->name}}" data-admin="{{$admin}}">
+                                    <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
+                                    <span class="kt-nav__link-text">Detail</span>
+                                  </a>
+                                </li>
+                                @if(Auth::guard('admin')->user()->role != 'superadmin')
+                                <li class="kt-nav__item" style="display: none !important;">
+                                  <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$gadais->id}}" data-href="{{ route('delriwayat.gadaisawah', ['id' => $gadais->id]) }}">
+                                    <i class="kt-nav__link-icon fa fa-trash-alt"></i>
+                                    <span class="kt-nav__link-text">Hapus Data</span>
+                                  </a>
+                                </li>
+                                @else
+                                <li class="kt-nav__item">
+                                  <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$gadais->id}}" data-href="{{ route('delriwayat.gadaisawah', ['id' => $gadais->id]) }}">
+                                    <i class="kt-nav__link-icon fa fa-trash-alt"></i>
+                                    <span class="kt-nav__link-text">Hapus Data</span>
+                                  </a>
+                                </li>
+                                @endif
+                              </ul>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      @endforeach
                       </tbody>
                       @endif
                       @endif

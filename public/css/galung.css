@@ -75,6 +75,9 @@ table .btn-more-custom {
 
 .galung-header {
   background-color: #00A859 !important;
+  box-shadow: 0 0 40px rgba(34, 34, 34, 0.801) !important;
+  -webkit-box-shadow: 0 0 10px rgba(34, 34, 34, 0.801) !important;
+  -moz-box-shadow: 0 0 10px rgba(34, 34, 34, 0.801) !important;
 }
 .galung-header .kt-header__brand {
   justify-content: flex-start;
@@ -90,6 +93,21 @@ table .btn-more-custom {
   height: 50px;
   background: #fff;
   margin-right: 30px;
+}
+.galung-header li .kt-nav__link-badge {
+  margin-left: 5px !important;
+}
+.galung-header li .kt-nav__link-badge span {
+  color: #fff !important;
+  background-color: rgba(255, 255, 255, 0.376) !important;
+}
+.galung-header li .kt-nav__link-badge .active-badge {
+  color: #fff !important;
+  background-color: rgba(0, 168, 90, 0.452) !important;
+}
+.galung-header li .badge-submenu span {
+  color: #00A859 !important;
+  background-color: rgba(0, 168, 90, 0.102) !important;
 }
 .galung-header .kt-header-menu .kt-menu__item a .kt-menu__link-text {
   color: #00A859 !important;
@@ -118,12 +136,12 @@ table .btn-more-custom {
 .galung-header .kt-header-menu .kt-menu__item .kt-menu__submenu {
   width: 200px !important;
 }
-.galung-header .kt-header-menu #gadaisawah,
 .galung-header .kt-header-menu #manageuser {
   width: 135px;
 }
+.galung-header .kt-header-menu #gadaisawah,
 .galung-header .kt-header-menu #modaltanam {
-  width: 138px;
+  width: 167px;
 }
 .galung-header .kt-header-menu #bibitpupuk,
 .galung-header .kt-header-menu #manageadmin {
@@ -192,6 +210,9 @@ table .dropdown-table-custom ul .edit-data:hover .kt-nav__link-icon, table .drop
 }
 table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-text {
   color: #ff3863 !important;
+}
+table .dropdown-table-custom ul .verif-data:hover .kt-nav__link-icon, table .dropdown-table-custom ul .verif-data:hover .kt-nav__link-text {
+  color: #00A859 !important;
 }
 
 .form-group .input-group input {
@@ -530,18 +551,6 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
   cursor: pointer;
 }
 
-.detail-keranjang {
-  opacity: 0;
-  position: absolute !important;
-  transition: 0.5s;
-}
-
-.detail-keranjang-active {
-  opacity: 1;
-  position: relative !important;
-  transition: 0.5s;
-}
-
 .modal .detail-modal {
   padding-top: 50px;
 }
@@ -550,6 +559,25 @@ table .dropdown-table-custom ul .hapus-data:hover .kt-nav__link-icon, table .dro
 }
 .modal .modal-edit-user {
   width: 500px;
+}
+
+.jumbotron {
+  background-image: url("../img/galung-dashboard.jpg");
+  background-size: cover;
+  height: 400px;
+  background-position-y: -200px;
+  margin-top: -150px;
+}
+.jumbotron .kt-subheader {
+  margin-top: 100px;
+}
+.jumbotron .kt-subheader h1 {
+  color: #fff;
+  font-weight: 600;
+}
+
+.content-dashboard {
+  margin-top: -100px;
 }
 
 .card-menu,

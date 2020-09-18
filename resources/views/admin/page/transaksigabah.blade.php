@@ -37,7 +37,7 @@
       <!-- end alert section -->
       <div class="row">
         <div class="col-md-2">
-          <div class="kt-portlet sticky kt-iconbox--animate-faster" data-sticky="true" data-margin-top="100px" data-sticky-for="1023" data-sticky-class="kt-sticky">
+          <div class="kt-portlet kt-iconbox--animate-faster" data-margin-top="100px">
             <div class="kt-portlet__body">
               <h5 style="color: #222;">
                 Jumlah Data Transaksi Gabah Yang Tersedia
@@ -64,7 +64,7 @@
               <div class="kt-portlet__head-toolbar">
                 <form action="{{route('index.tgabah')}}" method="get">
                   <div class="input-group">
-                    <input type="text" class="form-control" name="search" @if(Request::get('search') == '') placeholder="cari" @else value="{{Request::get('search')}}" @endif>
+                    <input type="text" class="form-control" name="search" @if(Request::get('search')=='' ) placeholder="cari" @else value="{{Request::get('search')}}" @endif>
                     <div class="input-group-append">
                       <button class="btn btn-outline-success" type="submit">
                         <i class="fas fa-search"></i>
@@ -97,108 +97,108 @@
                       @else
                       <tbody>
                         @if($data->isEmpty())
-                            <tr>
-                              <td colspan="7" align="center">
-                                Tidak ada data untuk pencarian "{{ Request::get('search') }}"
-                              </td>
-                            </tr>
-                          </tbody>
-                        @else
-                        @php $no = 1; @endphp
-                        @foreach ($data as $transaksi)
-                        @php
-                        $total = (($transaksi -> jumlah)*($transaksi -> harga));
-                        @endphp
-
-                        <!-- Mengganti nama jenis bayar untuk detail -->
-                        @if($transaksi->jenis_bayar == 'cod')
-                        @php $pembayaran = 'Cash On Delivery (cod)'; @endphp
-                        @else
-                        @php $pembayaran = 'Transfer Bank'; @endphp
-                        @endif
-                        <!-- End Mengganti nama jenis bayar untuk detail -->
                         <tr>
-                          <th scope="row">{{$no++}}</th>
-                          <td>{{$transaksi -> users -> name}}</td>
-                          <td>{{$transaksi -> gabahs -> nama}}</td>
-                          <td>{{$transaksi -> jumlah}} Kg</td>
-                          <td>Rp.{{format_uang($total)}}</td>
-                          <td>
-                            @if($transaksi->jenis_bayar == 'cod')
-                            Cash On Delivery
-                            @else
-                            @if($transaksi->bukti == null)
-                            <button type="button" class="btn btn-bold btn-proses-bayar btn-sm">Bukti Pembayaran Belum Ada</button>
-                            @else
-                            <button type="button" class="btn btn-bold btn-bukti btn-sm" data-toggle="modal" data-target="#buktipembayaran"> Lihat Bukti Pembayaran</button>
-                            @endif
-                            @endif
-                          </td>
-                          <td>
-                            <div class="dropdown dropdown-inline">
-                              <a href="#" class="btn btn-default btn-icon btn-icon-md btn-sm btn-more-custom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="flaticon-more-1"></i>
-                              </a>
-                              <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
-                                <ul class="kt-nav">
-                                  <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-beras" data-id="{{$transaksi->id}}" data-jumlah="{{$transaksi->jumlah}}" data-harga="Rp.{{format_uang($transaksi->harga)}}" data-total="Rp.{{format_uang($total)}}" data-alamat="{{$transaksi->alamat}}" data-kecamatan="{{$transaksi->kecamatan}}" data-kelurahan="{{$transaksi->kelurahan}}" data-keterangan="{{$transaksi->keterangan}}" data-jenis_bayar="{{$pembayaran}}" data-users-name="{{$transaksi->users->name}}" data-users-email="{{$transaksi->users->email}}" data-users-nohp="{{$transaksi->users->nohp}}" data-beras-nama="{{$transaksi->gabahs->nama}}" data-waktu-jemput="{{$transaksi->waktu_jemput}}">
-                                      <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
-                                      <span class="kt-nav__link-text">Detail</span>
-                                    </a>
-                                  </li>
-                                  @if($transaksi->jenis_bayar == 'cod')
-                                  <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-pembelian-user" data-id="{{$transaksi->id}}" data-href="{{ route('status.tgabah', ['id' => $transaksi->id]) }}">
-                                      <i class="kt-nav__link-icon flaticon2-check-mark"></i>
-                                      <span class="kt-nav__link-text">Verifikasi Pembelian</span>
-                                    </a>
-                                  </li>
-                                  @else
-                                  @if($transaksi->bukti == null )
-                                  <li class="kt-nav__item" style="display: none !important;">
-                                    <a href="#" class="kt-nav__link hapus-data">
-                                      <i class="kt-nav__link-icon flaticon2-check-mark"></i>
-                                      <span class="kt-nav__link-text">Verifikasi Pembelian</span>
-                                    </a>
-                                  </li>
-                                  @else
-                                  <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-pembelian-user" data-id="{{$transaksi->id}}" data-href="{{ route('status.tgabah', ['id' => $transaksi->id]) }}">
-                                      <i class="kt-nav__link-icon flaticon2-check-mark"></i>
-                                      <span class="kt-nav__link-text">Verifikasi Pembelian</span>
-                                    </a>
-                                  </li>
-                                  @endif
-                                  @endif
-
-                                  @if($transaksi->jenis_bayar == 'tf')
-                                  <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$transaksi->id}}" data-href="{{ route('delete.tgabah', ['id' => $transaksi->id]) }}">
-                                      <i class="kt-nav__link-icon fa fa-trash-alt"></i>
-                                      <span class="kt-nav__link-text">Hapus Data</span>
-                                    </a>
-                                  </li>
-                                  @else
-                                  <li class="kt-nav__item" style="display: none !important;">
-                                    <a href="#" class="kt-nav__link hapus-data">
-                                      <i class="kt-nav__link-icon fa fa-trash-alt"></i>
-                                      <span class="kt-nav__link-text">Hapus Data</span>
-                                    </a>
-                                  </li>
-                                  @endif
-                                  <li class="kt-nav__item">
-                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$transaksi->id}}" data-href="{{ route('batal.tgabah', ['id' => $transaksi->id]) }}">
-                                      <i class="kt-nav__link-icon fa fa-trash-alt"></i>
-                                      <span class="kt-nav__link-text">Hapus</span>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
+                          <td colspan="7" align="center">
+                            Tidak ada data untuk pencarian "{{ Request::get('search') }}"
                           </td>
                         </tr>
-                        @endforeach
+                      </tbody>
+                      @else
+                      @php $no = 1; @endphp
+                      @foreach ($data as $transaksi)
+                      @php
+                      $total = (($transaksi -> jumlah)*($transaksi -> harga));
+                      @endphp
+
+                      <!-- Mengganti nama jenis bayar untuk detail -->
+                      @if($transaksi->jenis_bayar == 'cod')
+                      @php $pembayaran = 'Cash On Delivery (cod)'; @endphp
+                      @else
+                      @php $pembayaran = 'Transfer Bank'; @endphp
+                      @endif
+                      <!-- End Mengganti nama jenis bayar untuk detail -->
+                      <tr>
+                        <th scope="row">{{$no++}}</th>
+                        <td>{{$transaksi -> users -> name}}</td>
+                        <td>{{$transaksi -> gabahs -> nama}}</td>
+                        <td>{{$transaksi -> jumlah}} Kg</td>
+                        <td>Rp.{{format_uang($total)}}</td>
+                        <td>
+                          @if($transaksi->jenis_bayar == 'cod')
+                          Cash On Delivery
+                          @else
+                          @if($transaksi->bukti == null)
+                          <button type="button" class="btn btn-bold btn-proses-bayar btn-sm">Bukti Pembayaran Belum Ada</button>
+                          @else
+                          <button type="button" class="btn btn-bold btn-bukti btn-sm" data-toggle="modal" data-target="#buktipembayaran"> Lihat Bukti Pembayaran</button>
+                          @endif
+                          @endif
+                        </td>
+                        <td>
+                          <div class="dropdown dropdown-inline">
+                            <a href="#" class="btn btn-default btn-icon btn-icon-md btn-sm btn-more-custom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <i class="flaticon-more-1"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
+                              <ul class="kt-nav">
+                                <li class="kt-nav__item">
+                                  <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-beras" data-id="{{$transaksi->id}}" data-jumlah="{{$transaksi->jumlah}}" data-harga="Rp.{{format_uang($transaksi->harga)}}" data-total="Rp.{{format_uang($total)}}" data-alamat="{{$transaksi->alamat}}" data-kecamatan="{{$transaksi->kecamatan}}" data-kelurahan="{{$transaksi->kelurahan}}" data-keterangan="{{$transaksi->keterangan}}" data-jenis_bayar="{{$pembayaran}}" data-users-name="{{$transaksi->users->name}}" data-users-email="{{$transaksi->users->email}}" data-users-nohp="{{$transaksi->users->nohp}}" data-beras-nama="{{$transaksi->gabahs->nama}}" data-waktu-jemput="{{$transaksi->waktu_jemput}}">
+                                    <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
+                                    <span class="kt-nav__link-text">Detail</span>
+                                  </a>
+                                </li>
+                                @if($transaksi->jenis_bayar == 'cod')
+                                <li class="kt-nav__item">
+                                  <a href="#" class="kt-nav__link verif-data" data-toggle="modal" data-target="#modal-pembelian-user" data-id="{{$transaksi->id}}" data-href="{{ route('status.tgabah', ['id' => $transaksi->id]) }}">
+                                    <i class="kt-nav__link-icon flaticon2-check-mark"></i>
+                                    <span class="kt-nav__link-text">Verifikasi Pembelian</span>
+                                  </a>
+                                </li>
+                                @else
+                                @if($transaksi->bukti == null )
+                                <li class="kt-nav__item" style="display: none !important;">
+                                  <a href="#" class="kt-nav__link verif-data">
+                                    <i class="kt-nav__link-icon flaticon2-check-mark"></i>
+                                    <span class="kt-nav__link-text">Verifikasi Pembelian</span>
+                                  </a>
+                                </li>
+                                @else
+                                <li class="kt-nav__item">
+                                  <a href="#" class="kt-nav__link verif-data" data-toggle="modal" data-target="#modal-pembelian-user" data-id="{{$transaksi->id}}" data-href="{{ route('status.tgabah', ['id' => $transaksi->id]) }}">
+                                    <i class="kt-nav__link-icon flaticon2-check-mark"></i>
+                                    <span class="kt-nav__link-text">Verifikasi Pembelian</span>
+                                  </a>
+                                </li>
+                                @endif
+                                @endif
+
+                                @if($transaksi->jenis_bayar == 'tf')
+                                <li class="kt-nav__item">
+                                  <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$transaksi->id}}" data-href="{{ route('delete.tgabah', ['id' => $transaksi->id]) }}">
+                                    <i class="kt-nav__link-icon fa fa-trash-alt"></i>
+                                    <span class="kt-nav__link-text">Hapus Data</span>
+                                  </a>
+                                </li>
+                                @else
+                                <li class="kt-nav__item" style="display: none !important;">
+                                  <a href="#" class="kt-nav__link hapus-data">
+                                    <i class="kt-nav__link-icon fa fa-trash-alt"></i>
+                                    <span class="kt-nav__link-text">Hapus Data</span>
+                                  </a>
+                                </li>
+                                @endif
+                                <li class="kt-nav__item">
+                                  <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$transaksi->id}}" data-href="{{ route('batal.tgabah', ['id' => $transaksi->id]) }}">
+                                    <i class="kt-nav__link-icon fa fa-trash-alt"></i>
+                                    <span class="kt-nav__link-text">Hapus</span>
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      @endforeach
                       </tbody>
                       @endif
                       @endif
@@ -374,23 +374,23 @@
               <p>Data yang telah di hapus tidak dapat</p>
               <p>dikembalikan lagi</p>
               <form action="" method="POST" id="hapus-data">
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label for="exampleTextarea">Keterangan :</label>
-                    <textarea class="form-control" id="keterangans" name="keterangan" rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 97px; resize: none" required>Mohon maaf gabah Anda tidak memenuhi krieria sistem.</textarea>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="exampleTextarea">Keterangan :</label>
+                      <textarea class="form-control" id="keterangans" name="keterangan" rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 97px; resize: none" required>Mohon maaf gabah Anda tidak memenuhi krieria sistem.</textarea>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="row verif-form">
-                <div class="col-md-6">
-                  <button type="button" class="btn close-modal" data-dismiss="modal" aria-label="Close">Cancel</button>
-                </div>
-                <div class="col-md-6">
+                <div class="row verif-form">
+                  <div class="col-md-6">
+                    <button type="button" class="btn close-modal" data-dismiss="modal" aria-label="Close">Cancel</button>
+                  </div>
+                  <div class="col-md-6">
                     @csrf
                     <input type="submit" value="Submit" class="btn btn-verif btn-flat">
+                  </div>
                 </div>
-              </div>
               </form>
             </div>
           </div>

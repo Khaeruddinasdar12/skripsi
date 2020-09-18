@@ -31,6 +31,9 @@
 
 .galung-header {
     background-color: $galungcolor !important;
+    box-shadow: 0 0 40px rgba(34, 34, 34, 0.801) !important;
+    -webkit-box-shadow: 0 0 10px rgba(34, 34, 34, 0.801) !important;
+    -moz-box-shadow: 0 0 10px rgba(34, 34, 34, 0.801) !important;
 
     .kt-header__brand {
         justify-content: flex-start;
@@ -47,6 +50,29 @@
             height: 50px;
             background: #fff;
             margin-right: 30px;
+        }
+    }
+
+    li {
+        .kt-nav__link-badge {
+            margin-left: 5px !important;
+
+            span {
+                color: #fff !important;
+                background-color: rgba(255, 255, 255, 0.376) !important;
+            }
+
+            .active-badge {
+                color: #fff !important;
+                background-color: rgba(0, 168, 90, 0.452) !important;
+            }
+        }
+
+        .badge-submenu {
+            span {
+                color: $galungcolor !important;
+                background-color: rgba(0, 168, 90, 0.102) !important;
+            }
         }
     }
 
@@ -90,13 +116,13 @@
             }
         }
 
-        #gadaisawah,
         #manageuser {
             width: 135px;
         }
 
+        #gadaisawah,
         #modaltanam {
-            width: 138px;
+            width: 167px;
         }
 
         #bibitpupuk,
