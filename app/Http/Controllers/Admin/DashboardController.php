@@ -8,11 +8,43 @@ use App\TransaksiSawah;
 use App\TransaksiBarang;
 use App\TransaksiGabah;
 use App\CartTransaksi;
+use App\Admin;
+use Auth;
 class DashboardController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth:admin');
+    }
+
+    public function indexprofile()
+    {
+        return view('admin.page.edit-profile');
+    }
+
+    public function updateprofile(Request $request)
+    {
+        if(empty($request->password)) {
+            $validate = [
+                'name'      => 'required|string'
+            ];
+        } else {
+            $validate = [
+                'name'      => 'required|string',
+                'password'  => 'string|min:8|confirmed'
+            ];
+        }
+
+        $validasi = $this->validate($request, $validate);
+
+        $admin = Auth::guard('admin')->user()->id;
+        $data = Admin::findOrFail($admin);
+        $data->name = $request->get('name');
+            if(!empty($request->password)) {
+                $data->password = bcrypt($request->get('password'));
+            }   
+        $data->save();
+        return redirect()->back()->with('success', 'Berhasil mengubah data');
     }
     
     public function index()
@@ -55,6 +87,8 @@ class DashboardController extends Controller
                 ->where('jenis', 'beras')
                 ->count(); //jumlah sedang transaksi beras
 
+            $jmltr = TransaksiBarang::where('status', '0')->count(); // jumlah sedang transaksi barang
+
         // end untuk card
 
         // untuk chartJS (jumlah riwayat transaksi)
@@ -96,7 +130,7 @@ class DashboardController extends Controller
         // end untuk chartJS
 
         return view('admin.home', [
-            // variabel untuk card
+            // variabel untuk card (sedang transaksi)
         	'jmlmt' => $jmlmt,
         	'jmlgs'=> $jmlgs,
         	'jmlalat' => $jmlalat,
@@ -104,9 +138,10 @@ class DashboardController extends Controller
         	'jmlpupuk' => $jmlpupuk,
         	'jmlberas' => $jmlberas,
         	'jmlgabah' => $jmlgabah,
+            'jmltr' => $jmltr,
             // end variabel untuk card
 
-            // variabel untuk chartJS
+            // variabel untuk chartJS (riwayat transaksi)
             'rmt' => $rmt,
             'rgs'=> $rgs,
             'ralat' => $ralat,

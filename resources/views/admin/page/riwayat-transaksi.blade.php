@@ -138,7 +138,7 @@
                             <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
                               <ul class="kt-nav">
                                 <li class="kt-nav__item">
-                                  <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-beras">
+                                  <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-beras" data-id="{{$datas->id}}" data-code="{{$datas->transaksi_code}}" data-penerima="{{$datas->penerima}}" data-nohp="{{$datas->nohp}}" data-alamat="{{$datas->alamat}}" data-kelurahan="{{$datas->kelurahan}}" data-kecamatan="{{$datas->kecamatan}}" data-rt="{{$datas->rt}}" data-rw="{{$datas->rw}}" data-total="{{$datas->total}}" data-ket="{{$datas->keterangan}}">
                                     <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
                                     <span class="kt-nav__link-text">Detail</span>
                                   </a>
@@ -224,24 +224,10 @@
                     </div>
                     <div class="kt-widget__body widget-detail">
                       <div class="kt-widget__item">
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Nama Gabah Yang Dibeli :</span>
-                          <span class="kt-widget__data" id="berasnamas"></span>
-                        </div>
 
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Jumlah Gabah Yang Dibeli :</span>
-                          <span class="kt-widget__data" id="jumlahs"></span>
-                        </div>
-
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Harga Perkilo :</span>
-                          <span class="kt-widget__data" id="hargas"></span>
-                        </div>
-
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Total Harga :</span>
-                          <span class="kt-widget__data" id="totals"></span>
+                          <span class="kt-widget__label">Total Harga Pembelian :</span>
+                          <span class="kt-widget__data" id="total"></span>
                         </div>
 
                         <div class="kt-widget__contact">
@@ -260,13 +246,18 @@
                         </div>
 
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Jenis Bayar :</span>
-                          <span class="kt-widget__data" id="jenisbayars"></span>
+                          <span class="kt-widget__label">Rt :</span>
+                          <span class="kt-widget__data" id="rt"></span>
+                        </div>
+
+                        <div class="kt-widget__contact">
+                          <span class="kt-widget__label">Rw :</span>
+                          <span class="kt-widget__data" id="rw"></span>
                         </div>
 
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Keterangan :</span>
-                          <span class="kt-widget__data" id="keterangans"></span>
+                          <span class="kt-widget__data" id="keterangan"></span>
                         </div>
 
                       </div>
@@ -359,33 +350,28 @@
   // modal detail
   $('#modal-detail-beras').on('show.bs.modal', function(event) {
     var a = $(event.relatedTarget)
-    var jumlah = a.data('jumlah')
-    var harga = a.data('harga')
+    var code = a.data('code')
+    var penerima = a.data('penerima')
+    var nohp = a.data('nohp')
     var alamat = a.data('alamat')
-    var kecamatan = a.data('kecamatan')
     var kelurahan = a.data('kelurahan')
-    var keterangan = a.data('keterangan')
-    var jenis_bayar = a.data('jenis_bayar')
-    var usersname = a.data('users-name')
-    var usersemail = a.data('users-email')
-    var usersnohp = a.data('users-nohp')
-    var berasnama = a.data('beras-nama')
+    var kecamatan = a.data('kecamatan')
+    var rt = a.data('rt')
+    var rw = a.data('rw')
     var total = a.data('total')
+    var ket = a.data('ket')
 
     var modal = $(this)
-    modal.find('.modal-title').text('Detail Transaksi ' + usersname)
-    modal.find('.modal-body #usersnames').text('Pembeli : ' + usersname)
-    modal.find('.modal-body #email').text(usersemail)
-    modal.find('.modal-body #nohp').text(usersnohp)
-    modal.find('.modal-body #jumlahs').text(jumlah + ' Kg')
-    modal.find('.modal-body #hargas').text(harga)
+    modal.find('.modal-title').text('Detail Transaksi ' + code)
+    modal.find('.modal-body #usersnames').text('Pembeli : ' + penerima)
+    modal.find('.modal-body #nohp').text(nohp)
+    modal.find('.modal-body #total').text('Rp : ' + total)
     modal.find('.modal-body #alamats').text(alamat)
     modal.find('.modal-body #kecamatans').text(kecamatan)
     modal.find('.modal-body #kelurahans').text(kelurahan)
-    modal.find('.modal-body #keterangans').text(keterangan)
-    modal.find('.modal-body #jenisbayars').text(jenis_bayar)
-    modal.find('.modal-body #berasnamas').text(berasnama)
-    modal.find('.modal-body #totals').text(total)
+    modal.find('.modal-body #rt').text(rt)
+    modal.find('.modal-body #rw').text(rw)
+    modal.find('.modal-body #keterangan').text(ket)
 
   })
   // modal detail

@@ -26,8 +26,15 @@
 // end content
 
 // card
+.card-transaksi {
+    h3 {
+        padding-bottom: 30px !important;
+    }
+}
+
 .card-menu,
 .card-gadai,
+.card-transaksi,
 .chart-card {
     padding: 10px 20px 10px 20px !important;
     border-radius: 15px !important;

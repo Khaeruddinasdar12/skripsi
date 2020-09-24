@@ -19,10 +19,13 @@ Route::post('/logout', 'LoginController@logout')->name('admin.logout');
 
 Route::prefix('admin')->namespace('Admin')->group(function () {
 	Route::get('/', 'DashboardController@index')->name('admin.home');
+	Route::get('/edit-profile', 'DashboardController@indexprofile')->name('index.profile');
+	Route::put('/edit-profile', 'DashboardController@updateprofile')->name('update.profile');
 
 	// MENU LAPORAN
 	Route::get('laporan', 'Laporan@laporan')->name('index.laporan');
 	Route::get('laporan-pdf', 'Laporan@pdf')->name('pdf.laporan');
+	Route::get('laporan-sawah-gabah', 'Laporan@laporan2')->name('index.laporan2');
 	// END MENU LAPORAN
 
 

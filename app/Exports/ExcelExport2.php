@@ -4,14 +4,10 @@ namespace App\Exports;
 
 use Maatwebsite\Excel\Concerns\FromView;
 use Illuminate\Contracts\View\View;
-use App\TransaksiBarang;
-use App\TransaksiGabah;
-use App\TransaksiSawah;
-use DB;
 
-class ExcelExport implements FromView
+class ExcelExport2 implements FromView
 {
-	public $convert;
+    public $convert;
 	public function __construct($data)
     {
     	$this->convert = $data; 
@@ -19,7 +15,7 @@ class ExcelExport implements FromView
 
     public function view(): View
     {
-        return view('excel', [
+        return view('excel-laporan2', [
             'data' => $this->convert
         ]);
     }
