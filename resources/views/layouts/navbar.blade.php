@@ -320,7 +320,7 @@
             </div>
             <div class="kt-user-card__badge">
               <span>
-                <a href="{{ route('index.profile') }}" target="_blank" class="btn btn-label btn-label-brand btn-sm btn-bold">Edit Profile</a>
+                <a href="{{ route('index.profile') }}" class="btn btn-label btn-label-brand btn-sm btn-bold">Edit Profile</a>
                 <a href="{{ route('admin.logout') }}" target="_blank" class="btn btn-label btn-label-brand btn-sm btn-bold btn-logout-user" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log Out</a>
                 <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
                   @csrf
