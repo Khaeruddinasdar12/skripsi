@@ -26,9 +26,18 @@
 // end content
 
 // card
+
 .card-transaksi {
-    h3 {
-        padding-bottom: 30px !important;
+    .kt-widget5__item {
+        padding-bottom: 10px !important;
+        margin-bottom: 0 !important;
+        border-bottom: none !important;
+    }
+}
+
+.card-gadai {
+    .kt-widget4 {
+        padding-bottom: 50px;
     }
 }
 

@@ -580,8 +580,14 @@ table .dropdown-table-custom ul .verif-data:hover .kt-nav__link-icon, table .dro
   margin-top: -100px;
 }
 
-.card-transaksi h3 {
-  padding-bottom: 30px !important;
+.card-transaksi .kt-widget5__item {
+  padding-bottom: 10px !important;
+  margin-bottom: 0 !important;
+  border-bottom: none !important;
+}
+
+.card-gadai .kt-widget4 {
+  padding-bottom: 50px;
 }
 
 .card-menu,
