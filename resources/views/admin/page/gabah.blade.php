@@ -55,7 +55,7 @@
             <div class="kt-portlet__head">
               <div class="kt-portlet__head-label">
                 <span class="kt-portlet__head-icon">
-                  <i class="flaticon-avatar"></i>
+                  <img src="{{ asset('img/gabah.png') }}" alt="gabah" class="image-table-gabah">
                 </span>
                 <h3 class="kt-portlet__head-title">
                   Data Gabah

@@ -493,3 +493,16 @@ table {
 }
 
 // end detail keranjang transaksi
+
+.kt-portlet__head-icon {
+    .image-table {
+        width: 50px;
+    }
+
+    .image-table-gabah,
+    .image-table-modaltanam,
+    .image-table-gadaisawah,
+    .image-table-transaksi {
+        width: 35px;
+    }
+}
