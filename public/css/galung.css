@@ -551,6 +551,16 @@ table .dropdown-table-custom ul .verif-data:hover .kt-nav__link-icon, table .dro
   cursor: pointer;
 }
 
+.kt-portlet__head-icon .image-table {
+  width: 50px;
+}
+.kt-portlet__head-icon .image-table-gabah,
+.kt-portlet__head-icon .image-table-modaltanam,
+.kt-portlet__head-icon .image-table-gadaisawah,
+.kt-portlet__head-icon .image-table-transaksi {
+  width: 35px;
+}
+
 .modal .detail-modal {
   padding-top: 50px;
 }

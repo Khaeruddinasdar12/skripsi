@@ -65,7 +65,7 @@
             <div class="kt-portlet__head">
               <div class="kt-portlet__head-label">
                 <span class="kt-portlet__head-icon">
-                  <i class="flaticon-avatar"></i>
+                  <img src="{{ asset('img/transaksi.png') }}" alt="transaksi" class="image-table-transaksi">
                 </span>
                 <h3 class="kt-portlet__head-title">
                   Data Riwayat Transaksi Barang
