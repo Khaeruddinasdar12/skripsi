@@ -185,8 +185,9 @@ class TransaksiBarangController extends Controller
         	}
 
         $data = DB::table('cart_transaksis')
-        		->select('cart_transaksis.id as id_item', 'cart_transaksis.jumlah', 'cart_transaksis.harga as harga_satuan', 'cart_transaksis.nama', 'cart_transaksis.jenis', 'cart_transaksis.subtotal')
+        		->select('cart_transaksis.id as id_item', 'cart_transaksis.jumlah', 'cart_transaksis.harga as harga_satuan', 'cart_transaksis.nama', 'cart_transaksis.jenis', 'cart_transaksis.subtotal', 'barangs.gambar', 'barangs.min_beli')
         		->join('transaksi_barangs', 'cart_transaksis.transaksi_id', '=', 'transaksi_barangs.id')
+                ->join('barangs', 'cart_transaksis.barang_id', '=', 'barangs.id')
         		->where('transaksi_barangs.user_id', $user->id)
         		->where('transaksi_barangs.status', null)
         		->orderBy('cart_transaksis.created_at', 'desc')

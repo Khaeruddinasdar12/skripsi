@@ -71,7 +71,7 @@
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group ">
-                      <label>Role</label><br>
+                      <label>Role</label> : 
                       <b>{{ Auth::guard('admin')->user()->role }}</b>
                     </div>
                   </div>
