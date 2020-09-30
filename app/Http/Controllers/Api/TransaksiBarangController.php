@@ -80,6 +80,7 @@ class TransaksiBarangController extends Controller
         }
 
         $data = TransaksiBarang::where('status', 'batal')
+            ->where('user_id', $user->id)
             ->select('id', 'transaksi_code', 'penerima', 'nohp', 'alamat', 'kecamatan', 'kelurahan', 'rt', 'rw', 'total', 'keterangan')
             ->with('items:id,nama,jenis,harga,jumlah,subtotal,transaksi_id')
             ->orderBy('created_at', 'desc')
@@ -161,7 +162,7 @@ class TransaksiBarangController extends Controller
 
         return response()->json([
                 'status' => true, 
-                'message' => 'Berhasil mengirim permintaan pembelian barang dengan kode transaksi '.$data->transaksi_code.'. Segera diproses. '
+                'message' => $data->transaksi_code
             ]);
 	}
 
@@ -185,7 +186,7 @@ class TransaksiBarangController extends Controller
         	}
 
         $data = DB::table('cart_transaksis')
-        		->select('cart_transaksis.id as id_item', 'cart_transaksis.jumlah', 'cart_transaksis.harga as harga_satuan', 'cart_transaksis.nama', 'cart_transaksis.jenis', 'cart_transaksis.subtotal', 'barangs.gambar', 'barangs.min_beli')
+        		->select('cart_transaksis.id as id_item', 'cart_transaksis.jumlah', 'cart_transaksis.harga as harga_satuan', 'cart_transaksis.nama', 'cart_transaksis.jenis', 'cart_transaksis.subtotal', 'barangs.gambar', 'barangs.min_beli', 'barangs.stok')
         		->join('transaksi_barangs', 'cart_transaksis.transaksi_id', '=', 'transaksi_barangs.id')
                 ->join('barangs', 'cart_transaksis.barang_id', '=', 'barangs.id')
         		->where('transaksi_barangs.user_id', $user->id)
