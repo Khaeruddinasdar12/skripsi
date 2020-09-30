@@ -40,7 +40,7 @@
           <div class="kt-portlet kt-iconbox--animate-faster" data-margin-top="100px">
             <div class="kt-portlet__body">
               <h5 style="color: #222;">
-                Jumlah Data Alat Tani Yang Tersedia
+                Jumlah Data Barang Yang Tersedia
               </h5>
               <h4 class="mt-3" style="font-weight: 800;">
                 {{$jml}} Data
@@ -55,7 +55,7 @@
             <div class="kt-portlet__head">
               <div class="kt-portlet__head-label">
                 <span class="kt-portlet__head-icon">
-                  <i class="flaticon-avatar"></i>
+                  <img class="image-table" src="{{ asset('img/barang.png') }}" alt="barang">
                 </span>
                 <h3 class="kt-portlet__head-title">
                   Data Barang
