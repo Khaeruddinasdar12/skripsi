@@ -11,11 +11,35 @@ use Auth;
 use DB;
 class BerasController extends Controller
 {
-    public function index() //menampilkan daftar Beras (tanpa header)
+    public function index(Request $request) //menampilkan daftar Beras (tanpa header)
 	{
-		$data = Barang::select('id', 'nama', 'harga', 'min_beli', 'stok', 'keterangan', 'gambar')
-			->where('jenis', 'beras')
-			->paginate(8);
+        if($request->sort == 'a-z') {
+            $data = Barang::select('id', 'nama', 'harga', 'min_beli', 'stok', 'keterangan', 'gambar')
+            ->where('jenis', 'beras')
+            ->orderBy('nama', 'asc')
+            ->paginate(8);
+        } else if($request->sort == 'z-a') {
+            $data = Barang::select('id', 'nama', 'harga', 'min_beli', 'stok', 'keterangan', 'gambar')
+            ->where('jenis', 'beras')
+            ->orderBy('nama', 'desc')
+            ->paginate(8);
+        } else if($request->sort == 'murah-mahal') {
+            $data = Barang::select('id', 'nama', 'harga', 'min_beli', 'stok', 'keterangan', 'gambar')
+            ->where('jenis', 'beras')
+            ->orderBy('harga', 'asc')
+            ->paginate(8);
+        } else if($request->sort == 'mahal-murah') {
+            $data = Barang::select('id', 'nama', 'harga', 'min_beli', 'stok', 'keterangan', 'gambar')
+            ->where('jenis', 'beras')
+            ->orderBy('harga', 'desc')
+            ->paginate(8);
+        } else {
+            $data = Barang::select('id', 'nama', 'harga', 'min_beli', 'stok', 'keterangan', 'gambar')
+            ->where('jenis', 'beras')
+            ->orderBy('created_at', 'desc')
+            ->paginate(8);
+        }
+		
         return response()->json([
             'status' => true,
             'message' => 'data beras (per 8 data)',

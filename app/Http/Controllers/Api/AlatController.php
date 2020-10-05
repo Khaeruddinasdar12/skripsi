@@ -10,12 +10,36 @@ use App\TransaksiBarang;
 use Auth;
 use DB;
 class AlatController extends Controller
-{
-    public function index() //menampilkan daftar Alat (tanpa header)
+{ 
+    public function index(Request $request) //menampilkan daftar Alat (tanpa header)
 	{
-		$data = Barang::select('id', 'nama', 'harga', 'min_beli', 'stok', 'keterangan', 'gambar')
-			->where('jenis', 'alat')
-			->paginate(8);
+        if($request->sort == 'a-z') {
+            $data = Barang::select('id', 'nama', 'harga', 'min_beli', 'stok', 'keterangan', 'gambar')
+            ->where('jenis', 'alat')
+            ->orderBy('nama', 'asc')
+            ->paginate(8);
+        } else if($request->sort == 'z-a') {
+            $data = Barang::select('id', 'nama', 'harga', 'min_beli', 'stok', 'keterangan', 'gambar')
+            ->where('jenis', 'alat')
+            ->orderBy('nama', 'desc')
+            ->paginate(8);
+        } else if($request->sort == 'murah-mahal') {
+            $data = Barang::select('id', 'nama', 'harga', 'min_beli', 'stok', 'keterangan', 'gambar')
+            ->where('jenis', 'alat')
+            ->orderBy('harga', 'asc')
+            ->paginate(8);
+        } else if($request->sort == 'mahal-murah') {
+            $data = Barang::select('id', 'nama', 'harga', 'min_beli', 'stok', 'keterangan', 'gambar')
+            ->where('jenis', 'alat')
+            ->orderBy('harga', 'desc')
+            ->paginate(8);
+        } else {
+            $data = Barang::select('id', 'nama', 'harga', 'min_beli', 'stok', 'keterangan', 'gambar')
+            ->where('jenis', 'alat')
+            ->orderBy('created_at', 'desc')
+            ->paginate(8); 
+        }
+
         return response()->json([
             'status' => true,
             'message' => 'data alat (per 8 data)',
@@ -33,11 +57,6 @@ class AlatController extends Controller
             'to' => $data->count(),
             'total' => $data->total()
         ]);
-		// return response()->json([
-  //                   'status' => true,
-  //                   'message' => 'Semua data alat (per 8 data)',
-  //                   'data'	=> $data
-  //               ]);
 	}
 
 	// public function store(Request $request, $id) //proses pembelian alat

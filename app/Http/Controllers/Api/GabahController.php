@@ -11,10 +11,30 @@ use DB;
 use Auth;
 class GabahController extends Controller
 {
-	public function index()
-	{
-		$data = Gabah::select('id', 'nama', 'harga')->paginate(8);
-        // return $data;
+	public function index(Request $request)
+	{  
+        if($request->sort == 'a-z') {
+            $data = Gabah::select('id', 'nama', 'harga')
+            ->orderBy('nama', 'asc')
+            ->paginate(8);
+        } else if($request->sort == 'z-a') {
+            $data = Gabah::select('id', 'nama', 'harga')
+            ->orderBy('nama', 'desc')
+            ->paginate(8);
+        } else if($request->sort == 'murah-mahal') {
+            $data = Gabah::select('id', 'nama', 'harga')
+            ->orderBy('harga', 'asc')
+            ->paginate(8);
+        } else if($request->sort == 'mahal-murah') {
+            $data = Gabah::select('id', 'nama', 'harga')
+            ->orderBy('harga', 'desc')
+            ->paginate(8);
+        } else {
+            $data = Gabah::select('id', 'nama', 'harga')
+            ->orderBy('created_at', 'desc')
+            ->paginate(8);
+        }
+		
 		return response()->json([
             'status' => true,
             'message' => 'data gabah (per 8 data)',
