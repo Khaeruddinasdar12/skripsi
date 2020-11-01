@@ -23,7 +23,7 @@ class TransaksiBarangController extends Controller
         }
 
         $data = TransaksiBarang::where('status', '0')
-            ->select('id', 'transaksi_code', 'penerima', 'nohp', 'alamat', 'kecamatan', 'kelurahan', 'rt', 'rw', 'total')
+            ->select('id', 'transaksi_code', 'penerima', 'nohp', 'alamat', 'kecamatan', 'kelurahan', 'rt', 'rw', 'total', 'created_at')
             ->with('items:id,nama,jenis,harga,jumlah,subtotal,transaksi_id,barang_id', 'items.barangs:id,gambar')
             ->orderBy('created_at', 'desc')
             ->get();
@@ -52,7 +52,7 @@ class TransaksiBarangController extends Controller
         }
 
         $data = TransaksiBarang::where('status', '1')
-            ->select('id', 'transaksi_code', 'penerima', 'nohp', 'alamat', 'kecamatan', 'kelurahan', 'rt', 'rw', 'total')
+            ->select('id', 'transaksi_code', 'penerima', 'nohp', 'alamat', 'kecamatan', 'kelurahan', 'rt', 'rw', 'total', 'created_at')
             ->with('items:id,nama,jenis,harga,jumlah,subtotal,transaksi_id,barang_id', 'items.barangs:id,gambar')
             ->orderBy('created_at', 'desc')
             ->get();
@@ -81,7 +81,7 @@ class TransaksiBarangController extends Controller
 
         $data = TransaksiBarang::where('status', 'batal')
             ->where('user_id', $user->id)
-            ->select('id', 'transaksi_code', 'penerima', 'nohp', 'alamat', 'kecamatan', 'kelurahan', 'rt', 'rw', 'total', 'keterangan')
+            ->select('id', 'transaksi_code', 'penerima', 'nohp', 'alamat', 'kecamatan', 'kelurahan', 'rt', 'rw', 'total', 'keterangan', 'created_at')
             ->with('items:id,nama,jenis,harga,jumlah,subtotal,transaksi_id,barang_id', 'items.barangs:id,gambar')
             ->orderBy('created_at', 'desc')
             ->get();
@@ -117,7 +117,6 @@ class TransaksiBarangController extends Controller
             'kelurahan'     => 'required|string',
             'rt' => 'required|string',
             'rw' => 'required|string',
-            'keterangan'    => 'string'
 
         ]);
 

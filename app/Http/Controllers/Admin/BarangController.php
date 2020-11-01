@@ -82,6 +82,7 @@ class BarangController extends Controller
         if(!in_array($request->get('jenis'), $arrjenis)) {
         	return redirect()->back()->with('error', 'Lu ngapain sih ?');
         }
+
         $data = new Barang;
         $data->nama         = $request->get('nama');
         $data->jenis        = $request->get('jenis');
