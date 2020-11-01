@@ -14,7 +14,7 @@ class BerasController extends Controller
     public function index(Request $request) //menampilkan daftar Beras (tanpa header)
 	{
         if($request->sort == 'a-z') {
-            $data = Barang::select('id', 'nama', 'harga', 'min_beli', 'stok', 'keterangan', 'gambar')
+            $data = Barang::select('id', 'nama', 'harga', 'min_beli', 'stok', 'keterangan', 'gambar', 'created_at')
             ->where('jenis', 'beras')
             ->orderBy('nama', 'asc')
             ->paginate(8);
@@ -34,12 +34,12 @@ class BerasController extends Controller
             ->orderBy('harga', 'desc')
             ->paginate(8);
         } else {
-            $data = Barang::select('id', 'nama', 'harga', 'min_beli', 'stok', 'keterangan', 'gambar')
+            $data = Barang::select('id', 'nama', 'harga', 'min_beli', 'stok', 'keterangan', 'gambar', 'created_at')
             ->where('jenis', 'beras')
             ->orderBy('created_at', 'desc')
             ->paginate(8);
         }
-		
+        
         return response()->json([
             'status' => true,
             'message' => 'data beras (per 8 data)',
