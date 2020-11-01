@@ -7,12 +7,40 @@ use Illuminate\Http\Request;
 use App\Barang;
 class DataBibitPupukController extends Controller
 {
-    public function index() //menampilkan daftar Pupuk (tanpa header)
-	{
-		$data = Barang::select('id', 'nama', 'harga', 'min_beli', 'stok', 'keterangan', 'gambar')
-			->where('jenis', 'pupuk')
-			->orWhere('jenis', 'bibit')
-			->paginate(8);
+    public function index(Request $request) //menampilkan daftar Pupuk (tanpa header)
+	{  
+        if($request->sort == 'a-z') {
+            $data = Barang::select('id', 'nama', 'harga', 'min_beli', 'stok', 'keterangan', 'gambar')
+            ->where('jenis', 'pupuk')
+            ->orWhere('jenis', 'bibit')
+            ->orderBy('nama', 'asc')
+            ->paginate(8);
+        } else if($request->sort == 'z-a') {
+            $data = Barang::select('id', 'nama', 'harga', 'min_beli', 'stok', 'keterangan', 'gambar')
+            ->where('jenis', 'pupuk')
+            ->orWhere('jenis', 'bibit')
+            ->orderBy('nama', 'desc')
+            ->paginate(8);
+        } else if($request->sort == 'murah-mahal') {
+            $data = Barang::select('id', 'nama', 'harga', 'min_beli', 'stok', 'keterangan', 'gambar')
+            ->where('jenis', 'pupuk')
+            ->orWhere('jenis', 'bibit')
+            ->orderBy('harga', 'asc')
+            ->paginate(8);
+        } else if($request->sort == 'mahal-murah') {
+            $data = Barang::select('id', 'nama', 'harga', 'min_beli', 'stok', 'keterangan', 'gambar')
+            ->where('jenis', 'pupuk')
+            ->orWhere('jenis', 'bibit')
+            ->orderBy('harga', 'desc')
+            ->paginate(8);
+        } else {
+            $data = Barang::select('id', 'nama', 'harga', 'min_beli', 'stok', 'keterangan', 'gambar')
+            ->where('jenis', 'pupuk')
+            ->orWhere('jenis', 'bibit')
+            ->orderBy('created_at', 'desc')
+            ->paginate(8);
+        }
+        
 		return response()->json([
             'status' => true,
             'message' => 'data bibit & pupuk (per 8 data)',
