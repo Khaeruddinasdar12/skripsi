@@ -191,7 +191,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <form action="{{ route('store.alat') }}" method="POST" enctype="multipart/form-data">
+              <form action="{{ route('store.barang') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" value="POST" name="_method">
 
