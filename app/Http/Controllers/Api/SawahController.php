@@ -225,12 +225,12 @@ class SawahController extends Controller
         $cek_gadai = TransaksiSawah::where('sawah_id', $id);
         $dt = $cek_gadai->get();
         // return $dt;
-        if(count($dt) == null) { 
-            return response()->json([
-                        'status'  => false,
-                        'message' => 'data sawah tidak ditemukan'
-                    ]);
-        }
+        // if(count($dt) == null) { 
+        //     return response()->json([
+        //                 'status'  => false,
+        //                 'message' => 'data sawah tidak ditemukan'
+        //             ]);
+        // }
 
         if($dt != null) { //cek semua transaksi
             foreach ($dt as $hps) {
