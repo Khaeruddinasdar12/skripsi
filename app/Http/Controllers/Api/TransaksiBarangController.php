@@ -34,7 +34,7 @@ class TransaksiBarangController extends Controller
             	]);
 	        }
 
-            // return $data;
+            // return $data[0]['created_at'];
         return response()->json([
                 	'status' 	=> true, 
                 	'message' 	=> 'Transaksi barang oleh '.$user->name.' yang masih diproses admin',
