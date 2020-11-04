@@ -30,7 +30,7 @@ class TransaksiBarangController extends Controller
             ->get();
         	if (sizeof($data) == 0) {
 	            return response()->json([
-                	'status' 	=> false, 
+                	'status' 	=> true, 
                 	'message' 	=> 'Belum ada transaksi'
             	]);
 	        }
@@ -61,7 +61,7 @@ class TransaksiBarangController extends Controller
         
            	if (sizeof($data) == 0) {
 	            return response()->json([
-                	'status' 	=> false, 
+                	'status' 	=> true, 
                 	'message' 	=> 'Belum ada riwayat transaksi'
             	]);
 	        }
@@ -90,7 +90,7 @@ class TransaksiBarangController extends Controller
 
             if (sizeof($data) == 0) {
 	            return response()->json([
-                	'status' 	=> false, 
+                	'status' 	=> true, 
                 	'message' 	=> 'Belum ada transaksi yang dibatalkan'
             	]);
 	        }
@@ -136,7 +136,7 @@ class TransaksiBarangController extends Controller
         $data = TransaksiBarang::find($id);
         	if ($data == null) {
 	            return response()->json([
-                	'status' 	=> false, 
+                	'status' 	=> true, 
                 	'message' 	=> 'Belum ada keranjang'
             	]);
 	        }
@@ -181,7 +181,7 @@ class TransaksiBarangController extends Controller
 
         	if($transaksi == null) {
         		return response()->json([
-                	'status' 	=> false, 
+                	'status' 	=> true, 
                 	'message' 	=> 'Belum ada keranjang'
             	]);
         	}
