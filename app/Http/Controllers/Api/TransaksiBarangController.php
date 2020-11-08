@@ -31,7 +31,8 @@ class TransaksiBarangController extends Controller
         	if (sizeof($data) == 0) {
 	            return response()->json([
                 	'status' 	=> true, 
-                	'message' 	=> 'Belum ada transaksi'
+                	'message' 	=> 'Belum ada transaksi',
+                    'data'      => []
             	]);
 	        }
 
@@ -62,7 +63,8 @@ class TransaksiBarangController extends Controller
            	if (sizeof($data) == 0) {
 	            return response()->json([
                 	'status' 	=> true, 
-                	'message' 	=> 'Belum ada riwayat transaksi'
+                	'message' 	=> 'Belum ada riwayat transaksi',
+                    'data'      => []
             	]);
 	        }
         return response()->json([
@@ -91,7 +93,8 @@ class TransaksiBarangController extends Controller
             if (sizeof($data) == 0) {
 	            return response()->json([
                 	'status' 	=> true, 
-                	'message' 	=> 'Belum ada transaksi yang dibatalkan'
+                	'message' 	=> 'Belum ada transaksi yang dibatalkan',
+                    'data'      => []
             	]);
 	        }
         return response()->json([
@@ -137,7 +140,8 @@ class TransaksiBarangController extends Controller
         	if ($data == null) {
 	            return response()->json([
                 	'status' 	=> true, 
-                	'message' 	=> 'Belum ada keranjang'
+                	'message' 	=> 'Belum ada keranjang',
+                    'data'      => []
             	]);
 	        }
 	        
@@ -182,7 +186,8 @@ class TransaksiBarangController extends Controller
         	if($transaksi == null) {
         		return response()->json([
                 	'status' 	=> true, 
-                	'message' 	=> 'Belum ada keranjang'
+                	'message' 	=> 'Belum ada keranjang',
+                    'data'      => []
             	]);
         	}
 
@@ -369,6 +374,15 @@ class TransaksiBarangController extends Controller
             $cekCart->jumlah = $jml;
             $cekCart->subtotal = $subtotal;
             $cekCart->save();
+            
+            $transaksi = TransaksiBarang::find($cekCart->transaksi_id);
+            $transaksi->total = $subtotal;
+            $transaksi->save();
+            
+            return response()->json([
+                'status' => true, 
+                'message' => $barang->jenis.' ditambahkan.'
+            ]);
         }
 
         	//cek satuan barang
