@@ -126,30 +126,6 @@
   </div>
   <!-- end card data transaksi & gadai -->
 
-  <!-- chart -->
-  <div class="row">
-
-    <div class="col-md-4">
-
-      <!--begin:: Widgets/Revenue Change-->
-      <div class="kt-portlet kt-portlet--height-fluid chart-card">
-        <div class="kt-widget14">
-          <h3>
-            Data Penjualan
-          </h3>
-          <div class="kt-widget14__content">
-            <div class="kt-widget14__chart">
-              <div id="penjualan" class="charts">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!--end:: Widgets/Revenue Change-->
-    </div>
-  </div>
-  <!-- end chart -->
 </div>
 
 

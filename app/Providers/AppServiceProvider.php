@@ -26,21 +26,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {   
-        // $gbh = TransaksiGabah::where('status', '0')
-        //     ->count(); // jumlah transaksi gabah
+        $mt = TransaksiSawah::where('jenis', 'mt')
+            ->where('status', null)
+            ->count(); //jumlah transaksi modal tanam
+        $gs = TransaksiSawah::where('jenis', 'gs')
+            ->where('status', null)
 
-        // $mt = TransaksiSawah::where('jenis', 'mt')
-        //     ->where('status', null)
-        //     ->count(); //jumlah transaksi modal tanam
-        // $gs = TransaksiSawah::where('jenis', 'gs')
-        //     ->where('status', null)
-
-        //     ->count(); // jumlah transaksi gadai sawah
-        // $brg = TransaksiBarang::where('status', '0')
-        //     ->count(); // jumlah transaksi barang
-        // View::share('gbh', $gbh);
-        // View::share('mt', $mt);
-        // View::share('gs', $gs);
-        // View::share('brg', $brg);
+            ->count(); // jumlah transaksi gadai sawah
+        $brg = TransaksiBarang::where('status', '0')
+            ->count(); // jumlah transaksi barang
+        View::share('mt', $mt);
+        View::share('gs', $gs);
+        View::share('brg', $brg);
     }
 }

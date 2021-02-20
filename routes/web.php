@@ -110,24 +110,7 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 	// END RUTE MENU BERAS & TRANSAKSI BERAS
 
 
-	// RUTE MENU GABAHKU & TRANSAKSI GABAHKU
-	// 1. Menu Gabah
-	Route::get('gabah', 'GabahController@index')->name('index.gabah'); //menampilkan hal. data gabah
-	Route::post('gabah', 'GabahController@store')->name('store.gabah'); //menambah data gabah
-	Route::put('gabah/{id}', 'GabahController@update')->name('update.gabah'); //mengubah data gabah
-	Route::delete('gabah/{id}', 'GabahController@delete')->name('delete.gabah'); //menghapus data gabah
-
-	// 2. Menu Transaksi Gabah
-	Route::get('transaksi-gabah', 'TransaksiGabahController@index')->name('index.tgabah'); //menampilkan hal. data transaksi gabah
-	Route::get('riwayat-transaksi-gabah', 'TransaksiGabahController@riwayat')->name('riwayat.tgabah'); //menampilkan hal. data riwayat transaksi gabah
-	Route::put('transaksi-gabah-status/{id}', 'TransaksiGabahController@status')->name('status.tgabah'); // mengubah status pembelian gabah menjadi riwayat
-	Route::delete('transaksi-gabah-delete/{id}', 'TransaksiGabahController@delete')->name('delete.tgabah'); // menghapus data transaksi gabah
-	Route::post('transaksi-gabah-batal/{id}', 'TransaksiGabahController@batal')->name('batal.tgabah'); // menghapus transaksi gabah dan tampil batal di user (android)
-	Route::delete('transaksi-gabah-delete-riwayat/{id}', 'TransaksiGabahController@deleteBySuperadmin')->name('deleteriwayat.tgabah')->middleware('CekAdmin'); // menghapus data transaksi gabah (riwayat Transaksi by superadmin)
-	// END RUTE MENU GABAHKU & TRANSAKSI GABAHKU
-
-
-	// RUTE MENU MODAL TANAM
+		// RUTE MENU MODAL TANAM
 	Route::get('modal-tanam-daftar-gadai', 'ModalTanamController@daftargadai')->name('daftar.modaltanam'); //menampilkan hal. data mendaftarkan sawah untuk digadai 
 	Route::get('modal-tanam-sedang-gadai', 'ModalTanamController@sedanggadai')->name('sedang.modaltanam'); //menampilkan hal. data yang sedang menggadai sawahnya
 	Route::get('modal-tanam-riwayat-gadai', 'ModalTanamController@riwayatgadai')->name('riwayat.modaltanam'); //menampilkan hal. data riwayat gadai sawah

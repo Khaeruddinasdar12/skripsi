@@ -49,46 +49,6 @@
           </li>
           <!-- end manage barang -->
 
-          <!-- gabah menu -->
-          <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel {{ request()->is('admin/gabah') || request()->is('admin/transaksi-gabah') || request()->is('admin/riwayat-transaksi-gabah') ? 'kt-menu__item--open kt-menu__item--here' : '' }}" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
-            <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
-              <span class="kt-menu__link-text {{ request()->is('admin/gabah') || request()->is('admin/transaksi-gabah') || request()->is('admin/riwayat-transaksi-gabah') ? '' : 'top-text-nav' }}">
-                Gabah
-              </span>
-              <span class="kt-nav__link-badge">
-                <span class="kt-badge kt-badge--unified-danger kt-badge--md kt-badge--rounded kt-badge--boldest {{ request()->is('admin/gabah') || request()->is('admin/transaksi-gabah') || request()->is('admin/riwayat-transaksi-gabah') ? 'active-badge' : '' }}">{{$gbh}}</span>
-              </span>
-              <i class=" fa fa-angle-down {{ request()->is('admin/gabah') || request()->is('admin/transaksi-gabah') || request()->is('admin/riwayat-transaksi-gabah') ? 'icon-here' : '' }}"></i>
-            </a>
-            <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
-              <ul class="kt-menu__subnav">
-                <li class="kt-menu__item  kt-menu__item--submenu">
-                  <a href="{{ route('index.gabah') }}" class="kt-menu__link">
-                    <span class="kt-menu__link-text">Data Gabah</span>
-                  </a>
-                </li>
-                <li class="kt-menu__item  kt-menu__item--submenu">
-                  <a href="{{ route('index.tgabah') }}" class="kt-menu__link">
-                    <span class="kt-menu__link-text">
-                      Transaksi Gabah
-                    </span>
-                    <span class="kt-nav__link-badge badge-submenu">
-                      <span class="kt-badge kt-badge--unified-danger kt-badge--md kt-badge--rounded kt-badge--boldest">
-                        {{$gbh}}
-                      </span>
-                    </span>
-                  </a>
-                </li>
-                <li class="kt-menu__item  kt-menu__item--submenu">
-                  <a href="{{ route('riwayat.tgabah') }}" class="kt-menu__link">
-                    <span class="kt-menu__link-text">Riwayat Transaksi</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <!-- end and gabah -->
-
           <!-- modal tanam menu -->
           <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel {{ request()->is('admin/modal-tanam-daftar-gadai') || request()->is('admin/modal-tanam-sedang-gadai') || request()->is('admin/modal-tanam-riwayat-gadai') ? 'kt-menu__item--open kt-menu__item--here' : '' }}" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
             <a href="javascript:;" class="kt-menu__link kt-menu__toggle" id="modaltanam">
@@ -204,53 +164,14 @@
             </div>
           </li>
           <!-- end transaksi menu -->
-
-
+          
           <!-- manage user menu -->
-          <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel {{ request()->is('admin/manage-user-konsumen') || request()->is('admin/manage-user-petani-verified') || request()->is('admin/manage-user-petani-unverified') ? 'kt-menu__item--open kt-menu__item--here' : '' }}" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
-            <a href="javascript:;" class="kt-menu__link kt-menu__toggle" id="manageuser">
-              <span class="kt-menu__link-text {{ request()->is('admin/manage-user-konsumen') || request()->is('admin/manage-user-petani-verified') || request()->is('admin/manage-user-petani-unverified') ? '' : 'top-text-nav' }}">Manage User</span>
-              <i class="fa fa-angle-down {{ request()->is('admin/manage-user-konsumen') || request()->is('admin/manage-user-petani-verified') || request()->is('admin/manage-user-petani-unverified') ? 'icon-here' : '' }}"></i>
+          <li class="kt-menu__item kt-menu__item--rel {{ request()->is('admin/manage-user-petani-verified') ? 'kt-menu__item--open kt-menu__item--here' : '' }}">
+            <a href="{{ route('verified.manage-user') }}" class="kt-menu__link" id="manageadmin">
+              <span class="kt-menu__link-text kt-menu__link-text {{ request()->is('admin/manage-user-petani-verified') ? '' : 'top-text-nav' }}">Manage User</span>
             </a>
-            <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
-              <ul class="kt-menu__subnav">
-                <li class="kt-menu__item  kt-menu__item--submenu">
-                  <a href="{{ route('konsumen.manage-user') }}" class="kt-menu__link">
-                    <span class="kt-menu__link-text">Konsumen</span>
-                  </a>
-                </li>
-                <li class="kt-menu__item kt-menu__item--submenu" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
-                  <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
-                    <span class="kt-menu__link-text">Petani</span>
-                    <i class="kt-menu__hor-arrow la la-angle-right"></i>
-                    <i class="kt-menu__ver-arrow la la-angle-right"></i>
-                  </a>
-                  <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--right">
-                    <ul class="kt-menu__subnav">
-                      <li class="kt-menu__item " aria-haspopup="true">
-                        <a href="{{ route('verified.manage-user') }}" class="kt-menu__link ">
-                          <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
-                            <span></span>
-                          </i>
-                          <span class="kt-menu__link-text">Terverifikasi</span>
-                        </a>
-                      </li>
-                      <li class="kt-menu__item " aria-haspopup="true">
-                        <a href="{{ route('unverified.manage-user') }}" class="kt-menu__link ">
-                          <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
-                            <span></span>
-                          </i>
-                          <span class="kt-menu__link-text">Belum Terverifikasi</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-              </ul>
-            </div>
           </li>
           <!-- end manage user -->
-
 
           <!-- manage admin menu -->
           <li class="kt-menu__item kt-menu__item--rel {{ request()->is('admin/manage-admin') ? 'kt-menu__item--open kt-menu__item--here' : '' }}">
@@ -259,15 +180,6 @@
             </a>
           </li>
           <!-- end manage admin -->
-
-
-          <!-- laporan menu -->
-          <!-- <li class="kt-menu__item kt-menu__item--rel {{ request()->is('admin/laporan') ? 'kt-menu__item--open kt-menu__item--here' : '' }}">
-            <a href="{{route('index.laporan')}}" class="kt-menu__link">
-              <span class="kt-menu__link-text {{ request()->is('admin/laporan') ? '' : 'top-text-nav' }}">Laporan</span>
-            </a>
-          </li>
- -->          <!-- end laporan menu -->
 
           <!-- transaksi menu -->
           <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel {{ request()->is('admin/laporan') || request()->is('admin/laporan-sawah-gabah') ? 'kt-menu__item--open kt-menu__item--here' : '' }}" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
