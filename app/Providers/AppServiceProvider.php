@@ -25,10 +25,10 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(Request $request)
     {   
         if ($request->is('api/*') || $request->is('/')) {
-
+         
         } else {
             $mt = TransaksiSawah::where('jenis', 'mt')
             ->where('status', null)
