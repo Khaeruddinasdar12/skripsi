@@ -1,0 +1,45 @@
+[22-Feb-2021 15:40:19 Asia/Makassar] PHP Fatal error:  Interface 'JsonSerializable' not found in /home/asdarmyi/sayurqita/vendor/laravel/framework/src/Illuminate/Support/Enumerable.php on line 11
+[22-Feb-2021 15:40:22 Asia/Makassar] PHP Fatal error:  Interface 'JsonSerializable' not found in /home/asdarmyi/sayurqita/vendor/laravel/framework/src/Illuminate/Support/Enumerable.php on line 11
+[22-Feb-2021 15:40:23 Asia/Makassar] PHP Fatal error:  Interface 'JsonSerializable' not found in /home/asdarmyi/sayurqita/vendor/laravel/framework/src/Illuminate/Support/Enumerable.php on line 11
+[22-Feb-2021 15:40:25 Asia/Makassar] PHP Fatal error:  Interface 'JsonSerializable' not found in /home/asdarmyi/sayurqita/vendor/laravel/framework/src/Illuminate/Support/Enumerable.php on line 11
+[22-Feb-2021 15:40:26 Asia/Makassar] PHP Fatal error:  Interface 'JsonSerializable' not found in /home/asdarmyi/sayurqita/vendor/laravel/framework/src/Illuminate/Support/Enumerable.php on line 11
+[22-Feb-2021 15:40:40 Asia/Makassar] PHP Fatal error:  Interface 'JsonSerializable' not found in /home/asdarmyi/sayurqita/vendor/laravel/framework/src/Illuminate/Support/Enumerable.php on line 11
+[22-Feb-2021 15:40:41 Asia/Makassar] PHP Fatal error:  Interface 'JsonSerializable' not found in /home/asdarmyi/sayurqita/vendor/laravel/framework/src/Illuminate/Support/Enumerable.php on line 11
+[22-Feb-2021 15:40:42 Asia/Makassar] PHP Fatal error:  Interface 'JsonSerializable' not found in /home/asdarmyi/sayurqita/vendor/laravel/framework/src/Illuminate/Support/Enumerable.php on line 11
+[22-Feb-2021 15:40:43 Asia/Makassar] PHP Fatal error:  Interface 'JsonSerializable' not found in /home/asdarmyi/sayurqita/vendor/laravel/framework/src/Illuminate/Support/Enumerable.php on line 11
+[22-Feb-2021 16:01:26 Asia/Makassar] PHP Fatal error:  Uncaught TypeError: Return value of Symfony\Component\HttpFoundation\Response::setStatusCode() must be an instance of Symfony\Component\HttpFoundation\object, instance of Symfony\Component\HttpFoundation\Response returned in /home/asdarmyi/sayurqita/vendor/symfony/http-foundation/Response.php:475
+Stack trace:
+#0 /home/asdarmyi/sayurqita/vendor/symfony/http-foundation/Response.php(219): Symfony\Component\HttpFoundation\Response->setStatusCode(500)
+#1 /home/asdarmyi/sayurqita/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(329): Symfony\Component\HttpFoundation\Response->__construct('<!doctype html>...', 500, Array)
+#2 /home/asdarmyi/sayurqita/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(306): Illuminate\Foundation\Exceptions\Handler->convertExceptionToResponse(Object(ErrorException))
+#3 /home/asdarmyi/sayurqita/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(211): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Il in /home/asdarmyi/sayurqita/vendor/symfony/http-foundation/Response.php on line 475
+[22-Feb-2021 16:30:26 Asia/Makassar] PHP Fatal error:  Uncaught TypeError: Return value of Symfony\Component\HttpFoundation\Response::setStatusCode() must be an instance of Symfony\Component\HttpFoundation\object, instance of Symfony\Component\HttpFoundation\Response returned in /home/asdarmyi/sayurqita/vendor/symfony/http-foundation/Response.php:475
+Stack trace:
+#0 /home/asdarmyi/sayurqita/vendor/symfony/http-foundation/Response.php(219): Symfony\Component\HttpFoundation\Response->setStatusCode(500)
+#1 /home/asdarmyi/sayurqita/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(329): Symfony\Component\HttpFoundation\Response->__construct('<!doctype html>...', 500, Array)
+#2 /home/asdarmyi/sayurqita/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(306): Illuminate\Foundation\Exceptions\Handler->convertExceptionToResponse(Object(ErrorException))
+#3 /home/asdarmyi/sayurqita/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(211): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Il in /home/asdarmyi/sayurqita/vendor/symfony/http-foundation/Response.php on line 475
+[22-Feb-2021 16:43:15 Asia/Makassar] PHP Fatal error:  Uncaught TypeError: Return value of Symfony\Component\HttpFoundation\Response::setStatusCode() must be an instance of Symfony\Component\HttpFoundation\object, instance of Symfony\Component\HttpFoundation\Response returned in /home/asdarmyi/sayurqita/vendor/symfony/http-foundation/Response.php:475
+Stack trace:
+#0 /home/asdarmyi/sayurqita/vendor/symfony/http-foundation/Response.php(219): Symfony\Component\HttpFoundation\Response->setStatusCode(500)
+#1 /home/asdarmyi/sayurqita/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(329): Symfony\Component\HttpFoundation\Response->__construct('<!doctype html>...', 500, Array)
+#2 /home/asdarmyi/sayurqita/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(306): Illuminate\Foundation\Exceptions\Handler->convertExceptionToResponse(Object(ErrorException))
+#3 /home/asdarmyi/sayurqita/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(211): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Il in /home/asdarmyi/sayurqita/vendor/symfony/http-foundation/Response.php on line 475
+[22-Feb-2021 16:59:57 Asia/Makassar] PHP Fatal error:  Uncaught TypeError: Return value of Symfony\Component\HttpFoundation\Response::setStatusCode() must be an instance of Symfony\Component\HttpFoundation\object, instance of Symfony\Component\HttpFoundation\Response returned in /home/asdarmyi/sayurqita/vendor/symfony/http-foundation/Response.php:475
+Stack trace:
+#0 /home/asdarmyi/sayurqita/vendor/symfony/http-foundation/Response.php(219): Symfony\Component\HttpFoundation\Response->setStatusCode(500)
+#1 /home/asdarmyi/sayurqita/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(329): Symfony\Component\HttpFoundation\Response->__construct('<!doctype html>...', 500, Array)
+#2 /home/asdarmyi/sayurqita/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(306): Illuminate\Foundation\Exceptions\Handler->convertExceptionToResponse(Object(ErrorException))
+#3 /home/asdarmyi/sayurqita/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(211): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Il in /home/asdarmyi/sayurqita/vendor/symfony/http-foundation/Response.php on line 475
+[22-Feb-2021 17:27:23 Asia/Makassar] PHP Fatal error:  Uncaught TypeError: Return value of Symfony\Component\HttpFoundation\Response::setStatusCode() must be an instance of Symfony\Component\HttpFoundation\object, instance of Symfony\Component\HttpFoundation\Response returned in /home/asdarmyi/sayurqita/vendor/symfony/http-foundation/Response.php:475
+Stack trace:
+#0 /home/asdarmyi/sayurqita/vendor/symfony/http-foundation/Response.php(219): Symfony\Component\HttpFoundation\Response->setStatusCode(500)
+#1 /home/asdarmyi/sayurqita/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(329): Symfony\Component\HttpFoundation\Response->__construct('<!doctype html>...', 500, Array)
+#2 /home/asdarmyi/sayurqita/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(306): Illuminate\Foundation\Exceptions\Handler->convertExceptionToResponse(Object(ErrorException))
+#3 /home/asdarmyi/sayurqita/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(211): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Il in /home/asdarmyi/sayurqita/vendor/symfony/http-foundation/Response.php on line 475
+[22-Feb-2021 17:58:58 Asia/Makassar] PHP Fatal error:  Uncaught TypeError: Return value of Symfony\Component\HttpFoundation\Response::setStatusCode() must be an instance of Symfony\Component\HttpFoundation\object, instance of Symfony\Component\HttpFoundation\Response returned in /home/asdarmyi/sayurqita/vendor/symfony/http-foundation/Response.php:475
+Stack trace:
+#0 /home/asdarmyi/sayurqita/vendor/symfony/http-foundation/Response.php(219): Symfony\Component\HttpFoundation\Response->setStatusCode(500)
+#1 /home/asdarmyi/sayurqita/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(329): Symfony\Component\HttpFoundation\Response->__construct('<!doctype html>...', 500, Array)
+#2 /home/asdarmyi/sayurqita/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(306): Illuminate\Foundation\Exceptions\Handler->convertExceptionToResponse(Object(ErrorException))
+#3 /home/asdarmyi/sayurqita/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(211): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Il in /home/asdarmyi/sayurqita/vendor/symfony/http-foundation/Response.php on line 475
