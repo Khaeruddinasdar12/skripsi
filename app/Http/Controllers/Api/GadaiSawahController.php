@@ -159,6 +159,7 @@ class GadaiSawahController extends Controller
                 'periode' 	=> 'required|string',
                 'harga'		=> 'required|numeric',
                 'sawah_id' 	=> 'required|numeric',
+                'sertifikat_tanah'  => 'required|image|mimes:jpeg,png,jpg|max:3072',
             ]);
 
         if($validator->fails()) {

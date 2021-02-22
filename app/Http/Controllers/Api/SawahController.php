@@ -11,50 +11,52 @@ use DB;
 use Illuminate\Support\Facades\Validator;
 class SawahController extends Controller
 {
-    public function listsawah()
-    {
-        // $data = Sawah::select('sawahs.*')
-        //         ->join('transaksi_sawahs', 'sawahs.sawah_id')
-        //         ->where('sawahs.created_by', 2)
-        //         ->
-        // $data = Sawah::where('created_by', 2)
-        //     ->with('tsawahs')
-        //     // ->with('tsawahs')
-        //     ->get();
-        // $data = DB::table('sawahs')
-        //             ->select('sawahs.nama', 'transaksi_sawahs.jenis')
-        //             ->leftJoin('transaksi_sawahs', 'transaksi_sawahs.sawah_id', '=', 'sawahs.id')
-        //             ->where('transaksi_sawahs.status', null)
-        //             ->orWhere('transaksi_sawahs.status', 'selesai')
-        //             ->get();
-        $data = DB::table('transaksi_sawahs')
-                ->select('sawahs.nama', 'transaksi_sawahs.jenis')
-                ->rightJoin('sawahs', 'transaksi_sawahs.sawah_id', '=', 'sawahs.id')
-                ->where('transaksi_sawahs.status', null)
-                ->orWhere('transaksi_sawahs.status', 'selesai')
-                ->get();
-                return $data;
-        $arr = [];
-        $dts = [];
-        foreach ($data as $dt) {
-            $arr['id']          = $dt->id;
-            $arr['nama']        = $dt->nama;
-            $arr['kecamatan']   = $dt->kecamatan;
-            $arr['kelurahan']   = $dt->kelurahan;
-            $arr['alamat']      = $dt->alamat;
-            $arr['titik_koordinat'] = $dt->titik_koordinat;
-            $arr['luas_sawah']  = $dt->luas_sawah;
-            $arr['created_at']  = $dt->created_at;
-            if(empty($dt->tsawahs)) {
-                $arr['status']  = 'open';
-            } else {
-                $arr['status']  = $dt['tsawahs']['jenis'];
-            }
-            array_push($dts, $arr);
-        }
-        return $dts;
+    // public function listsawah()
+    // {
+    //     // $data = Sawah::select('sawahs.*')
+    //     //         ->join('transaksi_sawahs', 'sawahs.sawah_id')
+    //     //         ->where('sawahs.created_by', 2)
+    //     //         ->
+    //     // $data = Sawah::where('created_by', 2)
+    //     //     ->with('tsawahs')
+    //     //     // ->with('tsawahs')
+    //     //     ->get();
+    //     // $data = DB::table('sawahs')
+    //     //             ->select('sawahs.nama', 'transaksi_sawahs.jenis')
+    //     //             ->leftJoin('transaksi_sawahs', 'transaksi_sawahs.sawah_id', '=', 'sawahs.id')
+    //     //             ->where('transaksi_sawahs.status', null)
+    //     //             ->orWhere('transaksi_sawahs.status', 'selesai')
+    //     //             ->get();
+    //     $data = DB::table('transaksi_sawahs')
+    //             ->select('sawahs.nama', 'transaksi_sawahs.jenis')
+    //             ->rightJoin('sawahs', 'transaksi_sawahs.sawah_id', '=', 'sawahs.id')
+    //             ->rightJoin('users', 'sawahs.sawah_id', '=', 'sawahs.id')
+    //             ->where('')
+    //             ->where('transaksi_sawahs.status', null)
+    //             ->orWhere('transaksi_sawahs.status', 'selesai')
+    //             ->get();
+    //             return $data;
+    //     $arr = [];
+    //     $dts = [];
+    //     foreach ($data as $dt) {
+    //         $arr['id']          = $dt->id;
+    //         $arr['nama']        = $dt->nama;
+    //         $arr['kecamatan']   = $dt->kecamatan;
+    //         $arr['kelurahan']   = $dt->kelurahan;
+    //         $arr['alamat']      = $dt->alamat;
+    //         $arr['titik_koordinat'] = $dt->titik_koordinat;
+    //         $arr['luas_sawah']  = $dt->luas_sawah;
+    //         $arr['created_at']  = $dt->created_at;
+    //         if(empty($dt->tsawahs)) {
+    //             $arr['status']  = 'open';
+    //         } else {
+    //             $arr['status']  = $dt['tsawahs']['jenis'];
+    //         }
+    //         array_push($dts, $arr);
+    //     }
+    //     return $dts;
         
-    }
+    // }
     public function index() // daftar sawah petani berdasarkan id yang login
     { 
         if(!$user = Auth::user()) {

@@ -25,6 +25,9 @@ class CreateTransaksiSawahsTable extends Migration
             $table->string('jenis_pupuk')->nullable();
             $table->string('periode_tanam')->nullable();
             $table->string('keterangan')->nullable();
+            $table->string('sertifikat_tanah')->nullable();
+            $table->string('surat_pajak')->nullable();
+            $table->string('surat_perjanjian')->nullable();
             $table->datetime('status_at')->nullable();
             $table->timestamps();
         });

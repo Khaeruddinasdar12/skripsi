@@ -161,6 +161,7 @@ class ModalTanamController extends Controller
                 'jenis_bibit'		=> 'required|string',
                 'jenis_pupuk'		=> 'required|string',
                 'sawah_id' 			=> 'required|numeric',
+                'sertifikat_tanah'  => 'required|image|mimes:jpeg,png,jpg|max:3072',
             ]);
 
         if($validator->fails()) {
@@ -214,12 +215,18 @@ class ModalTanamController extends Controller
             ]);
         }
 
+        $gambar = $request->file('sertifikat_tanah');
+        if ($gambar) {
+            $gambar_path = $gambar->store('gambar', 'public');
+        }
+
         TransaksiSawah::create([
                 'jenis'     => 'mt',
                 'periode_tanam' => $request->get('periode_tanam'),
                 'jenis_pupuk' 	=> $request->get('jenis_pupuk'),
                 'jenis_bibit'	=> $request->get('jenis_bibit'),
                 'sawah_id' 		=> $request->get('sawah_id'),
+                'sertifikat_tanah' => $gambar_path,
             ]);
 
         return response()->json([
