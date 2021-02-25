@@ -29,6 +29,25 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 	// END MENU LAPORAN
 
 
+	// GADAI LAHAN SKRIPSI
+	Route::get('daftar-gadai-lahan', 'GadaiSawahSkripsi@daftar')->name('daftar.gadaisawah.skripsi'); //menampilkan hal. data mendaftarkan sawah untuk digadai 
+	Route::get('sedang-gadai-lahan', 'GadaiSawahSkripsi@sedanggadai')->name('sedang.gadaisawah.skripsi'); //menampilkan hal. data yang sedang menggadai sawahnya
+	Route::get('riwayat-gadai-lahan', 'GadaiSawahSkripsi@riwayatgadai')->name('riwayat.gadaisawah.skripsi'); //menampilkan hal. data riwayat gadai sawah
+	// END GADAI LAHAN SKRIPSI
+
+
+	// MODAL TANAM SKRIPSI
+	Route::get('daftar-modal-tanam', 'ModalTanamSkripsi@daftar')->name('daftar.modaltanam.skripsi'); //menampilkan hal. data mendaftarkan sawah untuk digadai 
+	Route::get('sedang-modal-tanam', 'ModalTanamSkripsi@sedanggadai')->name('sedang.modaltanam.skripsi'); //menampilkan hal. data yang sedang menggadai sawahnya
+	Route::get('riwayat-modal-tanam', 'ModalTanamSkripsi@riwayatgadai')->name('riwayat.modaltanam.skripsi'); //menampilkan hal. data riwayat gadai sawah
+	// END MODAL TANAM SKRIPSI
+
+
+	// MANAGE USER SKRIPSI
+	Route::get('manage-user', 'ManageUserSkripsi@index')->name('verified.manage-user.skripsi'); //menampilkan hal. data user petani terverifikasi
+	// END MANAGE USER SKRIPSI
+
+
 	//TRANSAKSI
 	Route::get('transaksi-barang', 'TransaksiBarangController@index')->name('index.transaksi');//list sedang transaksi
 	Route::get('riwayat-transaksi-barang', 'TransaksiBarangController@riwayat')->name('riwayat.transaksi');//list sedang transaksi

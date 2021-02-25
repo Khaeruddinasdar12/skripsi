@@ -12,13 +12,7 @@
         <a href="" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
         <span class="kt-subheader__breadcrumbs-separator"></span>
         <a href="#" class="kt-subheader__breadcrumbs-link">
-          Petani
-        </a>
-      </div>
-      <div class="kt-subheader__breadcrumbs">
-        <span class="kt-subheader__breadcrumbs-separator"></span>
-        <a href="#" class="kt-subheader__breadcrumbs-link">
-          Terverifikasi
+          Manage User
         </a>
       </div>
     </div>
@@ -46,7 +40,7 @@
           <div class="kt-portlet kt-iconbox--animate-faster" data-margin-top="100px">
             <div class="kt-portlet__body">
               <h5 style="color: #222;">
-                Jumlah Data Petani Yang Terverifikasi
+                Jumlah Data User SayurQita
               </h5>
               <h4 class="mt-3" style="font-weight: 800;">
                 {{$jml}} Data
@@ -64,7 +58,7 @@
                   <i class="flaticon-avatar"></i>
                 </span>
                 <h3 class="kt-portlet__head-title">
-                  Data Petani Yang Terverifikasi
+                  Data User
                 </h3>
               </div>
               <div class="kt-portlet__head-toolbar">

@@ -5,8 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
-use App\TransaksiGabah;
-use App\TransaksiSawah;
+use App\TransaksiLahan;
 use App\TransaksiBarang;
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,10 +29,10 @@ class AppServiceProvider extends ServiceProvider
         if ($request->is('api/*') || $request->is('/')) {
          
         } else {
-            $mt = TransaksiSawah::where('jenis', 'mt')
+            $mt = TransaksiLahan::where('jenis', 'mt')
             ->where('status', null)
             ->count(); //jumlah transaksi modal tanam
-            $gs = TransaksiSawah::where('jenis', 'gs')
+            $gs = TransaksiLahan::where('jenis', 'gs')
             ->where('status', null)
 
             ->count(); // jumlah transaksi gadai sawah
