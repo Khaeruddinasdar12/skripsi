@@ -82,11 +82,14 @@
                     <table class="table table-striped">
                       <thead>
                         <tr>
-                          <th>#</th>
+                          <th>No.</th>
                           <th>Nama Penggadai</th>
                           <th>Periode Gadai</th>
                           <th>Harga Gadai</th>
                           <th>Luas Sawah</th>
+                          <th>Foto KTP</th>
+                          <th>Sertifikat Tanah</th>
+                          <th>Surat Pajak</th>
                           <th>Status</th>
                           <th>Action</th>
                         </tr>
@@ -114,6 +117,9 @@
                         <td>{{$gadais -> periode}}</td>
                         <td>Rp.{{format_uang($gadais -> harga)}}</td>
                         <td>{{$gadais -> luas_lahan}}</td>
+                        <td><a href="{{asset('storage/'.$gadais->users->foto_ktp)}}"><img src="{{asset('storage/'.$gadais->users->foto_ktp)}}" width="120px" height="120px"></a></td>
+                        <td><a href="{{asset('storage/'.$gadais->sertifikat_tanah)}}"><img src="{{asset('storage/'.$gadais->sertifikat_tanah)}}" width="120px" height="120px"></a></td>
+                        <td><a href="{{asset('storage/'.$gadais->surat_pajak)}}"><img src="{{asset('storage/'.$gadais->surat_pajak)}}" width="120px" height="120px"></a></td>
                         <td>
                           <div class="btn btn-bold btn-sm btn-font-sm  btn-label-danger" style="font-size: 14px;">
                             Belum Terverifikasi
@@ -127,7 +133,7 @@
                             <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
                               <ul class="kt-nav">
                                 <li class="kt-nav__item">
-                                  <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$gadais->id}}" data-name="{{$gadais->users->name}}" data-email="{{$gadais->users->email}}" data-nohp="{{$gadais->users->nohp}}" data-periode="{{$gadais->periode}}" data-harga="Rp.{{format_uang($gadais->harga)}}" data-keterangan="{{$gadais->keterangan}}" data-kecamatan="{{$gadais->kecamatan}}" data-kelurahan="{{$gadais->kelurahan}}" data-alamat="{{$gadais->alamat}}" data-luas_sawah="{{$gadais->luas_sawah}}" >
+                                  <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$gadais->id}}" data-name="{{$gadais->users->name}}" data-email="{{$gadais->users->email}}" data-nohp="{{$gadais->users->nohp}}" data-periode="{{$gadais->periode}}" data-harga="Rp.{{format_uang($gadais->harga)}}" data-keterangan="{{$gadais->keterangan}}" data-kecamatan="{{$gadais->kecamatan}}" data-kelurahan="{{$gadais->kelurahan}}" data-alamat="{{$gadais->alamat}}" data-luas_sawah="{{$gadais->luas_lahan}}" data-titik_koordinat="{{$gadais->titik_koordinat}}">
                                     <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
                                     <span class="kt-nav__link-text">Detail</span>
                                   </a>
@@ -196,10 +202,6 @@
                     <div class="kt-widget__body widget-detail">
                       <div class="kt-widget__item">
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Nama Sawah:</span>
-                          <span class="kt-widget__data" id="nama-sawah"></span>
-                        </div>
-                        <div class="kt-widget__contact">
                           <span class="kt-widget__label">Periode Gadai:</span>
                           <span class="kt-widget__data" id="periode"></span>
                         </div>
@@ -208,20 +210,12 @@
                           <span class="kt-widget__data" id="harga"></span>
                         </div>
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Luas Sawah :</span>
+                          <span class="kt-widget__label">Luas Lahan :</span>
                           <span class="kt-widget__data" id="luas_sawah"></span>
                         </div>
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Titik Koordinat Sawah :</span>
                           <span class="kt-widget__data" id="titik_koordinat"></span>
-                        </div>
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Provinsi :</span>
-                          <span class="kt-widget__data">Sulawesi Selatan</span>
-                        </div>
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Kota :</span>
-                          <span class="kt-widget__data" id="kota"></span>
                         </div>
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Kecamatan :</span>
@@ -232,7 +226,7 @@
                           <span class="kt-widget__data" id="kelurahan"></span>
                         </div>
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Alamat :</span>
+                          <span class="kt-widget__label">Alamat Lengkap:</span>
                           <span class="kt-widget__data" id="alamat"></span>
                         </div>
                         <div class="kt-widget__contact">
@@ -334,7 +328,6 @@
   $('#modal-detail-user').on('show.bs.modal', function(event) {
     var a = $(event.relatedTarget)
     var email = a.data('email')
-    var namasawah = a.data('nama-sawah')
     var nohp = a.data('nohp')
     var periode = a.data('periode')
     var harga = a.data('harga')
@@ -345,20 +338,17 @@
     var kelurahan = a.data('kelurahan')
     var alamat = a.data('alamat')
     var luas_sawah = a.data('luas_sawah')
-    var kota = a.data('kota')
     var name = a.data('name')
 
     var modal = $(this)
     modal.find('.modal-title').text('Detail ' + name)
     modal.find('.modal-body #email').text(email)
-    modal.find('.modal-body #nama-sawah').text(namasawah)
     modal.find('.modal-body #nohp').text(nohp)
     modal.find('.modal-body #name').text(name)
     modal.find('.modal-body #periode').text(periode)
     modal.find('.modal-body #harga').text(harga)
     modal.find('.modal-body #luas_sawah').text(luas_sawah)
     modal.find('.modal-body #titik_koordinat').text(titik_koordinat)
-    modal.find('.modal-body #kota').text(kota)
     modal.find('.modal-body #kecamatan').text(kecamatan)
     modal.find('.modal-body #kelurahan').text(kelurahan)
     modal.find('.modal-body #alamat').text(alamat)

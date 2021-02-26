@@ -84,10 +84,11 @@
                         <tr>
                           <th>#</th>
                           <th>Nama Penggadai</th>
-                          <th>Luas Sawah</th>
                           <th>Jenis Bibit</th>
                           <th>Jenis Pupuk</th>
+                          <th>Foto KTP</th>
                           <th>Sertifikat Tanah</th>
+                          <th>Surat Pajak</th>
                           <th>Status</th>
                           <th>Action</th>
                         </tr>
@@ -111,11 +112,12 @@
                       @foreach ($data as $datas)
                       <tr>
                         <th scope="row">{{$no++}}</th>
-                        <td>{{$datas -> users -> name}}</td>
-                        <td>{{$datas -> luas_sawah}}</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{$datas->users->name}}</td>
+                        <td>{{$datas->jenis_bibit}}</td>
+                        <td>{{$datas->jenis_pupuk}}</td>
+                        <td><a href="{{asset('storage/'.$datas->users->foto_ktp)}}"><img src="{{asset('storage/'.$datas->users->foto_ktp)}}" width="120px" height="120px"></a></td>
+                        <td><a href="{{asset('storage/'.$datas->sertifikat_tanah)}}"><img src="{{asset('storage/'.$datas->sertifikat_tanah)}}" width="120px" height="120px"></a></td>
+                        <td><a href="{{asset('storage/'.$datas->surat_pajak)}}"><img src="{{asset('storage/'.$datas->surat_pajak)}}" width="120px" height="120px"></a></td>
                         <td>
                           <div class="btn btn-bold btn-sm btn-font-sm  btn-label-danger" style="font-size: 14px;">
                             Belum Terverifikasi
@@ -129,7 +131,7 @@
                             <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
                               <ul class="kt-nav">
                                 <li class="kt-nav__item">
-                                  <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$datas->id}}" data-name="{{$datas->users->name}}" data-email="{{$datas->users->email}}" data-nohp="{{$datas->users->nohp}}" data-keterangan="{{$datas->keterangan}}" data-kecamatan="{{$datas->kecamatan}}" data-kelurahan="{{$datas->kelurahan}}" data-alamat="{{$datas->alamat}}" data-luas_sawah="{{$datas->luas_sawah}}">
+                                  <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$datas->id}}" data-name="{{$datas->users->name}}" data-email="{{$datas->users->email}}" data-nohp="{{$datas->users->nohp}}" data-keterangan="{{$datas->keterangan}}" data-kecamatan="{{$datas->kecamatan}}" data-kelurahan="{{$datas->kelurahan}}" data-alamat="{{$datas->alamat}}" data-luas_sawah="{{$datas->luas_sawah}}" data-titik_koordinat="{{$datas->titik_koordinat}}" data-jenis_bibit="{{$datas->jenis_bibit}}" data-jenis_pupuk="{{$datas->jenis_pupuk}}">
                                     <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
                                     <span class="kt-nav__link-text">Detail</span>
                                   </a>
@@ -198,14 +200,6 @@
                     <div class="kt-widget__body widget-detail">
                       <div class="kt-widget__item">
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Nama Sawah:</span>
-                          <span class="kt-widget__data" id="nama-sawah"></span>
-                        </div>
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Luas Sawah :</span>
-                          <span class="kt-widget__data" id="luas_sawah"></span>
-                        </div>
-                        <div class="kt-widget__contact">
                           <span class="kt-widget__label">Titik Koordinat Sawah :</span>
                           <span class="kt-widget__data" id="titik_koordinat"></span>
                         </div>
@@ -214,8 +208,12 @@
                           <span class="kt-widget__data">Sulawesi Selatan</span>
                         </div>
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Kota :</span>
-                          <span class="kt-widget__data" id="kota"></span>
+                          <span class="kt-widget__label">Jenis Bibit :</span>
+                          <span class="kt-widget__data" id="jenis_bibit"></span>
+                        </div>
+                        <div class="kt-widget__contact">
+                          <span class="kt-widget__label">Jenis Pupuk :</span>
+                          <span class="kt-widget__data" id="jenis_pupuk"></span>
                         </div>
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Kecamatan :</span>
@@ -333,12 +331,10 @@
   $('#modal-detail-user').on('show.bs.modal', function(event) {
     var a = $(event.relatedTarget)
     var email = a.data('email')
-    var namasawah = a.data('nama-sawah')
     var nohp = a.data('nohp')
-    var periode = a.data('periode')
-    var harga = a.data('harga')
+    var jenis_bibit = a.data('jenis_bibit')
+    var jenis_pupuk = a.data('jenis_pupuk')
     var keterangan = a.data('keterangan')
-    var tanggal_lahir = a.data('tanggal_lahir')
     var titik_koordinat = a.data('titik_koordinat')
     var kecamatan = a.data('kecamatan')
     var kelurahan = a.data('kelurahan')
@@ -353,11 +349,10 @@
     var modal = $(this)
     modal.find('.modal-title').text('Detail ' + name)
     modal.find('.modal-body #email').text(email)
-    modal.find('.modal-body #nama-sawah').text(namasawah)
     modal.find('.modal-body #nohp').text(nohp)
     modal.find('.modal-body #name').text(name)
-    modal.find('.modal-body #periode').text(periode)
-    modal.find('.modal-body #harga').text(harga)
+    modal.find('.modal-body #jenis_bibit').text(jenis_bibit)
+    modal.find('.modal-body #jenis_pupuk').text(jenis_pupuk)
     modal.find('.modal-body #luas_sawah').text(luas_sawah)
     modal.find('.modal-body #jenis_bibit').text(jenis_bibit)
     modal.find('.modal-body #jenis_pupuk').text(jenis_pupuk)

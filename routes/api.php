@@ -31,6 +31,21 @@ $api->version('v1', function($api) {
         Route::post('edit-user', 'Api\UserController@update');
 
 
+        // MODAL TANAM CONTROLLER SKRIPSI
+        Route::post('modal-tanam-skripsi', 'Api\ModalTanamSkripsi@store'); // post mendaftarkan sawah untuk digadai modal tanam
+
+        Route::get('list-sedang-gadai-modal-tanam', 'Api\ModalTanamController@gadai'); // list sawah yang sedang tergadai modal tanam oleh user id
+
+        // END MODAL TANAM CONTROLLER SKRIPSI
+
+
+        // GADAI LAHAN CONTROLLER SKRIPSI
+        Route::post('gadai-lahan-skripsi', 'Api\GadaiLahanSkripsi@store'); // post mendaftarkan sawah untuk digadai modal tanam
+
+        Route::get('list-sedang-gadai-modal-tanam', 'Api\ModalTanamController@gadai'); // list sawah yang sedang tergadai modal tanam oleh user id
+
+        // END GADAI LAHAN CONTROLLER SKRIPSI
+
         // TRANSAKSI
         Route::post('add-cart/{id}', 'Api\TransaksiBarangController@addcart');
         Route::post('checkout/{id}', 'Api\TransaksiBarangController@checkout');

@@ -29,6 +29,7 @@ class CreateTransaksiLahansTable extends Migration
             $table->string('kecamatan');
             $table->string('kelurahan');
             $table->string('alamat');
+            $table->string('titik_koordinat')->nullable();
             $table->string('luas_lahan');
             $table->integer('user_id');
             $table->integer('admin_id')->nullable();

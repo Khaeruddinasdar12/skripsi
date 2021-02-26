@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Validator;
 use App\TransaksiLahan;
-class GadaiLahanSkripsi extends Controller
+class ModalTanamSkripsi extends Controller
 {
-	public function store(Request $request)
+    public function store(Request $request)
 	{
 		if(!$user = Auth::user()) {
 			return response()->json([
@@ -19,12 +19,12 @@ class GadaiLahanSkripsi extends Controller
 		}
 
 		$validator = Validator::make($request->all(), [
-			'periode'       => 'required|string',
+			'jenis_bibit'	=> 'required|string',
+			'jenis_pupuk'	=> 'required|string',
 			'kecamatan'     => 'required|string',
 			'kelurahan'     => 'required|string',
 			'alamat'      => 'required|string',
 			'luas_lahan'    => 'required|string',
-			'harga'       => 'required|numeric',
 			'sertifikat_tanah'  => 'required|image|mimes:jpeg,png,jpg|max:3072',
 			'surat_pajak'   => 'required|image|mimes:jpeg,png,jpg|max:3072',
 		]);
@@ -56,9 +56,9 @@ class GadaiLahanSkripsi extends Controller
 
 		// return $request->get('luas_lahan');
 		TransaksiLahan::create([
-			'jenis'     => 'gs',
-			'periode'   => $request->get('periode'),
-			'harga'   => $request->get('harga'),
+			'jenis'     => 'mt',
+			'jenis_bibit' => $request->get('jenis_bibit'),
+			'jenis_pupuk' => $request->get('jenis_pupuk'),
 			'kecamatan' => $request->get('kecamatan'),
 			'kelurahan' => $request->get('kelurahan'),
 			'alamat'  => $request->get('alamat'),
@@ -72,7 +72,7 @@ class GadaiLahanSkripsi extends Controller
 
 		return response()->json([
 			'status' => true,
-			'message' => 'Berhasil mendaftarkan gadai lahan'
+			'message' => 'Berhasil mengajukan modal tanam'
 		]);
 	}
 }

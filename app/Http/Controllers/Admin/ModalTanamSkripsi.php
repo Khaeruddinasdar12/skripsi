@@ -18,7 +18,7 @@ class ModalTanamSkripsi extends Controller
         if($request->get('search') != '') {
             $data = TransaksiLahan::where('jenis', 'mt')
             ->where('status', null)
-            ->with('users:id,name')
+            ->with('users:id,name,foto_ktp,nohp')
             ->whereHas('users',function ($query) use ($request) {
                 $query->where('name', 'like', '%'.$request->get('search').'%');
             })
@@ -27,7 +27,7 @@ class ModalTanamSkripsi extends Controller
         } else {
             $data = TransaksiLahan::where('jenis', 'mt')
             ->where('status', null)
-            ->with('users:id,name')
+            ->with('users:id,name,foto_ktp,nohp')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         }
