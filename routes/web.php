@@ -12,6 +12,12 @@ Auth::routes([
 ]);
 Route::get('/pdf', 'HomeController@pdf');
 
+Route::get('/surat-perjanjian',  function() {
+    $pdf = PDF::loadView('surat-perjanjian')->setOptions(['defaultFont' => 'sans-serif']);
+    return $pdf->stream('pdf.pdf');
+	return view('surat-perjanjian');
+});
+
 Route::get('/admin/login', 'Admin\Auth\LoginController@showLoginForm')->name('admin.login');
 Route::post('/admin/login', 'Admin\Auth\LoginController@login')->name('admin.login');
 Route::post('/logout', 'LoginController@logout')->name('admin.logout');
@@ -27,6 +33,30 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 	Route::get('laporan-pdf', 'Laporan@pdf')->name('pdf.laporan');
 	Route::get('laporan-sawah-gabah', 'Laporan@laporan2')->name('index.laporan2');
 	// END MENU LAPORAN
+
+
+	// GADAI LAHAN SKRIPSI
+	Route::get('daftar-gadai-lahan', 'GadaiSawahSkripsi@daftar')->name('daftar.gadaisawah.skripsi'); //menampilkan hal. data mendaftarkan sawah untuk digadai 
+	Route::get('sedang-gadai-lahan', 'GadaiSawahSkripsi@sedanggadai')->name('sedang.gadaisawah.skripsi'); //menampilkan hal. data yang sedang menggadai sawahnya
+	Route::get('riwayat-gadai-lahan', 'GadaiSawahSkripsi@riwayatgadai')->name('riwayat.gadaisawah.skripsi'); //menampilkan hal. data riwayat gadai sawah
+
+	Route::put('gadai-lahan-status/{id}', 'GadaiSawahSkripsi@gadaistatus')->name('gadaistatus.gadaisawah.skripsi'); // mengubah "daftar gadai" menjadi "sedang gadai"
+	// END GADAI LAHAN SKRIPSI
+
+
+	// MODAL TANAM SKRIPSI
+	Route::get('daftar-modal-tanam', 'ModalTanamSkripsi@daftar')->name('daftar.modaltanam.skripsi'); //menampilkan hal. data mendaftarkan sawah untuk digadai 
+	Route::get('sedang-modal-tanam', 'ModalTanamSkripsi@sedanggadai')->name('sedang.modaltanam.skripsi'); //menampilkan hal. data yang sedang menggadai sawahnya
+	Route::get('riwayat-modal-tanam', 'ModalTanamSkripsi@riwayatgadai')->name('riwayat.modaltanam.skripsi'); //menampilkan hal. data riwayat gadai sawah
+
+
+	Route::put('modal-tanam-gadai-status/{id}', 'ModalTanamSkripsii@gadaistatus')->name('gadaistatus.modaltanam.skripsi'); // mengubah "daftar gadai" menjadi "sedang gadai"
+	// END MODAL TANAM SKRIPSI
+
+
+	// MANAGE USER SKRIPSI
+	Route::get('manage-user', 'ManageUserSkripsi@index')->name('verified.manage-user.skripsi'); //menampilkan hal. data user petani terverifikasi
+	// END MANAGE USER SKRIPSI
 
 
 	//TRANSAKSI

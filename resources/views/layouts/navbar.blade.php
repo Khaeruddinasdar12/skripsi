@@ -50,20 +50,20 @@
           <!-- end manage barang -->
 
           <!-- modal tanam menu -->
-          <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel {{ request()->is('admin/modal-tanam-daftar-gadai') || request()->is('admin/modal-tanam-sedang-gadai') || request()->is('admin/modal-tanam-riwayat-gadai') ? 'kt-menu__item--open kt-menu__item--here' : '' }}" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
+          <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel {{ request()->is('admin/daftar-modal-tanam') || request()->is('admin/sedang-modal-tanam') || request()->is('admin/riwayat-modal-tanam') ? 'kt-menu__item--open kt-menu__item--here' : '' }}" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
             <a href="javascript:;" class="kt-menu__link kt-menu__toggle" id="modaltanam">
-              <span class="kt-menu__link-text {{ request()->is('admin/modal-tanam-daftar-gadai') || request()->is('admin/modal-tanam-sedang-gadai') || request()->is('admin/modal-tanam-riwayat-gadai') ? '' : 'top-text-nav' }}">
+              <span class="kt-menu__link-text {{ request()->is('admin/daftar-modal-tanam') || request()->is('admin/sedang-modal-tanam') || request()->is('admin/riwayat-modal-tanam') ? '' : 'top-text-nav' }}">
                 Modal Tanam
               </span>
               <span class="kt-nav__link-badge">
-                <span class="kt-badge kt-badge--unified-danger kt-badge--md kt-badge--rounded kt-badge--boldest {{ request()->is('admin/modal-tanam-daftar-gadai') || request()->is('admin/modal-tanam-sedang-gadai') || request()->is('admin/modal-tanam-riwayat-gadai') ? 'active-badge' : '' }}">{{$mt}}</span>
+                <span class="kt-badge kt-badge--unified-danger kt-badge--md kt-badge--rounded kt-badge--boldest {{ request()->is('admin/daftar-modal-tanam') || request()->is('admin/sedang-modal-tanam') || request()->is('admin/riwayat-modal-tanam') ? 'active-badge' : '' }}">{{$mt}}</span>
               </span>
-              <i class="fa fa-angle-down {{ request()->is('admin/modal-tanam-daftar-gadai') || request()->is('admin/modal-tanam-sedang-gadai') || request()->is('admin/mdoal-tanam-riwayat-gadai') ? 'icon-here' : '' }} "></i>
+              <i class="fa fa-angle-down {{ request()->is('admin/daftar-modal-tanam') || request()->is('admin/sedang-modal-tanam') || request()->is('admin/riwayat-modal-tanam') ? 'icon-here' : '' }} "></i>
             </a>
             <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
               <ul class="kt-menu__subnav">
                 <li class="kt-menu__item  kt-menu__item--submenu">
-                  <a href="{{ route('daftar.modaltanam') }}" class="kt-menu__link">
+                  <a href="{{ route('daftar.modaltanam.skripsi') }}" class="kt-menu__link">
                     <span class="kt-menu__link-text">
                       Belum Diverifikasi
                     </span>
@@ -75,12 +75,12 @@
                   </a>
                 </li>
                 <li class="kt-menu__item  kt-menu__item--submenu">
-                  <a href="{{ route('sedang.modaltanam') }}" class="kt-menu__link">
+                  <a href="{{ route('sedang.modaltanam.skripsi') }}" class="kt-menu__link">
                     <span class="kt-menu__link-text">Sedang Tergadai</span>
                   </a>
                 </li>
                 <li class="kt-menu__item  kt-menu__item--submenu">
-                  <a href="{{ route('riwayat.modaltanam') }}" class="kt-menu__link">
+                  <a href="{{ route('riwayat.modaltanam.skripsi') }}" class="kt-menu__link">
                     <span class="kt-menu__link-text">Riwayat Gadai</span>
                   </a>
                 </li>
@@ -90,20 +90,20 @@
           <!-- end modal tanam -->
 
           <!-- sawah menu -->
-          <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel {{ request()->is('admin/gadai-sawah-daftar-gadai') || request()->is('admin/gadai-sawah-sedang-gadai') || request()->is('admin/gadai-sawah-riwayat-gadai') ? 'kt-menu__item--open kt-menu__item--here' : '' }}" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
+          <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel {{ request()->is('admin/daftar-gadai-lahan') || request()->is('admin/sedang-gadai-lahan') || request()->is('admin/riwayat-gadai-lahan') ? 'kt-menu__item--open kt-menu__item--here' : '' }}" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">
             <a href="javascript:;" class="kt-menu__link kt-menu__toggle" id="gadaisawah">
-              <span class="kt-menu__link-text {{ request()->is('admin/gadai-sawah-daftar-gadai') || request()->is('admin/gadai-sawah-sedang-gadai') || request()->is('admin/gadai-sawah-riwayat-gadai') ? '' : 'top-text-nav' }}">
-                Gadai Sawah
+              <span class="kt-menu__link-text {{ request()->is('admin/daftar-gadai-lahan') || request()->is('admin/sedang-gadai-lahan') || request()->is('admin/riwayat-gadai-lahan') ? '' : 'top-text-nav' }}">
+                Gadai Lahan
               </span>
               <span class="kt-nav__link-badge">
-                <span class="kt-badge kt-badge--unified-danger kt-badge--md kt-badge--rounded kt-badge--boldest {{ request()->is('admin/gadai-sawah-daftar-gadai') || request()->is('admin/gadai-sawah-sedang-gadai') || request()->is('admin/gadai-sawah-riwayat-gadai') ? 'active-badge' : '' }}">{{$gs}}</span>
+                <span class="kt-badge kt-badge--unified-danger kt-badge--md kt-badge--rounded kt-badge--boldest {{ request()->is('admin/daftar-gadai-lahan') || request()->is('admin/sedang-gadai-lahan') || request()->is('admin/riwayat-gadai-lahan') ? 'active-badge' : '' }}">{{$gs}}</span>
               </span>
-              <i class="fa fa-angle-down {{ request()->is('admin/gadai-sawah-daftar-gadai') || request()->is('admin/gadai-sawah-sedang-gadai') || request()->is('admin/gadai-sawah-riwayat-gadai') ? 'icon-here' : '' }} "></i>
+              <i class="fa fa-angle-down {{ request()->is('admin/daftar-gadai-lahan') || request()->is('admin/sedang-gadai-lahan') || request()->is('admin/riwayat-gadai-lahan') ? 'icon-here' : '' }} "></i>
             </a>
             <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
               <ul class="kt-menu__subnav">
                 <li class="kt-menu__item  kt-menu__item--submenu">
-                  <a href="{{ route('daftar.gadaisawah') }}" class="kt-menu__link">
+                  <a href="{{ route('daftar.gadaisawah.skripsi') }}" class="kt-menu__link">
                     <span class="kt-menu__link-text">
                       Belum Diverifikasi
                     </span>
@@ -115,12 +115,12 @@
                   </a>
                 </li>
                 <li class="kt-menu__item  kt-menu__item--submenu">
-                  <a href="{{ route('sedang.gadaisawah') }}" class="kt-menu__link">
+                  <a href="{{ route('sedang.gadaisawah.skripsi') }}" class="kt-menu__link">
                     <span class="kt-menu__link-text">Sedang Tergadai</span>
                   </a>
                 </li>
                 <li class="kt-menu__item  kt-menu__item--submenu">
-                  <a href="{{ route('riwayat.gadaisawah') }}" class="kt-menu__link">
+                  <a href="{{ route('riwayat.gadaisawah.skripsi') }}" class="kt-menu__link">
                     <span class="kt-menu__link-text">Riwayat Gadai</span>
                   </a>
                 </li>
@@ -166,9 +166,9 @@
           <!-- end transaksi menu -->
           
           <!-- manage user menu -->
-          <li class="kt-menu__item kt-menu__item--rel {{ request()->is('admin/manage-user-petani-verified') ? 'kt-menu__item--open kt-menu__item--here' : '' }}">
-            <a href="{{ route('verified.manage-user') }}" class="kt-menu__link" id="manageadmin">
-              <span class="kt-menu__link-text kt-menu__link-text {{ request()->is('admin/manage-user-petani-verified') ? '' : 'top-text-nav' }}">Manage User</span>
+          <li class="kt-menu__item kt-menu__item--rel {{ request()->is('admin/manage-user') ? 'kt-menu__item--open kt-menu__item--here' : '' }}">
+            <a href="{{ route('verified.manage-user.skripsi') }}" class="kt-menu__link" id="manageadmin">
+              <span class="kt-menu__link-text kt-menu__link-text {{ request()->is('admin/manage-user') ? '' : 'top-text-nav' }}">Manage User</span>
             </a>
           </li>
           <!-- end manage user -->
