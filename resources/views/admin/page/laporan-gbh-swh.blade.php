@@ -49,7 +49,7 @@
               <i class="fa fa-file-signature"></i>
             </span>
             <h3 class="kt-portlet__head-title">
-              Laporan Keuangan Transaksi Gabah & Sawah {{$bulan}} {{Request::get('tahun')}}
+              Laporan Keuangan Gadai {{$bulan}} {{Request::get('tahun')}}
             </h3>
           </div>
 
@@ -139,13 +139,12 @@
                     <table class="table">
                       <thead>
                         <tr>
-                          <th>#</th>
-                          <th>Nama pembeli</th>
+                          <th>No</th>
+                          <th>Nama Pemohon</th>
                           <th>Jenis</th>
-                          <th>Nama barang</th>
-                          <th>Jumlah</th>
+                          <th>Luas Lahan</th>
+                          <th>Periode</th>
                           <th>Harga</th>
-                          <th>Subtotal</th>
                         </tr>
                       </thead>
 
@@ -154,24 +153,17 @@
                         @foreach($data as $datas)
                         <tr class="table">
                           <td>{{$no++}}</td>
-                          <td>{{$datas->pembeli}}</td>
-                          <td>{{$datas->jenis}}</td>
-                          <td>{{$datas->nama}}</td>
-                          @if($datas->jenis == 'gadai sawah')
-                            @php $total = $total + $datas->harga; @endphp
-                            <td>{{$datas->jumlah}}</td>
-                            <td>Rp. {{format_uang($datas->harga)}}</td>
-                            <td>Rp. {{format_uang($datas->harga)}}</td>
-                          @else
-                            @php $total = $total + ($datas->harga * $datas->jumlah); @endphp
-                            <td>{{$datas->jumlah}} Kg</td>
-                            <td>Rp. {{format_uang($datas->harga)}}</td>
-                            <td>Rp. {{format_uang($datas->harga * $datas->jumlah)}}</td>
-                          @endif
+                          <td>{{$datas->users->name}}</td>
+                          <td>Gadail Lahan</td>
+                          <td>{{$datas->luas_lahan}}</td>
+                          <td>{{$datas->periode}}</td>
+                          <td>Rp. {{format_uang($datas->harga)}}</td>
+                          @php $total = $total + $datas->harga; @endphp
                         </tr>
                         @endforeach
                         <tr>
-                          <th colspan="6" align="center">Total</th>
+                          <th colspan="4"></th>
+                          <th>Total</th>
                           <th>Rp. {{format_uang($total)}}</th>
                         </tr>
                       </tbody>

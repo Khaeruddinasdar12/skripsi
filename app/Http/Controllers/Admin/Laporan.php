@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\TransaksiBarang;
 use App\TransaksiGabah;
-use App\TransaksiSawah;
+use App\TransaksiLahan;
 use DB;
 use PDF;
 use App\Exports\ExcelExport;
@@ -20,7 +20,7 @@ class Laporan extends Controller
         $this->middleware('auth:admin');
     }
 
-    public function laporan2(Request $request)
+    public function laporan2(Request $request) // laporan lahan
     {   
         $jml = $request->get('jumlah');
         $thn = $request->get('tahun');
@@ -31,15 +31,11 @@ class Laporan extends Controller
             $jml = 100;
         }
 
-        $tahungabah = DB::table('transaksi_gabahs')
-                    ->where('status', '1')
-                    ->selectRaw('YEAR(created_at) as year')
-                    ->distinct();
-        $tahunsawah = DB::table('transaksi_sawahs')
+        $tahun = DB::table('transaksi_lahans')
                     ->where('status', 'selesai')
                     ->selectRaw('YEAR(created_at) as year')
-                    ->distinct();
-        $tahun = $tahungabah->union($tahunsawah)->distinct()->get();
+                    ->distinct()
+                    ->get();
         $blnstr = '';
 
         if(!empty($thn)) { //tahun tidak kosong
@@ -64,74 +60,43 @@ class Laporan extends Controller
                 } else { // jika inputan bulan tidak valid
                         return redirect()->back()->with('error', 'Masukkan bulan yang valid (angka 1-12)');
                 }
-                $sawah = DB::table('transaksi_sawahs')
-                        ->select('users.name as pembeli', 'transaksi_sawahs.periode as jumlah', 'transaksi_sawahs.harga', 'transaksi_sawahs.created_at', 'sawahs.nama', DB::raw('("gadai sawah") as jenis'))    
+
+                $sawah = TransaksiLahan::with('users')
                         ->where('jenis', 'gs')
-                        ->where('transaksi_sawahs.status', 'selesai')
-                        ->join('sawahs', 'transaksi_sawahs.sawah_id', '=', 'sawahs.id')
-                        ->join('users', 'sawahs.created_by', '=', 'users.id')
-                        ->orderBy('transaksi_sawahs.created_at', 'desc')
-                        ->whereMonth('transaksi_sawahs.created_at', $bln)
-                        ->whereYear('transaksi_sawahs.created_at', $thn)
-                        ;
-                $gabah = DB::table('transaksi_gabahs')
-                        ->select('users.name as pembeli', 'transaksi_gabahs.jumlah', 'transaksi_gabahs.harga', 'transaksi_gabahs.created_at', 'gabahs.nama', DB::raw('("gabah") as jenis'))
-                        ->join('gabahs', 'transaksi_gabahs.gabah_id', '=', 'gabahs.id')
-                        ->join('users', 'transaksi_gabahs.user_id', '=', 'users.id')
-                        ->where('transaksi_gabahs.status', '1')
-                        ->orderBy('transaksi_gabahs.created_at', 'desc')
-                        ->whereMonth('transaksi_gabahs.created_at', $bln)
-                        ->whereYear('transaksi_gabahs.created_at', $thn)
+                        ->where('status', 'selesai')
+                        ->whereMonth('created_at', $bln)
+                        ->whereYear('created_at', $thn)
+                        ->orderBy('created_at', 'desc')
                         ;
             } else { // tahun tidak kosong namun bulan kosong
-                $sawah = DB::table('transaksi_sawahs')  
-                        ->select('users.name as pembeli', 'transaksi_sawahs.periode as jumlah', 'transaksi_sawahs.harga', 'transaksi_sawahs.created_at', 'sawahs.nama', DB::raw('("gadai sawah") as jenis'))
+                $sawah = TransaksiLahan::with('users')
                         ->where('jenis', 'gs')
-                        ->where('transaksi_sawahs.status', 'selesai')
-                        ->join('sawahs', 'transaksi_sawahs.sawah_id', '=', 'sawahs.id')
-                        ->join('users', 'sawahs.created_by', '=', 'users.id')
-                        ->orderBy('transaksi_sawahs.created_at', 'desc')
-                        ->whereYear('transaksi_sawahs.created_at', $thn)
-                        ;
-                $gabah = DB::table('transaksi_gabahs')
-                        ->select('users.name as pembeli', 'transaksi_gabahs.jumlah', 'transaksi_gabahs.harga', 'transaksi_gabahs.created_at', 'gabahs.nama', DB::raw('("gabah") as jenis'))
-                        ->join('gabahs', 'transaksi_gabahs.gabah_id', '=', 'gabahs.id')
-                        ->join('users', 'transaksi_gabahs.user_id', '=', 'users.id')
-                        ->where('transaksi_gabahs.status', '1')
-                        ->orderBy('transaksi_gabahs.created_at', 'desc')
-                        ->whereYear('transaksi_gabahs.created_at', $thn)
+                        ->where('status', 'selesai')
+                        ->whereYear('created_at', $thn)
+                        ->orderBy('created_at', 'desc')
                         ;
             }
         } else { //jika tahun kosong
-
-                $sawah = DB::table('transaksi_sawahs')
-                        ->select('users.name as pembeli', 'transaksi_sawahs.periode as jumlah', 'transaksi_sawahs.harga', 'transaksi_sawahs.created_at', 'sawahs.nama', DB::raw('("gadai sawah") as jenis'))    
-                        ->where('transaksi_sawahs.jenis', 'gs')
-                        ->where('transaksi_sawahs.status', 'selesai')
-                        ->join('sawahs', 'transaksi_sawahs.sawah_id', '=', 'sawahs.id')
-                        ->join('users', 'sawahs.created_by', '=', 'users.id')
-                        ->orderBy('transaksi_sawahs.created_at', 'desc');
-                $gabah = DB::table('transaksi_gabahs')
-                        ->select('users.name as pembeli', 'transaksi_gabahs.jumlah', 'transaksi_gabahs.harga', 'transaksi_gabahs.created_at', 'gabahs.nama', DB::raw('("gabah") as jenis'))
-                        ->join('gabahs', 'transaksi_gabahs.gabah_id', '=', 'gabahs.id')
-                        ->join('users', 'transaksi_gabahs.user_id', '=', 'users.id')
-                        ->where('transaksi_gabahs.status', '1')
-                        ->orderBy('transaksi_gabahs.created_at', 'desc');
+                $sawah = TransaksiLahan::with('users')
+                        ->where('jenis', 'gs')
+                        ->where('status', 'selesai')
+                        ->orderBy('created_at', 'desc')
+                        ;
         }
-        // return 'haha';
-        // return $jml;
-        $data = $sawah->union($gabah)->paginate($jml);
-        // $data = $barang->union($sawah)->union($gabah)->paginate($jml);   
-            // return $data;
+
+        $data = $sawah->paginate($jml);
+
+        // return $data;
+
         if($request->get('jenis') == 'excel') {
-            return Excel::download(new ExcelExport2($data), 'galung-app-sawah-gabah.xlsx');
+            return Excel::download(new ExcelExport2($data), 'sayurqita-app-sawah-gabah.xlsx');
         } else if ($request->get('jenis') == 'pdf') {
             $pdf = PDF::loadView('pdf-laporan2', [
-                'data' => $data,
+                'data'  => $data,
                 'thn'   => $thn,
                 'bln'   => $blnstr
             ]);  
-            return $pdf->download('galung-app-sawah-gabah.pdf');
+            return $pdf->download('sayurqita-app-laporan-gadai.pdf');
         } 
 
         return view('admin.page.laporan-gbh-swh', [
@@ -139,14 +104,9 @@ class Laporan extends Controller
             'tahun' => $tahun,
             'bulan' => $blnstr
         ]);
-        return view('admin.page.laporan-gbh-swh', [
-            'data' => $data, 
-            'tahun' => $tahun,
-            'bulan' => $blnstr
-        ]);
     }
 
-    public function laporan(Request $request)
+    public function laporan(Request $request) // laporan pembelian barang
     {   
         $jml = $request->get('jumlah');
         $thn = $request->get('tahun');
