@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\TransaksiLahan;
+use Auth;
 class ModalTanamSkripsi extends Controller
 {
     public function __construct()
@@ -46,7 +47,7 @@ class ModalTanamSkripsi extends Controller
             $data = TransaksiLahan::where('jenis', 'mt')
                 ->where('status', 'gadai')
                 ->with('admins:id,name')
-                ->with('users:id,name')
+                ->with('users:id,name,nohp')
                 ->whereHas('users',function ($query) use ($request) {
                     $query->where('name', 'like', '%'.$request->get('search').'%');
                 })
@@ -56,7 +57,7 @@ class ModalTanamSkripsi extends Controller
             $data = TransaksiLahan::where('jenis', 'mt')
                 ->where('status', 'gadai')
                 ->with('admins:id,name')
-                ->with('users:id,name')
+                ->with('users:id,name,nohp')
                 ->orderBy('status_at', 'desc')
                 ->paginate(10);
         }
@@ -75,7 +76,7 @@ class ModalTanamSkripsi extends Controller
             $data = TransaksiLahan::where('jenis', 'mt')
                 ->where('status', 'selesai')
                 ->with('users:id,name')
-                ->with('admins:id,name')
+                ->with('admins:id,name,nohp')
                 ->whereHas('users',function ($query) use ($request) {
                     $query->where('name', 'like', '%'.$request->get('search').'%');
                 })
@@ -85,7 +86,7 @@ class ModalTanamSkripsi extends Controller
             $data = TransaksiLahan::where('jenis', 'mt')
                 ->where('status', 'selesai')
                 ->with('admins:id,name')
-                ->with('users:id,name')
+                ->with('users:id,name,nohp')
                 ->orderBy('status_at', 'desc')
                 ->paginate(10);
         }
@@ -95,5 +96,23 @@ class ModalTanamSkripsi extends Controller
 
         // return $data; // uncomment ini untuk melihat data 
         return view('admin.page.modal.riwayat-modal', ['data' => $data, 'jml' => $jml]);
+    }
+
+    public function gadaistatus(Request $request, $id) // mengubah "daftar gadai" menjadi "sedang gadai" modal tanam
+    {
+        $data = TransaksiLahan::findOrFail($id);
+        $data->status = 'selesai';
+        $data->keterangan = $request->get('keterangan');
+        $data->admin_id = Auth::guard('admin')->user()->id;
+        $data->status_at = \Carbon\Carbon::now();
+        $data->save();
+        return redirect()->back()->with('success', 'Berhasil ! Lahan ini tercatat sebagai riwayat modal tanam!');
+    }
+
+    public function delriwayat($id) // menghapus riwayat gadai modal tanam hanya superadmin, jika admin otomatis gagal 
+    {
+        $data = TransaksiLahan::findOrFail($id);
+        $data->delete();
+        return redirect()->back()->with('success', 'Berhasil menghapus riwayat modal tanam');
     }
 }

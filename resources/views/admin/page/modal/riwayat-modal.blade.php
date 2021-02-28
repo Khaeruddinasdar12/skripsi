@@ -82,9 +82,12 @@
                       <thead>
                         <tr>
                           <th>#</th>
-                          <th>Nama Penggadai</th>
-                          <th>Nama Sawah</th>
-                          <th>Luas Sawah</th>
+                          <th>Nama Pemohon</th>
+                          <th>Jenis Bibit</th>
+                          <th>Jenis Pupuk</th>
+                          <th>Foto KTP</th>
+                          <th>Sertifikat Tanah</th>
+                          <th>Surat Pajak</th>
                           <th>Status</th>
                           <th>Admin Yang Menangani</th>
                           <th>Action</th>
@@ -116,9 +119,12 @@
                       <!-- End jika admin tersedia atau tidak -->
                       <tr>
                         <th scope="row">{{$no++}}</th>
-                        <td>{{$gadais -> sawahs -> users -> name}}</td>
-                        <td>{{$gadais -> sawahs -> nama}}</td>
-                        <td>{{$gadais -> sawahs -> luas_sawah}}</td>
+                        <td>{{$gadais->users->name}}</td>
+                        <td>{{$gadais->jenis_bibit}}</td>
+                        <td>{{$gadais->jenis_pupuk}}</td>
+                        <td><a href="{{asset('storage/'.$gadais->users->foto_ktp)}}"><img src="{{asset('storage/'.$gadais->users->foto_ktp)}}" width="120px" height="120px"></a></td>
+                        <td><a href="{{asset('storage/'.$gadais->sertifikat_tanah)}}"><img src="{{asset('storage/'.$gadais->sertifikat_tanah)}}" width="120px" height="120px"></a></td>
+                        <td><a href="{{asset('storage/'.$gadais->surat_pajak)}}"><img src="{{asset('storage/'.$gadais->surat_pajak)}}" width="120px" height="120px"></a></td>
                         <td>
                           <div class="btn btn-bold btn-sm btn-font-sm  btn-label-success" style="font-size: 14px;">
                             Riwayat Modal Tanam
@@ -133,21 +139,21 @@
                             <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
                               <ul class="kt-nav">
                                 <li class="kt-nav__item">
-                                  <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$gadais->id}}" data-email="{{$gadais->sawahs->users->email}}" data-nama-sawah="{{$gadais -> sawahs -> nama}}" data-nohp="{{$gadais->sawahs->users->nohp}}" data-keterangan="{{$gadais->keterangan}}" data-titik_koordinat="{{$gadais->sawahs->titik_koordinat}}" data-kecamatan="{{$gadais->sawahs->kecamatan}}" data-kelurahan="{{$gadais->sawahs->kelurahan}}" data-alamat="{{$gadais->sawahs->alamat}}" data-luas_sawah="{{$gadais->sawahs->luas_sawah}}" data-kota="{{$gadais->sawahs->alamats->tipe}} {{$gadais->sawahs->alamats->nama_kota}}" data-name="{{$gadais->sawahs->users->name}}" data-admin="{{$admin}}">
+                                  <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$gadais->id}}" data-email="{{$gadais->users->email}}" data-name="{{$gadais->users->name}}" data-nohp="{{$gadais->users->nohp}}" data-keterangan="{{$gadais->keterangan}}" data-titik_koordinat="{{$gadais->titik_koordinat}}" data-kecamatan="{{$gadais->kecamatan}}" data-kelurahan="{{$gadais->kelurahan}}" data-alamat="{{$gadais->alamat}}" data-luas_sawah="{{$gadais->luas_lahan}}"  data-admin="{{$admin}}">
                                     <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
                                     <span class="kt-nav__link-text">Detail</span>
                                   </a>
                                 </li>
                                 @if(Auth::guard('admin')->user()->role != 'superadmin')
                                 <li class="kt-nav__item" style="display: none !important;">
-                                  <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$gadais->id}}" data-href="{{ route('delriwayat.modaltanam', ['id' => $gadais->id]) }}">
+                                  <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$gadais->id}}" data-href="{{ route('delriwayat.modaltanam.skripsi', ['id' => $gadais->id]) }}">
                                     <i class="kt-nav__link-icon fa fa-trash-alt"></i>
                                     <span class="kt-nav__link-text">Hapus Data</span>
                                   </a>
                                 </li>
                                 @else
                                 <li class="kt-nav__item">
-                                  <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$gadais->id}}" data-href="{{ route('delriwayat.modaltanam', ['id' => $gadais->id]) }}">
+                                  <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$gadais->id}}" data-href="{{ route('delriwayat.modaltanam.skripsi', ['id' => $gadais->id]) }}">
                                     <i class="kt-nav__link-icon fa fa-trash-alt"></i>
                                     <span class="kt-nav__link-text">Hapus Data</span>
                                   </a>
@@ -204,24 +210,16 @@
                     <div class="kt-widget__body widget-detail">
                       <div class="kt-widget__item">
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Nama Sawah :</span>
-                          <span class="kt-widget__data" id="nama-sawah"></span>
-                        </div>
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Luas Sawah :</span>
+                          <span class="kt-widget__label">Luas Lahan :</span>
                           <span class="kt-widget__data" id="luas_sawah"></span>
                         </div>
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Titik Koordinat Sawah :</span>
+                          <span class="kt-widget__label">Titik Koordinat Lahan :</span>
                           <span class="kt-widget__data" id="titik_koordinat"></span>
                         </div>
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Provinsi :</span>
                           <span class="kt-widget__data">Sulawesi Selatan</span>
-                        </div>
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Kota :</span>
-                          <span class="kt-widget__data" id="kota"></span>
                         </div>
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Kecamatan :</span>

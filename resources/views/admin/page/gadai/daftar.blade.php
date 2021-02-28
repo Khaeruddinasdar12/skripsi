@@ -96,7 +96,7 @@
                       </thead>
                       @if ($jml == 0)
                       <tbody style="text-align: center;">
-                        <td colspan="7">Belum ada data</td>
+                        <td colspan="10">Belum ada data</td>
                       </tbody>
                       @else
                       <tbody>
@@ -145,7 +145,7 @@
                                   </a>
                                 </li>
                                 <li class="kt-nav__item">
-                                  <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$gadais->id}}" data-href="{{ route('delgadai.gadaisawah', ['id' => $gadais->id]) }}">
+                                  <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$gadais->id}}" data-href="{{ route('delgadai.gadaisawah.skripsi', ['id' => $gadais->id]) }}">
                                     <i class="kt-nav__link-icon fa fa-trash-alt"></i>
                                     <span class="kt-nav__link-text">Hapus Data</span>
                                   </a>

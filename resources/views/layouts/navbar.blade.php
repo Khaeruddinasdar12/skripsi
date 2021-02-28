@@ -75,11 +75,6 @@
                   </a>
                 </li>
                 <li class="kt-menu__item  kt-menu__item--submenu">
-                  <a href="{{ route('sedang.modaltanam.skripsi') }}" class="kt-menu__link">
-                    <span class="kt-menu__link-text">Sedang Tergadai</span>
-                  </a>
-                </li>
-                <li class="kt-menu__item  kt-menu__item--submenu">
                   <a href="{{ route('riwayat.modaltanam.skripsi') }}" class="kt-menu__link">
                     <span class="kt-menu__link-text">Riwayat Gadai</span>
                   </a>

@@ -85,6 +85,7 @@
                           <th>Nama Penggadai</th>
                           <th>Periode Gadai</th>
                           <th>Harga Gadai</th>
+                          <th>Surat Perjanjian</th>
                           <th>Status</th>
                           <th>Admin Yang Menangani</th>
                           <th>Action</th>
@@ -119,8 +120,9 @@
                         <td>{{$gadais->users->name}}</td>
                         <td>{{$gadais->periode}}</td>
                         <td>Rp.{{format_uang($gadais -> harga)}}</td>
+                        <td><a href="{{asset('storage/'.$gadais->surat_perjanjian)}}" class="btn btn-sm btn-outline-danger"><i class="fa fa-file-pdf"></i></a></td>
                         <td>
-                          <div class="btn btn-bold btn-sm btn-font-sm  btn-label-warning" style="font-size: 14px;">
+                          <div class="btn btn-bold btn-sm btn-font-sm  btn-label-warning">
                             Sedang Tergadai
                           </div>
                         </td>
@@ -133,19 +135,19 @@
                             <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
                               <ul class="kt-nav">
                                 <li class="kt-nav__item">
-                                  <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$gadais->id}}" data-email="{{$gadais->users->email}}" data-nohp="{{$gadais->users->nohp}}" data-periode="{{$gadais->periode}}" data-harga="Rp.{{format_uang($gadais->harga)}}" data-keterangan="{{$gadais->keterangan}}" data-kecamatan="{{$gadais->kecamatan}}" data-kelurahan="{{$gadais->kelurahan}}" data-alamat="{{$gadais->alamat}}" data-luas_sawah="{{$gadais->luas_sawah}}" data-name="{{$gadais->sawahs->users->name}}" data-admin="{{$admin}}">
+                                  <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$gadais->id}}" data-email="{{$gadais->users->email}}" data-nohp="{{$gadais->users->nohp}}" data-name="{{$gadais->users->name}}"data-periode="{{$gadais->periode}}" data-harga="Rp.{{format_uang($gadais->harga)}}" data-keterangan="{{$gadais->keterangan}}" data-kecamatan="{{$gadais->kecamatan}}" data-kelurahan="{{$gadais->kelurahan}}" data-alamat="{{$gadais->alamat}}" data-luas_sawah="{{$gadais->luas_lahan}}" data-titik_koordinat="{{$gadais->titik_koordinat}}"  data-admin="{{$admin}}">
                                     <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
                                     <span class="kt-nav__link-text">Detail</span>
                                   </a>
                                 </li>
                                 <li class="kt-nav__item">
-                                  <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-ket" data-id="{{$gadais->id}}" data-name="{{$gadais->users->name}}" data-keterangan="{{$gadais->keterangan}}" data-href="{{ route('editketerangan.gadaisawah', ['id' => $gadais->id]) }}">
+                                  <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-ket" data-id="{{$gadais->id}}" data-name="{{$gadais->users->name}}" data-keterangan="{{$gadais->keterangan}}" data-href="{{ route('editketerangan.gadaisawah.skripsi', ['id' => $gadais->id]) }}">
                                     <i class=" kt-nav__link-icon flaticon2-settings"></i>
                                     <span class="kt-nav__link-text">Edit Keterangan</span>
                                   </a>
                                 </li>
                                 <li class="kt-nav__item">
-                                  <a href="#" class="kt-nav__link verif-data" data-toggle="modal" data-target="#modal-selesai-gadai" data-id="{{$gadais->id}}" data-keterangan="{{$gadais->keterangan}}" data-href="{{ route('selesaistatus.gadaisawah', ['id' => $gadais->id]) }}">
+                                  <a href="#" class="kt-nav__link verif-data" data-toggle="modal" data-target="#modal-selesai-gadai" data-id="{{$gadais->id}}" data-keterangan="{{$gadais->keterangan}}" data-href="{{ route('selesaistatus.gadaisawah.skripsi', ['id' => $gadais->id]) }}">
                                     <i class="kt-nav__link-icon flaticon2-check-mark"></i>
                                     <span class="kt-nav__link-text">Selesaikan Gadai</span>
                                   </a>
@@ -201,10 +203,6 @@
                     <div class="kt-widget__body widget-detail">
                       <div class="kt-widget__item">
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Nama Sawah:</span>
-                          <span class="kt-widget__data" id="nama-sawah"></span>
-                        </div>
-                        <div class="kt-widget__contact">
                           <span class="kt-widget__label">Periode Gadai:</span>
                           <span class="kt-widget__data" id="periode"></span>
                         </div>
@@ -223,10 +221,6 @@
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Provinsi :</span>
                           <span class="kt-widget__data">Sulawesi Selatan</span>
-                        </div>
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Kota :</span>
-                          <span class="kt-widget__data" id="kota"></span>
                         </div>
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Kecamatan :</span>

@@ -6,7 +6,7 @@
   <div class="kt-container ">
     <div class="kt-subheader__main">
       <h3 class="kt-subheader__title">
-        Gadai Sawah </h3>
+      Gadai Sawah </h3>
       <span class="kt-subheader__separator kt-hidden"></span>
       <div class="kt-subheader__breadcrumbs">
         <a href="" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
@@ -86,6 +86,7 @@
                           <th>Nama Penggadai</th>
                           <th>Periode Gadai</th>
                           <th>Harga Gadai</th>
+                          <th>Surat Perjanjian</th>
                           <th>Status</th>
                           <th>Admin Yang Menangani</th>
                           <th>Action</th>
@@ -120,46 +121,47 @@
                         <td>{{$gadais -> users -> name}}</td>
                         <td>{{$gadais -> periode}}</td>
                         <td>Rp.{{format_uang($gadais -> harga)}}</td>
+                        <td><a href="{{asset('storage/'.$gadais->surat_perjanjian)}}" class="btn btn-sm btn-outline-danger"><i class="fa fa-file-pdf"></i></a></td>
                         <td>
-                          <div class="btn btn-bold btn-sm btn-font-sm  btn-label-success" style="font-size: 14px;">
-                            Riwayat Gadai
-                          </div>
-                        </td>
-                        <td>{{$admin}}</td>
-                        <td>
-                          <div class="dropdown dropdown-inline">
-                            <a href="#" class="btn btn-default btn-icon btn-icon-md btn-sm btn-more-custom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <i class="flaticon-more-1"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
-                              <ul class="kt-nav">
-                                <li class="kt-nav__item">
-                                  <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$gadais->id}}" data-name="{{$gadais->users->name}}" data-email="{{$gadais->users->email}}" data-nama-sawah="{{$gadais -> nama}}" data-nohp="{{$gadais->users->nohp}}" data-periode="{{$gadais->periode}}" data-harga="Rp.{{format_uang($gadais->harga)}}" data-keterangan="{{$gadais->keterangan}}" data-kecamatan="{{$gadais->kecamatan}}" data-kelurahan="{{$gadais->kelurahan}}" data-alamat="{{$gadais->alamat}}" data-luas_sawah="{{$gadais->luas_lahan}}" data-admin="{{$admin}}">
-                                    <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
-                                    <span class="kt-nav__link-text">Detail</span>
-                                  </a>
-                                </li>
-                                @if(Auth::guard('admin')->user()->role != 'superadmin')
-                                <li class="kt-nav__item" style="display: none !important;">
-                                  <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$gadais->id}}" data-href="{{ route('delriwayat.gadaisawah', ['id' => $gadais->id]) }}">
-                                    <i class="kt-nav__link-icon fa fa-trash-alt"></i>
-                                    <span class="kt-nav__link-text">Hapus Data</span>
-                                  </a>
-                                </li>
-                                @else
-                                <li class="kt-nav__item">
-                                  <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$gadais->id}}" data-href="{{ route('delriwayat.gadaisawah', ['id' => $gadais->id]) }}">
-                                    <i class="kt-nav__link-icon fa fa-trash-alt"></i>
-                                    <span class="kt-nav__link-text">Hapus Data</span>
-                                  </a>
-                                </li>
-                                @endif
-                              </ul>
+                            <div class="btn btn-bold btn-sm btn-font-sm  btn-label-success" style="font-size: 14px;">
+                              Riwayat Gadai
                             </div>
-                          </div>
-                        </td>
-                      </tr>
-                      @endforeach
+                          </td>
+                          <td>{{$admin}}</td>
+                          <td>
+                            <div class="dropdown dropdown-inline">
+                              <a href="#" class="btn btn-default btn-icon btn-icon-md btn-sm btn-more-custom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="flaticon-more-1"></i>
+                              </a>
+                              <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
+                                <ul class="kt-nav">
+                                  <li class="kt-nav__item">
+                                    <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$gadais->id}}" data-name="{{$gadais->users->name}}" data-email="{{$gadais->users->email}}" data-nama-sawah="{{$gadais -> nama}}" data-nohp="{{$gadais->users->nohp}}" data-periode="{{$gadais->periode}}" data-harga="Rp.{{format_uang($gadais->harga)}}" data-keterangan="{{$gadais->keterangan}}" data-kecamatan="{{$gadais->kecamatan}}" data-kelurahan="{{$gadais->kelurahan}}" data-alamat="{{$gadais->alamat}}" data-titik_koordinat="{{$gadais->titik_koordinat}}" data-luas_sawah="{{$gadais->luas_lahan}}" data-admin="{{$admin}}">
+                                      <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
+                                      <span class="kt-nav__link-text">Detail</span>
+                                    </a>
+                                  </li>
+                                  @if(Auth::guard('admin')->user()->role != 'superadmin')
+                                  <li class="kt-nav__item" style="display: none !important;">
+                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$gadais->id}}" data-href="{{ route('delriwayat.gadaisawah.skripsi', ['id' => $gadais->id]) }}">
+                                      <i class="kt-nav__link-icon fa fa-trash-alt"></i>
+                                      <span class="kt-nav__link-text">Hapus Data</span>
+                                    </a>
+                                  </li>
+                                  @else
+                                  <li class="kt-nav__item">
+                                    <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$gadais->id}}" data-href="{{ route('delriwayat.gadaisawah.skripsi', ['id' => $gadais->id]) }}">
+                                      <i class="kt-nav__link-icon fa fa-trash-alt"></i>
+                                      <span class="kt-nav__link-text">Hapus Data</span>
+                                    </a>
+                                  </li>
+                                  @endif
+                                </ul>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        @endforeach
                       </tbody>
                       @endif
                       @endif
@@ -205,10 +207,6 @@
                     <div class="kt-widget__body widget-detail">
                       <div class="kt-widget__item">
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Nama Sawah :</span>
-                          <span class="kt-widget__data" id="nama-sawah"></span>
-                        </div>
-                        <div class="kt-widget__contact">
                           <span class="kt-widget__label">Periode Gadai :</span>
                           <span class="kt-widget__data" id="periode"></span>
                         </div>
@@ -217,7 +215,7 @@
                           <span class="kt-widget__data" id="harga"></span>
                         </div>
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Luas Sawah :</span>
+                          <span class="kt-widget__label">Luas Lahan :</span>
                           <span class="kt-widget__data" id="luas_sawah"></span>
                         </div>
                         <div class="kt-widget__contact">
@@ -227,10 +225,6 @@
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Provinsi :</span>
                           <span class="kt-widget__data">Sulawesi Selatan</span>
-                        </div>
-                        <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Kota :</span>
-                          <span class="kt-widget__data" id="kota"></span>
                         </div>
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Kecamatan :</span>

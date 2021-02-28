@@ -83,7 +83,7 @@
                       <thead>
                         <tr>
                           <th>#</th>
-                          <th>Nama Penggadai</th>
+                          <th>Nama Pemohon</th>
                           <th>Jenis Bibit</th>
                           <th>Jenis Pupuk</th>
                           <th>Foto KTP</th>
@@ -95,7 +95,7 @@
                       </thead>
                       @if ($jml == 0)
                       <tbody style="text-align: center;">
-                        <td colspan="7">Belum ada data</td>
+                        <td colspan="9">Belum ada data</td>
                       </tbody>
                       @else
                       <tbody>
@@ -131,13 +131,13 @@
                             <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
                               <ul class="kt-nav">
                                 <li class="kt-nav__item">
-                                  <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$datas->id}}" data-name="{{$datas->users->name}}" data-email="{{$datas->users->email}}" data-nohp="{{$datas->users->nohp}}" data-keterangan="{{$datas->keterangan}}" data-kecamatan="{{$datas->kecamatan}}" data-kelurahan="{{$datas->kelurahan}}" data-alamat="{{$datas->alamat}}" data-luas_sawah="{{$datas->luas_sawah}}" data-titik_koordinat="{{$datas->titik_koordinat}}" data-jenis_bibit="{{$datas->jenis_bibit}}" data-jenis_pupuk="{{$datas->jenis_pupuk}}">
+                                  <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$datas->id}}" data-name="{{$datas->users->name}}" data-email="{{$datas->users->email}}" data-nohp="{{$datas->users->nohp}}" data-keterangan="{{$datas->keterangan}}" data-kecamatan="{{$datas->kecamatan}}" data-kelurahan="{{$datas->kelurahan}}" data-alamat="{{$datas->alamat}}" data-luas_sawah="{{$datas->luas_lahan}}" data-titik_koordinat="{{$datas->titik_koordinat}}" data-jenis_bibit="{{$datas->jenis_bibit}}" data-jenis_pupuk="{{$datas->jenis_pupuk}}">
                                     <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
                                     <span class="kt-nav__link-text">Detail</span>
                                   </a>
                                 </li>
                                 <li class="kt-nav__item">
-                                  <a href="#" class="kt-nav__link verif-data" data-toggle="modal" data-target="#modal-verif-gadai" data-id="{{$datas->id}}" data-name="{{$datas->users->name}}" data-keterangan="{{$datas->keterangan}}" data-href="{{ route('gadaistatus.modaltanam', ['id' => $datas->id]) }}">
+                                  <a href="#" class="kt-nav__link verif-data" data-toggle="modal" data-target="#modal-verif-gadai" data-id="{{$datas->id}}" data-name="{{$datas->users->name}}" data-keterangan="{{$datas->keterangan}}" data-href="{{ route('gadaistatus.modaltanam.skripsi', ['id' => $datas->id]) }}">
                                     <i class="kt-nav__link-icon flaticon2-check-mark"></i>
                                     <span class="kt-nav__link-text">Verifikasi</span>
                                   </a>
@@ -200,7 +200,7 @@
                     <div class="kt-widget__body widget-detail">
                       <div class="kt-widget__item">
                         <div class="kt-widget__contact">
-                          <span class="kt-widget__label">Titik Koordinat Sawah :</span>
+                          <span class="kt-widget__label">Titik Koordinat Lahan :</span>
                           <span class="kt-widget__data" id="titik_koordinat"></span>
                         </div>
                         <div class="kt-widget__contact">

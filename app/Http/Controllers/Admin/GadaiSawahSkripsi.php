@@ -52,7 +52,7 @@ class GadaiSawahSkripsi extends Controller
             $data = TransaksiLahan::where('jenis', 'gs')
             ->where('status', 'gadai')
             ->with('admins:id,name')
-            ->with('users:id,name')
+            ->with('users:id,name,nohp')
             ->whereHas('users',function ($query) use ($request) {
                 $query->where('name', 'like', '%'.$request->get('search').'%');
             })
@@ -62,7 +62,7 @@ class GadaiSawahSkripsi extends Controller
             $data = TransaksiLahan::where('jenis', 'gs')
             ->where('status', 'gadai')
             ->with('admins:id,name')
-            ->with('users:id,name')
+            ->with('users:id,name,nohp')
             ->orderBy('status_at', 'desc')
             ->paginate(10);
         }
@@ -82,7 +82,7 @@ class GadaiSawahSkripsi extends Controller
             $data = TransaksiLahan::where('jenis', 'gs')
             ->where('status', 'selesai')
             ->with('admins:id,name')
-            ->with('users:id,name')
+            ->with('users:id,name,nohp')
             ->whereHas('users',function ($query) use ($request) {
                 $query->where('name', 'like', '%'.$request->get('search').'%');
             })
@@ -91,7 +91,7 @@ class GadaiSawahSkripsi extends Controller
             $data = TransaksiLahan::where('jenis', 'gs')
             ->where('status', 'selesai')
             ->with('admins:id,name')
-            ->with('users:id,name')
+            ->with('users:id,name,nohp')
             ->orderBy('status_at', 'desc')
             ->paginate(10);
         }
@@ -114,16 +114,71 @@ class GadaiSawahSkripsi extends Controller
         $data->keterangan = $request->get('keterangan');
         $data->admin_id = Auth::guard('admin')->user()->id;
         $data->status_at = \Carbon\Carbon::now();
-
+        
+            // $pdfData = $data->users;
+            // return $pdfData;
         // $user = User
-        $pdf = PDF::loadView('surat-perjanjian', $data->users);
-        // $pdf->setOptions(['isPhpEnabled' => true,'isRemoteEnabled' => true]);
+        $pdf = PDF::loadView('surat-perjanjian', [
+                'nama' => $data->users->name,
+                'pekerjaan' => $data->users->pekerjaan,
+                'alamat'    => $data->users->alamat,
+                'surat_pajak' => $data->surat_pajak,
+                'sertifikat_tanah' => $data->sertifikat_tanah,
+                'alamat_lahan'  => $data->alamat,
+                'periode'   => $data->periode,
+                'status_at' => $data->status_at,
+                'harga'     => $data->harga,
+                
+                
+            ])->setOptions(['defaultFont' => 'sans-serif']);
+        $pdf->setOptions(['isPhpEnabled' => true,'isRemoteEnabled' => true]);
 
         $filename = 'surat-perjanjian-ID'.$data->id;
-        $pdf->save('surat-perjanjian/'.$filename);
-        $data->surat_perjanjian = 'surat-perjanjian/'.$filename;
+        // $pdf->save('surat-perjanjian/'.$filename);
+        
+        Storage::put('public/pdf/'.$filename.'.pdf', $pdf->output());
+        $data->surat_perjanjian = 'pdf/'.$filename.'.pdf';
         $data->save();
 
         return redirect()->back()->with('success', 'Berhasil Gadai Lahan !');
+    }
+
+    public function selesaistatus(Request $request, $id) // mengubah "sedang gadai" menjadi "riwayat gadai" menjadi sedang gadai 
+    {
+
+        $data = TransaksiLahan::findOrFail($id);
+        $data->status = 'selesai';
+        $data->admin_id = Auth::guard('admin')->user()->id;
+        $data->keterangan = $request->get('keterangan');
+        $data->status_at = \Carbon\Carbon::now();
+        $data->save();
+        return redirect()->back()->with('success', 'Berhasil ! Waktu gadai sawah ini telah berakhir silakan lihat datanya pada tab Riwayat Gadai');
+    }
+
+    public function editketerangan(Request $request, $id) // edit keterangan 
+    {
+        $data = TransaksiLahan::findOrFail($id);
+        $data->admin_id = Auth::guard('admin')->user()->id;
+        $data->keterangan = $request->get('keterangan');
+        $data->save();
+        return redirect()->back()->with('success', 'Berhasil mengubah keterangan');
+    }
+
+    public function delgadai(Request $request, $id) // menghapus gadai yang gagal di survey 
+    {
+        $data = TransaksiLahan::findOrFail($id);
+        $data->admin_id = Auth::guard('admin')->user()->id;
+        $data->keterangan = $request->get('keterangan');
+        $data->status_at = \Carbon\Carbon::now();
+        $data->status = 'batal';
+        $data->save();
+        return redirect()->back()->with('success', 'Berhasil menghapus pendaftaran gadai sawah');
+    }
+
+    public function delriwayat($id) // menghapus riwayat gadai hanya superadmin, jika admin otomatis gagal 
+    {
+        $data = TransaksiLahan::findOrFail($id);
+        $data->delete();
+        return redirect()->back()->with('success', 'Berhasil menghapus riwayat gadai');
     }
 }

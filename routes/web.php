@@ -13,6 +13,8 @@ Auth::routes([
 Route::get('/pdf', 'HomeController@pdf');
 
 Route::get('/surat-perjanjian',  function() {
+    $pdf = PDF::loadView('surat-perjanjian')->setOptions(['defaultFont' => 'sans-serif']);
+    return $pdf->stream('pdf.pdf');
 	return view('surat-perjanjian');
 });
 
@@ -38,7 +40,13 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 	Route::get('sedang-gadai-lahan', 'GadaiSawahSkripsi@sedanggadai')->name('sedang.gadaisawah.skripsi'); //menampilkan hal. data yang sedang menggadai sawahnya
 	Route::get('riwayat-gadai-lahan', 'GadaiSawahSkripsi@riwayatgadai')->name('riwayat.gadaisawah.skripsi'); //menampilkan hal. data riwayat gadai sawah
 
-	Route::put('gadai-lahan-status/{id}', 'GadaiSawahSkripsi@gadaistatus')->name('gadaistatus.gadaisawah.skripsi'); // mengubah "daftar gadai" menjadi "sedang gadai"
+
+	Route::put('gadai-lahan-gadai-status/{id}', 'GadaiSawahSkripsi@gadaistatus')->name('gadaistatus.gadaisawah.skripsi'); // mengubah "daftar gadai" menjadi "sedang gadai"
+	Route::put('gadai-lahan-selesai-status/{id}', 'GadaiSawahSkripsi@selesaistatus')->name('selesaistatus.gadaisawah.skripsi'); // mengubah "sedang gadai" menjadi "riwayat gadai"
+	Route::put('gadai-lahan-edit-keterangan/{id}', 'GadaiSawahSkripsi@editketerangan')->name('editketerangan.gadaisawah.skripsi'); // edit keterangan 
+
+	Route::post('gadai-lahan-hapus-gadai/{id}', 'GadaiSawahSkripsi@delgadai')->name('delgadai.gadaisawah.skripsi'); // menghapus gadai yang gagal di survey 
+	Route::delete('gadai-lahan-hapus-riwayat/{id}', 'GadaiSawahSkripsi@delriwayat')->name('delriwayat.gadaisawah.skripsi')->middleware('CekAdmin'); // menghapus riwayat gadai hanya 
 	// END GADAI LAHAN SKRIPSI
 
 
@@ -48,7 +56,8 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 	Route::get('riwayat-modal-tanam', 'ModalTanamSkripsi@riwayatgadai')->name('riwayat.modaltanam.skripsi'); //menampilkan hal. data riwayat gadai sawah
 
 
-	Route::put('modal-tanam-gadai-status/{id}', 'ModalTanamSkripsii@gadaistatus')->name('gadaistatus.modaltanam.skripsi'); // mengubah "daftar gadai" menjadi "sedang gadai"
+	Route::put('mt-gadai-status/{id}', 'ModalTanamSkripsi@gadaistatus')->name('gadaistatus.modaltanam.skripsi'); // mengubah "daftar gadai" menjadi "sedang gadai"
+	Route::delete('mt-hapus-riwayat/{id}', 'ModalTanamSkripsi@delriwayat')->name('delriwayat.modaltanam.skripsi')->middleware('CekAdmin'); // menghapus riwayat gadai hanya 
 	// END MODAL TANAM SKRIPSI
 
 
@@ -136,34 +145,6 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 	Route::post('transaksi-beras-delete/{id}', 'TransaksiBerasController@delete')->name('delete.tberas'); // menghapus data transaksi beras
 	Route::delete('transaksi-beras-delete-riwayat/{id}', 'TransaksiBerasController@deleteBySuperadmin')->name('deleteriwayat.tberas')->middleware('CekAdmin'); // menghapus data transaksi beras (riwayat Transaksi by superadmin)
 	// END RUTE MENU BERAS & TRANSAKSI BERAS
-
-
-		// RUTE MENU MODAL TANAM
-	Route::get('modal-tanam-daftar-gadai', 'ModalTanamController@daftargadai')->name('daftar.modaltanam'); //menampilkan hal. data mendaftarkan sawah untuk digadai 
-	Route::get('modal-tanam-sedang-gadai', 'ModalTanamController@sedanggadai')->name('sedang.modaltanam'); //menampilkan hal. data yang sedang menggadai sawahnya
-	Route::get('modal-tanam-riwayat-gadai', 'ModalTanamController@riwayatgadai')->name('riwayat.modaltanam'); //menampilkan hal. data riwayat gadai sawah
-
-	Route::put('modal-tanam-gadai-status/{id}', 'ModalTanamController@gadaistatus')->name('gadaistatus.modaltanam'); // mengubah "daftar gadai" menjadi "sedang gadai"
-	Route::put('modal-tanam-selesai-status/{id}', 'ModalTanamController@selesaistatus')->name('selesaistatus.modaltanam'); // mengubah "sedang gadai" menjadi "riwayat gadai"
-	Route::put('modal-tanam-edit-keterangan/{id}', 'ModalTanamController@editketerangan')->name('editketerangan.modaltanam'); // edit keterangan 
-
-	Route::post('modal-tanam-hapus-gadai/{id}', 'ModalTanamController@delgadai')->name('delgadai.modaltanam'); // menghapus gadai yang gagal di survey 
-	Route::delete('modal-tanam-hapus-riwayat/{id}', 'ModalTanamController@delriwayat')->name('delriwayat.modaltanam')->middleware('CekAdmin'); // menghapus riwayat gadai hanya superadmin, jika admin otomatis gagal 
-	// END RUTE MENU MODAL TANAM
-
-
-	// RUTE MENU GADAI SAWAH
-	Route::get('gadai-sawah-daftar-gadai', 'GadaiSawahController@daftargadai')->name('daftar.gadaisawah'); //menampilkan hal. data mendaftarkan sawah untuk digadai 
-	Route::get('gadai-sawah-sedang-gadai', 'GadaiSawahController@sedanggadai')->name('sedang.gadaisawah'); //menampilkan hal. data yang sedang menggadai sawahnya
-	Route::get('gadai-sawah-riwayat-gadai', 'GadaiSawahController@riwayatgadai')->name('riwayat.gadaisawah'); //menampilkan hal. data riwayat gadai sawah
-
-	Route::put('gadai-sawah-gadai-status/{id}', 'GadaiSawahController@gadaistatus')->name('gadaistatus.gadaisawah'); // mengubah "daftar gadai" menjadi "sedang gadai"
-	Route::put('gadai-sawah-selesai-status/{id}', 'GadaiSawahController@selesaistatus')->name('selesaistatus.gadaisawah'); // mengubah "sedang gadai" menjadi "riwayat gadai"
-	Route::put('gadai-sawah-edit-keterangan/{id}', 'GadaiSawahController@editketerangan')->name('editketerangan.gadaisawah'); // edit keterangan 
-
-	Route::post('gadai-sawah-hapus-gadai/{id}', 'GadaiSawahController@delgadai')->name('delgadai.gadaisawah'); // menghapus gadai yang gagal di survey 
-	Route::delete('gadai-sawah-hapus-riwayat/{id}', 'GadaiSawahController@delriwayat')->name('delriwayat.gadaisawah')->middleware('CekAdmin'); // menghapus riwayat gadai hanya superadmin, jika admin otomatis gagal 
-	// END RUTE MENU GADAI SAWAH
 
 
 	// RUTE MENU MANAGE ADMIN
