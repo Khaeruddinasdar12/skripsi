@@ -45,6 +45,7 @@ class UserController extends Controller
             'password'  => 'required|string|min:8|confirmed',
             'tempat_lahir'  => 'required|string', 
             'tanggal_lahir' => 'required|date', // yyyy-mm-dd
+            'pekerjaan' => 'required|string',
             'kota_id'       => 'required|numeric',
             'alamat_lengkap'=>'required|string',
             'kecamatan' => 'required|string',
@@ -75,6 +76,7 @@ class UserController extends Controller
             'password'  => Hash::make($request->get('password')),
             'tempat_lahir' => $request->get('tempat_lahir'),
             'tanggal_lahir' => $request->get('tanggal_lahir'),
+            'pekerjaan' => $request->get('pekerjaan'),
             'alamat_id' => $request->get('kota_id'),
             'alamat'    => $request->get('alamat_lengkap'),
             'kecamatan' => $request->get('kecamatan'),
@@ -146,17 +148,18 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'name'          => 'required|string',
             'tempat_lahir'  => 'required|string',
-                'tanggal_lahir' => 'required|date', // yyyy-mm-dd
-                'alamat_lengkap'=> 'required|string',
-                'kecamatan'     => 'required|string',
-                'kelurahan'     => 'required|string',
-                'nohp'          => 'required|string',
-                'kota_id'       => 'required|numeric',
-                'rt'            => 'required|string',
-                'rw'            => 'required|string',
-                'jkel'          => 'required|string',
-                'foto_ktp'      => 'image|mimes:jpeg,png,jpg|max:3072',  
-            ]);
+            'tanggal_lahir' => 'required|date', // yyyy-mm-dd
+            'alamat_lengkap'=> 'required|string',
+            'pekerjaan'     => 'required|string',
+            'kecamatan'     => 'required|string',
+            'kelurahan'     => 'required|string',
+            'nohp'          => 'required|string',
+            'kota_id'       => 'required|numeric',
+            'rt'            => 'required|string',
+            'rw'            => 'required|string',
+            'jkel'          => 'required|string',
+            'foto_ktp'      => 'image|mimes:jpeg,png,jpg|max:3072',  
+        ]);
 
         if($validator->fails()) {
             $message = $validator->messages()->first();
@@ -178,6 +181,7 @@ class UserController extends Controller
         $data->alamat       = $request->get('alamat_lengkap');
         $data->kecamatan    = $request->get('kecamatan');
         $data->nohp         = $request->get('nohp');
+        $data->pekerjaan    = $request->get('pekerjaan');
         $data->alamat_id    = $request->get('kota_id');
         $data->tanggal_lahir= $request->get('tanggal_lahir');
         $data->rt           = $request->get('rt');

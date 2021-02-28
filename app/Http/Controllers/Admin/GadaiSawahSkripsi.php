@@ -5,6 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\TransaksiLahan;
+use Auth;
+use PDF;
+use Redirect;
+use Storage;
+
 class GadaiSawahSkripsi extends Controller
 {
     public function __construct()
@@ -99,5 +104,25 @@ class GadaiSawahSkripsi extends Controller
         // return $data; // uncomment ini untuk melihat data 
         return view('admin.page.gadai.riwayat-gadai', ['data' => $data, 'jml' => $jml]); //struktur folder di folder views
 
+    }
+
+    public function gadaistatus(Request $request, $id) // mengubah "daftar gadai" menjadi "sedang gadai" modal tanam
+    {
+        $data = TransaksiLahan::with('users')->findOrFail($id);
+        // return $data;
+        $data->status = 'gadai';
+        $data->keterangan = $request->get('keterangan');
+        $data->admin_id = Auth::guard('admin')->user()->id;
+        $data->status_at = \Carbon\Carbon::now();
+        $data->save();
+
+        // $user = User
+        $pdf = PDF::loadView('surat-perjanjian', $data->users);
+        // $pdf->setOptions(['isPhpEnabled' => true,'isRemoteEnabled' => true]);
+
+        // $filename = 'surat-perjanjian-ID'.$data->id;
+        return $pdf->download('surat-perjanjian/');
+
+        return redirect()->back()->with('success', 'Berhasil Gadai Lahan !');
     }
 }

@@ -12,6 +12,10 @@ Auth::routes([
 ]);
 Route::get('/pdf', 'HomeController@pdf');
 
+Route::get('/surat-perjanjian',  function() {
+	return view('surat-perjanjian');
+});
+
 Route::get('/admin/login', 'Admin\Auth\LoginController@showLoginForm')->name('admin.login');
 Route::post('/admin/login', 'Admin\Auth\LoginController@login')->name('admin.login');
 Route::post('/logout', 'LoginController@logout')->name('admin.logout');
@@ -33,6 +37,8 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 	Route::get('daftar-gadai-lahan', 'GadaiSawahSkripsi@daftar')->name('daftar.gadaisawah.skripsi'); //menampilkan hal. data mendaftarkan sawah untuk digadai 
 	Route::get('sedang-gadai-lahan', 'GadaiSawahSkripsi@sedanggadai')->name('sedang.gadaisawah.skripsi'); //menampilkan hal. data yang sedang menggadai sawahnya
 	Route::get('riwayat-gadai-lahan', 'GadaiSawahSkripsi@riwayatgadai')->name('riwayat.gadaisawah.skripsi'); //menampilkan hal. data riwayat gadai sawah
+
+	Route::put('gadai-lahan-status/{id}', 'GadaiSawahSkripsi@gadaistatus')->name('gadaistatus.gadaisawah.skripsi'); // mengubah "daftar gadai" menjadi "sedang gadai"
 	// END GADAI LAHAN SKRIPSI
 
 
@@ -40,6 +46,9 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 	Route::get('daftar-modal-tanam', 'ModalTanamSkripsi@daftar')->name('daftar.modaltanam.skripsi'); //menampilkan hal. data mendaftarkan sawah untuk digadai 
 	Route::get('sedang-modal-tanam', 'ModalTanamSkripsi@sedanggadai')->name('sedang.modaltanam.skripsi'); //menampilkan hal. data yang sedang menggadai sawahnya
 	Route::get('riwayat-modal-tanam', 'ModalTanamSkripsi@riwayatgadai')->name('riwayat.modaltanam.skripsi'); //menampilkan hal. data riwayat gadai sawah
+
+
+	Route::put('modal-tanam-gadai-status/{id}', 'ModalTanamSkripsii@gadaistatus')->name('gadaistatus.modaltanam.skripsi'); // mengubah "daftar gadai" menjadi "sedang gadai"
 	// END MODAL TANAM SKRIPSI
 
 

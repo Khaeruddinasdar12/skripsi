@@ -14,6 +14,7 @@ class AdminUserTable extends Seeder
 	        'role' 	=> 'konsumen',
 	        'tempat_lahir' => 'Galung',
 	        'tanggal_lahir'=> '1999-08-04',
+	        'pekerjaan' => 'wiraswasta',
 	        'alamat'	=> 'Galung, Desa Talungeng Kec. Barebbo Kab. Bone',
 	        'alamat_id'	=> 87, // id kabupaten bone dari tabel Kotas
 	        'kecamatan'	=> 'Barebbo',
@@ -32,6 +33,7 @@ class AdminUserTable extends Seeder
 	        'role' 	=> 'petani',
 	        'tempat_lahir' => 'Galung',
 	        'tanggal_lahir'=> '1999-08-04',
+	        'pekerjaan' => 'petani',
 	        'alamat'	=> 'Galung, Desa Talungeng Kec. Barebbo Kab. Bone',
 	        'alamat_id'	=> 87, // id kabupaten bone dari tabel Kotas
 	        'kecamatan'	=> 'Barebbo',
@@ -50,6 +52,7 @@ class AdminUserTable extends Seeder
 	        'role' 	=> 'petani',
 	        'tempat_lahir' => 'Galung',
 	        'tanggal_lahir'=> '1999-08-04',
+	        'pekerjaan' => 'supir',
 	        'alamat'	=> 'Galung, Desa Talungeng Kec. Barebbo Kab. Bone',
 	        'alamat_id'	=> 87, // id kabupaten bone dari tabel Kotas
 	        'kecamatan'	=> 'Barebbo',
@@ -68,6 +71,7 @@ class AdminUserTable extends Seeder
 	        'role' 	=> 'petani',
 	        'tempat_lahir' => 'Galung',
 	        'tanggal_lahir'=> '1999-08-04',
+	        'pekerjaan' => 'PNS',
 	        'alamat'	=> 'Galung, Desa Talungeng Kec. Barebbo Kab. Bone',
 	        'alamat_id'	=> 87, // id kabupaten bone dari tabel Kotas
 	        'kecamatan'	=> 'Barebbo',
