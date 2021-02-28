@@ -114,14 +114,15 @@ class GadaiSawahSkripsi extends Controller
         $data->keterangan = $request->get('keterangan');
         $data->admin_id = Auth::guard('admin')->user()->id;
         $data->status_at = \Carbon\Carbon::now();
-        $data->save();
 
         // $user = User
         $pdf = PDF::loadView('surat-perjanjian', $data->users);
         // $pdf->setOptions(['isPhpEnabled' => true,'isRemoteEnabled' => true]);
 
-        // $filename = 'surat-perjanjian-ID'.$data->id;
-        return $pdf->download('surat-perjanjian/');
+        $filename = 'surat-perjanjian-ID'.$data->id;
+        $pdf->save('surat-perjanjian/'.$filename);
+        $data->surat_perjanjian = 'surat-perjanjian/'.$filename;
+        $data->save();
 
         return redirect()->back()->with('success', 'Berhasil Gadai Lahan !');
     }
