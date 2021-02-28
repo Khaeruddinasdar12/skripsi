@@ -92,6 +92,7 @@
                       <thead>
                         <tr>
                           <th>#</th>
+                          <th>Bukti</th>
                           <th>Kode Transaksi</th>
                           <th>Nama Pembeli</th>
                           <th>No. Hp</th>
@@ -125,6 +126,7 @@
                             <i class="fa fa-angle-right"></i>
                           </div>
                         </td>
+                        <td><img src="{{asset('storage/'.$datas->bukti)}}" width="120px" height="120px"></td>
                         <td>{{$datas->transaksi_code}}</td>
                         <td>{{$datas->penerima}}</td>
                         <td>{{$datas->nohp}}</td>

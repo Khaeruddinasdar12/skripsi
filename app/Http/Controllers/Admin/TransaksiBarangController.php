@@ -20,17 +20,19 @@ class TransaksiBarangController extends Controller
     {
         if ($request->get('search') != '') {
             $data = TransaksiBarang::where('status', '0')
-                ->select('id', 'transaksi_code', 'penerima', 'nohp', 'alamat', 'kecamatan', 'kelurahan', 'rt', 'rw', 'total', 'keterangan', 'user_id')
+                ->select('id', 'transaksi_code', 'penerima', 'nohp', 'alamat', 'kecamatan', 'kelurahan', 'rt', 'rw', 'total', 'keterangan', 'user_id', 'bukti')
                 ->with('users:id,name,nohp')
                 ->with('items:id,nama,jenis,harga,jumlah,subtotal,transaksi_id')
                 ->where('transaksi_code', 'like', '%' . $request->get('search') . '%')
+                ->where('bukti', '!=', null)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         } else {
             $data = TransaksiBarang::where('status', '0')
-                ->select('id', 'transaksi_code', 'penerima', 'nohp', 'alamat', 'kecamatan', 'kelurahan', 'rt', 'rw', 'total', 'keterangan', 'user_id')
+                ->select('id', 'transaksi_code', 'penerima', 'nohp', 'alamat', 'kecamatan', 'kelurahan', 'rt', 'rw', 'total', 'keterangan', 'user_id', 'bukti')
                 ->with('users:id,name,nohp')
                 ->with('items:id,nama,jenis,harga,jumlah,subtotal,transaksi_id')
+                ->where('bukti', '!=', null)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }

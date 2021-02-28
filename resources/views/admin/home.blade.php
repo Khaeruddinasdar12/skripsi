@@ -33,7 +33,7 @@
     <div class="col-md-7">
       <div class="kt-portlet card-transaksi">
         <div class="kt-portlet__body">
-          <h3>Data Transaksi Barang & Gabah</h3>
+          <h3>Data Transaksi Barang</h3>
           <div class="kt-widget5">
             <div class="kt-widget5__item">
               <div class="kt-widget5__content">
@@ -42,37 +42,13 @@
                 </div>
                 <div class="kt-widget5__section">
                   <p class="kt-widget5__title">
-                    Jumlah Transaksi Gabah <br> Yang Belum Di Verifikasi
+                    Jumlah Transaksi Barang <br> Yang Belum Di Verifikasi (pembeli telah mengirim bukti pembayaran)
                   </p>
                 </div>
               </div>
               <div class="kt-widget5__content">
                 <div class="kt-widget5__stats">
-                  <span class="kt-widget5__number">{{ $jmlgabah }} Data</span>
-                </div>
-                <div class="kt-widget5__stats">
-                  <span class="kt-widget5__number">
-                    <a href="{{ route('index.transaksi') }}" class="btn-label-brand btn btn-sm btn-bold">Lihat Transaksi</a>
-                  </span>
-                </div>
-              </div>
-            </div>
-
-
-            <div class="kt-widget5__item">
-              <div class="kt-widget5__content">
-                <div class="kt-widget5__pic">
-                  <img class="kt-widget7__img" src="{{ asset('img/card/transaksi-barang.jpg') }}" alt="transaksi">
-                </div>
-                <div class="kt-widget5__section">
-                  <p class="kt-widget5__title">
-                    Jumlah Transaksi Gabah <br> Yang Belum Di Verifikasi
-                  </p>
-                </div>
-              </div>
-              <div class="kt-widget5__content">
-                <div class="kt-widget5__stats">
-                  <span class="kt-widget5__number">{{ $jmltr }} Data</span>
+                  <span class="kt-widget5__number">{{$jmltr}} Data</span>
                 </div>
                 <div class="kt-widget5__stats">
                   <span class="kt-widget5__number">
@@ -89,15 +65,15 @@
     <div class="col-md-5">
       <div class="kt-portlet card-gadai">
         <div class="kt-portlet__body">
-          <h3>Data Gadai</h3>
+          <h3>Data Lahan</h3>
           <div class="kt-widget4">
-            <a href="{{ route('sedang.gadaisawah') }}" class="kt-widget4__item">
+            <a href="{{ route('daftar.gadaisawah.skripsi') }}" class="kt-widget4__item">
               <div class="kt-widget4__pic kt-widget4__pic--logo">
                 <img src="{{ asset('img/card/sawah.jpg') }}" alt="gadai-sawah">
               </div>
               <div class="kt-widget4__info">
                 <p class="kt-widget4__title">
-                  Sawah Sedang Tergadai
+                  Pengajuan Gadai
                 </p>
                 <p class="kt-widget4__text">
                   Lihat Detail
@@ -105,13 +81,13 @@
               </div>
               <span class="kt-widget4__number kt-font-brand">{{ $jmlgs }} Data</span>
             </a>
-            <a href="{{ route('sedang.modaltanam') }}" class="kt-widget4__item">
+            <a href="{{ route('daftar.modaltanam.skripsi') }}" class="kt-widget4__item">
               <div class="kt-widget4__pic kt-widget4__pic--logo">
                 <img src="{{ asset('img/card/tanam.jpg') }}" alt="modal-tanam">
               </div>
               <div class="kt-widget4__info">
                 <p class="kt-widget4__title">
-                  Modal Tanam Sedang Tergadai
+                  Pengajuan Modal Tanam
                 </p>
                 <p class="kt-widget4__text">
                   Lihat Detail
@@ -161,10 +137,6 @@
         data: [{
             label: "Transaksi Pupuk",
             value: '{{$rpupuk}}'
-          },
-          {
-            label: "Transaksi Gabah",
-            value: '{{$rgabah}}'
           },
           {
             label: "Transaksi Beras",

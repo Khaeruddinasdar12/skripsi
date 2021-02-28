@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\TransaksiSawah;
+use App\TransaksiLahan;
 use App\TransaksiBarang;
 use App\TransaksiGabah;
 use App\CartTransaksi;
@@ -50,16 +50,13 @@ class DashboardController extends Controller
     public function index()
     {
         // untuk card (jumlah transaksi)
-        	$jmlmt = TransaksiSawah::where('jenis', 'mt')
-                ->where('status', 'gadai')
+        	$jmlmt = TransaksiLahan::where('jenis', 'mt')
+                ->where('status', null)
                 ->count(); //jumlah sedang modal tanam
 
-            $jmlgs = TransaksiSawah::where('jenis', 'gs')
-                ->where('status', 'gadai')
+            $jmlgs = TransaksiLahan::where('jenis', 'gs')
+                ->where('status', null)
                 ->count(); //jumlah sedang gadai sawah
-
-            $jmlgabah = TransaksiGabah::where('status', '0')
-                ->count(); //jumlah sedang transaki gabah 
 
             $jmlalat = CartTransaksi::whereHas('tbarangs', function ($query) {
                         $query->where('status', '0');
@@ -87,21 +84,18 @@ class DashboardController extends Controller
                 ->where('jenis', 'beras')
                 ->count(); //jumlah sedang transaksi beras
 
-            $jmltr = TransaksiBarang::where('status', '0')->count(); // jumlah sedang transaksi barang
+            $jmltr = TransaksiBarang::where('status', '0')->where('bukti', '!=', null)->count(); // jumlah sedang transaksi barang
 
         // end untuk card
 
         // untuk chartJS (jumlah riwayat transaksi)
-            $rmt = TransaksiSawah::where('jenis', 'mt')
+            $rmt = TransaksiLahan::where('jenis', 'mt')
             ->where('status', 'selesai')
             ->count(); //jumlah riwayat modal tanam
 
-            $rgs = TransaksiSawah::where('jenis', 'gs')
+            $rgs = TransaksiLahan::where('jenis', 'gs')
                 ->where('status', 'selesai')
                 ->count(); //jumlah riwayat gadai sawah
-
-            $rgabah = TransaksiGabah::where('status', '1')
-                ->count(); //jumlah riwayat transaki gabah
 
             $ralat = CartTransaksi::whereHas('tbarangs', function ($query) {
                         $query->where('status', '1');
@@ -137,7 +131,6 @@ class DashboardController extends Controller
         	'jmlbibit' => $jmlbibit,
         	'jmlpupuk' => $jmlpupuk,
         	'jmlberas' => $jmlberas,
-        	'jmlgabah' => $jmlgabah,
             'jmltr' => $jmltr,
             // end variabel untuk card
 
@@ -147,8 +140,7 @@ class DashboardController extends Controller
             'ralat' => $ralat,
             'rbibit' => $rbibit,
             'rpupuk' => $rpupuk,
-            'rberas' => $rberas,
-            'rgabah' => $rgabah 
+            'rberas' => $rberas
             // end variabel untuk chartJS 
         ]);
     }
