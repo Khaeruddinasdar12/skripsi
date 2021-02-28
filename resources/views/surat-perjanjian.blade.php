@@ -32,7 +32,7 @@
     <br>
     <h4 style="text-align: center;">SURAT PERJANJIAN GADAI LAHAN</h4>
     <p>Kami yang bertandatangan di bawah ini:</p>
-    <p>Nama: ______________<br /> Pekerjaan: ___________<br /> Alamat: _____________</p>
+    <p>Nama: $<br /> Pekerjaan: ___________<br /> Alamat: _____________</p>
     <p>Selanjutnya disebut pihak PERTAMA atau pemilik tanah</p>
     <p>Nama: ______________<br /> Pekerjaan: ___________<br /> Alamat: _____________</p>
     <p>Selanjutnya disebut pihak KEDUA atau pihak yang memberi gadai</p>
