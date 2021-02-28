@@ -6,7 +6,7 @@
 <head>
   <base href="../../../">
   <meta charset="utf-8" />
-  <title>GalungApp</title>
+  <title>SayurQita</title>
   <meta name="description" content="Login page example">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -51,7 +51,7 @@
         <div class="kt-grid__item kt-grid__item--fluid kt-grid__item--center kt-grid kt-grid--ver kt-login__content login-bg">
           <div class="kt-login__section">
             <div class="kt-login__block">
-              <img src="{{ asset('img/logogalung.png') }}" alt="logo galung" class="img-fluid kt-login__title logogalung">
+              <img src="{{ asset('logo-putih.png') }}" alt="logo sayurqita" class="img-fluid kt-login__title logogalung">
             </div>
           </div>
         </div>

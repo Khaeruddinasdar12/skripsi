@@ -23,7 +23,7 @@
     <!-- begin:: Brand -->
     <div class="kt-header__brand" id="kt_header_brand">
       <a class="kt-header__brand-logo" href="?page=index">
-        <img alt="Logo" src=" {{ asset('img/logocrop.png') }} " class="logogalung">
+        <img alt="Logo" src=" {{ asset('logo-putih.png') }} " class="logogalung">
       </a>
       <span class="border-right"></span>
     </div>
