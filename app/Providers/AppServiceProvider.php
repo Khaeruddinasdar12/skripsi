@@ -7,7 +7,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\TransaksiLahan;
 use App\TransaksiBarang;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Schema;
+=======
+>>>>>>> 0338b27002787ce71473b24274fddd93d9f571bc
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -27,7 +30,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(Request $request)
     {   
+<<<<<<< HEAD
         Schema::defaultStringLength(191);
+=======
+>>>>>>> 0338b27002787ce71473b24274fddd93d9f571bc
         if ($request->is('api/*') || $request->is('/')) {
          
         } else {
