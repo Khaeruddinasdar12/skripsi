@@ -16,7 +16,7 @@ table .btn-more-custom {
 }
 
 .kt-login .login-bg {
-  background-image: url("../img/galung1.jpg");
+  background-image: url("../img/sayurbg.jpg");
   position: relative !important;
   overflow: hidden !important;
 }
@@ -32,7 +32,7 @@ table .btn-more-custom {
 .kt-login .login-bg .kt-login__block .logogalung {
   position: relative;
   z-index: 1;
-  width: 600px;
+  width: 500px;
 }
 .kt-login .hello .kt-login__title {
   font-size: 40px !important;
@@ -572,14 +572,25 @@ table .dropdown-table-custom ul .verif-data:hover .kt-nav__link-icon, table .dro
 }
 
 .jumbotron {
-  background-image: url("../img/galung-dashboard.jpg");
+  background-image: url("../img/bgdashboard1.jpg");
   background-size: cover;
   height: 400px;
   background-position-y: -200px;
   margin-top: -150px;
 }
+.jumbotron::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 360px;
+  background-color: rgba(29, 29, 29, 0.548);
+  position: absolute;
+  top: 0;
+}
 .jumbotron .kt-subheader {
   margin-top: 100px;
+  position: relative;
+  z-index: 5 !important;
 }
 .jumbotron .kt-subheader h1 {
   color: #fff;
