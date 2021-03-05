@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(Request $request)
     {   
         if ($request->is('api/*') || $request->is('/')) {
-         
+        
         } else {
             $mt = TransaksiLahan::where('jenis', 'mt')
             ->where('status', null)
