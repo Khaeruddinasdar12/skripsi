@@ -137,12 +137,25 @@ class TransaksiBarangController extends Controller
         ]);
     }
 
-    public function uploadBukti($id)
+    public function uploadBukti(Request $request,$id)
     {   
         if(!$user = Auth::user()) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Invalid Token'
+            ]);
+        }
+
+        $validator = Validator::make($request->all(), [
+            'bukti' => 'required|image|mimes:jpeg,png,jpg|max:3072',
+
+        ]);
+
+        if($validator->fails()) {
+            $message = $validator->messages()->first();
+            return response()->json([
+                'status' => false,
+                'messsage' => $message
             ]);
         }
 
