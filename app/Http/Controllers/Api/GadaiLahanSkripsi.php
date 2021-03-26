@@ -9,6 +9,94 @@ use Illuminate\Support\Facades\Validator;
 use App\TransaksiLahan;
 class GadaiLahanSkripsi extends Controller
 {
+	public function index() // list daftar gadai lahan
+	{
+		if(!$user = Auth::user()) {
+			return response()->json([
+				'status'    => false,
+				'message'   => 'Invalid Token'
+			]);
+		}
+
+		$data = TransaksiLahan::select('id', 'periode', 'harga', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'created_at')
+				->where('user_id', $user->id)
+				->where('jenis', 'gs')
+				->where('status', null)
+				->get();
+		
+		return response()->json([
+			'status' => true,
+			'message' => 'List Gadai Lahan sedang di daftar',
+			'data'	=> $data
+		]);
+	}
+
+	public function gadai() // list sedang gadai lahan
+	{
+		if(!$user = Auth::user()) {
+			return response()->json([
+				'status'    => false,
+				'message'   => 'Invalid Token'
+			]);
+		}
+
+		$data = TransaksiLahan::select('id', 'periode', 'harga', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'created_at')
+				->where('user_id', $user->id)
+				->where('jenis', 'gs')
+				->where('status', 'gadai')
+				->get();
+		
+		return response()->json([
+			'status' => true,
+			'message' => 'List Gadai Lahan yang sedang berlangsung',
+			'data'	=> $data
+		]);
+	}
+
+	public function riwayat() // list riwayat gadai lahan
+	{
+		if(!$user = Auth::user()) {
+			return response()->json([
+				'status'    => false,
+				'message'   => 'Invalid Token'
+			]);
+		}
+
+		$data = TransaksiLahan::select('id', 'periode', 'harga', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'created_at')
+				->where('user_id', $user->id)
+				->where('jenis', 'gs')
+				->where('status', 'selesai')
+				->get();
+		
+		return response()->json([
+			'status' => true,
+			'message' => 'List Riwayat Gadai Lahan',
+			'data'	=> $data
+		]);
+	}
+
+	public function batal() //list batal gadai lahan
+	{
+		if(!$user = Auth::user()) {
+			return response()->json([
+				'status'    => false,
+				'message'   => 'Invalid Token'
+			]);
+		}
+
+		$data = TransaksiLahan::select('id', 'periode', 'harga', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'created_at')
+				->where('user_id', $user->id)
+				->where('jenis', 'gs')
+				->where('status', 'batal')
+				->get();
+		// return $data;
+		return response()->json([
+			'status' => true,
+			'message' => 'List Batal Gadai Lahan ',
+			'data'	=> $data
+		]);
+	}
+
 	public function store(Request $request)
 	{
 		if(!$user = Auth::user()) {

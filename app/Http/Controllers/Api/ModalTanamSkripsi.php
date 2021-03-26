@@ -18,7 +18,7 @@ class ModalTanamSkripsi extends Controller
 			]);
 		}
 
-		$data = TransaksiLahan::select('id', 'jenis_bibit', 'jenis_pupuk', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan')
+		$data = TransaksiLahan::select('id', 'jenis_bibit', 'jenis_pupuk', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'created_at')
 				->where('user_id', $user->id)
 				->where('jenis', 'mt')
 				->where('status', null)
@@ -40,7 +40,7 @@ class ModalTanamSkripsi extends Controller
 			]);
 		}
 
-		$data = TransaksiLahan::select('id', 'jenis_bibit', 'jenis_pupuk', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan')
+		$data = TransaksiLahan::select('id', 'jenis_bibit', 'jenis_pupuk', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'created_at')
 				->where('user_id', $user->id)
 				->where('jenis', 'mt')
 				->where('status', 'selesai')
@@ -62,7 +62,7 @@ class ModalTanamSkripsi extends Controller
 			]);
 		}
 
-		$data = TransaksiLahan::select('id', 'jenis_bibit', 'jenis_pupuk', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan')
+		$data = TransaksiLahan::select('id', 'jenis_bibit', 'jenis_pupuk', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'created_at')
 				->where('user_id', $user->id)
 				->where('jenis', 'mt')
 				->where('status', 'batal')

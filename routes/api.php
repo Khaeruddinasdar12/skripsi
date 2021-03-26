@@ -44,6 +44,7 @@ $api->version('v1', function($api) {
         // GADAI LAHAN CONTROLLER SKRIPSI
         Route::post('gadai-lahan-skripsi', 'Api\GadaiLahanSkripsi@store'); // post mendaftarkan sawah untuk digadai modal tanam
 
+        Route::get('list-daftar-gadai-lahan-skripsi', 'Api\GadaiLahanSkripsi@index'); // list sawah yang sedang tergadai oleh user id
         Route::get('list-sedang-gadai-lahan-skripsi', 'Api\GadaiLahanSkripsi@gadai'); // list sawah yang sedang tergadai oleh user id
         Route::get('list-batal-gadai-lahan-skripsi', 'Api\GadaiLahanSkripsi@batal'); // list sawah yang batal oleh user id
         Route::get('list-riwayat-gadai-lahan-skripsi', 'Api\GadaiLahanSkripsi@riwayat'); // list sawah riwayat tergadai oleh user id
