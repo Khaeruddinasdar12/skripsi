@@ -9,6 +9,72 @@ use Illuminate\Support\Facades\Validator;
 use App\TransaksiLahan;
 class ModalTanamSkripsi extends Controller
 {
+	public function index() // list daftar modal tanam (belum verifikasi)
+	{
+		if(!$user = Auth::user()) {
+			return response()->json([
+				'status'    => false,
+				'message'   => 'Invalid Token'
+			]);
+		}
+
+		$data = TransaksiLahan::select('id', 'jenis_bibit', 'jenis_pupuk', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan')
+				->where('user_id', $user->id)
+				->where('jenis', 'mt')
+				->where('status', null)
+				->get();
+		
+		return response()->json([
+			'status' => true,
+			'message' => 'List Modal Tanam yang sedang di daftar',
+			'data'	=> $data
+		]);
+	}
+
+	public function riwayat() // list riwayat modal tanam
+	{
+		if(!$user = Auth::user()) {
+			return response()->json([
+				'status'    => false,
+				'message'   => 'Invalid Token'
+			]);
+		}
+
+		$data = TransaksiLahan::select('id', 'jenis_bibit', 'jenis_pupuk', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan')
+				->where('user_id', $user->id)
+				->where('jenis', 'mt')
+				->where('status', 'selesai')
+				->get();
+		
+		return response()->json([
+			'status' => true,
+			'message' => 'List Riwayat Modal Tanam',
+			'data'	=> $data
+		]);
+	}
+
+	public function batal() //list batal modal tanam
+	{
+		if(!$user = Auth::user()) {
+			return response()->json([
+				'status'    => false,
+				'message'   => 'Invalid Token'
+			]);
+		}
+
+		$data = TransaksiLahan::select('id', 'jenis_bibit', 'jenis_pupuk', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan')
+				->where('user_id', $user->id)
+				->where('jenis', 'mt')
+				->where('status', 'batal')
+				->get();
+		// return $data;
+		return response()->json([
+			'status' => true,
+			'message' => 'List Batal Modal Tanam ',
+			'data'	=> $data
+		]);
+	}
+
     public function store(Request $request)
 	{
 		if(!$user = Auth::user()) {

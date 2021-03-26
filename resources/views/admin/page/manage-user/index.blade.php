@@ -84,6 +84,7 @@
                           <th>#</th>
                           <th>Nama Lengkap</th>
                           <th>Email</th>
+                          <th>Foto KTP</th>
                           <th>Kelurahan / Desa</th>
                           <th>Jenis Kelamin</th>
                           <th>Action</th>
@@ -110,6 +111,7 @@
                         <th scope="row">{{$no++}}</th>
                         <td>{{$user->name}} </td>
                         <td>{{$user->email}}</td>
+                        <td><a href="{{asset('storage/'.$user->foto_ktp)}}"><img src="{{asset('storage/'.$user->foto_ktp)}}" width="90px" height="90px"></a></td>
                         <td>{{$user->kelurahan}}</td>
                         <td>
                           @if($user->jkel == 'P') Perempuan

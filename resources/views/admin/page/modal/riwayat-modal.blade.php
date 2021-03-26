@@ -122,9 +122,9 @@
                         <td>{{$gadais->users->name}}</td>
                         <td>{{$gadais->jenis_bibit}}</td>
                         <td>{{$gadais->jenis_pupuk}}</td>
-                        <td><a href="{{asset('storage/'.$gadais->users->foto_ktp)}}"><img src="{{asset('storage/'.$gadais->users->foto_ktp)}}" width="120px" height="120px"></a></td>
-                        <td><a href="{{asset('storage/'.$gadais->sertifikat_tanah)}}"><img src="{{asset('storage/'.$gadais->sertifikat_tanah)}}" width="120px" height="120px"></a></td>
-                        <td><a href="{{asset('storage/'.$gadais->surat_pajak)}}"><img src="{{asset('storage/'.$gadais->surat_pajak)}}" width="120px" height="120px"></a></td>
+                        <td><a href="{{asset('storage/'.$gadais->users->foto_ktp)}}"><img src="{{asset('storage/'.$gadais->users->foto_ktp)}}" width="90px" height="90px"></a></td>
+                        <td><a href="{{asset('storage/'.$gadais->sertifikat_tanah)}}"><img src="{{asset('storage/'.$gadais->sertifikat_tanah)}}" width="90px" height="90px"></a></td>
+                        <td><a href="{{asset('storage/'.$gadais->surat_pajak)}}"><img src="{{asset('storage/'.$gadais->surat_pajak)}}" width="90px" height="90px"></a></td>
                         <td>
                           <div class="btn btn-bold btn-sm btn-font-sm  btn-label-success" style="font-size: 14px;">
                             Riwayat Modal Tanam

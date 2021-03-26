@@ -34,7 +34,9 @@ $api->version('v1', function($api) {
         // MODAL TANAM CONTROLLER SKRIPSI
         Route::post('modal-tanam-skripsi', 'Api\ModalTanamSkripsi@store'); // post mendaftarkan sawah untuk digadai modal tanam
 
-        Route::get('list-sedang-gadai-modal-tanam', 'Api\ModalTanamController@gadai'); // list sawah yang sedang tergadai modal tanam oleh user id
+        Route::get('list-daftar-modal-tanam-skripsi', 'Api\ModalTanamSkripsi@index'); // list sawah yang sedang didaftar modal tanam oleh user id
+        Route::get('list-batal-modal-tanam-skripsi', 'Api\ModalTanamSkripsi@batal'); // list sawah yang batal modal tanam oleh user id
+        Route::get('list-riwayat-modal-tanam-skripsi', 'Api\ModalTanamSkripsi@riwayat'); // list sawah yang sedang tergadai modal tanam oleh user id
 
         // END MODAL TANAM CONTROLLER SKRIPSI
 
@@ -42,7 +44,9 @@ $api->version('v1', function($api) {
         // GADAI LAHAN CONTROLLER SKRIPSI
         Route::post('gadai-lahan-skripsi', 'Api\GadaiLahanSkripsi@store'); // post mendaftarkan sawah untuk digadai modal tanam
 
-        Route::get('list-sedang-gadai-modal-tanam', 'Api\ModalTanamController@gadai'); // list sawah yang sedang tergadai modal tanam oleh user id
+        Route::get('list-sedang-gadai-lahan-skripsi', 'Api\GadaiLahanSkripsi@gadai'); // list sawah yang sedang tergadai oleh user id
+        Route::get('list-batal-gadai-lahan-skripsi', 'Api\GadaiLahanSkripsi@batal'); // list sawah yang batal oleh user id
+        Route::get('list-riwayat-gadai-lahan-skripsi', 'Api\GadaiLahanSkripsi@riwayat'); // list sawah riwayat tergadai oleh user id
 
         // END GADAI LAHAN CONTROLLER SKRIPSI
 

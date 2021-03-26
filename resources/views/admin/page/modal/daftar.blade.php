@@ -115,9 +115,9 @@
                         <td>{{$datas->users->name}}</td>
                         <td>{{$datas->jenis_bibit}}</td>
                         <td>{{$datas->jenis_pupuk}}</td>
-                        <td><a href="{{asset('storage/'.$datas->users->foto_ktp)}}"><img src="{{asset('storage/'.$datas->users->foto_ktp)}}" width="120px" height="120px"></a></td>
-                        <td><a href="{{asset('storage/'.$datas->sertifikat_tanah)}}"><img src="{{asset('storage/'.$datas->sertifikat_tanah)}}" width="120px" height="120px"></a></td>
-                        <td><a href="{{asset('storage/'.$datas->surat_pajak)}}"><img src="{{asset('storage/'.$datas->surat_pajak)}}" width="120px" height="120px"></a></td>
+                        <td><a href="{{asset('storage/'.$datas->users->foto_ktp)}}"><img src="{{asset('storage/'.$datas->users->foto_ktp)}}" width="90px" height="90px"></a></td>
+                        <td><a href="{{asset('storage/'.$datas->sertifikat_tanah)}}"><img src="{{asset('storage/'.$datas->sertifikat_tanah)}}" width="90px" height="90px"></a></td>
+                        <td><a href="{{asset('storage/'.$datas->surat_pajak)}}"><img src="{{asset('storage/'.$datas->surat_pajak)}}" width="90px" height="90px"></a></td>
                         <td>
                           <div class="btn btn-bold btn-sm btn-font-sm  btn-label-danger" style="font-size: 14px;">
                             Belum Terverifikasi
@@ -143,7 +143,7 @@
                                   </a>
                                 </li>
                                 <li class="kt-nav__item">
-                                  <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$datas->id}}" data-href="{{ route('delgadai.modaltanam', ['id' => $datas->id]) }}">
+                                  <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$datas->id}}" data-href="{{ route('batalkan.modaltanam.skripsi', ['id' => $datas->id]) }}">
                                     <i class="kt-nav__link-icon fa fa-trash-alt"></i>
                                     <span class="kt-nav__link-text">Hapus Data</span>
                                   </a>
@@ -301,6 +301,7 @@
               <p>Data yang telah di hapus tidak dapat</p>
               <p>dikembalikan lagi</p>
               <form action="" method="POST" id="hapus-data">
+                <input type="hidden" value="PUT" name="_method">
                 <div class="form-group">
                   <label for="exampleTextarea">Tambahkan keterangan :</label>
                   <textarea class="form-control" name="keterangan" rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 97px; resize: none" required>Mohon maaf sawah Anda tidak memenuhi kriteria sistem.</textarea>

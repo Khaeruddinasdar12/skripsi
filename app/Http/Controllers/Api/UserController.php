@@ -53,7 +53,7 @@ class UserController extends Controller
             'rt' => 'required|string',
             'rw' => 'required|string',
             'nohp' => 'required|string',
-            'jkel' => 'required|string',
+            'jkel' => 'required|string', // "L", "P"
             'foto_ktp' => 'image|mimes:jpeg,png,jpg|max:3072',    
         ]);
 

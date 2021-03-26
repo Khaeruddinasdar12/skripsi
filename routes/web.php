@@ -52,11 +52,11 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 
 	// MODAL TANAM SKRIPSI
 	Route::get('daftar-modal-tanam', 'ModalTanamSkripsi@daftar')->name('daftar.modaltanam.skripsi'); //menampilkan hal. data mendaftarkan sawah untuk digadai 
-	Route::get('sedang-modal-tanam', 'ModalTanamSkripsi@sedanggadai')->name('sedang.modaltanam.skripsi'); //menampilkan hal. data yang sedang menggadai sawahnya
 	Route::get('riwayat-modal-tanam', 'ModalTanamSkripsi@riwayatgadai')->name('riwayat.modaltanam.skripsi'); //menampilkan hal. data riwayat gadai sawah
 
 
 	Route::put('mt-gadai-status/{id}', 'ModalTanamSkripsi@gadaistatus')->name('gadaistatus.modaltanam.skripsi'); // mengubah "daftar gadai" menjadi "sedang gadai"
+	Route::put('mt-batalkan-status/{id}', 'ModalTanamSkripsi@batalkanstatus')->name('batalkan.modaltanam.skripsi'); // mengubah "daftar gadai" menjadi "batal"
 	Route::delete('mt-hapus-riwayat/{id}', 'ModalTanamSkripsi@delriwayat')->name('delriwayat.modaltanam.skripsi')->middleware('CekAdmin'); // menghapus riwayat gadai hanya 
 	// END MODAL TANAM SKRIPSI
 
