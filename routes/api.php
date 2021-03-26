@@ -57,7 +57,9 @@ $api->version('v1', function($api) {
         Route::get('cart', 'Api\TransaksiBarangController@cart');
         Route::post('edit-cart/{id}', 'Api\TransaksiBarangController@edit');
         Route::post('delete-cart/{id}', 'Api\TransaksiBarangController@delete');
+        Route::post('upload-bukti/{id}', 'Api\TransaksiBarangController@uploadBukti');
 
+        Route::get('belum-bayar', 'Api\TransaksiBarangController@belumBayar');
         Route::get('proses-belanja', 'Api\TransaksiBarangController@proses');
         Route::get('riwayat-belanja', 'Api\TransaksiBarangController@riwayat');
         Route::get('batal-belanja', 'Api\TransaksiBarangController@batal');
