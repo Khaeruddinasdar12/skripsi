@@ -54,7 +54,7 @@ class UserController extends Controller
             'rw' => 'required|string',
             'nohp' => 'required|string',
             'jkel' => 'required|string', // "L", "P"
-            // 'foto_ktp' => 'image|mimes:jpeg,png,jpg|max:3072',    
+            'foto_ktp' => 'mimes:jpeg,png,jpg|max:3072',    
         ]);
 
         if($validator->fails()) {
@@ -83,7 +83,7 @@ class UserController extends Controller
             'kelurahan' => $request->get('kelurahan'),
             'nohp'      => $request->get('nohp'),
             'petani_verified' => '1', // terverifikasi (skripsi)
-            // 'foto_ktp'  => $gambar_path,
+            'foto_ktp'  => $gambar_path,
             'jkel'      => $request->get('jkel'),
             'rt' => $request->get('rt'),
             'rw' => $request->get('rw'),
