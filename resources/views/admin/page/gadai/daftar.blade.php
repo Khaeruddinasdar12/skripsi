@@ -40,7 +40,7 @@
           <div class="kt-portlet kt-iconbox--animate-faster" data-margin-top="100px">
             <div class="kt-portlet__body">
               <h5 style="color: #222;">
-                Jumlah Data Sawah Yang Belum Terverifikasi
+                Jumlah Data Lahan Yang Belum Terverifikasi
               </h5>
               <h4 class=" mt-3" style="font-weight: 800;">
                 {{$jml}} Data
@@ -59,7 +59,7 @@
                   <img src="{{ asset('img/gadaisawah.png') }}" alt="gadai sawah" class="image-table-gadaisawah">
                 </span>
                 <h3 class="kt-portlet__head-title">
-                  Data Gadai Sawah Yang Belum Diverifikasi
+                  Data Gadai Lahan Yang Belum Diverifikasi
                 </h3>
               </div>
               <div class="kt-portlet__head-toolbar">
@@ -86,7 +86,7 @@
                           <th>Nama Penggadai</th>
                           <th>Periode Gadai</th>
                           <th>Harga Gadai</th>
-                          <th>Luas Sawah</th>
+                          <th>Luas Lahan</th>
                           <th>Foto KTP</th>
                           <th>Sertifikat Tanah</th>
                           <th>Surat Pajak</th>
@@ -339,6 +339,7 @@
     var alamat = a.data('alamat')
     var luas_sawah = a.data('luas_sawah')
     var name = a.data('name')
+    var maps = 'https://www.google.com/maps/?q='
 
     var modal = $(this)
     modal.find('.modal-title').text('Detail ' + name)
@@ -348,7 +349,7 @@
     modal.find('.modal-body #periode').text(periode)
     modal.find('.modal-body #harga').text(harga)
     modal.find('.modal-body #luas_sawah').text(luas_sawah)
-    modal.find('.modal-body #titik_koordinat').text(titik_koordinat)
+    modal.find('.modal-body #titik_koordinat').html('<a target="_blank" href="'+maps+titik_koordinat+'">Lihat maps</a>')
     modal.find('.modal-body #kecamatan').text(kecamatan)
     modal.find('.modal-body #kelurahan').text(kelurahan)
     modal.find('.modal-body #alamat').text(alamat)

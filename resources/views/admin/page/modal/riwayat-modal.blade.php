@@ -95,7 +95,7 @@
                       </thead>
                       @if ($jml == 0)
                       <tbody style="text-align: center;">
-                        <td colspan="8">Belum ada data</td>
+                        <td colspan="10">Belum ada data</td>
                       </tbody>
                       @else
                       <tbody>
@@ -312,6 +312,7 @@
     var kota = a.data('kota')
     var name = a.data('name')
     var admin = a.data('admin')
+    var maps = 'https://www.google.com/maps/?q='
 
     var modal = $(this)
     modal.find('.modal-title').text('Detail ' + name)
@@ -320,7 +321,7 @@
     modal.find('.modal-body #email').text(email)
     modal.find('.modal-body #nohp').text(nohp)
     modal.find('.modal-body #luas_sawah').text(luas_sawah)
-    modal.find('.modal-body #titik_koordinat').text(titik_koordinat)
+    modal.find('.modal-body #titik_koordinat').html('<a target="_blank" href="'+maps+titik_koordinat+'">Lihat maps</a>')
     modal.find('.modal-body #kota').text(kota)
     modal.find('.modal-body #kecamatan').text(kecamatan)
     modal.find('.modal-body #kelurahan').text(kelurahan)
