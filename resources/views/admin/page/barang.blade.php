@@ -232,7 +232,7 @@
                       <label>Jenis Barang</label>
                       <select class="form-control" name="jenis">
                         <option value="alat">Alat</option>
-                        <option value="beras">Beras</option>
+                        <option value="sayur">sayur</option>
                         <option value="bibit">Bibit</option>
                         <option value="pupuk">Pupuk</option>
                       </select>
@@ -379,7 +379,7 @@
                       <label>Jenis Barang</label>
                       <select class="form-control" name="jenis" id="jeniss">
                         <option value="alat">Alat</option>
-                        <option value="beras">Beras</option>
+                        <option value="sayur">Sayur</option>
                         <option value="bibit">Bibit</option>
                         <option value="pupuk">Pupuk</option>
                       </select>

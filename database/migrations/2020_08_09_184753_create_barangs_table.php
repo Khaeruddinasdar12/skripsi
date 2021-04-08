@@ -16,7 +16,7 @@ class CreateBarangsTable extends Migration
         Schema::create('barangs', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->enum('jenis', ['alat', 'beras', 'bibit', 'pupuk']);
+            $table->enum('jenis', ['alat', 'sayur', 'bibit', 'pupuk']);
             $table->integer('harga');
             $table->integer('min_beli');
             $table->integer('stok');
@@ -24,6 +24,7 @@ class CreateBarangsTable extends Migration
             $table->string('gambar')->nullable();
             $table->string('admin_id');
             $table->timestamps();
+            
         });
     }
 

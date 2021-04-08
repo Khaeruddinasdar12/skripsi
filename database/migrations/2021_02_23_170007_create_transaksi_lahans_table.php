@@ -31,9 +31,11 @@ class CreateTransaksiLahansTable extends Migration
             $table->string('alamat');
             $table->string('titik_koordinat')->nullable();
             $table->string('luas_lahan');
-            $table->integer('user_id');
-            $table->integer('admin_id')->nullable();
+            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('admin_id')->unsigned()->nullable();
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('admin_id')->references('id')->on('admins');
         });
     }
 

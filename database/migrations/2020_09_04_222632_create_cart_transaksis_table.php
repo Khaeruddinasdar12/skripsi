@@ -20,9 +20,11 @@ class CreateCartTransaksisTable extends Migration
             $table->integer('harga');
             $table->integer('jumlah');
             $table->integer('subtotal');
-            $table->integer('transaksi_id');
-            $table->integer('barang_id');
+            $table->bigInteger('transaksi_id')->unsigned();
+            $table->bigInteger('barang_id')->unsigned();
             $table->timestamps();
+            $table->foreign('transaksi_id')->references('id')->on('transaksi_barangs');
+            $table->foreign('barang_id')->references('id')->on('barangs');
         });
     }
 

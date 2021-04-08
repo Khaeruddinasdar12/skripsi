@@ -78,7 +78,7 @@ class BarangController extends Controller
             'gambar'    => 'image|mimes:jpeg,png,jpg|max:3072'
         ]);
 
-        $arrjenis = array('alat', 'beras', 'bibit', 'pupuk'); 
+        $arrjenis = array('alat', 'sayur', 'bibit', 'pupuk'); 
         if(!in_array($request->get('jenis'), $arrjenis)) {
         	return redirect()->back()->with('error', 'Lu ngapain sih ?');
         }
@@ -113,7 +113,7 @@ class BarangController extends Controller
             'gambar'    => 'image|mimes:jpeg,png,jpg|max:3072'
         ]);
 
-        $arrjenis = array('alat', 'beras', 'bibit', 'pupuk'); 
+        $arrjenis = array('alat', 'sayur', 'bibit', 'pupuk'); 
 	        if(!in_array($request->get('jenis'), $arrjenis)) {
 	        	return redirect()->back()->with('error', 'Lu ngapain sih ?');
         }

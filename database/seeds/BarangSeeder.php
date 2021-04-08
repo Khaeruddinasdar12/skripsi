@@ -14,7 +14,7 @@ class BarangSeeder extends Seeder
     	// BERAS
         DB::table('barangs')->insert([ // id 1
 	        'nama'  	=> 'Ketan', 
-	        'jenis'		=> 'beras',
+	        'jenis'		=> 'sayur',
 	        'harga' 	=> 6000, //per KG
 	        'min_beli' 	=> 5,
 	        'stok' 		=> 25,
@@ -26,7 +26,7 @@ class BarangSeeder extends Seeder
 
 		DB::table('barangs')->insert([ // id 2
 	        'nama'  	=> 'Pulut',
-	        'jenis'		=> 'beras', 
+	        'jenis'		=> 'sayur', 
 	        'harga' 	=> 5000, //per KG
 	        'min_beli' 	=> 5, 
 	        'stok' 		=> 75,  

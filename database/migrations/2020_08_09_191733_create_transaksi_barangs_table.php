@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -29,9 +30,11 @@ class CreateTransaksiBarangsTable extends Migration
             $table->enum('jenis_bayar', ['tf', 'cod']);
             $table->string('bukti')->nullable();
             $table->enum('status', ['0','1', 'batal'])->nullable();
-            $table->integer('user_id');
-            $table->integer('admin_id')->nullable();
+            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('admin_id')->unsigned()->nullable();
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('admin_id')->references('id')->on('admins');
         });
     }
 
