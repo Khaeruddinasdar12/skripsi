@@ -66,7 +66,7 @@
                     <select class="form-control" name="filter">
                       <option value="">semua</option>
                       <option value="alat" @if(Request::get('filter')=='alat' ) selected @endif>Alat</option>
-                      <option value="beras" @if(Request::get('filter')=='beras' ) selected @endif>Beras</option>
+                      <option value="sayur" @if(Request::get('filter')=='sayur' ) selected @endif>Sayur</option>
                       <option value="bibit" @if(Request::get('filter')=='bibit' ) selected @endif>Bibit</option>
                       <option value="pupuk" @if(Request::get('filter')=='pupuk' ) selected @endif>Pupuk</option>
                     </select>
