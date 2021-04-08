@@ -112,6 +112,7 @@ class UserController extends Controller
             'tanggal_lahir' => 'required',
             'alamat_lengkap' => 'required|string',
             'kecamatan'     => 'required|string',
+            'pekerjaan'     => 'required|string',
             'kelurahan'     => 'required|string',
             'nohp'          => 'required|string',
             'kota_id'       => 'required|numeric',
@@ -124,6 +125,7 @@ class UserController extends Controller
         $data->name         = $request->get('name');
         $data->tempat_lahir = $request->get('tempat_lahir');
         $data->alamat       = $request->get('alamat_lengkap');
+        $data->pekerjaan    = $request->get('pekerjaan');
         $data->kecamatan    = $request->get('kecamatan');
         $data->nohp         = $request->get('nohp');
         $data->alamat_id    = $request->get('kota_id');

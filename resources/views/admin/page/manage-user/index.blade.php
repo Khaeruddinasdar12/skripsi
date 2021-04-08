@@ -125,17 +125,19 @@
                             <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
                               <ul class="kt-nav">
                                 <li class="kt-nav__item">
-                                  <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-email="{{$user->email}}" data-tempat_lahir="{{$user->tempat_lahir}}" data-tanggal_lahir="{{$user->tanggal_lahir}}" data-alamat="{{$user->alamat}}" data-kecamatan="{{$user->kecamatan}}" data-kelurahan="{{$user->kelurahan}}" data-nohp="{{$user->nohp}}" data-petani_verified="{{$user->petani_verified}}" data-jkel="{{$user->jkel}}" data-rt="{{$user->rt}}" data-rw="{{$user->rw}}" data-role="{{$user->role}}">
+                                  <a href="#" class="kt-nav__link detail-data" data-toggle="modal" data-target="#modal-detail-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-email="{{$user->email}}" data-tempat_lahir="{{$user->tempat_lahir}}" data-tanggal_lahir="{{$user->tanggal_lahir}}" data-alamat="{{$user->alamat}}" data-kecamatan="{{$user->kecamatan}}" data-kelurahan="{{$user->kelurahan}}" data-nohp="{{$user->nohp}}" data-petani_verified="{{$user->petani_verified}}" data-jkel="{{$user->jkel}}" data-rt="{{$user->rt}}" data-rw="{{$user->rw}}" data-role="{{$user->role}}" data-pekerjaan="{{$user->pekerjaan}}">
                                     <i class="kt-nav__link-icon flaticon2-indent-dots"></i>
                                     <span class="kt-nav__link-text">Detail</span>
                                   </a>
                                 </li>
+                                @if(Auth::guard('admin')->user()->role == 'superadmin')
                                 <li class="kt-nav__item">
-                                  <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-email="{{$user->email}}" data-tempat_lahir="{{$user->tempat_lahir}}" data-tanggal_lahir="{{$user->tanggal_lahir}}" data-alamat="{{$user->alamat}}" data-kecamatan="{{$user->kecamatan}}" data-kelurahan="{{$user->kelurahan}}" data-nohp="{{$user->nohp}}" data-petani_verified="{{$user->petani_verified}}" data-jkel="{{$user->jkel}}" data-rt="{{$user->rt}}" data-rw="{{$user->rw}}" data-role="{{$user->role}}" data-href="{{ route('edit.manage-user', ['id' => $user->id]) }}" data-alamat_id="{{$user->alamat_id}}">
+                                  <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-user" data-id="{{$user->id}}" data-name="{{$user->name}}" data-email="{{$user->email}}" data-tempat_lahir="{{$user->tempat_lahir}}" data-tanggal_lahir="{{$user->tanggal_lahir}}" data-alamat="{{$user->alamat}}" data-kecamatan="{{$user->kecamatan}}" data-kelurahan="{{$user->kelurahan}}" data-nohp="{{$user->nohp}}" data-petani_verified="{{$user->petani_verified}}" data-jkel="{{$user->jkel}}" data-rt="{{$user->rt}}" data-rw="{{$user->rw}}" data-role="{{$user->role}}" data-href="{{ route('edit.manage-user', ['id' => $user->id]) }}" data-alamat_id="{{$user->alamat_id}}" data-pekerjaan="{{$user->pekerjaan}}">
                                     <i class=" kt-nav__link-icon flaticon2-settings"></i>
                                     <span class="kt-nav__link-text">Edit</span>
                                   </a>
                                 </li>
+                                @endif
                               </ul>
                             </div>
                           </div>
@@ -186,6 +188,10 @@
                     </div>
                     <div class="kt-widget__body widget-detail">
                       <div class="kt-widget__item">
+                        <div class="kt-widget__contact">
+                          <span class="kt-widget__label">Pekerjaan :</span>
+                          <span class="kt-widget__data" id="pekerjaan"></span>
+                        </div>
                         <div class="kt-widget__contact">
                           <span class="kt-widget__label">Tempat lahir :</span>
                           <span class="kt-widget__data" id="tempat_lahir"></span>
@@ -303,6 +309,13 @@
                             <input class="form-control" type="date" id="tanggal_lahirs" name="tanggal_lahir" required>
                           </div>
                         </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Pekerjaan :</label>
+                      <div class="kt-input-icon">
+                        <input type="text" id="pekerjaans" class="form-control" name="pekerjaan" required>
+                        <span class="kt-input-icon__icon kt-input-icon__icon--right"><span><i class="fa fa-map-marked-alt"></i></span></span>
                       </div>
                     </div>
                     <div class="form-group">
@@ -453,6 +466,7 @@
     var alamat = a.data('alamat')
     var kecamatan = a.data('kecamatan')
     var kelurahan = a.data('kelurahan')
+    var pekerjaan = a.data('pekerjaan')
     var nohp = a.data('nohp')
     var petani_verified = a.data('petani_verified')
     if (petani_verified == 0) {
@@ -485,6 +499,7 @@
     modal.find('.modal-body #rt').text(rt)
     modal.find('.modal-body #rw').text(rw)
     modal.find('.modal-body #role').text(role)
+    modal.find('.modal-body #pekerjaan').text(pekerjaan)
   })
   // modal detail
 
@@ -500,6 +515,7 @@
     var alamat_id = a.data('alamat_id')
     var kecamatan = a.data('kecamatan')
     var kelurahan = a.data('kelurahan')
+    var pekerjaan = a.data('pekerjaan')   
     var nohp = a.data('nohp')
     var petani_verified = a.data('petani_verified')
     if (petani_verified == 0) {
@@ -545,6 +561,7 @@
     modal.find('.modal-body #rws').val(rw)
     modal.find('.modal-body #roles').val(role)
     modal.find('.modal-body #edit-user-form').attr('action', href)
+    modal.find('.modal-body #pekerjaans').val(pekerjaan)
 
   })
   // modal edit

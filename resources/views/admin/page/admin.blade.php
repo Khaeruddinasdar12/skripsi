@@ -92,7 +92,9 @@
                           <th>Nama</th>
                           <th>Email</th>
                           <th>Role</th>
+                          @if(Auth::guard('admin')->user()->role == 'superadmin')
                           <th>Action</th>
+                          @endif
                         </tr>
                       </thead>
                       @if ($jml == 0)
@@ -117,6 +119,7 @@
                         <td>{{$datas -> name}}</td>
                         <td>{{$datas -> email}}</td>
                         <td>{{$datas -> role}}</td>
+                        @if(Auth::guard('admin')->user()->role == 'superadmin')
                         <td>
                           <div class="dropdown dropdown-inline">
                             <a href="#" class="btn btn-default btn-icon btn-icon-md btn-sm btn-more-custom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -130,25 +133,17 @@
                                     <span class="kt-nav__link-text">Edit</span>
                                   </a>
                                 </li>
-                                @if(Auth::guard('admin')->user()->role != 'superadmin')
-                                <li class="kt-nav__item">
-                                  <a href="#" style="display: none !important;" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$datas->id}}" data-href="{{ route('delete.manage-admin', ['id' => $datas->id]) }}">
-                                    <i class="kt-nav__link-icon flaticon2-rubbish-bin-delete-button"></i>
-                                    <span class="kt-nav__link-text">Hapus</span>
-                                  </a>
-                                </li>
-                                @else
                                 <li class="kt-nav__item">
                                   <a href="#" class="kt-nav__link hapus-data" data-toggle="modal" data-target="#modal-hapus" data-id="{{$datas->id}}" data-href="{{ route('delete.manage-admin', ['id' => $datas->id]) }}">
                                     <i class="kt-nav__link-icon flaticon2-rubbish-bin-delete-button"></i>
                                     <span class="kt-nav__link-text">Hapus</span>
                                   </a>
                                 </li>
-                                @endif
                               </ul>
                             </div>
                           </div>
                         </td>
+                        @endif
                       </tr>
                       @endforeach
                       </tbody>
