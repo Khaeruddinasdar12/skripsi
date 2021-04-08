@@ -125,7 +125,7 @@
                             <div class="dropdown-menu dropdown-menu-right dropdown-table-custom fade" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
                               <ul class="kt-nav">
                                 <li class="kt-nav__item">
-                                  <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-admin">
+                                  <a href="#" class="kt-nav__link edit-data" data-toggle="modal" data-target="#modal-edit-admin" data-nama="{{$datas->name}}" data-email="{{$datas->email}}" data-role="{{$datas->role}}" data-href="{{ route('update.manage-admin', ['id' => $datas->id]) }}">
                                     <i class="kt-nav__link-icon flaticon2-settings"></i>
                                     <span class="kt-nav__link-text">Edit</span>
                                   </a>
@@ -183,14 +183,14 @@
 
                 <div class="form-group">
                   <div class="input-group">
-                    <div class="input-group-prepend"><span class="input-group-text" id="nama">
+                    <div class="input-group-prepend"><span class="input-group-text">
                         <i class="flaticon-avatar kt-font-brand"></i></span></div>
                     <input type="text" class="form-control" placeholder="Nama Admin" name="name" aria-describedby="nama" required>
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group">
-                    <div class="input-group-prepend"><span class="input-group-text" id="email"><i class="flaticon2-email kt-font-brand"></i></span></div>
+                    <div class="input-group-prepend"><span class="input-group-text"><i class="flaticon2-email kt-font-brand"></i></span></div>
                     <input type="email" class="form-control" placeholder="Email" name="email" aria-describedby="email" required>
                   </div>
                 </div>
@@ -250,18 +250,20 @@
               </button>
             </div>
             <div class="modal-body">
-              <form>
+              <form id="form-edit" method="post">
+                @csrf
+                <input name="_method" type="hidden" value="PUT">
                 <div class="form-group">
                   <div class="input-group">
-                    <div class="input-group-prepend"><span class="input-group-text" id="nama">
+                    <div class="input-group-prepend"><span class="input-group-text">
                         <i class="flaticon-avatar kt-font-brand"></i></span></div>
-                    <input type="text" class="form-control" placeholder="Nama Admin" aria-describedby="nama" required>
+                    <input type="text" class="form-control" placeholder="Nama Admin" aria-describedby="nama" id="nama" name="name" required>
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group">
-                    <div class="input-group-prepend"><span class="input-group-text" id="email"><i class="flaticon2-email kt-font-brand"></i></span></div>
-                    <input type="email" class="form-control" placeholder="Email" aria-describedby="email" required>
+                    <div class="input-group-prepend"><span class="input-group-text" ><i class="flaticon2-email kt-font-brand"></i></span></div>
+                    <input type="email" class="form-control" placeholder="Email" aria-describedby="email" id="email" disabled="">
                   </div>
                 </div>
                 <div class="form-group row">
@@ -269,18 +271,18 @@
                   <div class="col-md-6">
                     <div class="kt-checkbox-inline">
                       <label class="kt-radio kt-radio--bold kt-radio--success mr-4">
-                        <input type="radio" name="role" value="admin" checked required> Admin
+                        <input type="radio" name="role" value="admin" id="roleadmin" required> Admin
                         <span></span>
                       </label>
                       <label class="kt-radio kt-radio--bold kt-radio--success">
-                        <input type="radio" name="role" value="super admin" required> Super Admin
+                        <input type="radio" name="role" value="superadmin" id="rolesuperadmin" required> Super Admin
                         <span></span>
                       </label>
                     </div>
                   </div>
                 </div>
                 <div class="button-edit">
-                  <button type="button" class="btn btn-edit">Ubah data</button>
+                  <button type="submit" class="btn btn-edit">Ubah data</button>
                 </div>
               </form>
             </div>
@@ -335,6 +337,26 @@
     modal.find('.modal-body #hapus-data').attr('action', href)
   })
   //End Modal hapus
+
+
+  $('#modal-edit-admin').on('show.bs.modal', function(event) {
+    var a = $(event.relatedTarget)
+    var href = a.data('href')
+    var nama = a.data('nama')
+    var email = a.data('email')
+    var role = a.data('role')
+
+    var modal = $(this)
+
+    if(role == 'admin') {
+      modal.find('.modal-body #roleadmin').attr('checked', true)
+    } else {
+      modal.find('.modal-body #rolesuperadmin').attr('checked', true)
+    }
+    modal.find('.modal-body #form-edit').attr('action', href)
+    modal.find('.modal-body #nama').val(nama)
+    modal.find('.modal-body #email').val(email)
+  })
 </script>
 
 @endsection
