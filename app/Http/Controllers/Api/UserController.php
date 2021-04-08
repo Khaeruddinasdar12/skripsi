@@ -188,14 +188,29 @@ class UserController extends Controller
         $data->rw           = $request->get('rw');
         $data->jkel         = $request->get('jkel'); // L atau P
         $data->kelurahan    = $request->get('kelurahan');
+
         $gambar = $request->file('foto_ktp');
-        if ($gambar) {
-            if ($data->gambar && file_exists(storage_path('app/public/' . $data->gambar))) {
-                \Storage::delete('public/' . $data->gambar);
+        
+        if($gambar) {
+            if ($data->gambar && file_exists(storage_path('app/public/' . $data->foto_ktp))) {
+                \Storage::delete('public/' . $data->foto_ktp);
             }
-            $gambar_path = $gambar->store('gambar', 'public');
-            $data->foto_ktp = $gambar_path;
+
+            $filenameSimpan = $data->foto_ktp;
+            $path = $request->file('foto_ktp')->storeAs('public', $filenameSimpan);
+            $data->foto_ktp = $filenameSimpan;
         }
+        
+        // $gambar = $request->file('foto_ktp');
+
+        // if ($gambar) {
+        //     if ($data->gambar && file_exists(storage_path('app/public/' . $data->foto_ktp))) {
+        //         \Storage::delete('public/' . $data->foto_ktp);
+        //     }
+        //     $gambar_path = $gambar->store('gambar', 'public');
+        //     $data->foto_ktp = $gambar_path;
+        // }
+
         $data->save();
         return response()->json([
             'status'    => true,
@@ -203,19 +218,19 @@ class UserController extends Controller
         ]);
     }
 
-    public function detail() //detail user
-    {
-        if(!$user = Auth::user()) {
+        public function detail() //detail user
+        {
+            if(!$user = Auth::user()) {
+                return response()->json([
+                    'status'    => false,
+                    'message'   => 'Invalid Token'
+                ]);
+            }
             return response()->json([
-                'status'    => false,
-                'message'   => 'Invalid Token'
+                'status'    => true,
+                'message'   => 'Data user yang sedang login',
+                'data'      => $user
             ]);
         }
-        return response()->json([
-            'status'    => true,
-            'message'   => 'Data user yang sedang login',
-            'data'      => $user
-        ]);
     }
-}
 
