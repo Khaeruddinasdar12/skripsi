@@ -13,6 +13,7 @@ $api->version('v1', function($api) {
          return 1;
     });
 });
+    
 	Route::get('provinsi', 'Api\AlamatController@provinsi');
 	Route::get('kabupaten/{id}', 'Api\AlamatController@kabupaten');
 	Route::post('register', 'Api\UserController@register');

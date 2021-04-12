@@ -8,7 +8,7 @@ class TransaksiLahan extends Model
 {
     protected $table = 'transaksi_lahans';
     protected $fillable = [
-        'jenis', 'periode', 'harga', 'status', 'jenis_bibit', 'jenis_pupuk', 'keterangan', 'sertifikat_tanah', 'surat_pajak', 'surat_perjanjian', 'status_at', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'user_id', 'admin_id',
+        'kode', 'jenis', 'periode', 'harga', 'status', 'jenis_bibit', 'jenis_pupuk', 'keterangan', 'sertifikat_tanah', 'surat_pajak', 'surat_perjanjian', 'status_at', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'user_id', 'admin_id',
     ];
 
     public function users()
@@ -25,13 +25,13 @@ class TransaksiLahan extends Model
     {
         return \Carbon\Carbon::parse($this->attributes['created_at'])
         // ->diffForHumans();
-        ->translatedFormat('l, d F Y');
+        ->translatedFormat('l, d F Y H:i');
     }
 
     public function getUpdatedAtAttribute()
     {
         return \Carbon\Carbon::parse($this->attributes['updated_at'])
         // ->diffForHumans();
-        ->translatedFormat('l, d F Y');
+        ->translatedFormat('l, d F Y H:i');
     }
 }

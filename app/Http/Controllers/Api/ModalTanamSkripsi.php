@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Validator;
 use App\TransaksiLahan;
+use Carbon\Carbon;
 class ModalTanamSkripsi extends Controller
 {
 	public function index() // list daftar modal tanam (belum verifikasi)
@@ -18,7 +19,7 @@ class ModalTanamSkripsi extends Controller
 			]);
 		}
 
-		$data = TransaksiLahan::select('id', 'kode', 'jenis_bibit', 'jenis_pupuk', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'created_at')
+		$data = TransaksiLahan::select('id', 'kode', 'jenis_bibit', 'jenis_pupuk', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'created_at', 'updated_at')
 				->where('user_id', $user->id)
 				->where('jenis', 'mt')
 				->where('status', null)
@@ -40,7 +41,7 @@ class ModalTanamSkripsi extends Controller
 			]);
 		}
 
-		$data = TransaksiLahan::select('id', 'kode', 'jenis_bibit', 'jenis_pupuk', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'created_at')
+		$data = TransaksiLahan::select('id', 'kode', 'jenis_bibit', 'jenis_pupuk', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'created_at', 'updated_at')
 				->where('user_id', $user->id)
 				->where('jenis', 'mt')
 				->where('status', 'selesai')
@@ -62,7 +63,7 @@ class ModalTanamSkripsi extends Controller
 			]);
 		}
 
-		$data = TransaksiLahan::select('id', 'kode', 'jenis_bibit', 'jenis_pupuk', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'created_at')
+		$data = TransaksiLahan::select('id', 'kode', 'jenis_bibit', 'jenis_pupuk', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'created_at', 'updated_at')
 				->where('user_id', $user->id)
 				->where('jenis', 'mt')
 				->where('status', 'batal')
