@@ -20,4 +20,18 @@ class TransaksiLahan extends Model
     {
         return $this->belongsTo('App\Admin', 'admin_id');
     }
+
+    public function getCreatedAtAttribute()
+    {
+        return \Carbon\Carbon::parse($this->attributes['created_at'])
+        // ->diffForHumans();
+        ->translatedFormat('l, d F Y');
+    }
+
+    public function getUpdatedAtAttribute()
+    {
+        return \Carbon\Carbon::parse($this->attributes['updated_at'])
+        // ->diffForHumans();
+        ->translatedFormat('l, d F Y');
+    }
 }
