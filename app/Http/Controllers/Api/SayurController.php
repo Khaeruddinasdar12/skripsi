@@ -53,4 +53,5 @@ class SayurController extends Controller
             'to' => $data->count(),
             'total' => $data->total()
         ]);
+    }
 }

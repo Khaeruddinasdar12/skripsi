@@ -20,7 +20,7 @@ $api->version('v1', function($api) {
     
     Route::get('gabah-all', 'Api\GabahController@index'); //semua data gabah (no header)
     Route::get('beras', 'Api\BerasController@index'); //semua data beras (no header)
-    Route::get('sayur', 'Api\BerasController@index'); //semua data sayur (no header)
+    Route::get('sayur', 'Api\SayurController@index'); //semua data sayur (no header)
     Route::get('alat', 'Api\AlatController@index'); //semua data alat (no header)
     Route::get('bibit-pupuk', 'Api\DataBibitPupukController@index'); //semua data bibit-pupuk (no header)
     // Route::get('tsawah', 'Api\SawahController@listsawah'); // data sawah berdasarkan id yang login (tes)
