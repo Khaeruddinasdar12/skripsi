@@ -36,8 +36,8 @@ class BarangController extends Controller
         } else { //filter tidak kosong
             if($request->get('filter') == 'alat') {
                 $filter = 'alat';
-            } else if ($request->get('filter') == 'beras') {
-                $filter = 'beras';
+            } else if ($request->get('filter') == 'sayur') {
+                $filter = 'sayur';
             } else if ($request->get('filter') == 'bibit') {
                 $filter = 'bibit';
             } else if ($request->get('filter') == 'pupuk') {
