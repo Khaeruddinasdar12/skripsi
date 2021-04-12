@@ -15,6 +15,7 @@ class CreateTransaksiLahansTable extends Migration
     {
         Schema::create('transaksi_lahans', function (Blueprint $table) {
             $table->id();
+            $table->string('kode')->nullable();
             $table->enum('jenis', ['mt', 'gs']);
             $table->string('periode')->nullable();
             $table->integer('harga')->nullable();

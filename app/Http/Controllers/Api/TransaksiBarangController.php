@@ -192,7 +192,6 @@ class TransaksiBarangController extends Controller
             'kelurahan'     => 'required|string',
             'rt' => 'required|string',
             'rw' => 'required|string',
-
         ]);
 
         if($validator->fails()) {
@@ -431,16 +430,17 @@ class TransaksiBarangController extends Controller
             $query->where('status', null);
         })
         ->first();
+
         if(!empty($cekCart)) {
 
                 $jml = $cekCart->jumlah + $request->get('jumlah'); //jumlah barang keseluruhan
-                $subtotal = $jml * $barang->harga;
                 if($barang->stok < $jml) {
                     return response()->json([
                         'status' => false, 
                         'message' => 'Barang ini telah ada dikeranjang, jumlah yang Anda inginkan melebihi stok yang tersedia'
                     ]);
                 }
+                $subtotal = $jml * $barang->harga;
                 $cekCart->jumlah = $jml;
                 $cekCart->subtotal = $subtotal;
                 $cekCart->save();

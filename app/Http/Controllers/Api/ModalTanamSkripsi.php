@@ -18,7 +18,7 @@ class ModalTanamSkripsi extends Controller
 			]);
 		}
 
-		$data = TransaksiLahan::select('id', 'jenis_bibit', 'jenis_pupuk', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'created_at')
+		$data = TransaksiLahan::select('id', 'kode', 'jenis_bibit', 'jenis_pupuk', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'created_at')
 				->where('user_id', $user->id)
 				->where('jenis', 'mt')
 				->where('status', null)
@@ -40,7 +40,7 @@ class ModalTanamSkripsi extends Controller
 			]);
 		}
 
-		$data = TransaksiLahan::select('id', 'jenis_bibit', 'jenis_pupuk', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'created_at')
+		$data = TransaksiLahan::select('id', 'kode', 'jenis_bibit', 'jenis_pupuk', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'created_at')
 				->where('user_id', $user->id)
 				->where('jenis', 'mt')
 				->where('status', 'selesai')
@@ -62,7 +62,7 @@ class ModalTanamSkripsi extends Controller
 			]);
 		}
 
-		$data = TransaksiLahan::select('id', 'jenis_bibit', 'jenis_pupuk', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'created_at')
+		$data = TransaksiLahan::select('id', 'kode', 'jenis_bibit', 'jenis_pupuk', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'created_at')
 				->where('user_id', $user->id)
 				->where('jenis', 'mt')
 				->where('status', 'batal')
@@ -120,8 +120,11 @@ class ModalTanamSkripsi extends Controller
 			$surat_pajak_path = $surat_pajak->store('gambar', 'public');
 		}
 
+		$time = Carbon::now();
+        $kode = 'INV-GLG-MT'.$time->format('Y').$time->format('m').$time->format('d').$time->format('H').$time->format('i').$time->format('s').$user->id;
 		// return $request->get('luas_lahan');
 		TransaksiLahan::create([
+			'kode'		=> $kode,
 			'jenis'     => 'mt',
 			'jenis_bibit' => $request->get('jenis_bibit'),
 			'jenis_pupuk' => $request->get('jenis_pupuk'),

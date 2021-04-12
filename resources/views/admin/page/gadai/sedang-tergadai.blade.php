@@ -82,6 +82,7 @@
                       <thead>
                         <tr>
                           <th>#</th>
+                          <th>Kode</th>
                           <th>Nama Penggadai</th>
                           <th>Periode Gadai</th>
                           <th>Harga Gadai</th>
@@ -117,6 +118,7 @@
                       <!-- End jika admin tersedia atau tidak -->
                       <tr>
                         <th scope="row">{{$no++}}</th>
+                        <td>{{$gadai->kode}}</td>
                         <td>{{$gadais->users->name}}</td>
                         <td>{{$gadais->periode}}</td>
                         <td>Rp.{{format_uang($gadais -> harga)}}</td>

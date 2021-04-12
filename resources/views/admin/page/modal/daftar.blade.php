@@ -83,6 +83,7 @@
                       <thead>
                         <tr>
                           <th>#</th>
+                          <th>Kode</th>
                           <th>Nama Pemohon</th>
                           <th>Jenis Bibit</th>
                           <th>Jenis Pupuk</th>
@@ -95,13 +96,13 @@
                       </thead>
                       @if ($jml == 0)
                       <tbody style="text-align: center;">
-                        <td colspan="9">Belum ada data</td>
+                        <td colspan="10">Belum ada data</td>
                       </tbody>
                       @else
                       <tbody>
                         @if($data->isEmpty())
                         <tr>
-                          <td colspan="6" align="center">
+                          <td colspan="10" align="center">
                             Tidak ada data untuk pencarian "{{ Request::get('search') }}"
                           </td>
                         </tr>
@@ -112,6 +113,7 @@
                       @foreach ($data as $datas)
                       <tr>
                         <th scope="row">{{$no++}}</th>
+                        <td>{{$datas->kode}}</td>
                         <td>{{$datas->users->name}}</td>
                         <td>{{$datas->jenis_bibit}}</td>
                         <td>{{$datas->jenis_pupuk}}</td>

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Validator;
 use App\TransaksiLahan;
+use Carbon\Carbon;
 class GadaiLahanSkripsi extends Controller
 {
 	public function index() // list daftar gadai lahan
@@ -18,7 +19,7 @@ class GadaiLahanSkripsi extends Controller
 			]);
 		}
 
-		$data = TransaksiLahan::select('id', 'periode', 'harga', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'created_at')
+		$data = TransaksiLahan::select('id', 'kode', 'periode', 'harga', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'created_at', 'updated_at')
 				->where('user_id', $user->id)
 				->where('jenis', 'gs')
 				->where('status', null)
@@ -40,7 +41,7 @@ class GadaiLahanSkripsi extends Controller
 			]);
 		}
 
-		$data = TransaksiLahan::select('id', 'periode', 'harga', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'created_at')
+		$data = TransaksiLahan::select('id', 'kode', 'periode', 'harga', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'created_at', 'updated_at')
 				->where('user_id', $user->id)
 				->where('jenis', 'gs')
 				->where('status', 'gadai')
@@ -62,7 +63,7 @@ class GadaiLahanSkripsi extends Controller
 			]);
 		}
 
-		$data = TransaksiLahan::select('id', 'periode', 'harga', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'created_at')
+		$data = TransaksiLahan::select('id', 'kode', 'periode', 'harga', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'created_at', 'updated_at')
 				->where('user_id', $user->id)
 				->where('jenis', 'gs')
 				->where('status', 'selesai')
@@ -84,7 +85,7 @@ class GadaiLahanSkripsi extends Controller
 			]);
 		}
 
-		$data = TransaksiLahan::select('id', 'periode', 'harga', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'created_at')
+		$data = TransaksiLahan::select('id', 'kode', 'periode', 'harga', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'created_at', 'updated_at')
 				->where('user_id', $user->id)
 				->where('jenis', 'gs')
 				->where('status', 'batal')
@@ -142,8 +143,12 @@ class GadaiLahanSkripsi extends Controller
 			$surat_pajak_path = $surat_pajak->store('gambar', 'public');
 		}
 
+		$time = Carbon::now();
+        $kode = 'INV-GLG-GL'.$time->format('Y').$time->format('m').$time->format('d').$time->format('H').$time->format('i').$time->format('s').$user->id;
+
 		// return $request->get('luas_lahan');
 		TransaksiLahan::create([
+			'kode'		=> $kode,
 			'jenis'     => 'gs',
 			'periode'   => $request->get('periode'),
 			'harga'   => $request->get('harga'),
