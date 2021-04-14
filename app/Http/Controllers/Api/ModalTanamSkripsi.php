@@ -19,10 +19,11 @@ class ModalTanamSkripsi extends Controller
 			]);
 		}
 
-		$data = TransaksiLahan::select('id', 'kode', 'jenis_bibit', 'jenis_pupuk', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'created_at', 'updated_at')
+		$data = TransaksiLahan::select('id', 'kode', 'jenis_bibit', 'jenis_pupuk', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'keterangan', 'created_at', 'updated_at')
 				->where('user_id', $user->id)
 				->where('jenis', 'mt')
 				->where('status', null)
+				->orderBy('created_at', 'desc')
 				->get();
 		
 		return response()->json([
@@ -41,10 +42,11 @@ class ModalTanamSkripsi extends Controller
 			]);
 		}
 
-		$data = TransaksiLahan::select('id', 'kode', 'jenis_bibit', 'jenis_pupuk', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'created_at', 'updated_at')
+		$data = TransaksiLahan::select('id', 'kode', 'jenis_bibit', 'jenis_pupuk', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'keterangan', 'surat_perjanjian', 'created_at', 'updated_at')
 				->where('user_id', $user->id)
 				->where('jenis', 'mt')
 				->where('status', 'selesai')
+				->orderBy('created_at', 'desc')
 				->get();
 		
 		return response()->json([
@@ -63,10 +65,11 @@ class ModalTanamSkripsi extends Controller
 			]);
 		}
 
-		$data = TransaksiLahan::select('id', 'kode', 'jenis_bibit', 'jenis_pupuk', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'created_at', 'updated_at')
+		$data = TransaksiLahan::select('id', 'kode', 'jenis_bibit', 'jenis_pupuk', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'keterangan', 'created_at', 'updated_at')
 				->where('user_id', $user->id)
 				->where('jenis', 'mt')
 				->where('status', 'batal')
+				->orderBy('created_at', 'desc')
 				->get();
 		// return $data;
 		return response()->json([
@@ -122,7 +125,7 @@ class ModalTanamSkripsi extends Controller
 		}
 
 		$time = Carbon::now();
-        $kode = 'INV-GLG-MT'.$time->format('Y').$time->format('m').$time->format('d').$time->format('H').$time->format('i').$time->format('s').$user->id;
+        $kode = 'INV-MT'.$time->format('Y').$time->format('m').$time->format('d').$time->format('H').$time->format('i').$time->format('s').$user->id;
 		// return $request->get('luas_lahan');
 		TransaksiLahan::create([
 			'kode'		=> $kode,

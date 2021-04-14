@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use DateTimeInterface;
+// use DateTimeInterface;
 class TransaksiBarang extends Model
 {   
     protected $table = 'transaksi_barangs';
@@ -31,8 +31,21 @@ class TransaksiBarang extends Model
         return $this->hasMany('App\CartTransaksi', 'transaksi_id', 'id')->orderBy('created_at', 'desc');
     }
 
-    protected function serializeDate(DateTimeInterface $date)
+    // protected function serializeDate(DateTimeInterface $date)
+    // {
+    //     return $date->format('Y-m-d H:i:s');
+    // }
+    public function getCreatedAtAttribute()
     {
-        return $date->format('Y-m-d H:i:s');
+        return \Carbon\Carbon::parse($this->attributes['created_at'])
+        // ->diffForHumans();
+        ->translatedFormat('l, d F Y H:i');
+    }
+
+    public function getUpdatedAtAttribute()
+    {
+        return \Carbon\Carbon::parse($this->attributes['updated_at'])
+        // ->diffForHumans();
+        ->translatedFormat('l, d F Y H:i');
     }
 }

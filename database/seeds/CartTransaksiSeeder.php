@@ -14,7 +14,7 @@ class CartTransaksiSeeder extends Seeder
     	//sedang transaksi
         DB::table('cart_transaksis')->insert([
     		'nama'	=> 'pulut',
-    		'jenis' => 'beras',
+    		'jenis' => 'sayur',
     		'harga' => 5000,
     		'jumlah'=> 5,
     		'subtotal' => 25000,

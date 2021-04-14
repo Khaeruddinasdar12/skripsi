@@ -442,11 +442,14 @@ class TransaksiBarangController extends Controller
                 }
                 $subtotal = $jml * $barang->harga;
                 $cekCart->jumlah = $jml;
-                $cekCart->subtotal = $subtotal;
-                $cekCart->save();
+                
+                
 
                 $transaksi = TransaksiBarang::find($cekCart->transaksi_id);
-                $transaksi->total = $subtotal;
+                $transaksi->total = ($transaksi->total - $cekCart->subtotal) + $subtotal;
+                
+                $cekCart->subtotal = $subtotal;
+                $cekCart->save();
                 $transaksi->save();
 
                 return response()->json([

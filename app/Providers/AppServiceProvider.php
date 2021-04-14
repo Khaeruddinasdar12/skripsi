@@ -37,6 +37,7 @@ class AppServiceProvider extends ServiceProvider
 
             ->count(); // jumlah transaksi gadai sawah
             $brg = TransaksiBarang::where('status', '0')
+            ->whereNotNull('bukti')
             ->count(); // jumlah transaksi barang
             View::share('mt', $mt);
             View::share('gs', $gs);

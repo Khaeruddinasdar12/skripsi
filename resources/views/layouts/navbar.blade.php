@@ -76,7 +76,7 @@
                 </li>
                 <li class="kt-menu__item  kt-menu__item--submenu">
                   <a href="{{ route('riwayat.modaltanam.skripsi') }}" class="kt-menu__link">
-                    <span class="kt-menu__link-text">Riwayat Gadai</span>
+                    <span class="kt-menu__link-text">Riwayat Modal Tanam</span>
                   </a>
                 </li>
               </ul>
@@ -195,7 +195,7 @@
                 </li>
                 <li class="kt-menu__item  kt-menu__item--submenu">
                   <a href="{{ route('index.laporan2') }}" class="kt-menu__link">
-                    <span class="kt-menu__link-text">Laporan Gabah & Sawah</span>
+                    <span class="kt-menu__link-text">Laporan Gadai</span>
                   </a>
                 </li>
               </ul>

@@ -19,7 +19,7 @@ class GadaiLahanSkripsi extends Controller
 			]);
 		}
 
-		$data = TransaksiLahan::select('id', 'kode', 'periode', 'harga', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'created_at', 'updated_at')
+		$data = TransaksiLahan::select('id', 'kode', 'periode', 'harga', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'keterangan', 'surat_perjanjian', 'created_at', 'updated_at')
 				->where('user_id', $user->id)
 				->where('jenis', 'gs')
 				->where('status', null)
@@ -42,7 +42,7 @@ class GadaiLahanSkripsi extends Controller
 			]);
 		}
 
-		$data = TransaksiLahan::select('id', 'kode', 'periode', 'harga', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'created_at', 'updated_at')
+		$data = TransaksiLahan::select('id', 'kode', 'periode', 'harga', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'keterangan', 'surat_perjanjian', 'created_at', 'updated_at')
 				->where('user_id', $user->id)
 				->where('jenis', 'gs')
 				->where('status', 'gadai')
@@ -65,7 +65,7 @@ class GadaiLahanSkripsi extends Controller
 			]);
 		}
 
-		$data = TransaksiLahan::select('id', 'kode', 'periode', 'harga', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'created_at', 'updated_at')
+		$data = TransaksiLahan::select('id', 'kode', 'periode', 'harga', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'keterangan', 'surat_perjanjian', 'created_at', 'updated_at')
 				->where('user_id', $user->id)
 				->where('jenis', 'gs')
 				->where('status', 'selesai')
@@ -88,7 +88,7 @@ class GadaiLahanSkripsi extends Controller
 			]);
 		}
 
-		$data = TransaksiLahan::select('id', 'kode', 'periode', 'harga', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'created_at', 'updated_at')
+		$data = TransaksiLahan::select('id', 'kode', 'periode', 'harga', 'sertifikat_tanah', 'surat_pajak', 'kecamatan', 'kelurahan', 'alamat', 'titik_koordinat', 'luas_lahan', 'keterangan', 'created_at', 'updated_at')
 				->where('user_id', $user->id)
 				->where('jenis', 'gs')
 				->where('status', 'batal')
@@ -118,8 +118,8 @@ class GadaiLahanSkripsi extends Controller
 			'alamat'      => 'required|string',
 			'luas_lahan'    => 'required|string',
 			'harga'       => 'required|numeric',
-// 			'sertifikat_tanah'  => 'required|image|mimes:jpeg,png,jpg|max:3072',
-// 			'surat_pajak'   => 'required|image|mimes:jpeg,png,jpg|max:3072',
+			'sertifikat_tanah'  => 'required|image|mimes:jpeg,png,jpg|max:3072',
+			'surat_pajak'   => 'required|image|mimes:jpeg,png,jpg|max:3072',
 		]);
 
 		if($validator->fails()) {
@@ -137,18 +137,18 @@ class GadaiLahanSkripsi extends Controller
 			]);
 		}
 
-// 		$sertifikat_tanah = $request->file('sertifikat_tanah');
-// 		if ($sertifikat_tanah) {
-// 			$sertifikat_tanah_path = $sertifikat_tanah->store('gambar', 'public');
-// 		}
+		$sertifikat_tanah = $request->file('sertifikat_tanah');
+		if ($sertifikat_tanah) {
+			$sertifikat_tanah_path = $sertifikat_tanah->store('gambar', 'public');
+		}
 
-// 		$surat_pajak = $request->file('surat_pajak');
-// 		if ($surat_pajak) {
-// 			$surat_pajak_path = $surat_pajak->store('gambar', 'public');
-// 		}
+		$surat_pajak = $request->file('surat_pajak');
+		if ($surat_pajak) {
+			$surat_pajak_path = $surat_pajak->store('gambar', 'public');
+		}
         
         $time = Carbon::now();
-        $kode = 'INV-GLG-GL'.$time->format('Y').$time->format('m').$time->format('d').$time->format('H').$time->format('i').$time->format('s').$user->id;
+        $kode = 'INV-GL'.$time->format('Y').$time->format('m').$time->format('d').$time->format('H').$time->format('i').$time->format('s').$user->id;
 
 
 		TransaksiLahan::create([
@@ -161,8 +161,8 @@ class GadaiLahanSkripsi extends Controller
 			'alamat'  => $request->get('alamat'),
 			'luas_lahan' => $request->get('luas_lahan'),
 			'titik_koordinat' => $request->get('titik_koordinat'),
-// 			'sertifikat_tanah'  => $sertifikat_tanah_path,
-// 			'surat_pajak'     => $surat_pajak_path,
+			'sertifikat_tanah'  => $sertifikat_tanah_path,
+			'surat_pajak'     => $surat_pajak_path,
 			'user_id'   => $user->id,
 
 		]);

@@ -20,6 +20,7 @@ class TransaksiBarangController extends Controller
     {
         if ($request->get('search') != '') {
             $data = TransaksiBarang::where('status', '0')
+                ->whereNotNull('bukti')
                 ->select('id', 'transaksi_code', 'penerima', 'nohp', 'alamat', 'kecamatan', 'kelurahan', 'rt', 'rw', 'total', 'keterangan', 'user_id', 'bukti')
                 ->with('users:id,name,nohp')
                 ->with('items:id,nama,jenis,harga,jumlah,subtotal,transaksi_id')
@@ -29,6 +30,7 @@ class TransaksiBarangController extends Controller
                 ->paginate(10);
         } else {
             $data = TransaksiBarang::where('status', '0')
+                ->whereNotNull('bukti')
                 ->select('id', 'transaksi_code', 'penerima', 'nohp', 'alamat', 'kecamatan', 'kelurahan', 'rt', 'rw', 'total', 'keterangan', 'user_id', 'bukti')
                 ->with('users:id,name,nohp')
                 ->with('items:id,nama,jenis,harga,jumlah,subtotal,transaksi_id')
@@ -37,6 +39,7 @@ class TransaksiBarangController extends Controller
                 ->paginate(10);
         }
         $jml = TransaksiBarang::where('status', '0')
+            ->whereNotNull('bukti')
             ->count();
         // return $data;
         return view('admin.page.transaksi', ['data' => $data, 'jml' => $jml]);
