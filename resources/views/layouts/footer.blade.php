@@ -2,7 +2,7 @@
 	<div class="kt-container ">
 		<div class="kt-footer__wrapper">
 			<div class="kt-footer__copyright">
-				2020&nbsp;©&nbsp;<a href="#" target="_blank" class="kt-link">GalungApp</a>
+				2021&nbsp;©&nbsp;<a href="#" class="kt-link">SayurQita App</a>
 			</div>
 			<div class="kt-footer__menu">
 				<a href="#" target="_blank" class="kt-link">About</a>

@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use DB;
 
 class Kernel extends ConsoleKernel
 {
@@ -25,6 +26,19 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        $data = DB::table('transaksi_barangs')
+                ->whereNotNull('transaksi_code')
+                ->where('updated_at', '<=', \Carbon\Carbon::now()->subMinutes(2)
+                ->toDateTimeString())
+                ->get();
+                
+                foreach ($data as $datas) {
+                    $delete_cart = \App\CartTransaksi::where('transaksi_id', $datas->id)->delete();
+                    
+                    $delete_transaksi = DB::table('transaksi_barangs')->where('id', $datas->id)->delete();
+                }
+                
+                 
     }
 
     /**
