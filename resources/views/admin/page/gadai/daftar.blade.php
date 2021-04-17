@@ -91,7 +91,6 @@
                           <th>Foto KTP</th>
                           <th>Sertifikat Tanah</th>
                           <th>Surat Pajak</th>
-                          <th>Status</th>
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -119,14 +118,9 @@
                         <td>{{$gadais -> periode}}</td>
                         <td>Rp.{{format_uang($gadais -> harga)}}</td>
                         <td>{{$gadais -> luas_lahan}}</td>
-                        <td><a href="{{asset('storage/'.$gadais->users->foto_ktp)}}"><img src="{{asset('storage/'.$gadais->users->foto_ktp)}}" width="120px" height="120px"></a></td>
-                        <td><a href="{{asset('storage/'.$gadais->sertifikat_tanah)}}"><img src="{{asset('storage/'.$gadais->sertifikat_tanah)}}" width="120px" height="120px"></a></td>
-                        <td><a href="{{asset('storage/'.$gadais->surat_pajak)}}"><img src="{{asset('storage/'.$gadais->surat_pajak)}}" width="120px" height="120px"></a></td>
-                        <td>
-                          <div class="btn btn-bold btn-sm btn-font-sm  btn-label-danger" style="font-size: 14px;">
-                            Belum Terverifikasi
-                          </div>
-                        </td>
+                        <td><a href="{{asset('storage/'.$gadais->users->foto_ktp)}}"><img src="{{asset('storage/'.$gadais->users->foto_ktp)}}" width="90px" height="90px"></a></td>
+                        <td><a href="{{asset('storage/'.$gadais->sertifikat_tanah)}}"><img src="{{asset('storage/'.$gadais->sertifikat_tanah)}}" width="90px" height="90px"></a></td>
+                        <td><a href="{{asset('storage/'.$gadais->surat_pajak)}}"><img src="{{asset('storage/'.$gadais->surat_pajak)}}" width="90px" height="90px"></a></td>
                         <td>
                           <div class="dropdown dropdown-inline">
                             <a href="#" class="btn btn-default btn-icon btn-icon-md btn-sm btn-more-custom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

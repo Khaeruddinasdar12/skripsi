@@ -120,6 +120,7 @@ class GadaiSawahSkripsi extends Controller
         // $user = User
         $pdf = PDF::loadView('surat-perjanjian', [
                 'nama' => $data->users->name,
+                'foto_ktp'  => $data->users->foto_ktp,
                 'pekerjaan' => $data->users->pekerjaan,
                 'alamat'    => $data->users->alamat,
                 'surat_pajak' => $data->surat_pajak,
@@ -127,14 +128,12 @@ class GadaiSawahSkripsi extends Controller
                 'alamat_lahan'  => $data->alamat,
                 'periode'   => $data->periode,
                 'status_at' => $data->status_at,
-                'harga'     => $data->harga,
-                
-                
+                'harga'     => $data->harga, 
             ])->setOptions(['defaultFont' => 'sans-serif']);
+            
         $pdf->setOptions(['isPhpEnabled' => true,'isRemoteEnabled' => true]);
 
         $filename = 'surat-perjanjian-ID'.$data->id;
-        // $pdf->save('surat-perjanjian/'.$filename);
         
         Storage::put('public/pdf/'.$filename.'.pdf', $pdf->output());
         $data->surat_perjanjian = 'pdf/'.$filename.'.pdf';

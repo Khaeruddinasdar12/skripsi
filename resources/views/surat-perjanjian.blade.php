@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  
 </head>
 <body>
   <style type="text/css">
@@ -20,16 +20,12 @@
       page-break-after: always;
     }
   </style>
-  <div class="row">
-    <div class="col-md-8"><img src="{{ public_path('logo.png') }}" width="650px" height="130px"></div>
-    <div class="col-md-4"> 
+  <img src="{{ asset('logo.png') }}" width="280px" height="50px">
       <br> SayurQita 
       <br> Alamat : Kadidi, Sindereng, Sul-sel
       <br> Email : sayurqita@gmail.com
-      <br> No.HP : 085342661081</div>
-    </div>
-
-    <br>
+      <br> No.HP : 085342661081
+    
     <h4 style="text-align: center;">SURAT PERJANJIAN GADAI LAHAN</h4>
     <p>Kami yang bertandatangan di bawah ini:</p>
     <p>Nama: Apatrys Muis, S.Kom<br /> Pekerjaan: Founder SayurQita<br /> Alamat: Kadidi, Sidenreng</p>
@@ -40,16 +36,34 @@
     <p>Adapun nilai gadai tanah tersebut sebesar Rp {{format_uang($harga)}} yang dibayar secara tunai oleh Pihak KEDUA.</p>
     <p>Demikian perjanjian gadai tanah sawah yang dibuat secara sadar tanpa adanya paksaan dari pihak mana pun.</p>
     <p>Apabila terjadi hal di luar kesepakatan maka akan diselesaikan secara kekeluargaan.</p>
-    <p>Pihak PERTAMA&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Pihak KEDUA</p>
-    <p>(&hellip;&hellip;&hellip;&hellip;..)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(&hellip;&hellip;&hellip;&hellip;&hellip;.)</p>
+    <p>Pihak PERTAMA&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Pihak KEDUA</p>
+    <br>
+    <p>({{$nama}})&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(Apatrys Muis, S.Kom)</p>
     <p>&nbsp;</p>
 
     <div class="page-break"></div>
     <h4 style="text-align: center;">LAMPIRAN</h4>
     <br>
-    <h4>FOTO KTP</h4>
-    <img src="{{public_path('foto-ktp.jpg')}}">
-    <h4>SURAT PAJAK BUMI BANGUNAN</h4>
-    <img src="">
-    <h4>SERTIFIKAT TANAH</h4>
-    <img src="">
+    <h4 style="text-align:left;">FOTO KTP</h4>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <img src="{{ asset('storage/'. $foto_ktp) }}" style="width: 600px; height: 600px">
+    
+    <div class="page-break"></div>
+    <h4 style="text-align:left;">SURAT PAJAK BUMI BANGUNAN</h4>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <img src="{{ asset('storage/'. $surat_pajak) }}" style="width: 600px; height: 600px">
+    
+    <div class="page-break"></div>
+    <h4 style="text-align: left;">SERTIFIKAT TANAH</h4>
+    <br>
+    <img src="{{ asset('storage/'. $sertifikat_tanah) }}" style="width: 600px; height: 600px">
